@@ -1,0 +1,55 @@
+
+Step 1: when and where does supply matter?
+Correlation Research:
+	Sheet Corr 1 in Submarket_Study.xlsx
+		Bisect the submarkets into two groups:
+			Group A submarkets that have experienced periods of supply growth (>10) where rents  	respond to changes in supply (Rsq > 0.15)
+			Group B submarkets that have experienced periods of supply growth (>10) where rents do not respond to changes in supply (Rsq < 0.01)
+
+Elasticity Research
+	Sheet Elas 1 in Submarket_Study.xlsx
+		Take the submarket groups identified above and VLOOKUP their Elasticities
+		What is the average Elasticity of the submarkets from Group A?
+		What is the average Elasticity of the submarkets from Group B?
+		
+Comparison
+	Using a statistical TTest find if the difference in means is significant between the average elasticity of Group A and Group B
+	If so: can we conclude that having a higher (lower) elasticity of supply is a factor that leads to a greater (lesser) response in rent growth when supply increases?
+	If not: can we conclude that there is no consistent relationship between supply and rent growth?
+	Look at some historical examples from the data of:
+		Submarkest that had positive or negative supply shocks (defined as periods where supply increased/decreased by >abs(10%)) and see what happened to the rent growth in those submarkets after the shock
+		Can you find any common factors in those submarkets? Do they belong to large MSAs or small MSAs? Do they have high or low elasticities of supply?
+		
+Step 3:
+	Go into the Mkt. Analysis excel and analyze which large markets have high/low supply elasticity. 
+	Compare that to historical rent growth to see if there's a link
+
+Preregistered Hypothesis: 
+We know that housing supply elasticity in the US is declining, and that there is a housing shortage in the US. There's pent-up demand for housing.
+We want to know if, at the submarket level, past elasticities indicate future rent volatilities. 
+My hypothesis is that there is latent demand such that demand is very elastic, and that submarkets with high inelasticities (meaning supply does not increase as a response to increased rent) will have rents that move largely independently of supply; conversely, markets who quickly respond to increased rents with more supply, will have lower volatilities (more depressed rent growth). This would indicate a pent up level of demand that is ready to absorb what would appear to be excess supply, in markets with inelasticity. 
+
+CA: My hypothesis is that markets with high supply elasticity have no correlation to rent growth (constant level of supply meeting demand, so price fluctuations are independent); on the other hand, markets with low housing elasticity have a higher correlation to rent growth because of various constraints on the supply side (land scarcity, land-use regulation, unemployment rate, etc.)
+
+CA TODO: 
+1) Outline our findings
+2) Test our findings out-of-sample [in Submarket_Study_ML OOS tab]
+3) Based on our findings, recommend most and least attractive submarkets in our markets
+4) Identify most attractive submarkets in other (non FCP) markets
+_____________
+5) Presentation
+	a) problem: supply and rent don't follow a consistent relationship
+	b) background: 
+		other research
+		what we learned about elasticity
+		+ agglomeration economies <<<< 
+		+ examples of products that don't follow normal supply/demand curves: vblen goods
+	c) our findings
+		copy in the graphs from the submarket analysis
+		ML TODO: create the market version
+		CA TODO: make graphs off the market version
+	d) our recommendations
+		from the Recommendations tab
+
+If time
+6) Publication

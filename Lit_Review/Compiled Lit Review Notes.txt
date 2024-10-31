@@ -1,0 +1,50 @@
+Is there some consensus between supply and demand; what are the methods and how has research been done? 
+
+Geographic Determinants of Housing (Saiz, 2010)
+	Looking at determinants of local housing supply elasticities and their relation to current trends in urban development and evolution of housing values. Saiz focused more on the geographic determinants such as land scarcity and abundance to understand its impacts on patterns of urban growth. This model looks at the impact of land availability on urban development and housing prices in metro areas. Saiz created a model projecting that land-constrained metro areas should have more expensive housing and enjoy higher amenities and...  This lays out the framework for the ad hoc assumption that land constraints should  decrease housing supply elasticities. Land constrains matter for housing values
+
+Real Estate Rental Growth Rates at Different Points in the Physical Market Cycle; (Mueller, 1999)
+	Looks at the interaction between supply and demand and their relation to rental growth rates. Describes the market cycles in two phases, first the "two up-cycle phases (recovery and expansion) when demand growth rates are higher than supply growth rates and two down-cycle phases (hyper-supply and recession) when demand growth rates are lower than supply growth rates" (pg. 134). LTAO (Long term average occupancy)
+"Market data came from CB Richard Ellis–Torto Wheaton Research including market demand, supply, absorption, vacancy, gross asking rent and rent growth rate data for fifty-four office markets and fifty-four industrial markets." (pg. 139) -- gives general understanding of market fluctuations and their relation to supply and demand within the office space (may not be useful for us). In conclusions, the rental growth rates behaved as they expected and followed the physical cycle of occupancy with highs and lows of supply and demand. Regular cyclic supply impacts rent growth. 
+
+Real Estate Cycles and their Strategic Implications; (Pyhrr et al., 1999)
+	List a number of reasons why real estate cycles are not relevant or can be ignored due to randomness, little data, etc... may be useful in disproving the idea that market cycles account for little rental growth in submarkets with oversupply. Look back into this**
+
+Changing supply elasticities and regional housing booms (Aastvei et al., 2020)
+	Asking "How does the decline in housing supply elasticities impact house price volatility and the transmission of housing demand shocks?; What factors have contributed to changing housing supply elasticities?" This article identifies two instruments (instrumental variable approach) that lead to shifts in housing demand, but not shifts in housing supply: variation in crime rates and real personal disposable income. These two factors require separating housing demand from housing supply. Their IV estimates suggest that housing elasticities have declined, but those declines vary across regional areas and change over time- on the basis of "...regulation, demographics, and on expectations about future demand and house prices" (pg.2). "In particular, our results suggest that for a metro area with a median housing supply elasticity, an exogenous monetary policy shock that lowers the interest rate by one percentage point led to an increase in real house prices of about ten percent after four years during the 1996-2006 boom" (Page. 3)?? EXPLAIN... Doesn't apply to us...
+"This literature uses time-invariant measures of housing supply elasticities to explore cross-sectional variation over the course of a boom-bust cycle, finding that supply-inelastic areas experience stronger house price booms than areas with an elastic housing supply. Our results are consistent with this view, but go a step further by showing that housing supply elasticities may change over time even within the same local market. This contributes to affect local – and possibly aggregate – house price volatility over time." (Pg. 4) IMPORTANT... EXPLAIN
+"Our results point to a nationwide decline in housing supply elasticities. This suggests aggregate
+demand shocks should have a greater impact on house prices today, whereas quantity should
+respond less" (pg. 19) EXPLAIN...
+Why are elasticities declining?: changes in land-use regulation, population density, construction wages, unemployment rate... (pg. 24)
+	Less land available to build-- buildings are becoming more expensive
+Nation wide decline in supply elasticities, impacting housing prices, less development
+
+
+Housing Bubbles and Bust: The Role of Supply Elasticity (Ihlanfeldt and Mayock, 2014) META-STUDY
+	Looks at the debate between evidence suggesting that the elasticity of supply does not affect housing market dynamics, but other evidence shows a strong relationship between the cross-sectional variation in housing supply conditions and the severity of housing price and construction cycles (pg.79). 
+" In this study we examine how differences in the supply price elasticity of housing (henceforth, supply elasticity) across markets correlate with changes in housing prices and quantities that result from positive and negative demand shocks and the factors that explain differences in the supply elasticity across market" (pg. 79)
+Study is discussing the opposing viewpoints that supply elasticity effects are important (3 different publications) or unimportant (1 opposing publication). 
+IMPORTANT effects of supply elasticity: 
+Glaeser, Gyourko, and Saiz: "...prediction from their model is that the relationship between the supply elasticity and the size of the post bubble price correction is theoretically indeterminate" (pg. 80). The relationship between the supply elasticity and price correction is ambiguous because of two opposing forces 1) "a higher supply elasticity results in greater overbuilding during the boom, which causes greater excess inventory and larger price declines in the post-boom period; and 2) a higher supply elasticity results in less of a price rise during the boom, so there is a smaller postboom price correction" (pg. 81) IMPORTANT STATEMENT
+	Model test is explained...
+Grimes and Aitken: "Their key result is obtained using the region as the observational unit and by regressing their price adjustment estimate on the estimated elasticity. The estimated coefficient on the latter variable is negative and statistically significant, indicating that a faster supply response moderates price spikes following a demand shock" (pg. 81)
+IMPORTANT DATA SET METHODS
+CONCLUSIONS: 
+"In areas where the supply elasticity is higher, we find that boom periods are characterized by greater construction and less price appreciation. During bust periods, there is more new construction in hgih supply-elasticity areas, but the magnitudes of price changes are unaffected by whether the supply elasticity is high or low" (pg. 98) *** IMPORTANT CONCLUSIONS
+Impacts of supply elasticity are different based on boom or bust
+
+Rent Adjustment Mechanism for the Multifamily Housing Market; (Yun, 1999)
+	"In sum, economic theory establishes that the rate of change in real rents is a function of the balance of supply and demand in local submarkets as proxied by rental vacancy rates. Downward pressure is exerted on real rents as vacancy rates rise above the equilibrium rate, while upward pressure is exerted as vacancy rates fall below it" (pg. 10)
+
+Does Building New Housing Cause Displacement?:The Supply and Demand Effects of Construction in San Francisco; (Pennington, 2021)
+	"These findings suggest that increasing the supply of market rate housing has beneficial spillover effects for incumbent renters, reducing rents and displacement pressure while improving neighborhood quality" (pg. 1). In places, such as San Fran, building new homes may help to ground soaring housing prices and slow demographic change-- looking at "How large is the supply effect compared to any potential demand effect?" (pg. 2). *The spillover effect* 
+"For policymakers who want to reduce both displacement and gentrification, new market rate and affordable housing are complementary: new market rate housing reduces rents and displacement nearby through spillover effects, but invites gentrification over time." (pg. 6) Irrelevant 
+
+Price and Liquidity Dynamics... CANT FIND ACCESS 
+
+
+QUESTIONS FOR MATT? 
+- understanding supply elasticity in relation to market shocks (boom)? 
+
+	
