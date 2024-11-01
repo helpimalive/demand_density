@@ -3,6 +3,7 @@ import polars as pl
 from scipy.stats import linregress
 from matplotlib import pyplot as plt
 from matplotlib.ticker import PercentFormatter
+from pathlib import Path
 import numpy as np
 import pandas as pd
 import seaborn as sns
@@ -17,9 +18,7 @@ from statsmodels.stats.multicomp import pairwise_tukeyhsd
 
 
 def get_data():
-    df = pl.read_csv(
-        r"C:\Users\mlarriva\OneDrive - FCP\Personal Folders\Documents\Supply Study\Data\msa_data.csv"
-    )
+    df = pl.read_csv(Path(__file__).resolve().parent.parent / "data" / "msa_data.csv")
     df.columns = [
         "year",
         "msa",
@@ -70,7 +69,7 @@ def get_data():
     # )
     # Transformations
     cpi = pl.read_csv(
-        r"C:\Users\mlarriva\OneDrive - FCP\Personal Folders\Documents\Supply Study\Data\cpi_ex_shelter.csv"
+        Path(__file__).resolve().parent.parent / "data" / "cpi_ex_shelter.csv"
     )
     cpi = cpi.with_columns(
         pl.col("DATE").str.strptime(pl.Date, "%m/%d/%Y").alias("date")
@@ -764,18 +763,28 @@ def anova():
 
     df["group_P"] = None
     df["group_Q"] = None
-    df.loc[(df["rent_ratio"] >= df["med_rent_ratio"]), "group_P"] = "overP"
-    df.loc[(df["rent_ratio"] < df["med_rent_ratio"]), "group_P"] = "underP"
-    df.loc[(df["supply_delta"] >= df["med_supply_delta"]), "group_Q"] = "overQ"
-    df.loc[(df["supply_delta"] < df["med_supply_delta"]), "group_Q"] = "underQ"
+    # df.loc[(df["rent_ratio"] >= df["med_rent_ratio"]), "group_P"] = "overP"
+    # df.loc[(df["rent_ratio"] < df["med_rent_ratio"]), "group_P"] = "underP"
+    # df.loc[(df["supply_delta"] >= df["med_supply_delta"]), "group_Q"] = "overQ"
+    # df.loc[(df["supply_delta"] < df["med_supply_delta"]), "group_Q"] = "underQ"
+    df.loc[(df["rent_ratio"] > df["med_rent_ratio"]), "group_P"] = "overPriced"
+    df.loc[(df["rent_ratio"] < df["med_rent_ratio"]), "group_P"] = "underPriced"
+    df.loc[(df["supply_delta"] > df["med_supply_delta"]), "group_Q"] = "overSupplied"
+    df.loc[(df["supply_delta"] < df["med_supply_delta"]), "group_Q"] = "underSupplied"
     print(
         df.groupby(["group_P", "group_Q"])["relative_rg_next_year"].agg(
             ["mean", "count"]
         )
     )
-    df["group"] = df["group_P"] + df["group_Q"]
+    breakpoint()
+    print(
+        df.groupby(["group_P", "group_Q"])["rent_growth_next_year"].agg(
+            ["mean", "count"]
+        )
+    )
+    df["group"] = df["group_P"] + "-" + df["group_Q"]
     df.to_csv(
-        r"C:\Users\mlarriva\OneDrive - FCP\Personal Folders\Documents\Supply Study\Data\emperical_evidence.csv"
+        Path(__file__).resolve().parent.parent / "data" / "emperical_evidence.csv"
     )
     model = ols("relative_rg_next_year ~ C(group_P) + C(group_Q)", data=df).fit()
     anova_table = sm.stats.anova_lm(model, typ=2)
@@ -789,11 +798,14 @@ def anova():
     print(tukey)
 
 
+anova()
+assert False
+
 do = get_data().to_pandas().dropna()
 do = do[(do["year"] <= 2011) & (do["year"] > 2000)]
 # National Intersections in 2011
 df = pd.read_csv(
-    r"C:\Users\mlarriva\OneDrive - FCP\Personal Folders\Documents\Supply Study\Data\emperical_evidence.csv"
+    Path(__file__).resolve().parent.parent / "data" / "emperical_evidence.csv"
 ).dropna()
 df = df[df["year"] <= 2011]
 
