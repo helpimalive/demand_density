@@ -120,7 +120,7 @@ def get_data():
     )
     # Excluding NOLA because Katrina made density go haywire
     # df = df.filter((pl.col("msa") != "New Orleans - LA") | (pl.col("year") != 2006))
-    df.write_csv(r"C:\users\mlarriva\desktop\output.csv")
+    df.write_csv(Path(__file__).resolve().parent.parent / "data" / "emperical_evidence.csv")
     return df
 
 
