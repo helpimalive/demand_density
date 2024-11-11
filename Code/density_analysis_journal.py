@@ -722,9 +722,9 @@ def part_three():
     predict_future(df.dropna())
 
     # F) Bin analysis of rent growth and supply/demand intersection
-    # supply_demand_annual(df, past_current="each").to_csv(
-    #     r"C:/users/mlarriva/desktop/output.csv"
-    # )
+    supply_demand_annual(df, past_current="each").to_csv(
+        r"C:/users/mlarriva/desktop/output.csv"
+    )
     df = pd.read_csv(r"C:/users/mlarriva/desktop/output.csv").dropna()
     df["quantity_group"] = pd.cut(
         df["quantity"],
@@ -755,6 +755,25 @@ def part_three():
     plt.show()
 
 
+def present_density():
+    df = get_data()
+    print(df.select("pop", "inventory").mean())
+    plt.figure(figsize=(10, 6))
+    sns.boxplot(x="year", y="total_density", data=df.to_pandas())
+    plt.title("Box and Whisker Plot of Density over Time in the 100 Largest MSAs")
+    plt.xlabel("Year")
+    plt.ylabel("Density (Population divided by Occupied Rental Units)")
+    plt.xticks(rotation=45)
+    plt.savefig(
+        Path(__file__).resolve().parent.parent / "Figs" / "box_whisker_density_time.png"
+    )
+
+
+present_density()
+
+assert False
+
+
 # Emperical Evidence
 def anova():
     # The implied intersection of the supply and demand curves show distinct groupings of rent
@@ -776,7 +795,7 @@ def anova():
             ["relative_rg_next_year", "rent_growth_next_year"]
         ]
         .agg("mean")
-        .applymap(lambda x: int(x * 10000))
+        .map(lambda x: int(x * 10000))
         .reset_index()
     )
     df["group"] = df["group_P"] + "-" + df["group_Q"]
@@ -786,12 +805,22 @@ def anova():
 
     print("#### Relative Rent Growth ####")
     model = ols("relative_rg_next_year ~ C(group_P) + C(group_Q)", data=df).fit()
-    model = ols("rent_growth_next_year~ C(group_P) + C(group_Q)", data=df).fit()
     anova_table = sm.stats.anova_lm(model, typ=2)
     print(anova_table)
 
     tukey = pairwise_tukeyhsd(
         endog=df.dropna()["relative_rg_next_year"],
+        groups=df.dropna()["group"],
+        alpha=0.05,
+    )
+    print(tukey)
+    print("#### Absolute Rent Growth ####")
+    model = ols("rent_growth_next_year~ C(group_P) + C(group_Q)", data=df).fit()
+    anova_table = sm.stats.anova_lm(model, typ=2)
+    print(anova_table)
+
+    tukey = pairwise_tukeyhsd(
+        endog=df.dropna()["rent_growth_next_year"],
         groups=df.dropna()["group"],
         alpha=0.05,
     )
@@ -1044,5 +1073,5 @@ def example_plot():
     # nova
 
 
-# anova()
-example_plot()
+anova()
+# example_plot()

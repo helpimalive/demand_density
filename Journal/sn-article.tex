@@ -33,7 +33,7 @@
 %%\documentclass[sn-basic]{sn-jnl}% Basic Springer Nature Reference Style/Chemistry Reference Style
 \documentclass[sn-mathphys-num]{sn-jnl}% Math and Physical Sciences Numbered Reference Style 
 %%\documentclass[sn-mathphys-ay]{sn-jnl}% Math and Physical Sciences Author Year Reference Style
-%%\documentclass[sn-aps]{sn-jnl}% American Physical Society (APS) Reference Style
+%%\documentclass[sn-aps]{sn-jnl}% American Physical Society (APS) Reference Style``
 %%\documentclass[sn-vancouver,Numbered]{sn-jnl}% Vancouver Reference Style
 %%\documentclass[sn-apa]{sn-jnl}% APA Reference Style 
 %%\documentclass[sn-chicago]{sn-jnl}% Chicago-based Humanities Reference Style
@@ -162,14 +162,30 @@ Focusing on a panel of the 100 largest metropolitan statistical areas (MSA), the
 
 In the Data section we describe the data we used and analyze its properties. The subsequent section (Experiment) illustrates statistical tests performed to evaluate the validity of the classifications. And the final section discusses the results and concludes. 
 
-\section{Data}\label{sec2}
+\section{Existing Measures of Demand}
+Occupancy and vacancy and absorption are sloped the wrong way and or 
+are capped at 1
 First, we would expect the relationship between quantity and price to be inversely related such that the renter would prefer 1000 square feet to 500 square feet if the price were the same. Conversely,  the renter will settle for 250 square feet (likely sharing the unit) if prices are too high. 
 For example, New York City in a given year may have a derived rent and quantity suggesting that 10\% more stock is demanded at 5\% higher prices. We compare that to the top-100 markets' values and see that the median derived stock is  but we may observe that nationally only 2\% more stock was delivered in the given year, and rents rose only by 3\%. This would be a situation of under-supply and under-pricing, and we would expect that disequilibrium to manifest in the future through rent growth. Because rent growth is not subject to sticky pricing, it should reflect disequilibrium more robustly than supply growth.
-\section{Experiment}\label{sec2}
+
+\section{Finding Demand through Density}
+We define density simply, as the population divided by the number of occupied rental units in an MSA. 
+This assumes a latent level of rentership and family sizes nationally. There is homogeneity in this density ratio across both time and geography, with the mean density decreasing in sync with the observed decrease in people-per-household in the US [find reference].
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{"C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/box_whisker_density_time.png"}
+	\caption{This is a widefig. This is an example of long caption this is an example of long caption  this is an example of long caption this is an example of long caption}\label{fig1}
+\end{figure}
+
+
+
+\section{Empirical Evidence}\label{sec2}
+We find 
 
 If implied demand is a meaningful demand measure, then we would expect it to intersect the supply curve at a meaningful quantity and price level. Meaningful in this context connotes economically meaningful: observing the characteristics of microeconomic supply-and-demand dynamics, and thereby macroeconomic aggregate supply and demand dynamics. 
 
 The implied demand curve intersects the supply curve at a price per-square-foot (p*) and a quantity (q*). These derived values (p*,q*) may be higher or lower than the actual market price and supply values (p,q).
+
 If the price renters are paying (observed price) is below the derived price, then we would say the market is underpriced. Market forces imply a price higher than the prevailing price. The price will increase to meet the derived price. 
 Similarly, if observed supply is greater than derived supply, we would say the market is oversupplied. There is more stock than expected based on supply and demand dynamics. The rent should decrease to absorb the additional stock, as the stock cannot decrease to meet the prevailing rent values. 
 
