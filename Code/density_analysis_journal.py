@@ -67,7 +67,15 @@ def get_data():
     # df = df.join(subm, left_on="msa", right_on="costar_msa", how="left").filter(
     #     pl.col("size") > 0
     # )
-    # Transformations
+    ##### Transformations
+    ## CPI All Items
+    # cpi = pl.read_csv(Path(__file__).resolve().parent.parent / "data" / "cpi.csv")
+    # cpi = cpi.with_columns(pl.col("year").cast(pl.Int16))
+    # cpi = (
+    #     cpi.filter(pl.col("year") > 1999).select(pl.col("year"), pl.col("cpi_pct"))
+    # ).with_columns(cpi_cum=(pl.col("cpi_pct") + 1).cum_prod())
+
+    ## CPI Ex_Shelter
     cpi = pl.read_csv(
         Path(__file__).resolve().parent.parent / "data" / "cpi_ex_shelter.csv"
     )
@@ -79,12 +87,9 @@ def get_data():
         cpi.filter(pl.col("year") > 1999)
         .with_columns((pl.col("CUSR0000SA0L2").cast(pl.Float32) / 100).alias("cpi_pct"))
         .select(pl.col("year"), pl.col("cpi_pct"))
+        .sort("year")
     ).with_columns(cpi_cum=(pl.col("cpi_pct") + 1).cum_prod())
-    df = df.join(cpi, on="year", how="left")
-    df = df.with_columns(
-        (pl.col("rent_growth") - pl.col("cpi_pct")).alias("rent_growth"),
-        (pl.col("rentpsf") / pl.col("cpi_cum")).alias("rentpsf"),
-    )
+
     df = df.join(cpi, on="year", how="left")
     df = df.with_columns(
         (pl.col("rent_growth") - pl.col("cpi_pct")).alias("rent_growth"),
@@ -112,7 +117,7 @@ def get_data():
         )
         .sort("msa", "year", descending=False)
         .with_columns(
-            ((pl.col("total_density").pct_change().over("msa"))).alias(
+            (((pl.col("total_density").pct_change().over("msa")))).alias(
                 "total_density_growth"
             )
         )
@@ -760,33 +765,28 @@ def anova():
     df["supply_delta"] = df["supply_growth"] / df["quantity"]
     df["med_supply_delta"] = df.groupby("year")["supply_delta"].transform("median")
     df["med_rent_ratio"] = df.groupby("year")["rent_ratio"].transform("median")
-
     df["group_P"] = None
     df["group_Q"] = None
-    # df.loc[(df["rent_ratio"] >= df["med_rent_ratio"]), "group_P"] = "overP"
-    # df.loc[(df["rent_ratio"] < df["med_rent_ratio"]), "group_P"] = "underP"
-    # df.loc[(df["supply_delta"] >= df["med_supply_delta"]), "group_Q"] = "overQ"
-    # df.loc[(df["supply_delta"] < df["med_supply_delta"]), "group_Q"] = "underQ"
-    df.loc[(df["rent_ratio"] > df["med_rent_ratio"]), "group_P"] = "overPriced"
+    df.loc[(df["rent_ratio"] >= df["med_rent_ratio"]), "group_P"] = "overPriced"
     df.loc[(df["rent_ratio"] < df["med_rent_ratio"]), "group_P"] = "underPriced"
-    df.loc[(df["supply_delta"] > df["med_supply_delta"]), "group_Q"] = "overSupplied"
+    df.loc[(df["supply_delta"] >= df["med_supply_delta"]), "group_Q"] = "overSupplied"
     df.loc[(df["supply_delta"] < df["med_supply_delta"]), "group_Q"] = "underSupplied"
     print(
-        df.groupby(["group_P", "group_Q"])["relative_rg_next_year"].agg(
-            ["mean", "count"]
-        )
-    )
-    breakpoint()
-    print(
-        df.groupby(["group_P", "group_Q"])["rent_growth_next_year"].agg(
-            ["mean", "count"]
-        )
+        df.groupby(["group_P", "group_Q"])[
+            ["relative_rg_next_year", "rent_growth_next_year"]
+        ]
+        .agg("mean")
+        .applymap(lambda x: int(x * 10000))
+        .reset_index()
     )
     df["group"] = df["group_P"] + "-" + df["group_Q"]
     df.to_csv(
         Path(__file__).resolve().parent.parent / "data" / "emperical_evidence.csv"
     )
+
+    print("#### Relative Rent Growth ####")
     model = ols("relative_rg_next_year ~ C(group_P) + C(group_Q)", data=df).fit()
+    model = ols("rent_growth_next_year~ C(group_P) + C(group_Q)", data=df).fit()
     anova_table = sm.stats.anova_lm(model, typ=2)
     print(anova_table)
 
@@ -798,220 +798,251 @@ def anova():
     print(tukey)
 
 
-anova()
-assert False
+def example_plot():
+    df = get_data().to_pandas()
+    ny = df[(df["year"] < 2011) & (df["year"] > 2000) & (df["msa"] == "Austin - TX")]
+    no = df[(df["year"] == 2011) & (df["msa"] == "Austin - TX")]
+    fig, ax = plt.subplots(1, 3)
+    # Target MSA historical supply vs rent
+    ax[0].scatter(
+        ny["supply_growth"],
+        ny["rentpsf"],
+        color="blue",
+        label="supply points",
+        zorder=5,
+    )
+    slope, intercept, r_value, p_value, std_err = linregress(
+        ny["supply_growth"], ny["rentpsf"]
+    )
+    x_span_min = min([ny["implied_demand"].min(), ny["supply_growth"].min()])
+    x_span_max = max([ny["implied_demand"].max(), ny["supply_growth"].max()])
+    y_span_min = min([ny["rentpsf"].min()])
+    y_span_max = max([ny["rentpsf"].max()])
 
-do = get_data().to_pandas().dropna()
-do = do[(do["year"] <= 2011) & (do["year"] > 2000)]
-# National Intersections in 2011
-df = pd.read_csv(
-    Path(__file__).resolve().parent.parent / "data" / "emperical_evidence.csv"
-).dropna()
-df = df[df["year"] <= 2011]
+    ax[0].plot(
+        np.linspace(x_span_min, x_span_max, 10),
+        intercept + slope * np.linspace(x_span_min, x_span_max, 10),
+        color="blue",
+        label="supply line",
+    )
+    # Target MSA implied demand vs rent
+    ax[0].scatter(
+        ny["implied_demand"],
+        ny["rentpsf"],
+        color="red",
+        label="implied demand points",
+        zorder=5,
+    )
+    slope2, intercept2, r_value2, p_value2, std_err2 = linregress(
+        ny["implied_demand"], ny["rentpsf"]
+    )
+    ax[0].plot(
+        np.linspace(x_span_min, x_span_max, 10),
+        intercept2 + slope2 * np.linspace(x_span_min, x_span_max, 10),
+        color="red",
+        label="implied demand line",
+    )
+    # Derived Intersection
+    derived_x = (intercept2 - intercept) / (slope - slope2)
+    derived_y = intercept + slope * derived_x
+    ax[0].plot(
+        derived_x,
+        derived_y,
+        "*",
+        label="derived intersection",
+        color="gray",
+        markersize=10,
+        zorder=1,
+    )
+    ax[0].vlines(
+        x=derived_x,
+        ymin=0,
+        ymax=derived_y,
+        linestyle="--",
+        color="gray",
+    )
+    ax[0].hlines(
+        y=derived_y,
+        xmin=-0.05,
+        xmax=derived_x,
+        linestyle="--",
+        color="gray",
+        label="derived quantity | price --",
+    )
+    # Observed Rent and Supply
+    observed_x = no["supply_growth"].values[0]
+    observed_y = no["rentpsf"].values[0]
+    ax[0].plot(
+        observed_x,
+        observed_y,
+        "s",
+        label="observed intersection",
+        color="black",
+        markersize=7,
+        zorder=1,
+    )
+    ax[0].vlines(
+        x=observed_x,
+        ymin=0,
+        ymax=observed_y,
+        linestyle="--",
+        color="black",
+    )
+    ax[0].hlines(
+        y=observed_y,
+        xmin=-0.05,
+        xmax=observed_x,
+        linestyle="--",
+        color="black",
+        label="observed quantity | price--",
+    )
 
-# Target MSA values in 2011
-ny = do[(do["msa"] == "Orange County - CA") & (do["year"] <= 2011)]
-fix, ax = plt.subplots(1, 2)
-# Target MSA historical supply vs rent
-ax[0].scatter(
-    ny["supply_growth"], ny["rentpsf"], color="blue", label="supply points", zorder=5
-)
-slope, intercept, r_value, p_value, std_err = linregress(
-    ny["supply_growth"], ny["rentpsf"]
-)
-ax[0].plot(
-    np.linspace(ny["implied_demand"].min(), ny["implied_demand"].max(), 10),
-    intercept
-    + slope * np.linspace(ny["implied_demand"].min(), ny["implied_demand"].max(), 10),
-    color="blue",
-    label="supply line",
-)
-# Target MSA implied demand vs rent
-ax[0].scatter(
-    ny["implied_demand"],
-    ny["rentpsf"],
-    color="red",
-    label="implied demand points",
-    zorder=5,
-)
-slope2, intercept2, r_value2, p_value2, std_err2 = linregress(
-    ny["implied_demand"], ny["rentpsf"]
-)
-ax[0].plot(
-    ny["implied_demand"],
-    intercept2 + slope2 * ny["implied_demand"],
-    color="red",
-    label="implied demand line",
-)
+    distance = abs(observed_y - derived_y)
+    rent_ratio = observed_y / derived_y
+    ax[0].set_xlim(-0.03, 0.03)
+    ax[0].set_ylim(0.75, 1.4)
+    ax[0].yaxis.set_major_formatter(plt.FormatStrFormatter("$%.2f"))
+    # Annotate the Y axis
+    x_min = ax[0].get_xlim()[0]
+    x_max = ax[0].get_xlim()[1]
+    ax[0].annotate(
+        f"Observed Rent (${observed_y:.3f})",
+        xy=(x_min, observed_y),
+        xytext=(x_min, observed_y + 0.025),
+        color="black",
+        # arrowprops=dict(facecolor="black", shrink=0.02),
+    )
+    ax[0].annotate(
+        f"Derived Rent (${derived_y:.3f})",
+        xy=(x_min, derived_y),
+        xytext=(x_min, derived_y + 0.025),
+        color="gray",
+        # arrowprops=dict(facecolor="gray", shrink=0.02),
+    )
+    # ax[0].annotate(
+    #     f"Rent Ratio = {rent_ratio:.2f}",
+    #     xy=(x_min, (derived_y + observed_y) / 2),
+    #     xytext=(x_min, (derived_y + observed_y) / 2),
+    #     color="blue",
+    # )
+    # Annotate the X axis
+    y_min = ax[0].get_ylim()[0]
+    y_max = ax[0].get_ylim()[1]
+    supply_delta = observed_x / derived_x
+    ax[0].annotate(
+        f"Observed\nSupply\n ({observed_x:.3f})",
+        xy=(observed_x - 0.0075, y_min),
+        xytext=(observed_x - 0.0075, y_min),
+        color="black",
+        # arrowprops=dict(facecolor="black", shrink=0.02),
+    )
+    ax[0].annotate(
+        f"Derived\nSupply\n({derived_x:.3f})",
+        xy=(derived_x + 0.0025, y_min),
+        xytext=(derived_x + 0.0025, y_min),
+        color="gray",
+        # arrowprops=dict(facecolor="gray", shrink=0.02),
+    )
+    # ax[0].annotate(
+    #     f"Ratio =\n{supply_delta:.2f}",
+    #     xy=((derived_x + observed_x) / 2, y_min),
+    #     xytext=((derived_x + observed_x) / 2, y_min),
+    #     color="red",
+    # )
+    ax[0].set_title(
+        "Supply and Implied Demand Curves: Orange County - CA \n Using data from 2001-2011"
+    )
+    ax[0].legend()
 
-# Derived Intersection
-derived_x = (intercept2 - intercept) / (slope - slope2)
-derived_y = intercept + slope * derived_x
-ax[0].plot(
-    derived_x,
-    derived_y,
-    "*",
-    label="derived intersection",
-    color="gray",
-    markersize=10,
-    zorder=1,
-)
-ax[0].vlines(
-    x=derived_x,
-    ymin=0,
-    ymax=derived_y,
-    linestyle="--",
-    color="gray",
-)
-ax[0].hlines(
-    y=derived_y,
-    xmin=-0.05,
-    xmax=derived_x,
-    linestyle="--",
-    color="gray",
-    label="derived quantity | price --",
-)
-# Observed Rent and Supply
-observed_x = ny[ny["year"] == 2011]["supply_growth"].values[0]
-observed_y = ny[ny["year"] == 2011]["rentpsf"].values[0]
-ax[0].plot(
-    observed_x,
-    observed_y,
-    "s",
-    label="observed intersection",
-    color="black",
-    markersize=7,
-    zorder=1,
-)
-ax[0].vlines(
-    x=observed_x,
-    ymin=0,
-    ymax=observed_y,
-    linestyle="--",
-    color="black",
-)
-ax[0].hlines(
-    y=observed_y,
-    xmin=-0.05,
-    xmax=observed_x,
-    linestyle="--",
-    color="black",
-    label="observed quantity | price--",
-)
+    # Ratios
+    df = pd.read_csv(
+        Path(__file__).resolve().parent.parent / "data" / "emperical_evidence.csv"
+    ).dropna()
+    dr = df[(df["year"] == 2011) & (df["msa"] == "Austin - TX")]
+    ax[1].plot(
+        dr["supply_delta"],
+        dr["rent_ratio"],
+        "*",
+        label="observed intersection",
+        color="purple",
+        markersize=7,
+        zorder=1,
+    )
+    ax[1].annotate(
+        f"Quotient of\n Observed Rent ${observed_y:.3} \n to Derived Rent ${derived_y:.3}",
+        xy=(dr["supply_delta"], dr["rent_ratio"]),
+        xytext=(dr["supply_delta"], dr["rent_ratio"]),
+        color="blue",
+    )
+    ax[1].annotate(
+        f"Quotient of\n Observed Supply {observed_x:.3} \n to Derived Demand {derived_x:.3}",
+        xy=(dr["supply_delta"], dr["rent_ratio"]),
+        xytext=(dr["supply_delta"] * 0.95, dr["rent_ratio"] * 0.95),
+        color="red",
+    )
+    ax[1].set_ylim(0.75, 1.25)
+    ax[1].set_xlim(-1, 1)
 
-distance = abs(observed_y - derived_y)
-rent_ratio = observed_y / derived_y
-ax[0].set_xlim(-0.03, 0.03)
-ax[0].set_ylim(0.75, 1.75)
-ax[0].yaxis.set_major_formatter(plt.FormatStrFormatter("$%.2f"))
-# Annotate the Y axis
-x_min = ax[0].get_xlim()[0]
-x_max = ax[0].get_xlim()[1]
-ax[0].annotate(
-    f"Observed Rent (${observed_y:.2f})",
-    xy=(x_min, observed_y),
-    xytext=(x_min, observed_y + 0.025),
-    color="black",
-    # arrowprops=dict(facecolor="black", shrink=0.02),
-)
-ax[0].annotate(
-    f"Derived Rent (${derived_y:.2f})",
-    xy=(x_min, derived_y),
-    xytext=(x_min, derived_y + 0.025),
-    color="gray",
-    # arrowprops=dict(facecolor="gray", shrink=0.02),
-)
-# ax[0].annotate(
-#     f"Rent Ratio = {rent_ratio:.2f}",
-#     xy=(x_min, (derived_y + observed_y) / 2),
-#     xytext=(x_min, (derived_y + observed_y) / 2),
-#     color="blue",
-# )
-# Annotate the X axis
-y_min = ax[0].get_ylim()[0]
-y_max = ax[0].get_ylim()[1]
-supply_delta = observed_x / derived_x
-ax[0].annotate(
-    f"Observed\nSupply\n ({observed_x:.3f})",
-    xy=(observed_x - 0.0075, y_min),
-    xytext=(observed_x - 0.0075, y_min),
-    color="black",
-    # arrowprops=dict(facecolor="black", shrink=0.02),
-)
-ax[0].annotate(
-    f"Derived\nSupply\n({derived_x:.3f})",
-    xy=(derived_x + 0.0025, y_min),
-    xytext=(derived_x + 0.0025, y_min),
-    color="gray",
-    # arrowprops=dict(facecolor="gray", shrink=0.02),
-)
-# ax[0].annotate(
-#     f"Ratio =\n{supply_delta:.2f}",
-#     xy=((derived_x + observed_x) / 2, y_min),
-#     xytext=((derived_x + observed_x) / 2, y_min),
-#     color="red",
-# )
-ax[0].set_title(
-    "Supply and Implied Demand Curves: Orange County - CA \n Using data from 2001-2011"
-)
-ax[0].legend()
+    # National Intersections in 2011
+    df = df[df["year"] <= 2011]
+    ax[2].scatter(
+        df[df["year"] == 2011]["supply_delta"],
+        df[df["year"] == 2011]["rent_ratio"],
+        color="gray",
+    )
+    avg_x = df[df["year"] == 2011]["supply_delta"].median()
+    print(df.loc[df["year"] == 2011, "supply_delta"].sort_values())
+    avg_y = df[df["year"] == 2011]["rent_ratio"].median()
+    ax[2].vlines(
+        x=avg_x,
+        ymin=0,
+        ymax=avg_y,
+        linestyle="--",
+        color="orange",
+    )
+    ax[2].hlines(
+        y=avg_y,
+        xmin=-5,
+        xmax=avg_x,
+        linestyle="--",
+        color="orange",
+    )
+    ax[2].set_ylim(0.75, 1.25)
+    ax[2].set_xlim(-1, 1)
+    ratio_x = observed_x / derived_x
+    ratio_y = observed_y / derived_y
+    ax[2].plot(
+        ratio_x,
+        ratio_y,
+        "*",
+        label="q* p*",
+        color="red",
+        markersize=5,
+    )
+    # # Observed Rent and Supply
+    # observed_x = df[df["year"] == 2011]["supply_growth"].mean()
+    # observed_y = df[df["year"] == 2011]["rentpsf"].mean()
+    # ax[1].plot(observed_x, observed_y, "ro", label="Intersection")
+    # ax[1].vlines(
+    #     x=observed_x,
+    #     ymin=0,
+    #     ymax=observed_y,
+    #     linestyle="--",
+    #     color="black",
+    # )
+    # ax[1].hlines(
+    #     y=observed_y,
+    #     xmin=-0.05,
+    #     xmax=observed_x,
+    #     linestyle="--",
+    #     color="black",
+    # )
+
+    # ax[1].set_xlim(-0.02, 0.05)
+    # ax[1].set_ylim(0, 3)
+    plt.show()
+    # nova
 
 
-# National Intersections
-ax[1].scatter(
-    df[df["year"] == 2011]["supply_delta"],
-    df[df["year"] == 2011]["rent_ratio"],
-    color="gray",
-)
-avg_x = df[df["year"] == 2011]["supply_delta"].median()
-print(df.loc[df["year"] == 2011, "supply_delta"].sort_values())
-avg_y = df[df["year"] == 2011]["rent_ratio"].median()
-ax[1].vlines(
-    x=avg_x,
-    ymin=0,
-    ymax=avg_y,
-    linestyle="--",
-    color="orange",
-)
-ax[1].hlines(
-    y=avg_y,
-    xmin=-5,
-    xmax=avg_x,
-    linestyle="--",
-    color="orange",
-)
-ax[1].set_ylim(0.75, 1.25)
-ax[1].set_xlim(-1, 1)
-ratio_x = observed_x / derived_x
-ratio_y = observed_y / derived_y
-ax[1].plot(
-    ratio_x,
-    ratio_y,
-    "*",
-    label="q* p*",
-    color="red",
-    markersize=5,
-)
-# # Observed Rent and Supply
-# observed_x = df[df["year"] == 2011]["supply_growth"].mean()
-# observed_y = df[df["year"] == 2011]["rentpsf"].mean()
-# ax[1].plot(observed_x, observed_y, "ro", label="Intersection")
-# ax[1].vlines(
-#     x=observed_x,
-#     ymin=0,
-#     ymax=observed_y,
-#     linestyle="--",
-#     color="black",
-# )
-# ax[1].hlines(
-#     y=observed_y,
-#     xmin=-0.05,
-#     xmax=observed_x,
-#     linestyle="--",
-#     color="black",
-# )
-
-# ax[1].set_xlim(-0.02, 0.05)
-# ax[1].set_ylim(0, 3)
-plt.show()
-# nova
+# anova()
+example_plot()
