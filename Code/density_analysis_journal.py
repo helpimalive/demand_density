@@ -15,6 +15,7 @@ from statsmodels.formula.api import ols
 import plotly.graph_objects as go
 import statsmodels.api as sm
 from statsmodels.stats.multicomp import pairwise_tukeyhsd
+from scipy.stats import skew, kurtosis
 
 
 def get_data():
@@ -69,26 +70,26 @@ def get_data():
     # )
     ##### Transformations
     ## CPI All Items
-    # cpi = pl.read_csv(Path(__file__).resolve().parent.parent / "data" / "cpi.csv")
-    # cpi = cpi.with_columns(pl.col("year").cast(pl.Int16))
-    # cpi = (
-    #     cpi.filter(pl.col("year") > 1999).select(pl.col("year"), pl.col("cpi_pct"))
-    # ).with_columns(cpi_cum=(pl.col("cpi_pct") + 1).cum_prod())
+    cpi = pl.read_csv(Path(__file__).resolve().parent.parent / "data" / "cpi.csv")
+    cpi = cpi.with_columns(pl.col("year").cast(pl.Int16))
+    cpi = (
+        cpi.filter(pl.col("year") > 1999).select(pl.col("year"), pl.col("cpi_pct"))
+    ).with_columns(cpi_cum=(pl.col("cpi_pct") + 1).cum_prod())
 
     ## CPI Ex_Shelter
-    cpi = pl.read_csv(
-        Path(__file__).resolve().parent.parent / "data" / "cpi_ex_shelter.csv"
-    )
-    cpi = cpi.with_columns(
-        pl.col("DATE").str.strptime(pl.Date, "%m/%d/%Y").alias("date")
-    )
-    cpi = cpi.with_columns(pl.col("date").dt.year().cast(pl.Int16).alias("year"))
-    cpi = (
-        cpi.filter(pl.col("year") > 1999)
-        .with_columns((pl.col("CUSR0000SA0L2").cast(pl.Float32) / 100).alias("cpi_pct"))
-        .select(pl.col("year"), pl.col("cpi_pct"))
-        .sort("year")
-    ).with_columns(cpi_cum=(pl.col("cpi_pct") + 1).cum_prod())
+    # cpi = pl.read_csv(
+    #     Path(__file__).resolve().parent.parent / "data" / "cpi_ex_shelter.csv"
+    # )
+    # cpi = cpi.with_columns(
+    #     pl.col("DATE").str.strptime(pl.Date, "%m/%d/%Y").alias("date")
+    # )
+    # cpi = cpi.with_columns(pl.col("date").dt.year().cast(pl.Int16).alias("year"))
+    # cpi = (
+    #     cpi.filter(pl.col("year") > 1999)
+    #     .with_columns((pl.col("CUSR0000SA0L2").cast(pl.Float32) / 100).alias("cpi_pct"))
+    #     .select(pl.col("year"), pl.col("cpi_pct"))
+    #     .sort("year")
+    # ).with_columns(cpi_cum=(pl.col("cpi_pct") + 1).cum_prod())
 
     df = df.join(cpi, on="year", how="left")
     df = df.with_columns(
@@ -98,9 +99,7 @@ def get_data():
     df = (
         df.sort("msa", "year", descending=False)
         .with_columns(
-            ((pl.col("pop")) / (pl.col("occ") * pl.col("inventory"))).alias(
-                "total_density"
-            ),
+            ((pl.col("pop")) / (pl.col("inventory"))).alias("total_density"),
             (pl.col("delivered") / pl.col("inventory").shift(1).over("msa")).alias(
                 "supply_growth"
             ),
@@ -125,7 +124,9 @@ def get_data():
     )
     # Excluding NOLA because Katrina made density go haywire
     # df = df.filter((pl.col("msa") != "New Orleans - LA") | (pl.col("year") != 2006))
-    df.write_csv(r"C:\users\mlarriva\desktop\output.csv")
+    df.write_csv(
+        Path(__file__).resolve().parent.parent / "data" / "preprocessed_data.csv"
+    )
     return df
 
 
@@ -757,7 +758,6 @@ def part_three():
 
 def present_density():
     df = get_data()
-    print(df.select("pop", "inventory").mean())
     plt.figure(figsize=(10, 6))
     sns.boxplot(x="year", y="total_density", data=df.to_pandas())
     plt.title("Box and Whisker Plot of Density over Time in the 100 Largest MSAs")
@@ -767,11 +767,93 @@ def present_density():
     plt.savefig(
         Path(__file__).resolve().parent.parent / "Figs" / "box_whisker_density_time.png"
     )
+    plt.show()
+    df = df.filter(pl.col("msa") == "New York - NY")
+    plt.figure(figsize=(10, 6))
+    sns.barplot(x="year", y="total_density", data=df.to_pandas(), ci=None)
+    plt.title("Total Density in New York City MSA over Time")
+    plt.xlabel("Year")
+    plt.ylabel("Density (Population divided by Occupied Rental Units)")
+    plt.xticks(rotation=45)
+    plt.savefig(
+        Path(__file__).resolve().parent.parent / "Figs" / "bar_total_density_year.png"
+    )
+    plt.show()
 
 
-present_density()
+def national_example():
+    df = (
+        get_data()
+        # .filter(pl.col("msa") == "Denver - CO")
+        .filter(pl.col("year") < 2024)
+        .select(
+            "year",
+            pl.col("rentpsf").alias("real_rent_psf"),
+            pl.col("total_density").alias("RDI"),
+            pl.col("rent_growth").alias("real_rent_growth"),
+            pl.col("implied_demand").alias("delta_RDI"),
+        )
+        .group_by("year")
+        .agg(
+            pl.col("real_rent_psf").mean().alias("real_rent_psf"),
+            pl.col("RDI").mean().alias("RDI"),
+            pl.col("real_rent_growth").mean().alias("real_rent_growth"),
+            pl.col("delta_RDI").mean().alias("delta_RDI"),
+        )
+    ).sort("year")
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
 
+    # Plot real_rent vs RDI
+    ax1.plot(df["year"], df["real_rent_psf"], color="blue", label="Real Rent PSF")
+    ax1.set_xlabel("Year")
+    ax1.set_ylabel("Avg Real Rent PSF", color="blue")
+    ax1.yaxis.set_major_formatter(plt.FuncFormatter(lambda x, _: f"${x:,.2f}"))
+    ax1.tick_params(axis="y", labelcolor="blue")
+    ax1.legend(loc="upper left")
+
+    ax1_2 = ax1.twinx()
+    ax1_2.plot(df["year"], df["RDI"], color="green", label="RDI")
+    ax1_2.set_ylabel("RDI", color="green")
+    ax1_2.tick_params(axis="y", labelcolor="green")
+    ax1_2.legend(loc="upper right")
+
+    ax1.set_title("Real Rent PSF vs RDI \n Largest 100 MSAs")
+
+    # Scatter plot of real_rent_growth vs delta_RDI
+    df = (
+        (df.select(["year", "real_rent_growth", "delta_RDI"]).drop_nulls())
+        .to_pandas()
+        .dropna()
+    )
+    slope, intercept, r_value, p_value, std_err = linregress(
+        df["delta_RDI"], df["real_rent_growth"]
+    )
+    ax2.scatter(
+        df["delta_RDI"], df["real_rent_growth"], color="black", label="Data points"
+    )
+    ax2.plot(
+        df["delta_RDI"],
+        intercept + slope * df["delta_RDI"],
+        color="gray",
+        label="Line of Best Fit",
+    )
+    rsquare = r_value**2
+    ax2.set_title(
+        f"Real Rent Growth vs Delta RDI \n Largest 100 MSAs; Rsquare = {rsquare:.2f} "
+    )
+    ax2.set_ylabel("Avg Real Rent Growth")
+    ax2.set_xlabel("Delta RDI")
+
+    plt.tight_layout()
+    plt.savefig(
+        Path(__file__).resolve().parent.parent / "Figs" / "national_example.png"
+    )
+    plt.show()
+
+
+national_example()
 assert False
+# present_density()
 
 
 # Emperical Evidence
@@ -825,6 +907,81 @@ def anova():
         alpha=0.05,
     )
     print(tukey)
+
+
+def simplify_anova():
+    df = supply_demand_annual(get_data().to_pandas(), past_current="each")
+    df["overpriced"] = df["price"] < df["rentpsf"]
+    df["oversupplied"] = df["quantity"] < df["supply_growth"]
+    df["group"] = df["oversupplied"].astype(str) + "-" + df["overpriced"].astype(str)
+    print(
+        df.groupby(["overpriced", "oversupplied"])[
+            ["relative_rg_next_year", "rent_growth_next_year"]
+        ]
+        .agg("mean")
+        .map(lambda x: int(x * 10000))
+        .reset_index()
+    )
+    model = ols(
+        "relative_rg_next_year ~ C(overpriced) + C(oversupplied)",
+        data=df,
+    ).fit()
+    anova_table = sm.stats.anova_lm(model, typ=2)
+    print(anova_table)
+
+    tukey = pairwise_tukeyhsd(
+        endog=df.dropna()["relative_rg_next_year"],
+        groups=df.dropna()["group"],
+        alpha=0.05,
+    )
+    print(tukey)
+
+
+# simplify_anova()
+# assert False
+def hist_rdi():
+    df = get_data().to_pandas()
+    plt.figure(figsize=(10, 6))
+    plt.hist(df["total_density_growth"].dropna(), bins=30, edgecolor="k", alpha=0.7)
+    plt.title(
+        "Histogram of Change in Rental Density Index (ΔRDI) \n 100 Largest MSAs 2001-2023"
+    )
+    plt.xlabel("Change in Rental Density Index (ΔRDI)")
+    plt.ylabel("Frequency")
+    plt.grid(True)
+    # Overlay summary statistics in a box on the plot
+    mean_density_growth = df["total_density_growth"].mean()
+    median_density_growth = df["total_density_growth"].median()
+    std_density_growth = df["total_density_growth"].std()
+    skewness_density_growth = skew(df["total_density_growth"].dropna())
+    kurtosis_density_growth = kurtosis(df["total_density_growth"].dropna())
+    textstr = "\n".join(
+        (
+            f"Mean: {mean_density_growth:.4f}",
+            f"Median: {median_density_growth:.4f}",
+            f"Std Dev: {std_density_growth:.4f}",
+            f"Skewness: {skewness_density_growth:.4f}",
+            f"Kurtosis: {kurtosis_density_growth:.4f}",
+            f"IQR: {np.percentile(df['total_density_growth'].dropna(), 75) - np.percentile(df['total_density_growth'].dropna(), 25):.2f}",
+        )
+    )
+    props = dict(boxstyle="round", facecolor="wheat", alpha=0.5)
+    plt.gca().text(
+        0.95,
+        0.95,
+        textstr,
+        transform=plt.gca().transAxes,
+        fontsize=10,
+        verticalalignment="top",
+        horizontalalignment="right",
+        bbox=props,
+    )
+    plt.savefig(Path(__file__).resolve().parent.parent / "Figs" / "hist_deltardi.png")
+    plt.show()
+
+
+hist_rdi()
+assert False
 
 
 def example_plot():
