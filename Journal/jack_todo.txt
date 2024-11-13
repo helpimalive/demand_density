@@ -1,0 +1,8 @@
+1) start the bibliography
+	grab all bibtex references for all cited work; 
+	put them in the right places in the doc and in the sn-article.bbl file
+2) do a word count on our intro versus the intro of the other two Real Estate Econonmics articles  in the Journal folder and see if we need more/fewer words; make suggestions accordingly for additional paragraphs / paragraphs to cut
+
+3) think of / make a more attractive/interesting table for Table 1
+
+4) suggest headings for the article and suggest an outline
