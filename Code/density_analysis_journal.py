@@ -851,11 +851,6 @@ def national_example():
     plt.show()
 
 
-national_example()
-assert False
-# present_density()
-
-
 # Emperical Evidence
 def anova():
     # The implied intersection of the supply and demand curves show distinct groupings of rent
@@ -978,10 +973,6 @@ def hist_rdi():
     )
     plt.savefig(Path(__file__).resolve().parent.parent / "Figs" / "hist_deltardi.png")
     plt.show()
-
-
-hist_rdi()
-assert False
 
 
 def example_plot():
@@ -1232,3 +1223,6 @@ def example_plot():
 
 anova()
 # example_plot()
+# national_example()
+# present_density()
+# hist_rdi()
