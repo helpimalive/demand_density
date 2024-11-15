@@ -3,7 +3,7 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: sn-article.aux
 Reallocating 'name_of_file' (item size: 1) to 16 items.
 The style file: sn-mathphys-num.bst
-Reallocating 'name_of_file' (item size: 1) to 16 items.
+Reallocating 'name_of_file' (item size: 1) to 4 items.
 Reallocating 'glb_str_end' (item size: 4) to 20 items.
 Reallocating 'glb_str_ptr' (item size: 4) to 20 items.
 Reallocating 'global_strs' (item size: 1) to 4000000 items.
@@ -21,50 +21,66 @@ Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
-Database file #1: sn-bibliography.bib
+Database file #1: bib.bib
+Warning--I didn't find a database entry for "bib1"
+Warning--I didn't find a database entry for "bib2"
+Warning--I didn't find a database entry for "bib3"
+Warning--I didn't find a database entry for "bib4"
+Warning--I didn't find a database entry for "bib5"
+Warning--I didn't find a database entry for "bib6"
+Warning--I didn't find a database entry for "bib7"
+Warning--I didn't find a database entry for "bib8"
+Warning--I didn't find a database entry for "bib9"
+Warning--I didn't find a database entry for "bib10"
+Warning--I didn't find a database entry for "bib11"
+Warning--I didn't find a database entry for "bib12"
+Warning--I didn't find a database entry for "bib13"
 Reallocating 'wiz_functions' (item size: 4) to 9000 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
+Warning--to sort, need author or key in census
+Warning--to sort, need author or key in fanniemaeConsumersFeeling
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
-You've used 13 entries,
+You've used 14 entries,
             7480 wiz_defined-function locations,
-            1276 strings with 11699 characters,
-and the built_in function-call counts, 149797 in all, are:
-= -- 27910
-> -- 358
-< -- 156
-+ -- 17105
-- -- 102
-* -- 3377
-:= -- 26070
-add.period$ -- 14
-call.type$ -- 13
-change.case$ -- 112
-chr.to.int$ -- 385
-cite$ -- 13
-duplicate$ -- 488
-empty$ -- 1939
-format.name$ -- 252
-if$ -- 38818
+            1273 strings with 12166 characters,
+and the built_in function-call counts, 34703 in all, are:
+= -- 4571
+> -- 338
+< -- 177
++ -- 1097
+- -- 66
+* -- 1859
+:= -- 6874
+add.period$ -- 17
+call.type$ -- 14
+change.case$ -- 75
+chr.to.int$ -- 452
+cite$ -- 18
+duplicate$ -- 494
+empty$ -- 1913
+format.name$ -- 206
+if$ -- 8354
 int.to.chr$ -- 1
-int.to.str$ -- 24
+int.to.str$ -- 25
 missing$ -- 0
-newline$ -- 218
-num.names$ -- 72
-pop$ -- 237
+newline$ -- 212
+num.names$ -- 60
+pop$ -- 246
 preamble$ -- 1
-purify$ -- 61
+purify$ -- 64
 quote$ -- 0
-skip$ -- 17117
+skip$ -- 2716
 stack$ -- 0
-substring$ -- 13392
-swap$ -- 249
-text.length$ -- 164
+substring$ -- 3332
+swap$ -- 255
+text.length$ -- 139
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 508
-warning$ -- 0
-while$ -- 339
+type$ -- 538
+warning$ -- 2
+while$ -- 293
 width$ -- 0
-write$ -- 302
+write$ -- 294
+(There were 15 warnings)
