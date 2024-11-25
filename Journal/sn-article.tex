@@ -144,7 +144,6 @@
 \section{Introduction}\label{sec1}
 \abstract{We introduce an empirical measure of multifamily demand, based on density changes, and offer evidence of its segmenting and predictive power. Using this variable, we solve for the intersection of supply and demand curves each year for 20 years in each of the hundred largest MSAs in the United States. Over the 2,000 observations, we classified each sample as over or under-supplied and over-or-under-priced, based on the derived market-clearing rents and quantities, relative to observed rents and quantities. Grouping markets this way was highly predictive of their next-twelve-month rent growth, with the under-under group returning 2\% more annually than the over-over group. With this, we provide a better way to understand consumer housing demand; their indifference curve of space versus price; and the impact of supply shocks.}  
 
-   
 
 The article investigates density as a measure of demand for multifamily real estate in the United States. For much of its history, the United States did not need to concern itself with density. It was a sparsely populated country, and it trailed the average density of other high-income countries sharply for two hundred years. Gradually, this changed. And in 2003, for the first time, the United States exceeded the density of its high-income peers, with 31.69 people per square mile [https://ourworldindata.org/grapher/population-densityresearch-and-writing]. By 2023, it was 5\% denser than the high-income nation average, and by the end of the century, it is forecasted to be 30\% denser. Perhaps not coincidentally, this period coincided with a time of sharp rent growth. The CPI of shelter doubled between 2000 and 2024, exceeding the growth in CPI-excluding-shelter by 34\% [https://fred.stlouisfed.org/series/CPIAUCSL]. It was also during this period when rent growth began to exceed wage growth [https://home.treasury.gov/news/featured-stories/rent-house-prices-and-demographics]. If a growing density comes with an acceleration in relative rent growth, then it is likely from the demand side. And this is supported by the younger generations' growing preferences for renting \cite{fanniemaeConsumersFeeling}. But with the average consumer paying 31\% \cite{censusNearlyHalf} of his or her income to rent, a further increase in demand risks overburdening the renter, unless supply increases to compensate. It seems granted that the country is undersupplied housing. Only the quantity of additional supply needed is uncertain: Fannie Mae counts 4.4 million units in just the top 75 metros [https://www.fanniemae.com/media/45106/display]. But how can a nation be both systematically undersupplied  with overpriced housing, when simultaneously bemoaning recent rent declines caused by oversupply [https://www.yahoo.com/news/us-region-seeing-biggest-rent-223631407.html]? This seemingly contradictory sentiment belies a lack of a reliable measure of demand. If there were greater transparency into the quantity and price of units demanded, then both the supply and demand sides of the transactions could find an equilibrium. Developers would build in quantities closer to those demanded; and renters could select locations based on their rent-stability and underwrite rent growth in line with wage growth. Economically, we have transparency into the physical number of units in existence and in development. We also have pricing data, showing the average price per rented square foot. But from the demand side, we are lacking. In this article, we focus on a measure of demand outside of the traditional and self-referential variables of occupancy and absorption. We provide evidence that density--approximated by population over rental units--and its change can be used as an accurate, versatile measure of demand. Using this metric we construct demand curves that intersect naturally with supply curves, for each market in the top 100 markets, for each year from 2010 through 2022. The points of intersection, relative to the observed rents and supplies serve to classify a market as over or undersupplied and over or underpriced. Markets that are overpriced and undersupplied favor the landlord and have high average rent growth; markets that are underpriced and oversupplied favor the renter and have low-to-negative average rent growth. Markets that are neither tend to have moderate rent growth, between that of the other two. 
 
@@ -152,10 +151,7 @@ While most existing research on demand focuses on occupancy levels and absorptio
 
 In search of a proper demand variable, some research examines occupancy [https://www.sciencedirect.com/science/article/pii/S0094119000921879][https://www.tandfonline.com/doi/abs/10.1080/10835547.1991.12090653] \cite{mueller1999real} and finds that it impacts rent growth. Other research focuses on absorption rates [https://link.springer.com/article/10.1007/s11146-020-09815-z] [https://www.sciencedirect.com/science/article/pii/S0094119000921879] and finds it to be a strong explanatory variable for rent growth as well. 
 We do not disagree. We aim to further the explanatory power of demand side variables by introducing one that is not bounded by 1 from above. We find density to be such a variable. If one had clear visibility into number-of-people per rental unit, then demand and utility curves could be derived. Under the assumptions that consumers prefer more space \cite{molloy2022housing}, then knowing the price at which a renter chose to live alone versus take a room mate would indicate the quantity of units demanded and the price at which those units would be demanded. Prior work has explored density, and while density appears to be a net amenity, part of the rent increase associated with higher density may be attributable to the higher cost of providing space. For some renters, increased density can translate to desirable urban living spaces, surrounded by jobs and amenities while for others, it can result in overcrowding and reduced quality of life. Policy induced densification may involve a net cost to renters and first-time homebuyers \cite{ahlfeldt2019economic} \cite{albouy2015driving}. 
-
-
-
-   
+  
 But that does not fully address the question. None of the previous studies define density as population divided by rental units, but instead as population divided by area or as units divided by area . Not all parts of a city are residential moreover, not all parts are even habitable, due to geographic or other restrictions. These density metrics are not effective in capturing the level of supply relative to the population in an MSA.  
 
 Our main contribution is to provide evidence of the use of density as a measure of demand. Other work has explored demand from an agglomeration point-of-view, modeling the benefits of agglomeration externalities, and exploring how agglomeration affects rents in urban areas \cite{titman2024city} \cite{liu2018vertical}. And that nods to the cyclical unique nature of real estate--where more density can make a more valuable commodity that can in turn produce more density. A paradigm where a renter is willing to pay more for less space in Manhattan, when she could pay less for more space in Houston. MSA-level density and its year-over-year change reveals a proxy of demand which indicates whether rents will grow in the near-term. We call this metric implied demand and show that it provides evidence of over or undersupply and over or underpricing.  
@@ -169,37 +165,37 @@ Our main contribution is to provide evidence of the use of density as a measure 
 Our article also speaks to the broader debate of rent affordability, the need for more housing, and the local differences inherent in such discussions. From the owner/developer standpoint, a more useful measure of demand could dampen real estate development cycles, which often result in unexpectedly depressed rents. From the renter's standpoint, a more useful demand metric can help identify locations where rent is likely to grow, maintain, or decrease, relative to inflation.  
 
 Focusing on a panel of the 100 largest metropolitan statistical areas (MSA), their population, rental unit count, and change in rent, we estimate implied demand of each MSA at each of 10 years from 2013 to 2023. We plot this against rent to derive a demand curve. We then take the observed supply growth of each MSA and plot it against rent to derive a supply curve. The intersection of those two curves is the derived point of supply and rent equilibrium. Comparing a market's actual rent to the market's derived rent suggests over or underpricing. Comparing a market's actual supply growth to the market's derived supply growth provides evidence of over or undersupply. We show that by segmenting markets as over or undersupplied and over or underpriced each year, we can effectively forecast the market's next-year rent growth.  
-  
 
-In the Data section we describe the data we used and analyze its properties. The subsequent section (Experiment) illustrates statistical tests performed to evaluate the validity of the classifications. And the final section discusses the results and concludes. 
+In the next section we discuss measures of demand before presenting details on our proposed variable. The data section describes and analyzes the density data we used, while the Emperical Analysis section presents evidence and illustrates statistical tests performed to evaluate the validity of the classifications. The final section discusses the results and concludes. 
  
-\section{Existing Measures of Demand}
-Occupancy and vacancy and absorption are sloped the wrong way and or 
-are capped at 1
-First, we would expect the relationship between quantity and price to be inversely related such that the renter would prefer 1000 square feet to 500 square feet if the price were the same. Conversely,  the renter will settle for 250 square feet (likely sharing the unit) if prices are too high. 
-For example, New York City in a given year may have a derived rent and quantity suggesting that 10\% more stock is demanded at 5\% higher prices. We compare that to the top-100 markets' values and see that the median derived stock is  but we may observe that nationally only 2\% more stock was delivered in the given year, and rents rose only by 3\%. This would be a situation of under-supply and under-pricing, and we would expect that disequilibrium to manifest in the future through rent growth. Because rent growth is not subject to sticky pricing, it should reflect disequilibrium more robustly than supply growth.
-
-\section{Finding Demand through Density}
+\section{Measures of Demand}
+\subsection{Existing Measures of Demand}
+\subsection{Density as a Measure of Demand}
 Density has a network-affect in real estate that is not common to other real assets. A telephone network would be useless if it had only one customer: whom would she call? But if ten people are on the network, the value of the network increases. So too in cities where agglomeration econonmics take effect. This phenomenon makes it so both the employer and employee are better off when there are many other firms in a short distance. The employee has higher employment security knowing he can shift firms if needed. The employer has a larger workforce available so he can scale up if needed. [find a reference]. Socially, the dense city offers ease of connection and more options of recreation. For these reasons, density, or a lack of space, is a worthwile tradeoff. Economically however it means that a renter will pay more for less space.
 
 This occurs both at the unit level and at the city level. A renter may opt out of a 1000-square-foot unit in a suburb for a 500-square-foot unit in a city. Or, she may opt share a 1000 sqare-foot unit with a roomate. When viewed in aggregate, the population of a city and its total rental units provides a valiable quotient we call \textit{rental density index} or RDI. The RDI can be understood as the theoretical density an MSA would incur to house its entire population in rental units. It is not meant as a goal or to have intuitive readthrough but to serve as a reference point for the utility curve of a city's residents. 
 The RDI contains latent information regarding homeownership, cohabitation preferences, and family size. The RDI moves slowly over time and is densely concentrated across MSAs. The mean RDI decreases in sync with the observed decrease in people-per-household in the US [find reference].
+
+\section{Data}
+\subsection{Real Rent Growth and Inventory at the largest MSAs}
+We limit our analysis to the hundred-largest MSAs in the US. To establish the one hundred largest, we examined multifamily inventory at the end of 2001. The largest market in 2001 (and today) was the New York City MSA, with 1,250,237 units. The smallest was Corpus Christi, TX, with 20,783 units. Inventory data is sourced to Costar. To compute real rent growth at the MSA, we begin with Costar's reported "Market Effective Rent Growth 12 Mo." Costar defines this as the Effective Rent Growth for a rolling 12-month value. We chose effective rent growth rather than asking rent growth in order to correctly account for the effect of concessions and to capture more of the impact of potential vacncies. TWe refer to this as "rent growth" throughout this analysis, but in all cases it is effective rent growth year over year. To convert the rent growth from nominal to real, we use the Consumer Price Index for All Urban Consumers: All Items. Using the annual value, as calculated by the average of the monthly values, we take the year-over-year difference to calculate the growth in CPI. We subtract each year's CPI growth from the respective year of rent growth, at each MSA. Ideally, we would use an MSA-specific inflation figure that excluded rent, for each respective city, but this does not exist. The St. Louis Fed discontinued its MSA-specific inflation figures. And while it offers the CPI of services ex rent of shelter, it does not offer the CPI of all items less rent of shelter. We feel despite these shortcomings, measuring real rent by using rent growth and all-item CPI is approrpiate for the purposes of examinig real rent growth relative to other points in time and relative to other markets. The range of rent growth reflects the impact of natural disasters (-19\% in New Orleans in 2005 followed by 28\% in 2006) to industry bubbles (-14\% San Jose 2002) to COVID relocations (22\% Palm Beach, 2022). 
+
+\subsection{Population, and density}
+To calculate our measure of density we divide the inventory (referenced above) by the population. We source Population figures to Costar who uses Moody's for its demographic data. We call this quotient the \textit{rental density index} or RDI. The RDI ranges from 7 to 65 and gives the number of people in a market per rental unit. Theoretically, if everyone lived in rental units, it would suggest the household size, but of course, that is not the case. The measure follows the overall trend in the US of decreasing density, and as such it is nonstationary. In 1970, 19\% of all households were nonfamily households. In 2022 that number was 36\%. The trend in average is shown below.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{"C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/box_whisker_density_time.png"}
 	\caption{This is a widefig. This is an example of long caption this is an example of long caption  this is an example of long caption this is an example of long caption}\label{fig1}
 \end{figure}
-
+To make the variable stationary and to allow comparisons between markets, and to mute the impact of different rentership percentages by market, we take the year-over-year difference in RDI ($\Delta\text{RDI}$) as our novel demand variable. Descriptive metrics follow
+While the RDI indicates preferences across time and region, the change in the rental density index or $\Delta\text{RDI}$ is the focus of this work. The year-over-year change in the RDI is an information-rich variable both alone, in comparison to other MSAs, and in conjunction with rent changes. When combined with the rent per-square-foot the $\Delta\text{RDI}$ indicates when renters would prefer to cohabitate rather than absorb more space. It suggests a level at which more units would be demanded, and it provides insight into the level at which over and undersupply occur. 
+Summary metrics follow.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{"C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/bar_total_density_year.png"}
 	\caption{This is a widefig. This is an example of long caption this is an example of long caption  this is an example of long caption this is an example of long caption}\label{fig2}
 \end{figure}
-
-While the RDI indicates preferences across time and region, the change in the rental density index or $\Delta\text{RDI}$ is the focus of this work. The year-over-year change in the RDI is an information-rich variable both alone, in comparison to other MSAs, and in conjunction with rent changes. When combined with the rent per-square-foot the $\Delta\text{RDI}$ indicates when renters would prefer to cohabitate rather than absorb more space. It suggests a level at which more units would be demanded, and it provides insight into the level at which over and undersupply occur. 
-Summary metrics follow.
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{"C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/hist_deltardi.png"}
@@ -213,6 +209,8 @@ Nationally, the relationship between $\Delta\text{RDI}$ and rent growth is inver
 	\includegraphics[width=0.9\textwidth]{"C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/national_example.png"}
 	\caption{This is a widefig. This is an example of long caption this is an example of long caption  this is an example of long caption this is an example of long caption}\label{fig4}
 \end{figure}
+\subsection{Controls}
+\subsection{Descriptive Statistics}
 
 
 \section{Empirical Evidence}\label{sec2}
@@ -268,19 +266,10 @@ As an example:
 
 
 
-\section{Results}\label{sec2}
 
-Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text.
+\section{Emperical Analysis}
 
-\section{This is an example for first level head---section head}\label{sec3}
 
-\subsection{This is an example for second level head---subsection head}\label{subsec2}
-
-\subsubsection{This is an example for third level head---subsubsection head}\label{subsubsec2}
-
-Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text.
-
-\section{Equations}\label{sec4}
 
 Equations in \LaTeX\ can either be inline or on-a-line by itself (``display equations''). For
 inline equations use the \verb+$...$+ commands. E.g.: The equation
@@ -296,379 +285,6 @@ where,
     D_\mu        & =  \partial_\mu - ig \frac{\lambda^a}{2} A^a_\mu \nonumber                            \\
     F^a_{\mu\nu} & = \partial_\mu A^a_\nu - \partial_\nu A^a_\mu + g f^{abc} A^b_\mu A^a_\nu \label{eq2}
 \end{align}
-Notice the use of \verb+\nonumber+ in the align environment at the end
-of each line, except the last, so as not to produce equation numbers on
-lines where no equation numbers are required. The \verb+\label{}+ command
-should only be used at the last line of an align environment where
-\verb+\nonumber+ is not used.
-\begin{equation}
-    Y_\infty = \left( \frac{m}{\textrm{GeV}} \right)^{-3}
-    \left[ 1 + \frac{3 \ln(m/\textrm{GeV})}{15}
-        + \frac{\ln(c_2/5)}{15} \right]
-\end{equation}
-The class file also supports the use of \verb+\mathbb{}+, \verb+\mathscr{}+ and
-\verb+\mathcal{}+ commands. As such \verb+\mathbb{R}+, \verb+\mathscr{R}+
-and \verb+\mathcal{R}+ produces $\mathbb{R}$, $\mathscr{R}$ and $\mathcal{R}$
-respectively (refer Subsubsection~\ref{subsubsec2}).
-
-\section{Tables}\label{sec5}
-
-Tables can be inserted via the normal table and tabular environment. To put
-footnotes inside tables you should use \verb+\footnotetext[]{...}+ tag.
-The footnote appears just below the table itself (refer Tables~\ref{tab1} and \ref{tab2}).
-For the corresponding footnotemark use \verb+\footnotemark[...]+
-
-\begin{table}[h]
-    \caption{Caption text}\label{tab1}%
-    \begin{tabular}{@{}llll@{}}
-        \toprule
-        Column 1 & Column 2 & Column 3               & Column 4               \\
-        \midrule
-        row 1    & data 1   & data 2                 & data 3                 \\
-        row 2    & data 4   & data 5\footnotemark[1] & data 6                 \\
-        row 3    & data 7   & data 8                 & data 9\footnotemark[2] \\
-        \botrule
-    \end{tabular}
-    \footnotetext{Source: This is an example of table footnote. This is an example of table footnote.}
-    \footnotetext[1]{Example for a first table footnote. This is an example of table footnote.}
-    \footnotetext[2]{Example for a second table footnote. This is an example of table footnote.}
-\end{table}
-
-\noindent
-The input format for the above table is as follows:
-
-%%=============================================%%
-%% For presentation purpose, we have included  %%
-%% \bigskip command. Please ignore this.       %%
-%%=============================================%%
-\bigskip
-\begin{verbatim}
-\begin{table}[<placement-specifier>]
-\caption{<table-caption>}\label{<table-label>}%
-\begin{tabular}{@{}llll@{}}
-\toprule
-Column 1 & Column 2 & Column 3 & Column 4\\
-\midrule
-row 1 & data 1 & data 2	 & data 3 \\
-row 2 & data 4 & data 5\footnotemark[1] & data 6 \\
-row 3 & data 7 & data 8	 & data 9\footnotemark[2]\\
-\botrule
-\end{tabular}
-\footnotetext{Source: This is an example of table footnote. 
-This is an example of table footnote.}
-\footnotetext[1]{Example for a first table footnote.
-This is an example of table footnote.}
-\footnotetext[2]{Example for a second table footnote. 
-This is an example of table footnote.}
-\end{table}
-\end{verbatim}
-\bigskip
-%%=============================================%%
-%% For presentation purpose, we have included  %%
-%% \bigskip command. Please ignore this.       %%
-%%=============================================%%
-
-\begin{table}[h]
-    \caption{Example of a lengthy table which is set to full textwidth}\label{tab2}
-    \begin{tabular*}{\textwidth}{@{\extracolsep\fill}lcccccc}
-        \toprule%
-        & \multicolumn{3}{@{}c@{}}{Element 1\footnotemark[1]} & \multicolumn{3}{@{}c@{}}{Element 2\footnotemark[2]} \\\cmidrule{2-4}\cmidrule{5-7}%
-        Project & Energy & $\sigma_{calc}$ & $\sigma_{expt}$ & Energy & $\sigma_{calc}$ & $\sigma_{expt}$ \\
-        \midrule
-        Element 3  & 990 A & 1168 & $1547\pm12$ & 780 A & 1166 & $1239\pm100$\\
-        Element 4  & 500 A & 961  & $922\pm10$  & 900 A & 1268 & $1092\pm40$\\
-        \botrule
-    \end{tabular*}
-    \footnotetext{Note: This is an example of table footnote. This is an example of table footnote this is an example of table footnote this is an example of~table footnote this is an example of table footnote.}
-    \footnotetext[1]{Example for a first table footnote.}
-    \footnotetext[2]{Example for a second table footnote.}
-\end{table}
-
-In case of double column layout, tables which do not fit in single column width should be set to full text width. For this, you need to use \verb+\begin{table*}+ \verb+...+ \verb+\end{table*}+ instead of \verb+\begin{table}+ \verb+...+ \verb+\end{table}+ environment. Lengthy tables which do not fit in textwidth should be set as rotated table. For this, you need to use \verb+\begin{sidewaystable}+ \verb+...+ \verb+\end{sidewaystable}+ instead of \verb+\begin{table*}+ \verb+...+ \verb+\end{table*}+ environment. This environment puts tables rotated to single column width. For tables rotated to double column width, use \verb+\begin{sidewaystable*}+ \verb+...+ \verb+\end{sidewaystable*}+.
-
-\begin{sidewaystable}
-    \caption{Tables which are too long to fit, should be written using the ``sidewaystable'' environment as shown here}\label{tab3}
-    \begin{tabular*}{\textheight}{@{\extracolsep\fill}lcccccc}
-        \toprule%
-        & \multicolumn{3}{@{}c@{}}{Element 1\footnotemark[1]}& \multicolumn{3}{@{}c@{}}{Element\footnotemark[2]} \\\cmidrule{2-4}\cmidrule{5-7}%
-        Projectile & Energy	& $\sigma_{calc}$ & $\sigma_{expt}$ & Energy & $\sigma_{calc}$ & $\sigma_{expt}$ \\
-        \midrule
-        Element 3 & 990 A & 1168 & $1547\pm12$ & 780 A & 1166 & $1239\pm100$ \\
-        Element 4 & 500 A & 961  & $922\pm10$  & 900 A & 1268 & $1092\pm40$ \\
-        Element 5 & 990 A & 1168 & $1547\pm12$ & 780 A & 1166 & $1239\pm100$ \\
-        Element 6 & 500 A & 961  & $922\pm10$  & 900 A & 1268 & $1092\pm40$ \\
-        \botrule
-    \end{tabular*}
-    \footnotetext{Note: This is an example of table footnote this is an example of table footnote this is an example of table footnote this is an example of~table footnote this is an example of table footnote.}
-    \footnotetext[1]{This is an example of table footnote.}
-\end{sidewaystable}
-
-\section{Figures}\label{sec6}
-
-As per the \LaTeX\ standards you need to use eps images for \LaTeX\ compilation and \verb+pdf/jpg/png+ images for \verb+PDFLaTeX+ compilation. This is one of the major difference between \LaTeX\ and \verb+PDFLaTeX+. Each image should be from a single input .eps/vector image file. Avoid using subfigures. The command for inserting images for \LaTeX\ and \verb+PDFLaTeX+ can be generalized. The package used to insert images in \verb+LaTeX/PDFLaTeX+ is the graphicx package. Figures can be inserted via the normal figure environment as shown in the below example:
-
-%%=============================================%%
-%% For presentation purpose, we have included  %%
-%% \bigskip command. Please ignore this.       %%
-%%=============================================%%
-\bigskip
-\begin{verbatim}
-\begin{figure}[<placement-specifier>]
-\centering
-\includegraphics{<eps-file>}
-\caption{<figure-caption>}\label{<figure-label>}
-\end{figure}
-\end{verbatim}
-\bigskip
-%%=============================================%%
-%% For presentation purpose, we have included  %%
-%% \bigskip command. Please ignore this.       %%
-%%=============================================%%
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.9\textwidth]{fig.eps}
-    \caption{This is a widefig. This is an example of long caption this is an example of long caption  this is an example of long caption this is an example of long caption}\label{fig1}
-\end{figure}
-
-In case of double column layout, the above format puts figure captions/images to single column width. To get spanned images, we need to provide \verb+\begin{figure*}+ \verb+...+ \verb+\end{figure*}+.
-
-For sample purpose, we have included the width of images in the optional argument of \verb+\includegraphics+ tag. Please ignore this.
-
-\section{Algorithms, Program codes and Listings}\label{sec7}
-
-Packages \verb+algorithm+, \verb+algorithmicx+ and \verb+algpseudocode+ are used for setting algorithms in \LaTeX\ using the format:
-
-%%=============================================%%
-%% For presentation purpose, we have included  %%
-%% \bigskip command. Please ignore this.       %%
-%%=============================================%%
-\bigskip
-\begin{verbatim}
-\begin{algorithm}
-\caption{<alg-caption>}\label{<alg-label>}
-\begin{algorithmic}[1]
-. . .
-\end{algorithmic}
-\end{algorithm}
-\end{verbatim}
-\bigskip
-%%=============================================%%
-%% For presentation purpose, we have included  %%
-%% \bigskip command. Please ignore this.       %%
-%%=============================================%%
-
-You may refer above listed package documentations for more details before setting \verb+algorithm+ environment. For program codes, the ``verbatim'' package is required and the command to be used is \verb+\begin{verbatim}+ \verb+...+ \verb+\end{verbatim}+.
-
-Similarly, for \verb+listings+, use the \verb+listings+ package. \verb+\begin{lstlisting}+ \verb+...+ \verb+\end{lstlisting}+ is used to set environments similar to \verb+verbatim+ environment. Refer to the \verb+lstlisting+ package documentation for more details.
-
-A fast exponentiation procedure:
-
-\lstset{texcl=true,basicstyle=\small\sf,commentstyle=\small\rm,mathescape=true,escapeinside={(*}{*)}}
-\begin{lstlisting}
-begin
-  for $i:=1$ to $10$ step $1$ do
-      expt($2,i$);  
-      newline() od                (*\textrm{Comments will be set flush to the right margin}*)
-where
-proc expt($x,n$) $\equiv$
-  $z:=1$;
-  do if $n=0$ then exit fi;
-     do if odd($n$) then exit fi;                 
-        comment: (*\textrm{This is a comment statement;}*)
-        $n:=n/2$; $x:=x*x$ od;
-     { $n>0$ };
-     $n:=n-1$; $z:=z*x$ od;
-  print($z$). 
-end
-\end{lstlisting}
-
-\begin{algorithm}
-    \caption{Calculate $y = x^n$}\label{algo1}
-    \begin{algorithmic}[1]
-        \Require $n \geq 0 \vee x \neq 0$
-        \Ensure $y = x^n$
-        \State $y \Leftarrow 1$
-        \If{$n < 0$}\label{algln2}
-        \State $X \Leftarrow 1 / x$
-        \State $N \Leftarrow -n$
-        \Else
-        \State $X \Leftarrow x$
-        \State $N \Leftarrow n$
-        \EndIf
-        \While{$N \neq 0$}
-        \If{$N$ is even}
-        \State $X \Leftarrow X \times X$
-        \State $N \Leftarrow N / 2$
-        \Else[$N$ is odd]
-        \State $y \Leftarrow y \times X$
-        \State $N \Leftarrow N - 1$
-        \EndIf
-        \EndWhile
-    \end{algorithmic}
-\end{algorithm}
-
-%%=============================================%%
-%% For presentation purpose, we have included  %%
-%% \bigskip command. Please ignore this.       %%
-%%=============================================%%
-\bigskip
-\begin{minipage}{\hsize}%
-    \lstset{frame=single,framexleftmargin=-1pt,framexrightmargin=-17pt,framesep=12pt,linewidth=0.98\textwidth,language=pascal}% Set your language (you can change the language for each code-block optionally)
-    %%% Start your code-block
-    \begin{lstlisting}
-for i:=maxint to 0 do
-begin
-{ do nothing }
-end;
-Write('Case insensitive ');
-Write('Pascal keywords.');
-\end{lstlisting}
-\end{minipage}
-
-\section{Cross referencing}\label{sec8}
-
-Environments such as figure, table, equation and align can have a label
-declared via the \verb+\label{#label}+ command. For figures and table
-environments use the \verb+\label{}+ command inside or just
-below the \verb+\caption{}+ command. You can then use the
-\verb+\ref{#label}+ command to cross-reference them. As an example, consider
-the label declared for Figure~\ref{fig1} which is
-\verb+\label{fig1}+. To cross-reference it, use the command
-\verb+Figure \ref{fig1}+, for which it comes up as
-``Figure~\ref{fig1}''.
-
-To reference line numbers in an algorithm, consider the label declared for the line number 2 of Algorithm~\ref{algo1} is \verb+\label{algln2}+. To cross-reference it, use the command \verb+\ref{algln2}+ for which it comes up as line~\ref{algln2} of Algorithm~\ref{algo1}.
-
-\subsection{Details on reference citations}\label{subsec7}
-
-Standard \LaTeX\ permits only numerical citations. To support both numerical and author-year citations this template uses \verb+natbib+ \LaTeX\ package. For style guidance please refer to the template user manual.
-
-Here is an example for \verb+\cite{...}+: \cite{bib1}. Another example for \verb+\citep{...}+: \citep{bib2}. For author-year citation mode, \verb+\cite{...}+ prints Jones et al. (1990) and \verb+\citep{...}+ prints (Jones et al., 1990).
-
-All cited bib entries are printed at the end of this article: \cite{bib3}, \cite{bib4}, \cite{bib5}, \cite{bib6}, \cite{bib7}, \cite{bib8}, \cite{bib9}, \cite{bib10}, \cite{bib11}, \cite{bib12} and \cite{bib13}.
-
-
-\section{Examples for theorem like environments}\label{sec10}
-
-For theorem like environments, we require \verb+amsthm+ package. There are three types of predefined theorem styles exists---\verb+thmstyleone+, \verb+thmstyletwo+ and \verb+thmstylethree+
-
-%%=============================================%%
-%% For presentation purpose, we have included  %%
-%% \bigskip command. Please ignore this.       %%
-%%=============================================%%
-\bigskip
-\begin{tabular}{|l|p{19pc}|}
-    \hline
-    \verb+thmstyleone+   & Numbered, theorem head in bold font and theorem text in italic style  \\\hline
-    \verb+thmstyletwo+   & Numbered, theorem head in roman font and theorem text in italic style \\\hline
-    \verb+thmstylethree+ & Numbered, theorem head in bold font and theorem text in roman style   \\\hline
-\end{tabular}
-\bigskip
-%%=============================================%%
-%% For presentation purpose, we have included  %%
-%% \bigskip command. Please ignore this.       %%
-%%=============================================%%
-
-For mathematics journals, theorem styles can be included as shown in the following examples:
-
-\begin{theorem}[Theorem subhead]\label{thm1}
-    Example theorem text. Example theorem text. Example theorem text. Example theorem text. Example theorem text.
-    Example theorem text. Example theorem text. Example theorem text. Example theorem text. Example theorem text.
-    Example theorem text.
-\end{theorem}
-
-Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text.
-
-\begin{proposition}
-    Example proposition text. Example proposition text. Example proposition text. Example proposition text. Example proposition text.
-    Example proposition text. Example proposition text. Example proposition text. Example proposition text. Example proposition text.
-\end{proposition}
-
-Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text.
-
-\begin{example}
-    Phasellus adipiscing semper elit. Proin fermentum massa
-    ac quam. Sed diam turpis, molestie vitae, placerat a, molestie nec, leo. Maecenas lacinia. Nam ipsum ligula, eleifend
-    at, accumsan nec, suscipit a, ipsum. Morbi blandit ligula feugiat magna. Nunc eleifend consequat lorem.
-\end{example}
-
-Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text.
-
-\begin{remark}
-    Phasellus adipiscing semper elit. Proin fermentum massa
-    ac quam. Sed diam turpis, molestie vitae, placerat a, molestie nec, leo. Maecenas lacinia. Nam ipsum ligula, eleifend
-    at, accumsan nec, suscipit a, ipsum. Morbi blandit ligula feugiat magna. Nunc eleifend consequat lorem.
-\end{remark}
-
-Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text.
-
-\begin{definition}[Definition sub head]
-    Example definition text. Example definition text. Example definition text. Example definition text. Example definition text. Example definition text. Example definition text. Example definition text.
-\end{definition}
-
-Additionally a predefined ``proof'' environment is available: \verb+\begin{proof}+ \verb+...+ \verb+\end{proof}+. This prints a ``Proof'' head in italic font style and the ``body text'' in roman font style with an open square at the end of each proof environment.
-
-\begin{proof}
-    Example for proof text. Example for proof text. Example for proof text. Example for proof text. Example for proof text. Example for proof text. Example for proof text. Example for proof text. Example for proof text. Example for proof text.
-\end{proof}
-
-Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text.
-
-\begin{proof}[Proof of Theorem~{\upshape\ref{thm1}}]
-    Example for proof text. Example for proof text. Example for proof text. Example for proof text. Example for proof text. Example for proof text. Example for proof text. Example for proof text. Example for proof text. Example for proof text.
-\end{proof}
-
-\noindent
-For a quote environment, use \verb+\begin{quote}...\end{quote}+
-\begin{quote}
-    Quoted text example. Aliquam porttitor quam a lacus. Praesent vel arcu ut tortor cursus volutpat. In vitae pede quis diam bibendum placerat. Fusce elementum
-    convallis neque. Sed dolor orci, scelerisque ac, dapibus nec, ultricies ut, mi. Duis nec dui quis leo sagittis commodo.
-\end{quote}
-
-Sample body text. Sample body text. Sample body text. Sample body text. Sample body text (refer Figure~\ref{fig1}). Sample body text. Sample body text. Sample body text (refer Table~\ref{tab3}).
-
-\section{Methods}\label{sec11}
-
-Topical subheadings are allowed. Authors must ensure that their Methods section includes adequate experimental and characterization data necessary for others in the field to reproduce their work. Authors are encouraged to include RIIDs where appropriate.
-
-\textbf{Ethical approval declarations} (only required where applicable) Any article reporting experiment/s carried out on (i)~live vertebrate (or higher invertebrates), (ii)~humans or (iii)~human samples must include an unambiguous statement within the methods section that meets the following requirements:
-
-\begin{enumerate}[1.]
-    \item Approval: a statement which confirms that all experimental protocols were approved by a named institutional and/or licensing committee. Please identify the approving body in the methods section
-
-    \item Accordance: a statement explicitly saying that the methods were carried out in accordance with the relevant guidelines and regulations
-
-    \item Informed consent (for experiments involving humans or human tissue samples): include a statement confirming that informed consent was obtained from all participants and/or their legal guardian/s
-\end{enumerate}
-
-If your manuscript includes potentially identifying patient/participant information, or if it describes human transplantation research, or if it reports results of a clinical trial then  additional information will be required. Please visit (\url{https://www.nature.com/nature-research/editorial-policies}) for Nature Portfolio journals, (\url{https://www.springer.com/gp/authors-editors/journal-author/journal-author-helpdesk/publishing-ethics/14214}) for Springer Nature journals, or (\url{https://www.biomedcentral.com/getpublished/editorial-policies\#ethics+and+consent}) for BMC.
-
-\section{Discussion}\label{sec12}
-
-Discussions should be brief and focused. In some disciplines use of Discussion or `Conclusion' is interchangeable. It is not mandatory to use both. Some journals prefer a section `Results and Discussion' followed by a section `Conclusion'. Please refer to Journal-level guidance for any specific requirements.
-
-\section{Conclusion}\label{sec13}
-
-Conclusions may be used to restate your hypothesis or research question, restate your major findings, explain the relevance and the added value of your work, highlight any limitations of your study, describe future directions for research and recommendations.
-
-In some disciplines use of Discussion or 'Conclusion' is interchangeable. It is not mandatory to use both. Please refer to Journal-level guidance for any specific requirements.
-
-\backmatter
-
-\bmhead{Supplementary information}
-
-If your article has accompanying supplementary file/s please state so here.
-
-Authors reporting data from electrophoretic gels and blots should supply the full unprocessed scans for key as part of their Supplementary information. This may be requested by the editorial team/s if it is missing.
-
-Please refer to Journal-level guidance for any specific requirements.
-
-\bmhead{Acknowledgements}
-
-Acknowledgements are not compulsory. Where included they should be brief. Grant or contribution numbers may be acknowledged.
-
-Please refer to Journal-level guidance for any specific requirements.
 
 \section*{Declarations}
 

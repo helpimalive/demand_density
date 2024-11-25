@@ -820,29 +820,25 @@ def present_density_growth_vs_rent_growth():
     plt.show()
 
 
-present_density_growth_vs_rent_growth()
-assert False
-
-
 def national_example():
     df = (
         get_data()
-        # .filter(pl.col("msa") == "Denver - CO")
+        .filter(pl.col("msa") == "Inland Empire - CA")
         .filter(pl.col("year") < 2024)
         .select(
             "year",
             pl.col("rentpsf").alias("real_rent_psf"),
             pl.col("total_density").alias("RDI"),
-            pl.col("rent_growth").alias("real_rent_growth"),
+            pl.col("rent_growth_next_year").alias("real_rent_growth"),
             pl.col("implied_demand").alias("delta_RDI"),
         )
-        .group_by("year")
-        .agg(
-            pl.col("real_rent_psf").mean().alias("real_rent_psf"),
-            pl.col("RDI").mean().alias("RDI"),
-            pl.col("real_rent_growth").mean().alias("real_rent_growth"),
-            pl.col("delta_RDI").mean().alias("delta_RDI"),
-        )
+        # .group_by("year")
+        # .agg(
+        #     pl.col("real_rent_psf").mean().alias("real_rent_psf"),
+        #     pl.col("RDI").mean().alias("RDI"),
+        #     pl.col("real_rent_growth").mean().alias("real_rent_growth"),
+        #     pl.col("delta_RDI").mean().alias("delta_RDI"),
+        # )
     ).sort("year")
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
 
@@ -892,6 +888,10 @@ def national_example():
         Path(__file__).resolve().parent.parent / "Figs" / "national_example.png"
     )
     plt.show()
+
+
+national_example()
+assert False
 
 
 # Emperical Evidence
