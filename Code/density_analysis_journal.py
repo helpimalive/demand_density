@@ -781,6 +781,49 @@ def present_density():
     plt.show()
 
 
+def present_density_growth_vs_rent_growth():
+    df = get_data().to_pandas()
+    df = df[df["year"] < 2022]
+    df_grouped = df.groupby("msa").mean().reset_index()
+    plt.figure(figsize=(10, 6))
+    sns.scatterplot(x="total_density_growth", y="rent_growth", data=df_grouped)
+    slope, intercept, r_value, p_value, std_err = linregress(
+        df_grouped["total_density_growth"], df_grouped["rent_growth"]
+    )
+    plt.title(
+        f"Average Density Growth vs Rent Growth \n 100 Largest MSAs 2001-2021 \n Rsquared: {r_value**2:.2f}"
+    )
+    plt.plot(
+        np.linspace(
+            df_grouped["total_density_growth"].min(),
+            df_grouped["total_density_growth"].max(),
+            10,
+        ),
+        intercept
+        + slope
+        * np.linspace(
+            df_grouped["total_density_growth"].min(),
+            df_grouped["total_density_growth"].max(),
+            10,
+        ),
+        color="black",
+        linestyle="--",
+    )
+    plt.legend()
+    plt.xlabel("<-- Dedensifying        Average Density Growth      Densifying -->")
+    plt.ylabel("<-- Increasing      Average Rent Growth     Decreasing -->")
+    plt.savefig(
+        Path(__file__).resolve().parent.parent
+        / "Figs"
+        / "density_growth_vs_rent_growth.png"
+    )
+    plt.show()
+
+
+present_density_growth_vs_rent_growth()
+assert False
+
+
 def national_example():
     df = (
         get_data()
