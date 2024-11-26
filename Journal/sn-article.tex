@@ -159,7 +159,13 @@ Our main contribution is to provide evidence of the use of density as a measure 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{"C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/density_growth_vs_rent_growth.png"}
-	\caption{This is a widefig. This is an example of long caption this is an example of long caption  this is an example of long caption this is an example of long caption}\label{fig1}
+	\caption{At the market level, markets that increase in density have higher real rent growth. Markets that decrease in density on average have lower rent growth. We postulate that markets with higher rents force renters to cohabitate i.e., increase the density of people per unit. Alternatively, the renter can move markets for a lower rent at a less dense space.}\label{fig1}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{"C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/national_example.png"}
+	\caption{But at the national level, years of increased density are associated with lower rent growth than years of decreased density. This global curve suggests an intuitive demand curve: a renter opts for more space (less density) and is willing to pay more for it; or the renter chooses less space (more density) and is willing to pay less.}\label{fig4}
 \end{figure}
 
 Our article also speaks to the broader debate of rent affordability, the need for more housing, and the local differences inherent in such discussions. From the owner/developer standpoint, a more useful measure of demand could dampen real estate development cycles, which often result in unexpectedly depressed rents. From the renter's standpoint, a more useful demand metric can help identify locations where rent is likely to grow, maintain, or decrease, relative to inflation.  
@@ -181,16 +187,18 @@ The RDI contains latent information regarding homeownership, cohabitation prefer
 We limit our analysis to the hundred-largest MSAs in the US. To establish the one hundred largest, we examined multifamily inventory at the end of 2001. The largest market in 2001 (and today) was the New York City MSA, with 1,250,237 units. The smallest was Corpus Christi, TX, with 20,783 units. Inventory data is sourced to Costar. To compute real rent growth at the MSA, we begin with Costar's reported "Market Effective Rent Growth 12 Mo." Costar defines this as the Effective Rent Growth for a rolling 12-month value. We chose effective rent growth rather than asking rent growth in order to correctly account for the effect of concessions and to capture more of the impact of potential vacncies. TWe refer to this as "rent growth" throughout this analysis, but in all cases it is effective rent growth year over year. To convert the rent growth from nominal to real, we use the Consumer Price Index for All Urban Consumers: All Items. Using the annual value, as calculated by the average of the monthly values, we take the year-over-year difference to calculate the growth in CPI. We subtract each year's CPI growth from the respective year of rent growth, at each MSA. Ideally, we would use an MSA-specific inflation figure that excluded rent, for each respective city, but this does not exist. The St. Louis Fed discontinued its MSA-specific inflation figures. And while it offers the CPI of services ex rent of shelter, it does not offer the CPI of all items less rent of shelter. We feel despite these shortcomings, measuring real rent by using rent growth and all-item CPI is approrpiate for the purposes of examinig real rent growth relative to other points in time and relative to other markets. The range of rent growth reflects the impact of natural disasters (-19\% in New Orleans in 2005 followed by 28\% in 2006) to industry bubbles (-14\% San Jose 2002) to COVID relocations (22\% Palm Beach, 2022). 
 
 \subsection{Population, and density}
-To calculate our measure of density we divide the inventory (referenced above) by the population. We source Population figures to Costar who uses Moody's for its demographic data. We call this quotient the \textit{rental density index} or RDI. The RDI ranges from 7 to 65 and gives the number of people in a market per rental unit. Theoretically, if everyone lived in rental units, it would suggest the household size, but of course, that is not the case. The measure follows the overall trend in the US of decreasing density, and as such it is nonstationary. In 1970, 19\% of all households were nonfamily households. In 2022 that number was 36\%. The trend in average is shown below.
+To calculate our measure of density we divide the occupied inventory by the population. Occupancy rates are sourced to Costar on an annual basis. Inventory figures are gathered as described above. And population figures come from Costar who uses Moody's for its demographic data. We call this quotient the \textit{rental density index} or RDI. The RDI ranges from 7 to 65 and gives the number of people in a market per occupied rental unit. Theoretically, if everyone lived in rental units, it would suggest the household size, but of course, that is not the case. The measure follows the overall trend in the US of decreasing density, and as such it is nonstationary. In 1970, 19\% of all households were nonfamily households. In 2022 that number was 36\%. The trend in average is shown below.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{"C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/box_whisker_density_time.png"}
 	\caption{This is a widefig. This is an example of long caption this is an example of long caption  this is an example of long caption this is an example of long caption}\label{fig1}
 \end{figure}
+
 To make the variable stationary and to allow comparisons between markets, and to mute the impact of different rentership percentages by market, we take the year-over-year difference in RDI ($\Delta\text{RDI}$) as our novel demand variable. Descriptive metrics follow
 While the RDI indicates preferences across time and region, the change in the rental density index or $\Delta\text{RDI}$ is the focus of this work. The year-over-year change in the RDI is an information-rich variable both alone, in comparison to other MSAs, and in conjunction with rent changes. When combined with the rent per-square-foot the $\Delta\text{RDI}$ indicates when renters would prefer to cohabitate rather than absorb more space. It suggests a level at which more units would be demanded, and it provides insight into the level at which over and undersupply occur. 
 Summary metrics follow.
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{"C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/bar_total_density_year.png"}

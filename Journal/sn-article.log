@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.8.21)  20 NOV 2024 15:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.8.21)  26 NOV 2024 10:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -592,10 +592,10 @@ File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 \l__pdf_internal_box=\box77
 ) (sn-article.aux
 
-LaTeX Warning: Label `sec2' multiply defined.
-
-
 LaTeX Warning: Label `fig1' multiply defined.
+
+
+LaTeX Warning: Label `fig4' multiply defined.
 
 )
 \openout1 = `sn-article.aux'.
@@ -747,7 +747,7 @@ LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <5.52061> not available
 LaTeX Font Info:    Calculating math sizes for size <10.03749> on input line 14
 3.
 
-Underfull \hbox (badness 1057) in paragraph at lines 149--150
+Underfull \hbox (badness 1057) in paragraph at lines 148--149
 \OT1/cmr/m/n/10 it trailed the aver-age den-sity of other high-income coun-trie
 s sharply for two
  []
@@ -765,19 +765,19 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [2]
-Overfull \hbox (264.1682pt too wide) in paragraph at lines 153--155
+Overfull \hbox (264.1682pt too wide) in paragraph at lines 152--154
 \OT1/cmr/m/n/10 [https://www.sciencedirect.com/science/article/pii/S00941190009
 21879][https://www.tandfonline.com/doi/abs/10.1080/10835547.1991.12090653]
  []
 
 
-Underfull \hbox (badness 7203) in paragraph at lines 153--155
+Underfull \hbox (badness 7203) in paragraph at lines 152--154
 \OT1/cmr/m/n/10 [[]] and finds that it impacts rent growth. Other research focu
 ses on
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 153--155
+Underfull \hbox (badness 10000) in paragraph at lines 152--154
 \OT1/cmr/m/n/10 absorp-tion rates [https://link.springer.com/article/10.1007/s1
 1146-020-09815-z]
  []
@@ -788,72 +788,81 @@ Underfull \hbox (badness 10000) in paragraph at lines 153--155
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [3]
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [4]
-<C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/box_whisker_density_tim
-e.png, id=142, 722.7pt x 433.62pt>
-File: C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/box_whisker_densit
-y_time.png Graphic file (type png)
-<use C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/box_whisker_density
-_time.png>
+<C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/density_growth_vs_rent_
+growth.png, id=102, 722.7pt x 433.62pt>
+File: C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/density_growth_vs_
+rent_growth.png Graphic file (type png)
+<use C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/density_growth_vs_r
+ent_growth.png>
 Package pdftex.def Info: C:/Users/mlarriva/Documents/GitHub/demand_density/Figs
-/box_whisker_density_time.png  used on input line 181.
+/density_growth_vs_rent_growth.png  used on input line 161.
 (pdftex.def)             Requested size: 334.79773pt x 200.87694pt.
-<C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/bar_total_density_year.
-png, id=144, 722.7pt x 433.62pt>
-File: C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/bar_total_density_
-year.png Graphic file (type png)
-<use C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/bar_total_density_y
-ear.png>
-Package pdftex.def Info: C:/Users/mlarriva/Documents/GitHub/demand_density/Figs
-/bar_total_density_year.png  used on input line 187.
-(pdftex.def)             Requested size: 334.79773pt x 200.87694pt.
-
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [5
-pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) ha
-s been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.190 
-       <C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/box_whisker_dens
-ity_time.png>]
-<C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/hist_deltardi.png, id=1
-52, 722.7pt x 433.62pt>
-File: C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/hist_deltardi.png 
-Graphic file (type png)
-<use C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/hist_deltardi.png>
-Package pdftex.def Info: C:/Users/mlarriva/Documents/GitHub/demand_density/Figs
-/hist_deltardi.png  used on input line 196.
-(pdftex.def)             Requested size: 334.79773pt x 200.87694pt.
-
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [6
-pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) ha
-s been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.199 
-       <C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/bar_total_densit
-y_year.png>]
 <C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/national_example.png, i
-d=159, 1011.78pt x 433.62pt>
+d=104, 722.7pt x 433.62pt>
 File: C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/national_example.p
 ng Graphic file (type png)
 <use C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/national_example.pn
 g>
 Package pdftex.def Info: C:/Users/mlarriva/Documents/GitHub/demand_density/Figs
-/national_example.png  used on input line 204.
-(pdftex.def)             Requested size: 334.79773pt x 143.48541pt.
+/national_example.png  used on input line 167.
+(pdftex.def)             Requested size: 334.79773pt x 200.87694pt.
+
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [4
+pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.172 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.172 
+       <C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/density_growth_v
+s_rent_growth.png> <C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/nati
+onal_example.png>]
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [5]
+<C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/box_whisker_density_tim
+e.png, id=118, 722.7pt x 433.62pt>
+File: C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/box_whisker_densit
+y_time.png Graphic file (type png)
+<use C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/box_whisker_density
+_time.png>
+Package pdftex.def Info: C:/Users/mlarriva/Documents/GitHub/demand_density/Figs
+/box_whisker_density_time.png  used on input line 194.
+(pdftex.def)             Requested size: 334.79773pt x 200.87694pt.
+
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6]
+<C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/bar_total_density_year.
+png, id=123, 722.7pt x 433.62pt>
+File: C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/bar_total_density_
+year.png Graphic file (type png)
+<use C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/bar_total_density_y
+ear.png>
+Package pdftex.def Info: C:/Users/mlarriva/Documents/GitHub/demand_density/Figs
+/bar_total_density_year.png  used on input line 202.
+(pdftex.def)             Requested size: 334.79773pt x 200.87694pt.
+<C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/hist_deltardi.png, id=1
+24, 722.7pt x 433.62pt>
+File: C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/hist_deltardi.png 
+Graphic file (type png)
+<use C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/hist_deltardi.png>
+Package pdftex.def Info: C:/Users/mlarriva/Documents/GitHub/demand_density/Figs
+/hist_deltardi.png  used on input line 207.
+(pdftex.def)             Requested size: 334.79773pt x 200.87694pt.
 
 
 
@@ -864,258 +873,82 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.211 
-      
-pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) ha
-s been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.211 
-       <C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/hist_deltardi.pn
-g> <C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/national_example.png
->]
-LaTeX Font Info:    Calculating math sizes for size <8.03> on input line 216.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <4.015> not available
-(Font)              size <5> substituted on input line 216.
-
-
-LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <4.015> not available
-(Font)              size <5> substituted on input line 216.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <4.015> not available
-(Font)              size <5> substituted on input line 216.
-
-
-LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <4.015> not available
-(Font)              size <5> substituted on input line 216.
-
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 229.
+l.209 \end{figure}
+                   <C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/box_
+whisker_density_time.png>]
+File: C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/national_example.p
+ng Graphic file (type png)
+<use C:/Users/mlarriva/Documents/GitHub/demand_density/Figs/national_example.pn
+g>
+Package pdftex.def Info: C:/Users/mlarriva/Documents/GitHub/demand_density/Figs
+/national_example.png  used on input line 215.
+(pdftex.def)             Requested size: 334.79773pt x 200.87694pt.
 
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [8
-pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has
- been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) ha
+s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.280 F
-       or display equations (with auto generated equation numbers)]
+l.218 \subsection
+                 {Controls}
+pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.218 \subsection
+                 {Controls} <C:/Users/mlarriva/Documents/GitHub/demand_density/
+Figs/bar_total_density_year.png> <C:/Users/mlarriva/Documents/GitHub/demand_den
+sity/Figs/hist_deltardi.png>]
+LaTeX Font Info:    Calculating math sizes for size <8.03> on input line 229.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <4.015> not available
+(Font)              size <5> substituted on input line 229.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <4.015> not available
+(Font)              size <5> substituted on input line 229.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <4.015> not available
+(Font)              size <5> substituted on input line 229.
+
+
+LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <4.015> not available
+(Font)              size <5> substituted on input line 229.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 242.
+
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [9]
+ [9
+pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.276 \section
+              {Emperical Analysis}]
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [10
-pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has
  been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.355 \end{verbatim}
-                    ]
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 381.
-
-Package epstopdf Info: Source file: <fig.eps>
-(epstopdf)                    date: 2024-11-01 10:07:33
-(epstopdf)                    size: 93049 bytes
-(epstopdf)             Output file: <fig-eps-converted-to.pdf>
-(epstopdf)                    date: 2024-11-01 10:07:33
-(epstopdf)                    size: 3136 bytes
-(epstopdf)             Command: <miktex-epstopdf --outfile=fig-eps-converted-to
-.pdf fig.eps>
-(epstopdf)             \includegraphics on input line 421.
-Package epstopdf Info: Output file is already uptodate.
-<fig-eps-converted-to.pdf, id=202, 505.89pt x 84.315pt>
-File: fig-eps-converted-to.pdf Graphic file (type pdf)
-<use fig-eps-converted-to.pdf>
-Package pdftex.def Info: fig-eps-converted-to.pdf  used on input line 421.
-(pdftex.def)             Requested size: 334.79773pt x 55.79987pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [11
-pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has
- been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.429 \section
-              {Algorithms, Program codes and Listings}\label{sec7}]
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [12
-pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has
- been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.429 \section
-              {Algorithms, Program codes and Listings}\label{sec7}]
-LaTeX Font Info:    Trying to load font information for OMS+cmss on input line 
-471.
-LaTeX Font Info:    No file OMScmss.fd. on input line 471.
-
-
-LaTeX Font Warning: Font shape `OMS/cmss/m/n' undefined
-(Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbraceleft' on input line 471.
-
-(C:\Users\matth\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
-File: lstlang1.sty 2024/05/25 1.10b listings language file
-)
-LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 5
-13.
-
-(C:\Users\matth\AppData\Local\Programs\MiKTeX\tex/latex/base\omscmr.fd
-File: omscmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <9> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 513.
-
-Overfull \hbox (7.55843pt too wide) in paragraph at lines 507--519
-[]$[]$ 
- []
-
-
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [13
-pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) ha
-s been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.520 \section
-              {Cross referencing}\label{sec8} <./fig-eps-converted-to.pdf>]
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [14]
-
-Package natbib Warning: Citation `bib1' on page 15 undefined on input line 538.
-
-
-
-Package natbib Warning: Citation `bib2' on page 15 undefined on input line 538.
-
-
-
-Package natbib Warning: Citation `bib3' on page 15 undefined on input line 540.
-
-
-
-Package natbib Warning: Citation `bib4' on page 15 undefined on input line 540.
-
-
-
-Package natbib Warning: Citation `bib5' on page 15 undefined on input line 540.
-
-
-
-Package natbib Warning: Citation `bib6' on page 15 undefined on input line 540.
-
-
-
-Package natbib Warning: Citation `bib7' on page 15 undefined on input line 540.
-
-
-
-Package natbib Warning: Citation `bib8' on page 15 undefined on input line 540.
-
-
-
-Package natbib Warning: Citation `bib9' on page 15 undefined on input line 540.
-
-
-
-Package natbib Warning: Citation `bib10' on page 15 undefined on input line 540
-.
-
-
-Package natbib Warning: Citation `bib11' on page 15 undefined on input line 540
-.
-
-
-Package natbib Warning: Citation `bib12' on page 15 undefined on input line 540
-.
-
-
-Package natbib Warning: Citation `bib13' on page 15 undefined on input line 540
-.
-
-
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [15]
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [16]
-Underfull \hbox (badness 1859) in paragraph at lines 636--637
-\OT1/cmr/m/n/10 of a clin-i-cal trial then addi-tional infor-ma-tion will be re
-quired. Please visit
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 636--637
-\OT1/cmr/m/n/10 ([][]$https : / / www . nature . com / nature-[]research / edit
-orial-[]policies$[][]) for Nature Port-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 636--637
-\OT1/cmr/m/n/10 fo-lio jour-nals, ([][]$https : / / www . springer . com / gp /
- authors-[]editors / journal-[]author /
- []
-
-
-Underfull \hbox (badness 4634) in paragraph at lines 636--637
-\OT1/cmr/m/n/10 journal-[]author-[]helpdesk / publishing-[]ethics / 14214$[][])
- for Springer Nature jour-nals,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 636--637
-\OT1/cmr/m/n/10 or ([][]$https : / / www . biomedcentral . com / getpublished /
- editorial-[]policies # ethics + and +
- []
-
-
-Package hyperref Warning: Difference (4) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 652.
-
-
-Package hyperref Warning: Difference (3) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 660.
-
-
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [17]
-(sn-article.bbl
+l.293 \end{align}
+                 ] (sn-article.bbl
 Underfull \hbox (badness 10000) in paragraph at lines 49--54
 []\OT1/cmr/m/n/10 census.gov. [][]$https : / / www . census . gov / housing / h
 vs / ^^Lles / currenthvspress . pdf$[][].
@@ -1154,16 +987,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 58--64
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [18])
-
-Package natbib Warning: There were undefined citations.
-
-
+ [11]
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [19]
+ [12])
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [13]
 (sn-article.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
@@ -1175,22 +1009,19 @@ LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.985pt have occurred.
 
 
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
-
-
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `sn-article.out' has not changed.
-(rerunfilecheck)             Checksum: 8AFBF51DE8FCF19FF66576D487D1A5CB;3652.
+(rerunfilecheck)             Checksum: EEC7598B7C885DB859C040CE7B7EDD26;1980.
  ) 
 Here is how much of TeX's memory you used:
- 15373 strings out of 473899
- 236389 string characters out of 5726500
- 1953960 words of memory out of 5000000
- 37880 multiletter control sequences out of 15000+600000
- 578678 words of font info for 121 fonts, out of 8000000 for 9000
+ 14854 strings out of 473899
+ 231095 string characters out of 5726500
+ 1941960 words of memory out of 5000000
+ 37422 multiletter control sequences out of 15000+600000
+ 575376 words of font info for 107 fonts, out of 8000000 for 9000
  1151 hyphenation exceptions out of 8191
- 90i,17n,93p,3583b,1669s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,12n,93p,3583b,641s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\matth\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
 1000.pk><C:/Users/matth/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
 ts/cmextra/cmbsy8.pfb><C:/Users/matth/AppData/Local/Programs/MiKTeX/fonts/type1
@@ -1200,33 +1031,22 @@ MiKTeX/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Users/matth/AppData/Local/P
 rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Users/matth/AppData
 /Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/matt
 h/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/U
-sers/matth/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.p
+sers/matth/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.p
 fb><C:/Users/matth/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
-/cmmi7.pfb><C:/Users/matth/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
-fonts/cm/cmmi8.pfb><C:/Users/matth/AppData/Local/Programs/MiKTeX/fonts/type1/pu
-blic/amsfonts/cm/cmmi9.pfb><C:/Users/matth/AppData/Local/Programs/MiKTeX/fonts/
-type1/public/amsfonts/cm/cmr10.pfb><C:/Users/matth/AppData/Local/Programs/MiKTe
-X/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/matth/AppData/Local/Progra
-ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/matth/AppData/Loca
-l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/matth/AppDa
-ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/matt
-h/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Use
-rs/matth/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb>
-<C:/Users/matth/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
-ss9.pfb><C:/Users/matth/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
-ts/cm/cmssbx10.pfb><C:/Users/matth/AppData/Local/Programs/MiKTeX/fonts/type1/pu
-blic/amsfonts/cm/cmsy10.pfb><C:/Users/matth/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/matth/AppData/Local/Programs/MiKT
-eX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/matth/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Users/matth/AppData/Loc
-al/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/matth/Ap
-pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users
-/matth/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10
-.pfb><C:/Users/matth/AppData/Local/Programs/MiKTeX/fonts/type1/public/rsfs/rsfs
-10.pfb>
-Output written on sn-article.pdf (19 pages, 580194 bytes).
+/cmr10.pfb><C:/Users/matth/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmr12.pfb><C:/Users/matth/AppData/Local/Programs/MiKTeX/fonts/type1/pu
+blic/amsfonts/cm/cmr17.pfb><C:/Users/matth/AppData/Local/Programs/MiKTeX/fonts/
+type1/public/amsfonts/cm/cmr7.pfb><C:/Users/matth/AppData/Local/Programs/MiKTeX
+/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/matth/AppData/Local/Programs
+/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/matth/AppData/Local/P
+rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/matth/AppDat
+a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/matt
+h/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/U
+sers/matth/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.
+pfb>
+Output written on sn-article.pdf (13 pages, 460803 bytes).
 PDF statistics:
- 455 PDF objects out of 1000 (max. 8388607)
- 103 named destinations out of 1000 (max. 500000)
- 194 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 281 PDF objects out of 1000 (max. 8388607)
+ 53 named destinations out of 1000 (max. 500000)
+ 122 words of extra memory for PDF output out of 10000 (max. 10000000)
 

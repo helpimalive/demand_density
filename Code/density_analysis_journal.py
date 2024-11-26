@@ -791,7 +791,7 @@ def present_density_growth_vs_rent_growth():
         df_grouped["total_density_growth"], df_grouped["rent_growth"]
     )
     plt.title(
-        f"Average Density Growth vs Rent Growth \n 100 Largest MSAs 2001-2021 \n Rsquared: {r_value**2:.2f}"
+        f"Average Density Growth vs Average Rent Growth by MSA\n 100 Largest MSAs 2001-2021 \n Rsquared: {r_value**2:.2f}"
     )
     plt.plot(
         np.linspace(
@@ -809,6 +809,54 @@ def present_density_growth_vs_rent_growth():
         color="black",
         linestyle="--",
     )
+    max_x = df_grouped["total_density_growth"].idxmax()
+    min_x = df_grouped["total_density_growth"].idxmin()
+    max_y = df_grouped["rent_growth"].idxmax()
+    min_y = df_grouped["rent_growth"].idxmin()
+    plt.annotate(
+        df_grouped.loc[max_x, "msa"],
+        (
+            df_grouped.loc[max_x, "total_density_growth"],
+            df_grouped.loc[max_x, "rent_growth"],
+        ),
+        textcoords="offset points",
+        xytext=(0, 0),
+        ha="right",
+        color="black",
+    )
+    plt.annotate(
+        df_grouped.loc[min_x, "msa"],
+        (
+            df_grouped.loc[min_x, "total_density_growth"],
+            df_grouped.loc[min_x, "rent_growth"],
+        ),
+        textcoords="offset points",
+        xytext=(0, 0),
+        ha="left",
+        color="black",
+    )
+    plt.annotate(
+        df_grouped.loc[max_y, "msa"],
+        (
+            df_grouped.loc[max_y, "total_density_growth"],
+            df_grouped.loc[max_y, "rent_growth"],
+        ),
+        textcoords="offset points",
+        xytext=(0, 0),
+        ha="right",
+        color="black",
+    )
+    plt.annotate(
+        df_grouped.loc[min_y, "msa"],
+        (
+            df_grouped.loc[min_y, "total_density_growth"],
+            df_grouped.loc[min_y, "rent_growth"],
+        ),
+        textcoords="offset points",
+        xytext=(0, 0),
+        ha="right",
+        color="black",
+    )
     plt.legend()
     plt.xlabel("<-- Dedensifying        Average Density Growth      Densifying -->")
     plt.ylabel("<-- Increasing      Average Rent Growth     Decreasing -->")
@@ -820,11 +868,14 @@ def present_density_growth_vs_rent_growth():
     plt.show()
 
 
+present_density_growth_vs_rent_growth()
+
+
 def national_example():
     df = (
         get_data()
-        .filter(pl.col("msa") == "Inland Empire - CA")
-        .filter(pl.col("year") < 2024)
+        # .filter(pl.col("msa") == "Inland Empire - CA")
+        .filter(pl.col("year") < 2022)
         .select(
             "year",
             pl.col("rentpsf").alias("real_rent_psf"),
@@ -832,32 +883,15 @@ def national_example():
             pl.col("rent_growth_next_year").alias("real_rent_growth"),
             pl.col("implied_demand").alias("delta_RDI"),
         )
-        # .group_by("year")
-        # .agg(
-        #     pl.col("real_rent_psf").mean().alias("real_rent_psf"),
-        #     pl.col("RDI").mean().alias("RDI"),
-        #     pl.col("real_rent_growth").mean().alias("real_rent_growth"),
-        #     pl.col("delta_RDI").mean().alias("delta_RDI"),
-        # )
+        .group_by("year")
+        .agg(
+            pl.col("real_rent_psf").mean().alias("real_rent_psf"),
+            pl.col("RDI").mean().alias("RDI"),
+            pl.col("real_rent_growth").mean().alias("real_rent_growth"),
+            pl.col("delta_RDI").mean().alias("delta_RDI"),
+        )
     ).sort("year")
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
-
-    # Plot real_rent vs RDI
-    ax1.plot(df["year"], df["real_rent_psf"], color="blue", label="Real Rent PSF")
-    ax1.set_xlabel("Year")
-    ax1.set_ylabel("Avg Real Rent PSF", color="blue")
-    ax1.yaxis.set_major_formatter(plt.FuncFormatter(lambda x, _: f"${x:,.2f}"))
-    ax1.tick_params(axis="y", labelcolor="blue")
-    ax1.legend(loc="upper left")
-
-    ax1_2 = ax1.twinx()
-    ax1_2.plot(df["year"], df["RDI"], color="green", label="RDI")
-    ax1_2.set_ylabel("RDI", color="green")
-    ax1_2.tick_params(axis="y", labelcolor="green")
-    ax1_2.legend(loc="upper right")
-
-    ax1.set_title("Real Rent PSF vs RDI \n Largest 100 MSAs")
-
+    fig, ax2 = plt.subplots(1, figsize=(10, 6))
     # Scatter plot of real_rent_growth vs delta_RDI
     df = (
         (df.select(["year", "real_rent_growth", "delta_RDI"]).drop_nulls())
@@ -876,12 +910,49 @@ def national_example():
         color="gray",
         label="Line of Best Fit",
     )
+    max_x = df["delta_RDI"].idxmax()
+    min_x = df["delta_RDI"].idxmin()
+    max_y = df["real_rent_growth"].idxmax()
+    min_y = df["real_rent_growth"].idxmin()
+    plt.annotate(
+        df.loc[max_x, "year"],
+        (
+            df.loc[max_x, "delta_RDI"],
+            df.loc[max_x, "real_rent_growth"],
+        ),
+        textcoords="offset points",
+        xytext=(0, 0),
+        ha="right",
+        color="black",
+    )
+    plt.annotate(
+        df.loc[min_x, "year"],
+        (
+            df.loc[min_x, "delta_RDI"],
+            df.loc[min_x, "real_rent_growth"],
+        ),
+        textcoords="offset points",
+        xytext=(0, 0),
+        ha="left",
+        color="black",
+    )
+    plt.annotate(
+        df.loc[min_y, "year"],
+        (
+            df.loc[min_y, "delta_RDI"],
+            df.loc[min_y, "real_rent_growth"],
+        ),
+        textcoords="offset points",
+        xytext=(0, 0),
+        ha="right",
+        color="black",
+    )
     rsquare = r_value**2
     ax2.set_title(
-        f"Real Rent Growth vs Delta RDI \n Largest 100 MSAs; Rsquare = {rsquare:.2f} "
+        f"Average Density Growth vs Average Rent Growth by Year\n 100 Largest MSAs 2001-2021 \n Rsquared: {r_value**2:.2f}"
     )
-    ax2.set_ylabel("Avg Real Rent Growth")
-    ax2.set_xlabel("Delta RDI")
+    ax2.set_xlabel("<-- Dedensifying        Average Density Growth      Densifying -->")
+    ax2.set_ylabel("<-- Increasing      Average Rent Growth     Decreasing -->")
 
     plt.tight_layout()
     plt.savefig(
