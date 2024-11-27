@@ -1,6 +1,6 @@
 %% BioMed_Central_Bib_Style_v1.01
 
-\begin{thebibliography}{14}
+\begin{thebibliography}{21}
 % BibTex style file: bmc-mathphys.bst (version 2.1), 2014-07-24
 \ifx \bisbn   \undefined \def \bisbn  #1{ISBN #1}\fi
 \ifx \binits  \undefined \def \binits#1{#1}\fi
@@ -44,15 +44,38 @@
 \csname PreBibitemsHook\endcsname
 
 %%% 1
-\bibitem[\protect\citeauthoryear{}{}]{census}
+\bibitem[\protect\citeauthoryear{in~Data}{2024}]{ourworldindataPopulationDensity}
 \begin{botherref}
-census.gov.
-\url{https://www.census.gov/housing/hvs/files/currenthvspress.pdf}.
-[Accessed 13-11-2024]
+\oauthor{\bsnm{Data}, \binits{O.W.}}:
+{P}opulation density --- ourworldindata.org.
+\url{https://ourworldindata.org/grapher/population-density?tab=chart&country=~USA#research-and-writing}.
+[Accessed 25-11-2024]
+(2024)
 \end{botherref}
 \endbibitem
 
 %%% 2
+\bibitem[\protect\citeauthoryear{}{}]{stlouisfedConsumerPrice}
+\begin{botherref}
+{C}onsumer {P}rice {I}ndex for {A}ll {U}rban {C}onsumers: {A}ll {I}tems in
+  {U}.{S}. {C}ity {A}verage --- fred.stlouisfed.org.
+\url{https://fred.stlouisfed.org/series/CPIAUCSL}.
+[Accessed 25-11-2024]
+\end{botherref}
+\endbibitem
+
+%%% 3
+\bibitem[\protect\citeauthoryear{Laura~Feiveson}{2024}]{feiveson2024rent}
+\begin{botherref}
+\oauthor{\bsnm{Laura~Feiveson}, \binits{S.S.W.} \bsuffix{Arik~Levinson}}:
+{R}ent, {H}ouse {P}rices, and {D}emographics.
+\url{https://home.treasury.gov/news/featured-stories/rent-house-prices-and-demographics}.
+[Accessed 25-11-2024]
+(2024)
+\end{botherref}
+\endbibitem
+
+%%% 4
 \bibitem[\protect\citeauthoryear{}{}]{fanniemaeConsumersFeeling}
 \begin{botherref}
 {C}onsumers {F}eeling {B}etter {A}bout {H}ousing {M}arket {D}espite {H}igh
@@ -62,7 +85,7 @@ census.gov.
 \end{botherref}
 \endbibitem
 
-%%% 3
+%%% 5
 \bibitem[\protect\citeauthoryear{Bureau}{}]{censusNearlyHalf}
 \begin{botherref}
 \oauthor{\bsnm{Bureau}, \binits{U.C.}}:
@@ -73,7 +96,30 @@ census.gov.
 \end{botherref}
 \endbibitem
 
-%%% 4
+%%% 6
+\bibitem[\protect\citeauthoryear{Betancourt et~al.}{2022}]{betancourt2022us}
+\begin{botherref}
+\oauthor{\bsnm{Betancourt}, \binits{K.}},
+\oauthor{\bsnm{Gardner}, \binits{S.}},
+\oauthor{\bsnm{Palim}, \binits{M.}}:
+The us housing shortage from a local perspective.
+Fannie Mae
+(2022)
+\end{botherref}
+\endbibitem
+
+%%% 7
+\bibitem[\protect\citeauthoryear{Mott}{2024}]{mott2024ThisRegion}
+\begin{botherref}
+\oauthor{\bsnm{Mott}, \binits{F.D.}}:
+{T}his {U}{S} region is seeing the biggest rent declines as owners struggle to
+  fill vacancies, {R}edfin says --- yahoo.com
+(2024).
+[Accessed 25-11-2024]
+\end{botherref}
+\endbibitem
+
+%%% 8
 \bibitem[\protect\citeauthoryear{Anenberg and
   Ringo}{2024}]{anenberg2024volatility}
 \begin{barticle}
@@ -87,7 +133,7 @@ census.gov.
 \end{barticle}
 \endbibitem
 
-%%% 5
+%%% 9
 \bibitem[\protect\citeauthoryear{Pyhrr et~al.}{1999}]{pyhrr1999real}
 \begin{barticle}
 \bauthor{\bsnm{Pyhrr}, \binits{S.}},
@@ -102,7 +148,7 @@ census.gov.
 \end{barticle}
 \endbibitem
 
-%%% 6
+%%% 10
 \bibitem[\protect\citeauthoryear{Mueller}{1999}]{mueller1999real}
 \begin{barticle}
 \bauthor{\bsnm{Mueller}, \binits{G.}}:
@@ -115,7 +161,7 @@ census.gov.
 \end{barticle}
 \endbibitem
 
-%%% 7
+%%% 11
 \bibitem[\protect\citeauthoryear{Saiz}{2010}]{saiz2010geographic}
 \begin{barticle}
 \bauthor{\bsnm{Saiz}, \binits{A.}}:
@@ -127,7 +173,7 @@ census.gov.
 \end{barticle}
 \endbibitem
 
-%%% 8
+%%% 12
 \bibitem[\protect\citeauthoryear{Davidoff}{2015}]{davidoff2015supply}
 \begin{botherref}
 \oauthor{\bsnm{Davidoff}, \binits{T.}}:
@@ -138,7 +184,7 @@ Available at SSRN 2400833
 \end{botherref}
 \endbibitem
 
-%%% 9
+%%% 13
 \bibitem[\protect\citeauthoryear{Pennington}{2021}]{pennington2021does}
 \begin{botherref}
 \oauthor{\bsnm{Pennington}, \binits{K.}}:
@@ -149,7 +195,7 @@ The Supply and Demand Effects of Construction in San Francisco (June 15, 2021)
 \end{botherref}
 \endbibitem
 
-%%% 10
+%%% 14
 \bibitem[\protect\citeauthoryear{Molloy et~al.}{2022}]{molloy2022housing}
 \begin{barticle}
 \bauthor{\bsnm{Molloy}, \binits{R.}},
@@ -164,20 +210,47 @@ The Supply and Demand Effects of Construction in San Francisco (June 15, 2021)
 \end{barticle}
 \endbibitem
 
-%%% 11
-\bibitem[\protect\citeauthoryear{Titman and Zhu}{2024}]{titman2024city}
+%%% 15
+\bibitem[\protect\citeauthoryear{Gabriel and Nothaft}{2001}]{gabriel2001rental}
 \begin{barticle}
-\bauthor{\bsnm{Titman}, \binits{S.}},
-\bauthor{\bsnm{Zhu}, \binits{G.}}:
-\batitle{City characteristics, land prices and volatility}.
+\bauthor{\bsnm{Gabriel}, \binits{S.A.}},
+\bauthor{\bsnm{Nothaft}, \binits{F.E.}}:
+\batitle{Rental housing markets, the incidence and duration of vacancy, and the
+  natural vacancy rate}.
 \bjtitle{Journal of Urban Economics}
-\bvolume{140},
-\bfpage{103645}
-(\byear{2024})
+\bvolume{49}(\bissue{1}),
+\bfpage{121}--\blpage{149}
+(\byear{2001})
 \end{barticle}
 \endbibitem
 
-%%% 12
+%%% 16
+\bibitem[\protect\citeauthoryear{Sirmans and
+  Benjamin}{1991}]{sirmans1991determinants}
+\begin{barticle}
+\bauthor{\bsnm{Sirmans}, \binits{G.S.}},
+\bauthor{\bsnm{Benjamin}, \binits{J.}}:
+\batitle{Determinants of market rent}.
+\bjtitle{Journal of Real Estate Research}
+\bvolume{6}(\bissue{3}),
+\bfpage{357}--\blpage{379}
+(\byear{1991})
+\end{barticle}
+\endbibitem
+
+%%% 17
+\bibitem[\protect\citeauthoryear{Murray}{2022}]{murray2022housing}
+\begin{barticle}
+\bauthor{\bsnm{Murray}, \binits{C.K.}}:
+\batitle{A housing supply absorption rate equation}.
+\bjtitle{The journal of real estate finance and economics}
+\bvolume{64}(\bissue{2}),
+\bfpage{228}--\blpage{246}
+(\byear{2022})
+\end{barticle}
+\endbibitem
+
+%%% 18
 \bibitem[\protect\citeauthoryear{Ahlfeldt and
   Pietrostefani}{2019}]{ahlfeldt2019economic}
 \begin{barticle}
@@ -191,7 +264,7 @@ The Supply and Demand Effects of Construction in San Francisco (June 15, 2021)
 \end{barticle}
 \endbibitem
 
-%%% 13
+%%% 19
 \bibitem[\protect\citeauthoryear{Albouy and Lue}{2015}]{albouy2015driving}
 \begin{barticle}
 \bauthor{\bsnm{Albouy}, \binits{D.}},
@@ -205,7 +278,20 @@ The Supply and Demand Effects of Construction in San Francisco (June 15, 2021)
 \end{barticle}
 \endbibitem
 
-%%% 14
+%%% 20
+\bibitem[\protect\citeauthoryear{Titman and Zhu}{2024}]{titman2024city}
+\begin{barticle}
+\bauthor{\bsnm{Titman}, \binits{S.}},
+\bauthor{\bsnm{Zhu}, \binits{G.}}:
+\batitle{City characteristics, land prices and volatility}.
+\bjtitle{Journal of Urban Economics}
+\bvolume{140},
+\bfpage{103645}
+(\byear{2024})
+\end{barticle}
+\endbibitem
+
+%%% 21
 \bibitem[\protect\citeauthoryear{Liu et~al.}{2018}]{liu2018vertical}
 \begin{barticle}
 \bauthor{\bsnm{Liu}, \binits{C.H.}},
