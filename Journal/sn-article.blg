@@ -37,50 +37,50 @@ Warning--I didn't find a database entry for "bib12"
 Warning--I didn't find a database entry for "bib13"
 Reallocating 'wiz_functions' (item size: 4) to 9000 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
-Warning--to sort, need author or key in census
+Warning--to sort, need author or key in stlouisfedConsumerPrice
 Warning--to sort, need author or key in fanniemaeConsumersFeeling
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
-You've used 14 entries,
+You've used 21 entries,
             7480 wiz_defined-function locations,
-            1273 strings with 12166 characters,
-and the built_in function-call counts, 34703 in all, are:
-= -- 4571
-> -- 338
-< -- 177
-+ -- 1097
-- -- 66
-* -- 1859
-:= -- 6874
-add.period$ -- 17
-call.type$ -- 14
-change.case$ -- 75
-chr.to.int$ -- 452
-cite$ -- 18
-duplicate$ -- 494
-empty$ -- 1913
-format.name$ -- 206
-if$ -- 8354
+            1310 strings with 13514 characters,
+and the built_in function-call counts, 52273 in all, are:
+= -- 6908
+> -- 499
+< -- 254
++ -- 1656
+- -- 99
+* -- 2807
+:= -- 10431
+add.period$ -- 26
+call.type$ -- 21
+change.case$ -- 112
+chr.to.int$ -- 639
+cite$ -- 25
+duplicate$ -- 730
+empty$ -- 2898
+format.name$ -- 312
+if$ -- 12554
 int.to.chr$ -- 1
-int.to.str$ -- 25
+int.to.str$ -- 36
 missing$ -- 0
-newline$ -- 212
-num.names$ -- 60
-pop$ -- 246
+newline$ -- 294
+num.names$ -- 95
+pop$ -- 367
 preamble$ -- 1
-purify$ -- 64
+purify$ -- 96
 quote$ -- 0
-skip$ -- 2716
+skip$ -- 4071
 stack$ -- 0
-substring$ -- 3332
-swap$ -- 255
-text.length$ -- 139
+substring$ -- 5124
+swap$ -- 367
+text.length$ -- 211
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 538
+type$ -- 779
 warning$ -- 2
-while$ -- 293
+while$ -- 440
 width$ -- 0
-write$ -- 294
+write$ -- 418
 (There were 15 warnings)
