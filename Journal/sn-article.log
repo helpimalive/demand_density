@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.11.15)  26 NOV 2024 23:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.11.15)  12 JAN 2025 22:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -834,10 +834,32 @@ LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <5.52061> not available
 LaTeX Font Info:    Calculating math sizes for size <10.03749> on input line 14
 7.
 
-Underfull \hbox (badness 1057) in paragraph at lines 152--153
-\OT1/cmr/m/n/10 it trailed the aver-age den-sity of other high-income coun-trie
-s sharply for two
- []
+Package natbib Warning: Citation `ourworldindataPopulationDensity' on page 1 un
+defined on input line 152.
+
+
+Package natbib Warning: Citation `stlouisfedConsumerPrice' on page 1 undefined 
+on input line 152.
+
+
+Package natbib Warning: Citation `feiveson2024rent' on page 1 undefined on inpu
+t line 152.
+
+
+Package natbib Warning: Citation `fanniemaeConsumersFeeling' on page 1 undefine
+d on input line 152.
+
+
+Package natbib Warning: Citation `censusNearlyHalf' on page 1 undefined on inpu
+t line 152.
+
+
+Package natbib Warning: Citation `betancourt2022us' on page 1 undefined on inpu
+t line 152.
+
+
+Package natbib Warning: Citation `mott2024ThisRegion' on page 1 undefined on in
+put line 152.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -845,32 +867,80 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [1
 
 {C:/Users/datbu/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
+
+Package natbib Warning: Citation `anenberg2024volatility' on page 2 undefined o
+n input line 154.
+
+
+Package natbib Warning: Citation `pyhrr1999real' on page 2 undefined on input l
+ine 154.
+
+
+Package natbib Warning: Citation `mueller1999real' on page 2 undefined on input
+ line 154.
+
+
+Package natbib Warning: Citation `saiz2010geographic' on page 2 undefined on in
+put line 154.
+
+
+Package natbib Warning: Citation `davidoff2015supply' on page 2 undefined on in
+put line 154.
+
+
+Package natbib Warning: Citation `pennington2021does' on page 2 undefined on in
+put line 154.
+
+
+Package natbib Warning: Citation `molloy2022housing' on page 2 undefined on inp
+ut line 154.
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [2]
-Overfull \hbox (264.1682pt too wide) in paragraph at lines 156--158
-\OT1/cmr/m/n/10 [https://www.sciencedirect.com/science/article/pii/S00941190009
-21879][https://www.tandfonline.com/doi/abs/10.1080/10835547.1991.12090653]
- []
+
+Package natbib Warning: Citation `gabriel2001rental' on page 3 undefined on inp
+ut line 156.
 
 
-Underfull \hbox (badness 7203) in paragraph at lines 156--158
-\OT1/cmr/m/n/10 [[]] and finds that it impacts rent growth. Other research focu
-ses on
- []
+Package natbib Warning: Citation `sirmans1991determinants' on page 3 undefined 
+on input line 156.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 156--158
-\OT1/cmr/m/n/10 absorp-tion rates [https://link.springer.com/article/10.1007/s1
-1146-020-09815-z]
- []
+Package natbib Warning: Citation `mueller1999real' on page 3 undefined on input
+ line 156.
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Package natbib Warning: Citation `murray2022housing' on page 3 undefined on inp
+ut line 156.
 
- [3]
+
+Package natbib Warning: Citation `gabriel2001rental' on page 3 undefined on inp
+ut line 156.
+
+
+Package natbib Warning: Citation `molloy2022housing' on page 3 undefined on inp
+ut line 157.
+
+
+Package natbib Warning: Citation `ahlfeldt2019economic' on page 3 undefined on 
+input line 157.
+
+
+Package natbib Warning: Citation `albouy2015driving' on page 3 undefined on inp
+ut line 157.
+
+
+Package natbib Warning: Citation `titman2024city' on page 3 undefined on input 
+line 161.
+
+
+Package natbib Warning: Citation `liu2018vertical' on page 3 undefined on input
+ line 161.
+
 <C:/Users/datbu/OneDrive/Documents/GitHub/demand_density/Figs/density_growth_vs
-_rent_growth.png, id=102, 722.7pt x 433.62pt>
+_rent_growth.png, id=63, 722.7pt x 433.62pt>
 File: C:/Users/datbu/OneDrive/Documents/GitHub/demand_density/Figs/density_grow
 th_vs_rent_growth.png Graphic file (type png)
 <use C:/Users/datbu/OneDrive/Documents/GitHub/demand_density/Figs/density_growt
@@ -878,8 +948,12 @@ h_vs_rent_growth.png>
 Package pdftex.def Info: C:/Users/datbu/OneDrive/Documents/GitHub/demand_densit
 y/Figs/density_growth_vs_rent_growth.png  used on input line 165.
 (pdftex.def)             Requested size: 334.79773pt x 200.87694pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [3]
 <C:/Users/datbu/OneDrive/Documents/GitHub/demand_density/Figs/national_example.
-png, id=104, 722.7pt x 433.62pt>
+png, id=69, 722.7pt x 433.62pt>
 File: C:/Users/datbu/OneDrive/Documents/GitHub/demand_density/Figs/national_exa
 mple.png Graphic file (type png)
 <use C:/Users/datbu/OneDrive/Documents/GitHub/demand_density/Figs/national_exam
@@ -895,30 +969,30 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.174 
-       <C:/Users/datbu/OneDrive/Documents/GitHub/demand_density/Figs/density_gr
-owth_vs_rent_growth.png>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [5
+l.176 
+      
 pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.185 
-       <C:/Users/datbu/OneDrive/Documents/GitHub/demand_density/Figs/national_e
-xample.png>]
+l.176 
+       <C:/Users/datbu/OneDrive/Documents/GitHub/demand_density/Figs/density_gr
+owth_vs_rent_growth.png> <C:/Users/datbu/OneDrive/Documents/GitHub/demand_densi
+ty/Figs/national_example.png>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [5]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [6]
 <C:/Users/datbu/OneDrive/Documents/GitHub/demand_density/Figs/box_whisker_densi
-ty_time.png, id=122, 722.7pt x 433.62pt>
+ty_time.png, id=87, 722.7pt x 433.62pt>
 File: C:/Users/datbu/OneDrive/Documents/GitHub/demand_density/Figs/box_whisker_
 density_time.png Graphic file (type png)
 <use C:/Users/datbu/OneDrive/Documents/GitHub/demand_density/Figs/box_whisker_d
 ensity_time.png>
 Package pdftex.def Info: C:/Users/datbu/OneDrive/Documents/GitHub/demand_densit
-y/Figs/box_whisker_density_time.png  used on input line 198.
+y/Figs/box_whisker_density_time.png  used on input line 199.
 (pdftex.def)             Requested size: 334.79773pt x 200.87694pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -928,26 +1002,26 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.205 
+l.206 
        <C:/Users/datbu/OneDrive/Documents/GitHub/demand_density/Figs/box_whiske
 r_density_time.png>]
 <C:/Users/datbu/OneDrive/Documents/GitHub/demand_density/Figs/bar_total_density
-_year.png, id=130, 722.7pt x 433.62pt>
+_year.png, id=95, 722.7pt x 433.62pt>
 File: C:/Users/datbu/OneDrive/Documents/GitHub/demand_density/Figs/bar_total_de
 nsity_year.png Graphic file (type png)
 <use C:/Users/datbu/OneDrive/Documents/GitHub/demand_density/Figs/bar_total_den
 sity_year.png>
 Package pdftex.def Info: C:/Users/datbu/OneDrive/Documents/GitHub/demand_densit
-y/Figs/bar_total_density_year.png  used on input line 208.
+y/Figs/bar_total_density_year.png  used on input line 209.
 (pdftex.def)             Requested size: 334.79773pt x 200.87694pt.
 <C:/Users/datbu/OneDrive/Documents/GitHub/demand_density/Figs/hist_deltardi.png
-, id=131, 722.7pt x 433.62pt>
+, id=96, 722.7pt x 433.62pt>
 File: C:/Users/datbu/OneDrive/Documents/GitHub/demand_density/Figs/hist_deltard
 i.png Graphic file (type png)
 <use C:/Users/datbu/OneDrive/Documents/GitHub/demand_density/Figs/hist_deltardi
 .png>
 Package pdftex.def Info: C:/Users/datbu/OneDrive/Documents/GitHub/demand_densit
-y/Figs/hist_deltardi.png  used on input line 213.
+y/Figs/hist_deltardi.png  used on input line 214.
 (pdftex.def)             Requested size: 334.79773pt x 200.87694pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -957,245 +1031,81 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.216 
+l.219 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.219 
        <C:/Users/datbu/OneDrive/Documents/GitHub/demand_density/Figs/bar_total_
-density_year.png>]
+density_year.png> <C:/Users/datbu/OneDrive/Documents/GitHub/demand_density/Figs
+/hist_deltardi.png>]
 File: C:/Users/datbu/OneDrive/Documents/GitHub/demand_density/Figs/national_exa
 mple.png Graphic file (type png)
 <use C:/Users/datbu/OneDrive/Documents/GitHub/demand_density/Figs/national_exam
 ple.png>
 Package pdftex.def Info: C:/Users/datbu/OneDrive/Documents/GitHub/demand_densit
-y/Figs/national_example.png  used on input line 221.
+y/Figs/national_example.png  used on input line 222.
 (pdftex.def)             Requested size: 334.79773pt x 200.87694pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [9
-pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) ha
-s been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.230 
-      
 pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.230 
-       <C:/Users/datbu/OneDrive/Documents/GitHub/demand_density/Figs/hist_delta
-rdi.png>]
-LaTeX Font Info:    Calculating math sizes for size <8.03> on input line 235.
+l.233 
+      ]
+LaTeX Font Info:    Calculating math sizes for size <8.03> on input line 236.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <4.015> not available
-(Font)              size <5> substituted on input line 235.
+(Font)              size <5> substituted on input line 236.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <4.015> not available
-(Font)              size <5> substituted on input line 235.
+(Font)              size <5> substituted on input line 236.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <4.015> not available
-(Font)              size <5> substituted on input line 235.
+(Font)              size <5> substituted on input line 236.
 
 
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <4.015> not available
-(Font)              size <5> substituted on input line 235.
+(Font)              size <5> substituted on input line 236.
 
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 248.
+put line 249.
 
-Underfull \hbox (badness 10000) in paragraph at lines 286--286
-[]|\OT1/cmr/bx/n/10 overPriced-
- []
+LaTeX Info: File `' already exists on the system.
+            Not generating it from this source.
 
+)
+Runaway argument?
+! File ended while scanning use of ^^M.
+<inserted text> 
+                \par 
+<*> ./sn-article.tex
+                    
+I suspect you have forgotten a `}', causing me
+to read past where you wanted me to stop.
+I'll try to recover; but if the error is serious,
+you'd better type `E' or `X' now and fix your file.
 
-Overfull \hbox (1.64554pt too wide) in paragraph at lines 286--286
-\OT1/cmr/bx/n/10 underSupplied| 
- []
+! Emergency stop.
+<*> ./sn-article.tex
+                    
+*** (job aborted, no legal \end found)
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 286--286
-[]|\OT1/cmr/bx/n/10 overPriced-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 286--286
-[]|\OT1/cmr/bx/n/10 underPriced-
- []
-
-
-Overfull \hbox (1.64554pt too wide) in paragraph at lines 286--286
-\OT1/cmr/bx/n/10 underSupplied| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 286--287
-[]|\OT1/cmr/bx/n/10 underPriced-
- []
-
-
-Overfull \hbox (81.62532pt too wide) in alignment at lines 284--288
- [] [] [] [] [] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 291--291
-[]|\OT1/cmr/bx/n/10 overPriced-
- []
-
-
-Overfull \hbox (1.64554pt too wide) in paragraph at lines 291--291
-\OT1/cmr/bx/n/10 underSupplied| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 291--291
-[]|\OT1/cmr/bx/n/10 overPriced-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 291--291
-[]|\OT1/cmr/bx/n/10 underPriced-
- []
-
-
-Overfull \hbox (1.64554pt too wide) in paragraph at lines 291--291
-\OT1/cmr/bx/n/10 underSupplied| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 291--292
-[]|\OT1/cmr/bx/n/10 underPriced-
- []
-
-
-Overfull \hbox (81.62532pt too wide) in alignment at lines 288--293
- [] [] [] [] [] 
- []
-
-
-Overfull \hbox (81.62532pt too wide) in alignment at lines 293--296
- [] [] [] [] [] 
- []
-
-
-Overfull \hbox (81.62532pt too wide) in alignment at lines 296--399
- [] [] [] [] [] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [10
-pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has
- been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.399 	\end{longtable}
-                      ]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [11]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [12]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [13]
-(sn-article.bbl
-Underfull \hbox (badness 10000) in paragraph at lines 49--54
-[]\OT1/cmr/m/n/10 census.gov. [][]$https : / / www . census . gov / housing / h
-vs / ^^Lles / currenthvspress . pdf$[][].
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [14]
-Underfull \hbox (badness 10000) in paragraph at lines 58--64
-[]\OT1/cmr/m/n/10 Consumers Feel-ing Bet-ter About Hous-ing Mar-ket Despite
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 58--64
-\OT1/cmr/m/n/10 High Home Prices | Fan-nie Mae --- fan-niemae.com.
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 58--64
-[][]$\OT1/cmr/m/n/10 https : / / www . fanniemae . com / newsroom / fannie-[]ma
-e-[]news /
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 58--64
-\OT1/cmr/m/n/10 consumers-[]feeling-[]better-[]about-[]housing-[]market-[]despi
-te-[]high-[]home-[]prices# :
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 58--64
-[] \OT1/cmr/m/n/10 : text = One % 20eect % 20of % 20the % 20prolonged ,[] buy 
-% 20on % 20consumers '[]
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [15])
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [16]
-(sn-article.aux)
- ***********
-LaTeX2e <2023-11-01> patch level 1
-L3 programming layer <2024-01-04>
- ***********
-
-
-LaTeX Font Warning: Size substitutions with differences
-(Font)              up to 0.985pt have occurred.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
-Package rerunfilecheck Info: File `sn-article.out' has not changed.
-(rerunfilecheck)             Checksum: EEC7598B7C885DB859C040CE7B7EDD26;1980.
- ) 
+ 
 Here is how much of TeX's memory you used:
- 16255 strings out of 474486
- 266343 string characters out of 5743754
- 2038542 words of memory out of 5000000
- 38186 multiletter control sequences out of 15000+600000
- 575376 words of font info for 107 fonts, out of 8000000 for 9000
+ 16100 strings out of 474486
+ 263442 string characters out of 5743754
+ 1937542 words of memory out of 5000000
+ 38068 multiletter control sequences out of 15000+600000
+ 574873 words of font info for 105 fonts, out of 8000000 for 9000
  1151 hyphenation exceptions out of 8191
- 90i,12n,93p,3583b,637s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\datbu\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
-1000.pk><C:/Users/datbu/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
-ts/cmextra/cmbsy8.pfb><C:/Users/datbu/AppData/Local/Programs/MiKTeX/fonts/type1
-/public/amsfonts/cm/cmbx10.pfb><C:/Users/datbu/AppData/Local/Programs/MiKTeX/fo
-nts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/datbu/AppData/Local/Programs/
-MiKTeX/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Users/datbu/AppData/Local/P
-rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Users/datbu/AppData
-/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/datb
-u/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/U
-sers/datbu/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.p
-fb><C:/Users/datbu/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
-/cmr10.pfb><C:/Users/datbu/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
-fonts/cm/cmr12.pfb><C:/Users/datbu/AppData/Local/Programs/MiKTeX/fonts/type1/pu
-blic/amsfonts/cm/cmr17.pfb><C:/Users/datbu/AppData/Local/Programs/MiKTeX/fonts/
-type1/public/amsfonts/cm/cmr7.pfb><C:/Users/datbu/AppData/Local/Programs/MiKTeX
-/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/datbu/AppData/Local/Programs
-/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/datbu/AppData/Local/P
-rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/datbu/AppDat
-a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/datb
-u/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/U
-sers/datbu/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.
-pfb>
-Output written on sn-article.pdf (16 pages, 471851 bytes).
-PDF statistics:
- 295 PDF objects out of 1000 (max. 8388607)
- 57 named destinations out of 1000 (max. 500000)
- 122 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+ 90i,12n,93p,3404b,450s stack positions out of 10000i,1000n,20000p,200000b,200000s
+!  ==> Fatal error occurred, no output PDF file produced!
