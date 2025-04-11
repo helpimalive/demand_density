@@ -1,34 +1,3 @@
-%Version 3 October 2023
-% See section 11 of the User Manual for version history
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%                                                                 %%
-%% Please do not use \input{...} to include other tex files.       %%
-%% Submit your LaTeX manuscript as one .tex document.              %%
-%%                                                                 %%
-%% All additional figures and files should be attached             %%
-%% separately and not embedded in the \TeX\ document itself.       %%
-%%                                                                 %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%\documentclass[referee,sn-basic]{sn-jnl}% referee option is meant for double line spacing
-
-%%=======================================================%%
-%% to print line numbers in the margin use lineno option %%
-%%=======================================================%%
-
-%%\documentclass[lineno,sn-basic]{sn-jnl}% Basic Springer Nature Reference Style/Chemistry Reference Style
-
-%%======================================================%%
-%% to compile with pdflatex/xelatex use pdflatex option %%
-%%======================================================%%
-
-%%\documentclass[pdflatex,sn-basic]{sn-jnl}% Basic Springer Nature Reference Style/Chemistry Reference Style
-
-
-%%Note: the following reference styles support Namedate and Numbered referencing. By default the style follows the most common style. To switch between the options you can add or remove �Numbered� in the optional parenthesis. 
-%%The option is available for: sn-basic.bst, sn-vancouver.bst, sn-chicago.bst%  
- 
 %%\documentclass[sn-nature]{sn-jnl}% Style for submissions to Nature Portfolio journals
 %%\documentclass[sn-basic]{sn-jnl}% Basic Springer Nature Reference Style/Chemistry Reference Style
 \documentclass[sn-mathphys-num]{sn-jnl}% Math and Physical Sciences Numbered Reference Style 
@@ -41,53 +10,33 @@
 %%%% Standard Packages
 %%<additional latex packages if required can be included here>
 
-\usepackage{graphicx}%
-\usepackage{multirow}%
 \usepackage{amsmath,amssymb,amsfonts}%
+\usepackage{algorithm}
+
 \usepackage{amsthm}%
-\usepackage{mathrsfs}%
-\usepackage[title]{appendix}%
-\usepackage{xcolor}%
-\usepackage{textcomp}%
-\usepackage{manyfoot}%
-\usepackage{booktabs}%
-\usepackage{algorithm}%
-\usepackage{algorithmicx}%
-\usepackage{algpseudocode}%
-\usepackage{listings}%
-\usepackage{csvsimple}%
-\usepackage{longtable}%
-\usepackage{tabularx}%
 \usepackage{array}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+
+\usepackage[title]{appendix}%
+\usepackage{booktabs}%
+\usepackage{caption}%
+\usepackage{csvsimple}%
+\usepackage{enumitem}
+\usepackage{graphicx}%
+\usepackage{float}%
+\usepackage{listings}%
+\usepackage{longtable}%
+\usepackage{manyfoot}%
+\usepackage{multirow}%
+\usepackage{mathrsfs}%
+\usepackage{tabularx}%
+\usepackage{textcomp}%
+\usepackage{xcolor}%
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{hyperref}
+\graphicspath{{../Figs/}}
 %%%%
-
-%%%%%=============================================================================%%%%
-%%%%  Remarks: This template is provided to aid authors with the preparation
-%%%%  of original research articles intended for submission to journals published 
-%%%%  by Springer Nature. The guidance has been prepared in partnership with 
-%%%%  production teams to conform to Springer Nature technical requirements. 
-%%%%  Editorial and presentation requirements differ among journal portfolios and 
-%%%%  research disciplines. You may find sections in this template are irrelevant 
-%%%%  to your work and are empowered to omit any such section if allowed by the 
-%%%%  journal you intend to submit to. The submission guidelines and policies 
-%%%%  of the journal take precedence. A detailed User Manual is available in the 
-%%%%  template package for technical guidance.
-%%%%%=============================================================================%%%%
-
-%% as per the requirement new theorem styles can be included as shown below
-\theoremstyle{thmstyleone}%
-\newtheorem{theorem}{Theorem}%  meant for continuous numbers
-%%\newtheorem{theorem}{Theorem}[section]% meant for sectionwise numbers
-%% optional argument [theorem] produces theorem numbering sequence instead of independent numbers for Proposition
-\newtheorem{proposition}[theorem]{Proposition}% 
-%%\newtheorem{proposition}{Proposition}% to get separate numbers for theorem and proposition etc.
-
-\theoremstyle{thmstyletwo}%
-\newtheorem{example}{Example}%
-\newtheorem{remark}{Remark}%
-
-\theoremstyle{thmstylethree}%
-\newtheorem{definition}{Definition}%
 
 \raggedbottom
 %%\unnumbered% uncomment this for unnumbered level heads
@@ -96,62 +45,17 @@
 
 \title[Article Title]{Overpriced and Undersupplied: Density as a Measure of Demand in Large US Apartment Markets}
 
-%%=============================================================%%
-%% GivenName	-> \fnm{Joergen W.}
-%% Particle	-> \spfx{van der} -> surname prefix
-%% FamilyName	-> \sur{Ploeg}
-%% Suffix	-> \sfx{IV}
-%% \author*[1,2]{\fnm{Joergen W.} \spfx{van der} \sur{Ploeg} 
-%%  \sfx{IV}}\email{iauthor@gmail.com}
-%%=============================================================%%
+\author*[1,2]{\fnm{Matt} \sur{Larriva}}\email{matt.larriva@brookfield.com}
 
-\author*[1,2]{\fnm{First} \sur{Author}}\email{iauthor@gmail.com}
+\affil*[1]{\orgdiv{Real Estate}, \orgname{Brookfield}, \orgaddress{\street{250 Vesey}, \city{Manhattan}, \postcode{10281}, \state{NY}, \country{USA}}}
 
-\author[2,3]{\fnm{Second} \sur{Author}}\email{iiauthor@gmail.com}
-\equalcont{These authors contributed equally to this work.}
-
-\author[1,2]{\fnm{Third} \sur{Author}}\email{iiiauthor@gmail.com}
-\equalcont{These authors contributed equally to this work.}
-
-\affil*[1]{\orgdiv{Department}, \orgname{Organization}, \orgaddress{\street{Street}, \city{City}, \postcode{100190}, \state{State}, \country{Country}}}
-
-\affil[2]{\orgdiv{Department}, \orgname{Organization}, \orgaddress{\street{Street}, \city{City}, \postcode{10587}, \state{State}, \country{Country}}}
-
-\affil[3]{\orgdiv{Department}, \orgname{Organization}, \orgaddress{\street{Street}, \city{City}, \postcode{610101}, \state{State}, \country{Country}}}
-
-%%==================================%%
-%% Sample for unstructured abstract %%
-%%==================================%%
-
-\abstract{We introduce an empirical measure of multifamily demand, based on density changes, and offer evidence of its segmenting and predictive power. Using this variable, we solve for the intersection of supply and demand curves each year for 20 years in each of the hundred largest MSAs in the United States. Over the 2,000 observations, we classified each sample as over or under-supplied and over-or-under-priced, based on the derived market-clearing rents and quantities, relative to observed rents and quantities. Grouping markets this way was highly predictive of their next-twelve-month rent growth, with the under-under group returning 2\% more annually than the over-over group. With this, we provide a better way to understand consumer housing demand; their indifference curve of space versus price; and the impact of supply shocks.}
-
-%%================================%%
-%% Sample for structured abstract %%
-%%================================%%
-
-% \abstract{\textbf{Purpose:} The abstract serves both as a general introduction to the topic and as a brief, non-technical summary of the main results and their implications. The abstract must not include subheadings (unless expressly permitted in the journal's Instructions to Authors), equations or citations. As a guide the abstract should not exceed 200 words. Most journals do not set a hard limit however authors are advised to check the author instructions for the journal they are submitting to.
-% 
-% \textbf{Methods:} The abstract serves both as a general introduction to the topic and as a brief, non-technical summary of the main results and their implications. The abstract must not include subheadings (unless expressly permitted in the journal's Instructions to Authors), equations or citations. As a guide the abstract should not exceed 200 words. Most journals do not set a hard limit however authors are advised to check the author instructions for the journal they are submitting to.
-% 
-% \textbf{Results:} The abstract serves both as a general introduction to the topic and as a brief, non-technical summary of the main results and their implications. The abstract must not include subheadings (unless expressly permitted in the journal's Instructions to Authors), equations or citations. As a guide the abstract should not exceed 200 words. Most journals do not set a hard limit however authors are advised to check the author instructions for the journal they are submitting to.
-% 
-% \textbf{Conclusion:} The abstract serves both as a general introduction to the topic and as a brief, non-technical summary of the main results and their implications. The abstract must not include subheadings (unless expressly permitted in the journal's Instructions to Authors), equations or citations. As a guide the abstract should not exceed 200 words. Most journals do not set a hard limit however authors are advised to check the author instructions for the journal they are submitting to.}
-
+\abstract{We introduce an empirical measure of multifamily demand, based on density changes, and offer evidence of its segmenting and predictive power. Using this as a demand variable, we solve for the intersection of supply and demand curves each year from 2010-2023, in each of the hundred largest MSAs in the United States. In each year, we classified a market as over or under-supplied and over-or-under-priced, based on the derived market-clearing rents and quantities, relative to observed rents and quantities. Grouping markets this way was highly predictive of their next-twelve-month rent growth. When a market was undersupplied and overpriced, its future real rents significantly exceeded other MSAs. With this, we provide a better way to understand consumer housing demand; their indifference curve of space versus price; and the impact of supply shocks.}
 \keywords{keyword1, Keyword2, Keyword3, Keyword4}
-
-%%\pacs[JEL Classification]{D8, H51}
-
-%%\pacs[MSC Classification]{35A01, 65L10, 65L12, 65L20, 65L70}
-
 \maketitle
 
-\section{Introduction}\label{sec1}
-\abstract{We introduce an empirical measure of multifamily demand, based on density changes, and offer evidence of its segmenting and predictive power. Using this variable, we solve for the intersection of supply and demand curves each year for 20 years in each of the hundred largest MSAs in the United States. Over the 2,000 observations, we classified each sample as over or under-supplied and over-or-under-priced, based on the derived market-clearing rents and quantities, relative to observed rents and quantities. Grouping markets this way was highly predictive of their next-twelve-month rent growth, with the under-under group returning 2\% more annually than the over-over group. With this, we provide a better way to understand consumer housing demand; their indifference curve of space versus price; and the impact of supply shocks.}  
 
-
-\section{Introduction}
-
-Housing shortages and affordability concerns have risen to the forefront of policy debates in major urban markets. In the United States, housing production has consistently lagged population growth for decades, contributing to an estimated national shortfall of 4.4 million housing units \citep{betancourt2022us}. Nearly half of U.S. renter households now spend over 30\% of their income on housing \citep{censusNearlyHalf}, and from 2000 to 2024, the consumer price index (CPI) for shelter rose more than 30 percentage points faster than the CPI for all other items \citep{stlouisfedConsumerPrice}. At the same time, select high-growth regions have recently experienced rent declines due to a glut of new supply \citep{mott2024ThisRegion}. This juxtaposition of chronic national undersupply with localized oversupply underscores a deeper issue: the lack of a reliable metric to measure consumer housing demand.
+\section*{Introduction}
+Housing shortages and affordability concerns have risen to the forefront of policy debates in major urban markets. In the United States, housing production has consistently lagged population growth for decades, contributing to an estimated national shortfall of 4.4 million housing units \citep{betancourt2022us}. Nearly half of U.S. renter households now spend over 30\% of their income on housing \citep{censusNearlyHalf}, and from 2000 to 2024, the consumer price index (CPI) for shelter exceeded the CPI for all other items by 30\% \citep{stlouisfedConsumerPrice}. At the same time, select high-growth regions have recently experienced rent declines due to a glut of new supply \citep{mott2024ThisRegion}. This juxtaposition of chronic national undersupply with localized oversupply underscores a deeper issue: the lack of a reliable metric to fmeasure consumer housing demand.
 
 Traditional indicators of demand in multifamily real estate, such as occupancy rates and net absorption, are informative but fundamentally supply-constrained. Occupancy rates are naturally bounded at 100\%, and absorption cannot exceed the rate of new deliveries \citep{mueller1999real}. These constraints obscure excess demand: when all available units are occupied, latent demand becomes invisible to market participants and researchers alike \citep{gabriel2001rental, sirmans1991determinants, pyhrr1999real}. This problem inhibits clear attribution of rent increases to supply versus demand dynamics \citep{pennington2021does, molloy2022housing}. Moreover, ongoing academic debate persists around whether rising rents in constrained markets result more from supply-side limitations \citep{saiz2010geographic} or from heightened demand for desirable locations \citep{davidoff2015supply}. Without a transparent, consistent demand-side metric, attempts to assess equilibrium conditions remain incomplete.
 
@@ -171,18 +75,17 @@ Our contributions are twofold. First, we introduce a scalable, empirically tract
 
 Ultimately, by reframing housing demand in terms of people per unit rather than units per land area, this paper provides a new lens for understanding real estate market dynamics in an era of constrained affordability and population growth.
 
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.9\textwidth]{"C:/Users/datbu/OneDrive/Documents/GitHub/demand_density/Figs/density_growth_vs_rent_growth.png"}
-	\caption{At the market level, markets that increase in density have higher real rent growth. Markets that decrease in density on average have lower rent growth. We postulate that markets with higher rents force renters to cohabitate i.e., increase the density of people per unit. Alternatively, the renter can move markets for a lower rent at a less dense space.}\label{fig1}
+\begin{figure}
+	\includegraphics*[width=0.9\textwidth]{density_growth_vs_rent_growth.png}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\textwidth]{"C:/Users/datbu/OneDrive/Documents/GitHub/demand_density/Figs/national_example.png"}
-	\caption{But at the national level, years of increased density are associated with lower rent growth than years of decreased density. This global curve suggests an intuitive demand curve: a renter opts for more space (less density) and is willing to pay more for it; or the renter chooses less space (more density) and is willing to pay less.}\label{fig4}
+	\includegraphics*[width=0.9\textwidth]{density_growth_vs_rent_growth.png}
+	\caption*{At the market level, markets that increase in density have higher real rent growth. Markets that decrease in density on average have lower rent growth. We postulate that markets with higher rents force renters to cohabitate i.e., increase the density of people per unit. Alternatively, the renter can move markets for a lower rent at a less dense space.}\label{fig1}
 \end{figure}
+
+
 
 Our article also speaks to the broader debate of rent affordability, the need for more housing, and the local differences inherent in such discussions. From the owner/developer standpoint, a more useful measure of demand could dampen real estate development cycles, which often result in unexpectedly depressed rents. From the renter's standpoint, a more useful demand metric can help identify locations where rent is likely to grow, maintain, or decrease, relative to inflation.  
 
@@ -190,7 +93,7 @@ Focusing on a panel of the 100 largest metropolitan statistical areas (MSA), the
 
 In the next section we discuss measures of demand before presenting details on our proposed variable. The data section describes and analyzes the density data we used, while the Emperical Analysis section presents evidence and illustrates statistical tests performed to evaluate the validity of the classifications. The final section discusses the results and concludes. 
 
-\section{Background and Literature Review}
+\section*{Background and Literature Review}
 
 The multifamily housing market has long relied on a narrow set of demand indicators, notably occupancy rates and net absorption. These indicators, while intuitively appealing and widely used by practitioners, are fundamentally constrained by the available stock of housing units. Occupancy rates are capped at 100\%, and net absorption can never exceed new supply \citep{mueller1999real, gabriel2001rental}. Consequently, they fail to capture periods of latent demand---where prospective tenants are turned away or forced to cohabitate because no units remain available \citep{sirmans1991determinants, pyhrr1999real}.
 
@@ -210,7 +113,7 @@ This approach also aligns with emerging calls in the real estate literature to d
 
 In sum, our contribution lies in reinterpreting a well-studied spatial metric---density---through the lens of consumer housing decisions. By focusing on the population-to-unit ratio rather than geographic dispersion, we provide a new empirical tool to better understand and forecast real estate market dynamics.
 
-\section{Data and Descriptive Statistics}
+\section*{Data and Descriptive Statistics}
 
 Our data are sourced primarily from Costar and supplemented with inflation measures from the U.S. Bureau of Labor Statistics. We restrict our analysis to the 100 largest U.S. metropolitan statistical areas (MSAs) by multifamily inventory as of 2001, ensuring robust sample representation and consistency over time.
 
@@ -222,7 +125,12 @@ Other variables include supply growth, computed as the ratio of delivered units 
 
 Importantly, no records were discarded during preprocessing. Additionally, although prior drafts excluded outliers such as post-Katrina New Orleans, our final dataset retains all MSAs and years to preserve fidelity to real-world dynamics.
 
-\begin{table}[H]
+
+
+
+
+
+\begin{table*}[H]
 	\centering
 	\begin{tabular}{l l}
 		\toprule
@@ -239,16 +147,18 @@ Importantly, no records were discarded during preprocessing. Additionally, altho
 		\texttt{demand\_pct} & Share of inventory represented by unit demand \\
 		\bottomrule
 	\end{tabular}
-	\caption{Key Variables Used in Empirical Analysis}
+	\caption*{Key Variables Used in Empirical Analysis}
 	\label{tab:variables}
-\end{table}
+\end{table*}
 
-\subsection{Variable Construction}
+df\subsection*{Variable Construction}
 
 The key outcome variable in this study is the \textit{Rental Density Index} (RDI), calculated as the total population divided by the number of rental housing units in a given MSA-year:
-\begin{equation}
+
+\begin{equation*}
 	\text{RDI}_{it} = \frac{\text{Population}_{it}}{\text{Rental Units}_{it}}.
-\end{equation}
+\end{equation*}
+	
 
 This metric ranges from 7 to 65 across MSAs, and reflects the number of people per rental unit. While the RDI itself is useful for identifying how tight a market is at a given point in time, its absolute level is shaped by long-run demographic and structural trends such as rentership rates and changes in household formation. Accordingly, we focus on the \textit{year-over-year change in RDI}, denoted \( \Delta \text{RDI}_{it} = \text{RDI}_{it} - \text{RDI}_{it-1} \), which serves as our novel demand variable.
 
@@ -258,100 +168,102 @@ Theoretically, under the assumption that renters prefer more space to less, the 
 
 To evaluate housing market outcomes, we construct two additional variables: (1) real rent per square foot, adjusted for inflation using the CPI-All Urban Consumers (CPI-U) from BLS; and (2) net new supply, measured as the year-over-year percentage change in the rental housing stock.
 
-\subsection{Summary Statistics}
+\subsection*{Summary Statistics}
 
 Table~\ref{tab:summary_stats} provides descriptive statistics for the key variables across the full panel. On average, the RDI across all MSAs and years is approximately 2.31 persons per rental unit, with a standard deviation of 0.35. The average real rent per square foot is \$1.22 (2022 dollars), and the average annual growth in rental supply is 1.9\%.
 
-\begin{table}[H]
+\begin{table*}[H]
 	\centering
-	\caption{Summary Statistics (2010--2022)}
+	\caption*{Summary Statistics (2010--2022)}
 	\label{tab:summary_stats}
 	\begin{tabular}{lrrrr}
 		\toprule
 		Variable & Mean & Std. Dev. & Min & Max \\
 		\midrule
 		Rental Density Index (RDI) & 2.31 & 0.35 & 1.61 & 3.24 \\
-		\( \Delta \) RDI (YoY) & 0.013 & 0.041 & -0.14 & 0.16 \\
+		\(\Delta\) RDI (YoY) & 0.013 & 0.041 & -0.14 & 0.16 \\
 		Real Rent (\$/sqft) & 1.22 & 0.29 & 0.74 & 2.35 \\
 		Annual Rental Supply Growth (\%) & 1.9 & 1.3 & -1.4 & 5.7 \\
 		\bottomrule
 	\end{tabular}
-\end{table}
+\end{table*}
 
-\subsection{Coverage and Representativeness}
+\subsection*{Coverage and Representativeness}
 
 The sample includes approximately 1,300 MSA-year observations, covering a mix of large coastal cities, fast-growing Sun Belt metros, and slower-growing Midwestern regions. Together, these MSAs account for over 70\% of the U.S. renter population, providing a representative snapshot of national rental dynamics. Where necessary, we impute missing rental stock values using linear interpolation and verify consistency against HUD SOCDS Building Permit Database and ACS 5-year estimates.
 
-\subsection{Preliminary Observations}
+\subsection*{Preliminary Observations}
 
 Figure~\ref{fig:rdi_trend} shows the national trend in RDI over the sample period. A steady upward trajectory is evident from 2010 to 2019, peaking just prior to the COVID-19 pandemic, after which a mild correction occurs. This pattern suggests persistent pressure in many housing markets, especially where rental construction lagged population growth.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\textwidth]{rdi_trend_plot.png} % Placeholder for actual plot
-	\caption{National Average RDI, 2010--2022}
+	\includegraphics[width=0.8\textwidth]{bar_total_density_year.png}
+	\caption*{National Average RDI, 2010--2022}
 	\label{fig:rdi_trend}
 \end{figure}
 
 These preliminary findings reinforce the utility of RDI as a metric for identifying demand-side imbalances in housing markets. In the next section, we outline our empirical framework for estimating market equilibria using this metric.
 
-
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\textwidth]{"C:/Users/datbu/OneDrive/Documents/GitHub/demand_density/Figs/box_whisker_density_time.png"}
-	\caption{This is a widefig. This is an example of long caption this is an example of long caption  this is an example of long caption this is an example of long caption}\label{fig1}
+	\includegraphics[width=0.9\textwidth]{box_whisker_density_time.png}
+	\caption*{Box and whisker plot of density over time across MSAs. While medians remain relatively stable, upper outliers have declined post-2020.}
+	\label{fig5}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\textwidth]{"C:/Users/datbu/OneDrive/Documents/GitHub/demand_density/Figs/bar_total_density_year.png"}
-	\caption{This is a widefig. This is an example of long caption this is an example of long caption  this is an example of long caption this is an example of long caption}\label{fig2}
+	\includegraphics[width=0.9\textwidth]{bar_total_density_year.png}
+	\caption*{Total density in the New York MSA over time. This illustrates persistent crowding despite fluctuations in rent growth.}
+	\label{fig2}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\textwidth]{"C:/Users/datbu/OneDrive/Documents/GitHub/demand_density/Figs/hist_deltardi.png"}
-	\caption{This is a widefig. This is an example of long caption this is an example of long caption  this is an example of long caption this is an example of long caption}\label{fig3}
+	\includegraphics[width=0.9\textwidth]{hist_deltardi.png}
+	\caption*{Distribution of year-over-year change in RDI across all MSA-years. Most changes are small, but the left tail indicates periods of sharp dedensification.}
+	\label{fig3}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\textwidth]{"C:/Users/datbu/OneDrive/Documents/GitHub/demand_density/Figs/national_example.png"}
-	\caption{This is a widefig. This is an example of long caption this is an example of long caption  this is an example of long caption this is an example of long caption}\label{fig4}
+	\includegraphics[width=0.9\textwidth]{national_example.png}
+	\caption*{National trend of average density growth versus rent growth by year. Densifying years correspond to modest rent growth, while volatile periods like 2020 show sharp corrections.}
+	\label{fig6}
 \end{figure}
 
-
-\section{Empirical Framework}
+\section*{Empirical Framework}
 
 Our objective is to evaluate \( \Delta \text{RDI} \) as a robust measure of housing demand by deriving supply and demand curves for each metropolitan area and year. For each of the 100 largest MSAs, and for each year from 2010 through 2022, we construct demand and supply curves using observed data on real rent per square foot and changes in RDI and supply.
 
-\subsection{Constructing the Demand and Supply Curves}
+\subsection*{Constructing the Demand and Supply Curves}
 
 We estimate reduced-form linear models to approximate demand and supply responses to price, using ten years of historical data for each MSA:
-\begin{align}
-	\Delta \text{RDI}_{it} &= \alpha_i + \beta_i p_{it} + \epsilon_{it} \, &\text{(Demand)} \\
-	\text{SupplyGrowth}_{it} &= \gamma_i + \delta_i p_{it} + \nu_{it} \, &\text{(Supply)}
-\end{align}
+\begin{align*}
+	\Delta \text{RDI}_{it} &= \alpha_i + \beta_i p_{it} + \epsilon_{it} && \text{(Demand)} \\
+	\text{SupplyGrowth}_{it} &= \gamma_i + \delta_i p_{it} + \nu_{it} && \text{(Supply)}
+\end{align*}
 
 The coefficient \( \beta_i \) reflects how changes in rent induce renters to economize on space by cohabitating, while \( \delta_i \) captures developers' responsiveness to rent signals via new supply. We estimate these relationships using ordinary least squares (OLS) for each market-year observation, pooling data from the prior ten years.
 
 The intersection of these two curves yields the market's implied equilibrium rent \( p^* \) and equilibrium inventory growth \( q^* \). We compare these values to observed market outcomes \( (p, q) \) in that year. If \( p^* > p \), we infer that the market is underpriced; if \( p^* < p \), it is overpriced. Likewise, if \( q^* > q \), the market is deemed undersupplied; otherwise, oversupplied.
 
 This yields four stylized market states:
-\begin{enumerate}
-	\item \textbf{Overpriced and Oversupplied}
-	\item \textbf{Overpriced and Undersupplied}
-	\item \textbf{Underpriced and Oversupplied}
-	\item \textbf{Underpriced and Undersupplied}
-\end{enumerate}
+\begin{itemize}
+\item Overpriced and Oversupplied
+\item Overpriced and Undersupplied
+\item Underpriced and Oversupplied
+\item Underpriced and Undersupplied
+\end{itemize}
 
 These states correspond to economic intuition. Underpriced and undersupplied markets---what we refer to as \textit{landlord-favorable} markets---are expected to exhibit stronger rent growth in the following year as constrained supply and low prices lead to upward adjustment. Conversely, overpriced and oversupplied markets---\textit{renter-favorable} markets---should experience weaker or negative rent growth. The remaining two quadrants are indeterminate and suggest partial disequilibria.
 
 We frame this as a partial equilibrium exercise, in which observed price and quantity may deviate from the implied market-clearing levels due to frictions such as construction lags, policy constraints, or imperfect price discovery \citep{wheaton1991realestate, glaeser2019rethinking}.
 
-\begin{table}[h!]
+\begin{table*}[h!]
 	\centering
-	\caption{Hypothesized Next-Year Rent Growth by Market Classification}
+	\caption*{Hypothesized Next-Year Rent Growth by Market Classification}
 	\begin{tabular}{cc|c|c|}
 		\multicolumn{2}{c}{} & \multicolumn{2}{c}{\textbf{Pricing}} \\
 		\multicolumn{2}{c}{} & \textbf{Overpriced} & \textbf{Underpriced} \\
@@ -361,51 +273,57 @@ We frame this as a partial equilibrium exercise, in which observed price and qua
 		& \textbf{Undersupplied} & Landlord-Favorable & Neutral \\
 		\bottomrule
 	\end{tabular}
-\end{table}
+\end{table*}
 
-\subsection{Market Segmentation Algorithm}
+\subsection*{Market Segmentation Algorithm}
 
 The following pseudocode outlines the segmentation logic applied to each market-year observation:
 
-\begin{algorithm}[H]
-	\caption{Segment Markets Into Over/Underpriced and Over/Undersupplied}
-	\label{alg:market_segmentation}
-	\begin{algorithmic}[1]
-		\For{each year $y$ from 2010 to 2022}
-		\For{each market $m$ in the top 100 MSAs}
-		\State Use trailing 10 years of data to estimate:
-		\State \hspace{1em} $demandcurve = \Delta\text{RDI} \sim \text{rent}_{psf}$
-		\State \hspace{1em} $supplycurve = \text{inventory growth} \sim \text{rent}_{psf}$
-		\State Solve for intersection $ (q^*, p^*) $
-		\State Retrieve actual values $ (q, p) $
-		\If{$q^* > q$}
-		\If{$p^* > p$}
-		\State Assign $m, y$ to \textbf{UndersuppliedUnderpriced}
-		\Else
-		\State Assign $m, y$ to \textbf{UndersuppliedOverpriced}
-		\EndIf
-		\Else
-		\If{$p^* > p$}
-		\State Assign $m, y$ to \textbf{OversuppliedUnderpriced}
-		\Else
-		\State Assign $m, y$ to \textbf{OversuppliedOverpriced}
-		\EndIf
-		\EndIf
-		\EndFor
-		\EndFor
-	\end{algorithmic}
-\end{algorithm}
+% Define custom algorithmic keywords
+\newcommand{\For}[2]{\textbf{for} #1 \textbf{do} #2}
+\newcommand{\If}[2]{\textbf{if} #1 \textbf{then} #2}
+\newcommand{\Else}[1]{\textbf{else} #1}
+\newcommand{\EndFor}{}
+\newcommand{\EndIf}{}
 
+
+	
+	\begin{algorithm}[H]
+		\caption*{Segment Markets Into Over/Underpriced and Over/Undersupplied}
+		\begin{algorithmic}[1]
+			\State \For{each year $y$ from 2010 to 2022}{
+				\State \For{each market $m$ in the top 100 MSAs}{
+					\State Use trailing 10 years of data to estimate:
+					\State \hspace{1em} $\text{demandcurve} = \Delta \text{RDI} \sim \text{rent}_{\text{psf}}$
+					\State \hspace{1em} $\text{supplycurve} = \text{inventory growth} \sim \text{rent}_{\text{psf}}$
+					\State Solve for intersection $(q^*, p^*)$
+					\State Retrieve actual values $(q, p)$
+					\State \If{$q^* > q$}{
+						\State \If{$p^* > p$}{
+							\State Assign $(m, y)$ to \texttt{UndersuppliedUnderpriced}
+						}\Else{
+							\State Assign $(m, y)$ to \texttt{UndersuppliedOverpriced}
+						}\EndIf
+					}\Else{
+						\State \If{$p^* > p$}{
+							\State Assign $(m, y)$ to \texttt{OversuppliedUnderpriced}
+						}\Else{
+							\State Assign $(m, y)$ to \texttt{OversuppliedOverpriced}
+						}\EndIf
+					}\EndIf
+				}\EndFor
+			}\EndFor
+		\end{algorithmic}
+	\end{algorithm}
 This segmentation yields market classifications that form the basis for our predictive rent growth analysis in the following section.
 
 
 
-\begin{filecontents*}{}
 
 
 \begin{center}
 	
-	\begin{longtable}{|p{3.75cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|}  % Define column widths using p{width}
+	\begin{longtable*}{|p{3.75cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|}  % Define column widths using p{width}
 		\hline
 		\textbf{msa} & \textbf{overPriced-underSupplied} & \textbf{overPriced-overSupplied} & \textbf{underPriced-underSupplied} & \textbf{underPriced-overSupplied} \\
 		\hline
@@ -520,21 +438,41 @@ This segmentation yields market classifications that form the basis for our pred
 		Gainesville - FL & 8 & 1 & 3 & 0 \\
 		Fresno - CA & 6 & 1 & 4 & 1 \\
 		Sacramento - CA & 6 & 2 & 4 & 0
-	\end{longtable}
+	\end{longtable*}
+	
 \end{center}
-\end{filecontents*}
 
-\section{Results}
+
+\section*{Results}
 
 This section presents empirical findings from our market classification framework. Using the derived supply and demand curves, we compute equilibrium prices (\( p^* \)) and quantities (\( q^* \)) for each of the 100 largest MSAs from 2010 to 2022. By comparing \( (p^*, q^*) \) to the observed market outcomes \( (p, q) \), we segment markets into four states based on whether they are overpriced and/or oversupplied.
 
-\subsection{Group Differences in Rent Growth}
+\subsection*{Event Study: Rent Growth Before and After Regime Entry}
+
+To complement our classification-based forecasting approach, we implement an event study that traces rent dynamics around the time a market enters the \emph{Overpriced \& Oversupplied} regime. This regime—characterized by both above-equilibrium rents and excessive new supply—is hypothesized to precede periods of slower rent growth or correction.
+
+We define the event year $t=0$ as the first year an MSA is classified as Overpriced \& Oversupplied. We construct an event time index ranging from $t = -2$ (two years before the regime entry) to $t = +2$ (two years after entry). For each event-time year, we compute the average real rent growth across all MSAs that experienced the regime switch.
+
+This structure ensures that the rent growth observed at $t+1$ and $t+2$ is entirely out-of-sample with respect to the classification year $t=0$. To contextualize the results, we compare these patterns to MSAs that never entered the Overpriced \& Oversupplied regime during the study period, as well as to those that experienced alternative classification transitions.
+
+Figure~\ref{fig:event_study} displays average real rent growth by event year for each group.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{event_study.png}
+	\caption*{Event study of average real rent growth before and after entry into the Overpriced \& Oversupplied regime ($t=0$).}
+	\label{fig:event_study}
+\end{figure}
+
+The results show that real rent growth slows meaningfully following entry into the Overpriced \& Oversupplied regime. While pre-entry years may exhibit moderate rent growth, the post-entry period is characterized by significantly lower average rent changes. This pattern supports the hypothesis that this classification regime is forward-looking and useful in anticipating market cooling or correction.
+
+\subsection*{Group Differences in Rent Growth}
 
 We assess whether these classifications are associated with meaningful differences in future rent performance. Table~\ref{tab:simplifiedmeans} reports average next-year real rent growth and relative rent growth (defined as deviation from the within-year median) across the four groups formed by the boolean indicators `overpriced` and `oversupplied`.
 
 \begin{table}[h!]
 	\centering
-	\caption{Mean Rent Growth by Market State}
+	\caption*{Mean Rent Growth by Market State. All rent figures are real}
 	\label{tab:simplifiedmeans}
 	\begin{tabular}{lcc}
 		\toprule
@@ -552,7 +490,7 @@ To aid interpretation, Table~\ref{tab:matrixlabels} maps the binary groups to in
 
 \begin{table}[h!]
 	\centering
-	\caption{Market Classification by Pricing and Supply}
+	\caption*{Market Classification by Pricing and Supply}
 	\label{tab:matrixlabels}
 	\begin{tabular}{cc|c}
 		\toprule
@@ -568,43 +506,65 @@ To aid interpretation, Table~\ref{tab:matrixlabels} maps the binary groups to in
 
 These results support our core hypothesis: landlord-favorable markets exhibit the strongest subsequent rent growth, while renter-favorable markets experience the weakest. Balanced and bubble-like markets show intermediate outcomes.
 
-\subsection{Statistical Tests of Group Differences}
+\subsection*{Statistical Tests of Group Differences}
 
 We conduct a two-way ANOVA on \textbf{relative rent growth} using `overpriced` and `oversupplied` as independent variables.
 
-\begin{itemize}
-	\item \textbf{Price classification}: $F$ = 12.31, $p$ < 0.001
-	\item \textbf{Supply classification}: $F$ = 14.75, $p$ < 0.001
-\end{itemize}
+\begin{table}[h!]
+	\centering
+	\caption*{Two-Way ANOVA Results}
+	\label{tab:anova_results}
+	\begin{tabular}{lrrrr}
+		\toprule
+		\textbf{Source} & \textbf{Sum Sq} & \textbf{df} & \textbf{F} & \textbf{p-value} \\
+		\midrule
+		Overpriced     & 0.0052 & 1     & 12.38 & 0.0004 \\
+		Oversupplied   & 0.0063 & 1     & 14.97 & 0.0001 \\
+		Residual       & 0.5454 & 1297  & --    & --     \\
+		\bottomrule
+	\end{tabular}
+\end{table}
 
-Post-hoc Tukey HSD tests reveal significant differences:
-\begin{itemize}
-	\item Landlord-favorable markets outperform renter-favorable markets (\( p < 0.001 \))
-	\item Landlord-favorable markets also outperform balanced markets (\( p = 0.047 \))
-	\item Bubble-like markets significantly underperform landlord-favorable markets (\( p = 0.024 \))
-\end{itemize}
+\begin{table}[h!]
+	\centering
+	\caption*{Tukey HSD Pairwise Comparisons}
+	\label{tab:tukey_results}
+	\begin{tabular}{llrrrrc}
+		\toprule
+		\textbf{Group 1} & \textbf{Group 2} & \textbf{Mean Diff} & \textbf{p-adj} & \textbf{Lower} & \textbf{Upper} & \textbf{Reject} \\
+		\midrule
+		False-False & False-True  &  0.0067 & 0.1204 & -0.0011 &  0.0144 & No \\
+		False-False & True-False  & -0.0050 & 0.0408 & -0.0099 & -0.0001 & Yes \\
+		False-False & True-True   & -0.0013 & 0.8912 & -0.0058 &  0.0033 & No \\
+		False-True  & True-False  & -0.0117 & 0.0002 & -0.0188 & -0.0046 & Yes \\
+		False-True  & True-True   & -0.0079 & 0.0167 & -0.0148 & -0.0010 & Yes \\
+		True-False  & True-True   &  0.0038 & 0.0213 &  0.0004 &  0.0071 & Yes \\
+		\bottomrule
+	\end{tabular}
+\end{table}
 
 These patterns do not appear in the raw rent growth values, reinforcing that our framework is best applied in relative terms—benchmarking each MSA against its peers in a given year.
 
-\subsection{Visual and Quantitative Robustness}
+\subsection*{Visual and Quantitative Robustness}
 
 Figure~\ref{fig:boxplot_group_rentgrowth} shows the distribution of next-year rent growth across market types, highlighting the predictive spread between groups.
 
-\begin{figure}[h!]
-	\centering
+
+%\begin{figure}[h!]
+%	\centering
 	% Placeholder for actual boxplot graphic
-	\includegraphics[width=0.9\textwidth]{figs/boxplot_rentgrowth_by_group.png}
-	\caption{Distribution of Next-Year Rent Growth by Market Type}
-	\label{fig:boxplot_group_rentgrowth}
-\end{figure}
+%	\includegraphics*[width=0.9\textwidth]{boxplot_rentgrowth_by_group.png}
+%	\caption*{Distribution of Next-Year Rent Growth by Market Type}
+%	\label{fig:boxplot_group_rentgrowth}
+%\end{figure}
 
 The spread in median relative rent growth between landlord-favorable and renter-favorable markets is 117 basis points. This exceeds the cross-sectional standard deviation of rent growth in most years, reinforcing the economic magnitude of these classification effects.
 
-\subsection{Distributional Evolution and Market Cycles}
+\subsection*{Distributional Evolution and Market Cycles}
 
 While the groupings are not evenly distributed across years, this reflects underlying market behavior rather than methodological bias. In early years such as 2011, few MSAs exhibit characteristics of overpriced and oversupplied markets, consistent with post-crisis housing conservatism. By contrast, between 2020 and 2022, the vast majority of MSAs fall into the “Price Bubble” category, despite negative or flat rent growth. This asymmetry suggests the framework captures real cyclical shifts, where high observed rents and heavy supply growth outpace renter willingness or ability to absorb space. The sharp contrast between high pricing and poor performance in these years further reinforces the framework’s value in signaling impending cooling phases or market corrections.
 
-\subsection{Predictive Power and Caveats}
+\subsection*{Predictive Power and Caveats}
 
 We estimated a linear model using 2010--2022 data to forecast 2023 rent growth. The model included an interaction term between implied demand, supply growth, and contemporaneous rent growth. Despite this model’s simplicity—relying only on a single interaction variable—it achieved an out-of-sample $R^2$ of 0.31 when predicting next-year rent growth.
 
@@ -614,7 +574,7 @@ While this forecasting result is encouraging, we acknowledge a potential limitat
 
 Together, these findings validate the informational value of market misalignment relative to derived equilibrium, offering a parsimonious and predictive classification of multifamily rent dynamics.
 
-\section{Discussion}
+\section*{Discussion}
 
 Our findings reinforce the utility of rental density---measured as population per occupied rental unit---as a robust proxy for demand in multifamily housing markets. Traditional demand-side variables such as occupancy and absorption are bounded above by 100\%, rendering them structurally incapable of expressing excess demand. By contrast, our proposed measure, the change in Rental Density Index (\(\Delta\text{RDI}\)), accommodates marginal and nonlinear shifts in tenant behavior, particularly around unit sharing or household formation.
 
@@ -626,7 +586,7 @@ While the number of MSAs in each state was not evenly distributed across years, 
 
 These findings reinforce the value of \(\Delta\text{RDI}\) as a continuous, forward-looking measure of housing demand, especially when contrasted with backward-looking or constrained alternatives. They also suggest that equilibrium misalignment---in both price and quantity---can be quantified in a way that is both actionable for investors and meaningful for policymakers.
 
-\section{Conclusion}
+\section*{Conclusion}
 
 This paper contributes to the literature on housing market dynamics by introducing the change in Rental Density Index (\(\Delta\text{RDI}\)) as a scalable, interpretable measure of demand. Unlike occupancy or absorption, \(\Delta\text{RDI}\) captures variation in consumer preference through household formation behavior---a critical but often overlooked channel of adjustment in rental markets.
 
@@ -636,10 +596,9 @@ This demand proxy also showed moderate predictive power when used in a linear fo
 
 Future work should explore refinement of \(\Delta\text{RDI}\) to account for compositional changes in renter populations and household structures. Additional improvements might include the integration of MSA-specific CPI indices or disaggregated demand inputs, such as migration, income distributions, or age cohorts. Nonetheless, the present analysis establishes \(\Delta\text{RDI}\) as a conceptually valid and empirically useful measure of multifamily housing demand, with applications in forecasting, pricing, and supply planning.
 
-	
-\section*{Declarations}
 
-Some journals require declarations to be submitted in a standardised format. Please check the Instructions for Authors of the journal to which you are submitting to see if you need to complete this section. If yes, your manuscript must contain the following sections under the heading `Declarations':
+
+
 
 \begin{itemize}
     \item Funding
@@ -677,26 +636,8 @@ If any of the sections are not relevant to your manuscript, please include the h
 \end{flushleft}
 
 \begin{appendices}
-
-    \section{Section title of first appendix}\label{secA1}
-
-    An appendix contains supplementary information that is not an essential part of the text itself but which may be helpful in providing a more comprehensive understanding of the research problem or it is information that is too cumbersome to be included in the body of the paper.
-
-    %%=============================================%%
-    %% For submissions to Nature Portfolio Journals %%
-    %% please use the heading ``Extended Data''.   %%
-    %%=============================================%%
-
-    %%=============================================================%%
-    %% Sample for another appendix section			       %%
-    %%=============================================================%%
-
-    %% \section{Example of another appendix section}\label{secA2}%
-    %% Appendices may be used for helpful, supporting or essential material that would otherwise 
-    %% clutter, break up or be distracting to the text. Appendices can consist of sections, figures, 
-    %% tables and equations etc.
-
 \end{appendices}
+
 
 %%===========================================================================================%%
 %% If you are submitting to one of the Nature Portfolio journals, using the eJP submission   %%
@@ -704,8 +645,8 @@ If any of the sections are not relevant to your manuscript, please include the h
 %% by copying the reference list from your .bbl file, paste it into the main manuscript .tex %%
 %% file, and delete the associated \verb+\bibliography+ commands.                            %%
 %%===========================================================================================%%
-
-\bibliography{bib}% common bib file
+\bibliographystyle{sn-mathphys}
+\bibliography{bib.bib}% common bib file
 %% if required, the content of .bbl file can be included here once bbl is generated
 %%\input sn-article.bbl
 

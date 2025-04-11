@@ -1,9 +1,13 @@
 This is BibTeX, Version 0.99d
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
-The top-level auxiliary file: sn-article.aux
+The top-level auxiliary file: journal_re_econ_larriva.aux
 Reallocating 'name_of_file' (item size: 1) to 16 items.
 The style file: sn-mathphys-num.bst
-Reallocating 'name_of_file' (item size: 1) to 4 items.
+Illegal, another \bibstyle command---line 52 of file journal_re_econ_larriva.aux
+ : \bibstyle
+ :          {sn-mathphys}
+I'm skipping whatever remains of this command
+Reallocating 'name_of_file' (item size: 1) to 8 items.
 Reallocating 'glb_str_end' (item size: 4) to 20 items.
 Reallocating 'glb_str_ptr' (item size: 4) to 20 items.
 Reallocating 'global_strs' (item size: 1) to 4000000 items.
@@ -22,65 +26,50 @@ Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Database file #1: bib.bib
-Warning--I didn't find a database entry for "bib1"
-Warning--I didn't find a database entry for "bib2"
-Warning--I didn't find a database entry for "bib3"
-Warning--I didn't find a database entry for "bib4"
-Warning--I didn't find a database entry for "bib5"
-Warning--I didn't find a database entry for "bib6"
-Warning--I didn't find a database entry for "bib7"
-Warning--I didn't find a database entry for "bib8"
-Warning--I didn't find a database entry for "bib9"
-Warning--I didn't find a database entry for "bib10"
-Warning--I didn't find a database entry for "bib11"
-Warning--I didn't find a database entry for "bib12"
-Warning--I didn't find a database entry for "bib13"
 Reallocating 'wiz_functions' (item size: 4) to 9000 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
-Warning--to sort, need author or key in stlouisfedConsumerPrice
-Warning--to sort, need author or key in fanniemaeConsumersFeeling
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
-You've used 21 entries,
+You've used 28 entries,
             7480 wiz_defined-function locations,
-            1310 strings with 13514 characters,
-and the built_in function-call counts, 52273 in all, are:
-= -- 6908
-> -- 499
-< -- 254
-+ -- 1656
-- -- 99
-* -- 2807
-:= -- 10431
-add.period$ -- 26
-call.type$ -- 21
-change.case$ -- 112
-chr.to.int$ -- 639
-cite$ -- 25
-duplicate$ -- 730
-empty$ -- 2898
-format.name$ -- 312
-if$ -- 12554
+            1341 strings with 13864 characters,
+and the built_in function-call counts, 124579 in all, are:
+= -- 20148
+> -- 720
+< -- 368
++ -- 9683
+- -- 148
+* -- 4430
+:= -- 23099
+add.period$ -- 31
+call.type$ -- 28
+change.case$ -- 166
+chr.to.int$ -- 922
+cite$ -- 28
+duplicate$ -- 1036
+empty$ -- 3942
+format.name$ -- 443
+if$ -- 31361
 int.to.chr$ -- 1
-int.to.str$ -- 36
+int.to.str$ -- 48
 missing$ -- 0
-newline$ -- 294
-num.names$ -- 95
-pop$ -- 367
+newline$ -- 378
+num.names$ -- 140
+pop$ -- 455
 preamble$ -- 1
-purify$ -- 96
+purify$ -- 128
 quote$ -- 0
-skip$ -- 4071
+skip$ -- 12415
 stack$ -- 0
-substring$ -- 5124
-swap$ -- 367
-text.length$ -- 211
+substring$ -- 11361
+swap$ -- 534
+text.length$ -- 308
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 779
-warning$ -- 2
-while$ -- 440
+type$ -- 1068
+warning$ -- 0
+while$ -- 642
 width$ -- 0
-write$ -- 418
-(There were 15 warnings)
+write$ -- 547
+(There was 1 error message)

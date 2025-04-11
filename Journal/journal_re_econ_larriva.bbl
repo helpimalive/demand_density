@@ -1,0 +1,387 @@
+%% BioMed_Central_Bib_Style_v1.01
+
+\begin{thebibliography}{28}
+% BibTex style file: bmc-mathphys.bst (version 2.1), 2014-07-24
+\ifx \bisbn   \undefined \def \bisbn  #1{ISBN #1}\fi
+\ifx \binits  \undefined \def \binits#1{#1}\fi
+\ifx \bauthor  \undefined \def \bauthor#1{#1}\fi
+\ifx \batitle  \undefined \def \batitle#1{#1}\fi
+\ifx \bjtitle  \undefined \def \bjtitle#1{#1}\fi
+\ifx \bvolume  \undefined \def \bvolume#1{\textbf{#1}}\fi
+\ifx \byear  \undefined \def \byear#1{#1}\fi
+\ifx \bissue  \undefined \def \bissue#1{#1}\fi
+\ifx \bfpage  \undefined \def \bfpage#1{#1}\fi
+\ifx \blpage  \undefined \def \blpage #1{#1}\fi
+\ifx \burl  \undefined \def \burl#1{\textsf{#1}}\fi
+\ifx \doiurl  \undefined \def \doiurl#1{\url{https://doi.org/#1}}\fi
+\ifx \betal  \undefined \def \betal{\textit{et al.}}\fi
+\ifx \binstitute  \undefined \def \binstitute#1{#1}\fi
+\ifx \binstitutionaled  \undefined \def \binstitutionaled#1{#1}\fi
+\ifx \bctitle  \undefined \def \bctitle#1{#1}\fi
+\ifx \beditor  \undefined \def \beditor#1{#1}\fi
+\ifx \bpublisher  \undefined \def \bpublisher#1{#1}\fi
+\ifx \bbtitle  \undefined \def \bbtitle#1{#1}\fi
+\ifx \bedition  \undefined \def \bedition#1{#1}\fi
+\ifx \bseriesno  \undefined \def \bseriesno#1{#1}\fi
+\ifx \blocation  \undefined \def \blocation#1{#1}\fi
+\ifx \bsertitle  \undefined \def \bsertitle#1{#1}\fi
+\ifx \bsnm \undefined \def \bsnm#1{#1}\fi
+\ifx \bsuffix \undefined \def \bsuffix#1{#1}\fi
+\ifx \bparticle \undefined \def \bparticle#1{#1}\fi
+\ifx \barticle \undefined \def \barticle#1{#1}\fi
+\bibcommenthead
+\ifx \bconfdate \undefined \def \bconfdate #1{#1}\fi
+\ifx \botherref \undefined \def \botherref #1{#1}\fi
+\ifx \url \undefined \def \url#1{\textsf{#1}}\fi
+\ifx \bchapter \undefined \def \bchapter#1{#1}\fi
+\ifx \bbook \undefined \def \bbook#1{#1}\fi
+\ifx \bcomment \undefined \def \bcomment#1{#1}\fi
+\ifx \oauthor \undefined \def \oauthor#1{#1}\fi
+\ifx \citeauthoryear \undefined \def \citeauthoryear#1{#1}\fi
+\ifx \endbibitem  \undefined \def \endbibitem {}\fi
+\ifx \bconflocation  \undefined \def \bconflocation#1{#1}\fi
+\ifx \arxivurl  \undefined \def \arxivurl#1{\textsf{#1}}\fi
+\csname PreBibitemsHook\endcsname
+
+%%% 1
+\bibitem[\protect\citeauthoryear{Betancourt}{2022}]{betancourt2022us}
+\begin{botherref}
+\oauthor{\bsnm{Betancourt}, \binits{L.}}:
+The us needs 4.3 million more apartments by 2035.
+National Multifamily Housing Council
+(2022).
+\url{https://www.nmhc.org/research-insight/research-reports/us-needs-4.3-million-more-apartments-by-2035/}
+\end{botherref}
+\endbibitem
+
+%%% 2
+\bibitem[\protect\citeauthoryear{Bureau}{2022}]{censusNearlyHalf}
+\begin{botherref}
+\oauthor{\bsnm{Bureau}, \binits{U.S.C.}}:
+Nearly Half of Renters Are Cost-Burdened.
+\url{https://www.census.gov/library/stories/2022/03/nearly-half-of-renter-households-are-cost-burdened.html}
+(2022)
+\end{botherref}
+\endbibitem
+
+%%% 3
+\bibitem[\protect\citeauthoryear{of~St.~Louis}{2024}]{stlouisfedConsumerPrice}
+\begin{botherref}
+\oauthor{\bsnm{St.~Louis}, \binits{F.R.B.}}:
+Consumer Price Index for All Urban Consumers: Shelter vs All Items Less
+  Shelter.
+\url{https://fred.stlouisfed.org/series/CUSR0000SA0L2}
+(2024)
+\end{botherref}
+\endbibitem
+
+%%% 4
+\bibitem[\protect\citeauthoryear{Mott}{2024}]{mott2024ThisRegion}
+\begin{botherref}
+\oauthor{\bsnm{Mott}, \binits{Z.}}:
+This region is finally seeing rent drop after a supply boom.
+Apartment List Research
+(2024).
+\url{https://www.apartmentlist.com/research}
+\end{botherref}
+\endbibitem
+
+%%% 5
+\bibitem[\protect\citeauthoryear{Mueller and Laposa}{1999}]{mueller1999real}
+\begin{barticle}
+\bauthor{\bsnm{Mueller}, \binits{G.R.}},
+\bauthor{\bsnm{Laposa}, \binits{S.P.}}:
+\batitle{Real estate rental markets: What rental data can and cannot tell us}.
+\bjtitle{Journal of Real Estate Portfolio Management}
+\bvolume{5}(\bissue{2}),
+\bfpage{135}--\blpage{144}
+(\byear{1999})
+\end{barticle}
+\endbibitem
+
+%%% 6
+\bibitem[\protect\citeauthoryear{Gabriel and Nothaft}{2001}]{gabriel2001rental}
+\begin{barticle}
+\bauthor{\bsnm{Gabriel}, \binits{S.A.}},
+\bauthor{\bsnm{Nothaft}, \binits{F.E.}}:
+\batitle{Rental housing markets, the incidence and duration of vacancy, and the
+  natural vacancy rate}.
+\bjtitle{Journal of Urban Economics}
+\bvolume{49}(\bissue{1}),
+\bfpage{121}--\blpage{149}
+(\byear{2001})
+\end{barticle}
+\endbibitem
+
+%%% 7
+\bibitem[\protect\citeauthoryear{Sirmans
+  et~al.}{1991}]{sirmans1991determinants}
+\begin{barticle}
+\bauthor{\bsnm{Sirmans}, \binits{C.}},
+\bauthor{\bsnm{Sirmans}, \binits{G.}},
+\bauthor{\bsnm{Benjamin}, \binits{J.}}:
+\batitle{Determinants of apartment rent}.
+\bjtitle{Journal of Real Estate Research}
+\bvolume{6}(\bissue{3}),
+\bfpage{357}--\blpage{379}
+(\byear{1991})
+\end{barticle}
+\endbibitem
+
+%%% 8
+\bibitem[\protect\citeauthoryear{Pyhrr et~al.}{1999}]{pyhrr1999real}
+\begin{bbook}
+\bauthor{\bsnm{Pyhrr}, \binits{S.A.}},
+\bauthor{\bsnm{Cooper}, \binits{J.L.}},
+\bauthor{\bsnm{Wofford}, \binits{M.L.}}:
+\bbtitle{Real Estate Investment: Strategies, Structures, Decisions}.
+\bpublisher{Wiley}, \blocation{???}
+(\byear{1999})
+\end{bbook}
+\endbibitem
+
+%%% 9
+\bibitem[\protect\citeauthoryear{Pennington}{2021}]{pennington2021does}
+\begin{botherref}
+\oauthor{\bsnm{Pennington}, \binits{K.}}:
+Does building new housing cause displacement? the supply and demand effects of
+  construction in san francisco.
+Working Paper
+(2021).
+\url{https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3902950}
+\end{botherref}
+\endbibitem
+
+%%% 10
+\bibitem[\protect\citeauthoryear{Molloy}{2022}]{molloy2022housing}
+\begin{botherref}
+\oauthor{\bsnm{Molloy}, \binits{R.}}:
+Housing demand and supply: The need for more data and better policy.
+Brookings Papers on Economic Activity
+(2022)
+\end{botherref}
+\endbibitem
+
+%%% 11
+\bibitem[\protect\citeauthoryear{Saiz}{2010}]{saiz2010geographic}
+\begin{barticle}
+\bauthor{\bsnm{Saiz}, \binits{A.}}:
+\batitle{The geographic determinants of housing supply}.
+\bjtitle{Quarterly Journal of Economics}
+\bvolume{125}(\bissue{3}),
+\bfpage{1253}--\blpage{1296}
+(\byear{2010})
+\end{barticle}
+\endbibitem
+
+%%% 12
+\bibitem[\protect\citeauthoryear{Davidoff}{2015}]{davidoff2015supply}
+\begin{botherref}
+\oauthor{\bsnm{Davidoff}, \binits{T.}}:
+Supply constraints are not valid in high-cost areas.
+Critical Housing Analysis
+\textbf{2}(1)
+(2015)
+\end{botherref}
+\endbibitem
+
+%%% 13
+\bibitem[\protect\citeauthoryear{in~Data}{2024}]{ourworldindataPopulationDensity}
+\begin{botherref}
+\oauthor{\bsnm{Data}, \binits{O.W.}}:
+Population Density by Country, 1961 to 2021.
+\url{https://ourworldindata.org/grapher/population-density}
+(2024)
+\end{botherref}
+\endbibitem
+
+%%% 14
+\bibitem[\protect\citeauthoryear{Feiveson et~al.}{2024}]{feiveson2024rent}
+\begin{botherref}
+\oauthor{\bsnm{Feiveson}, \binits{L.}}, et al.:
+Rent inflation and the role of demand.
+Board of Governors of the Federal Reserve System
+(2024)
+\end{botherref}
+\endbibitem
+
+%%% 15
+\bibitem[\protect\citeauthoryear{Mae}{2023}]{fanniemaeConsumersFeeling}
+\begin{botherref}
+\oauthor{\bsnm{Mae}, \binits{F.}}:
+Consumers Feel Renting Is More Affordable Than Homeownership.
+\url{https://www.fanniemae.com/research-and-insights/surveys/national-housing-survey}
+(2023)
+\end{botherref}
+\endbibitem
+
+%%% 16
+\bibitem[\protect\citeauthoryear{Titman et~al.}{2024}]{titman2024city}
+\begin{barticle}
+\bauthor{\bsnm{Titman}, \binits{S.}},
+\bauthor{\bsnm{Wang}, \binits{K.}},
+\bauthor{\bsnm{Yildirmaz}, \binits{M.}}:
+\batitle{City size and vertical development}.
+\bjtitle{Journal of Urban Economics}
+\bvolume{142},
+\bfpage{103519}
+(\byear{2024})
+\end{barticle}
+\endbibitem
+
+%%% 17
+\bibitem[\protect\citeauthoryear{Liu et~al.}{2018}]{liu2018vertical}
+\begin{barticle}
+\bauthor{\bsnm{Liu}, \binits{S.}},
+\bauthor{\bsnm{Pan}, \binits{Q.}},
+\bauthor{\bsnm{Li}, \binits{Y.}}:
+\batitle{Vertical cities: The price of tall buildings}.
+\bjtitle{Regional Science and Urban Economics}
+\bvolume{72},
+\bfpage{58}--\blpage{73}
+(\byear{2018})
+\end{barticle}
+\endbibitem
+
+%%% 18
+\bibitem[\protect\citeauthoryear{Muth}{1969}]{muth1969cities}
+\begin{bbook}
+\bauthor{\bsnm{Muth}, \binits{R.F.}}:
+\bbtitle{Cities and Housing}.
+\bpublisher{University of Chicago Press}, \blocation{???}
+(\byear{1969})
+\end{bbook}
+\endbibitem
+
+%%% 19
+\bibitem[\protect\citeauthoryear{Goodman}{1992}]{goodman1992rental}
+\begin{barticle}
+\bauthor{\bsnm{Goodman}, \binits{A.C.}}:
+\batitle{Rental market adjustment and the natural vacancy rate}.
+\bjtitle{Journal of Urban Economics}
+\bvolume{31}(\bissue{1}),
+\bfpage{1}--\blpage{16}
+(\byear{1992})
+\end{barticle}
+\endbibitem
+
+%%% 20
+\bibitem[\protect\citeauthoryear{Wheaton}{1991}]{wheaton1991realestate}
+\begin{barticle}
+\bauthor{\bsnm{Wheaton}, \binits{W.C.}}:
+\batitle{Real estate “cycles”: Some fundamentals}.
+\bjtitle{Real Estate Economics}
+\bvolume{19}(\bissue{2}),
+\bfpage{209}--\blpage{230}
+(\byear{1991})
+\end{barticle}
+\endbibitem
+
+%%% 21
+\bibitem[\protect\citeauthoryear{Green et~al.}{2002}]{green2002measuring}
+\begin{barticle}
+\bauthor{\bsnm{Green}, \binits{R.K.}},
+\bauthor{\bsnm{Malpezzi}, \binits{S.}},
+\bauthor{\bsnm{Mayo}, \binits{S.K.}}:
+\batitle{Measuring the elasticity of demand for housing services}.
+\bjtitle{Journal of Urban Economics}
+\bvolume{52}(\bissue{2}),
+\bfpage{210}--\blpage{227}
+(\byear{2002})
+\end{barticle}
+\endbibitem
+
+%%% 22
+\bibitem[\protect\citeauthoryear{Malpezzi and Green}{1996}]{malpezzi1996rent}
+\begin{barticle}
+\bauthor{\bsnm{Malpezzi}, \binits{S.}},
+\bauthor{\bsnm{Green}, \binits{R.K.}}:
+\batitle{Rent control and rental housing quality: A note on the effects of new
+  york city’s 1971 law}.
+\bjtitle{Journal of Housing Economics}
+\bvolume{5}(\bissue{2}),
+\bfpage{190}--\blpage{206}
+(\byear{1996})
+\end{barticle}
+\endbibitem
+
+%%% 23
+\bibitem[\protect\citeauthoryear{Rosenthal}{1997}]{rosenthal1997housing}
+\begin{barticle}
+\bauthor{\bsnm{Rosenthal}, \binits{S.S.}}:
+\batitle{Housing demand and expenditures: evidence from the consumer
+  expenditure survey}.
+\bjtitle{Review of Economics and Statistics}
+\bvolume{79}(\bissue{2}),
+\bfpage{330}--\blpage{335}
+(\byear{1997})
+\end{barticle}
+\endbibitem
+
+%%% 24
+\bibitem[\protect\citeauthoryear{Glaeser et~al.}{2001}]{glaeser2001cities}
+\begin{barticle}
+\bauthor{\bsnm{Glaeser}, \binits{E.L.}}, \betal:
+\batitle{Cities and skills}.
+\bjtitle{Journal of Labor Economics}
+\bvolume{19}(\bissue{2}),
+\bfpage{316}--\blpage{342}
+(\byear{2001})
+\end{barticle}
+\endbibitem
+
+%%% 25
+\bibitem[\protect\citeauthoryear{Duranton and Puga}{2004}]{duranton2004micro}
+\begin{barticle}
+\bauthor{\bsnm{Duranton}, \binits{G.}},
+\bauthor{\bsnm{Puga}, \binits{D.}}:
+\batitle{Micro-foundations of urban agglomeration economies}.
+\bjtitle{Handbook of Regional and Urban Economics}
+\bvolume{4},
+\bfpage{2063}--\blpage{2117}
+(\byear{2004})
+\end{barticle}
+\endbibitem
+
+%%% 26
+\bibitem[\protect\citeauthoryear{Ahlfeldt and
+  Pietrostefani}{2019}]{ahlfeldt2019economic}
+\begin{barticle}
+\bauthor{\bsnm{Ahlfeldt}, \binits{G.M.}},
+\bauthor{\bsnm{Pietrostefani}, \binits{E.}}:
+\batitle{The economic effects of density: A synthesis}.
+\bjtitle{Journal of Regional Science}
+\bvolume{59}(\bissue{1}),
+\bfpage{3}--\blpage{26}
+(\byear{2019})
+\end{barticle}
+\endbibitem
+
+%%% 27
+\bibitem[\protect\citeauthoryear{Albouy et~al.}{2015}]{albouy2015driving}
+\begin{barticle}
+\bauthor{\bsnm{Albouy}, \binits{D.}}, \betal:
+\batitle{Driving to opportunity: Understanding the long-run decline in american
+  mobility}.
+\bjtitle{AEA Papers and Proceedings}
+\bvolume{105}(\bissue{5}),
+\bfpage{132}--\blpage{136}
+(\byear{2015})
+\end{barticle}
+\endbibitem
+
+%%% 28
+\bibitem[\protect\citeauthoryear{Glaeser and
+  Gyourko}{2019}]{glaeser2019rethinking}
+\begin{barticle}
+\bauthor{\bsnm{Glaeser}, \binits{E.L.}},
+\bauthor{\bsnm{Gyourko}, \binits{J.}}:
+\batitle{Rethinking housing supply elasticity}.
+\bjtitle{Journal of Economic Perspectives}
+\bvolume{33}(\bissue{1}),
+\bfpage{29}--\blpage{50}
+(\byear{2019})
+\end{barticle}
+\endbibitem
+
+\end{thebibliography}
