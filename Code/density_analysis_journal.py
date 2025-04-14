@@ -2,22 +2,13 @@ import pandas as pd
 import polars as pl
 from scipy.stats import linregress
 from matplotlib import pyplot as plt
-from matplotlib.ticker import PercentFormatter
 from pathlib import Path
 import numpy as np
-import pandas as pd
 import seaborn as sns
-import plotly.express as px
-import matplotlib.pyplot as plt
-import numpy as np
-from scipy.stats import linregress
-from statsmodels.formula.api import ols
-from statsmodels.api import OLS, add_constant
-
-import plotly.graph_objects as go
 import statsmodels.api as sm
+from statsmodels.formula.api import ols
 from statsmodels.stats.multicomp import pairwise_tukeyhsd
-from scipy.stats import skew, kurtosis
+from scipy.stats import ttest_ind
 
 
 def get_data():
@@ -100,7 +91,6 @@ def get_data():
     df = df.with_columns(
         [
             pl.col("RDI").pct_change().over("msa").alias("RDI_growth"),
-            # pl.col("RDI").pct_change().over("msa").alias("implied_demand"),
         ]
     )
 
@@ -116,8 +106,6 @@ def get_data():
             - pl.col("real_rent_growth").median().over("year")
         ).alias("real_relative_rent_growth")
     )
-    # # Remove any rows with missing inflation adjustment
-    # df = df.filter(pl.col("cpi_cum").is_not_null() & (pl.col("cpi_cum") != 0))
     df = df.select(
         [
             "year",
@@ -142,8 +130,6 @@ def get_data():
 def supply_demand_curves(df, show=True):
     var_y = "real_rentpsf"
     df = df.dropna()
-    # df = df[df["msa"] == "New York - NY"]
-    # df = df[df["year"] == 2023]
     var_x = "RDI_growth"
     slope, intercept, r_value, p_value, std_err = linregress(df[var_x], df[var_y])
     var_x = "supply_growth"
@@ -189,8 +175,6 @@ def supply_demand_curves(df, show=True):
         ax.set_ylabel("Rent per Square Foot")
         ax.set_title("Supply and Demand Curves")
         ax.legend()
-        # ax.set_xlim(-0.05, 0.05)
-        # ax.set_ylim(2, 5)
 
         # Display the plot
         plt.show()
@@ -200,9 +184,6 @@ def supply_demand_curves(df, show=True):
 def predict_future(df):
     df["interaction"] = df["RDI_growth"] * df["supply_growth"] * df["real_rent_growth"]
     vars = [
-        # "supply_growth",
-        # "RDI_growth",
-        # # "rent_growth",
         "interaction",
     ]
     year = 2022
@@ -218,14 +199,10 @@ def predict_future(df):
     forecast = pd.concat(
         [df_test[["msa", *vars]], pd.DataFrame(y_hat, columns=["y_hat"])], axis=1
     ).sort_values("y_hat")
-    # print(forecast.head(20))
-    # print(forecast.tail(20))
-    # forecast.to_csv(r"C:\users\mlarriva\desktop\prediction.csv")
     sns.boxplot(x=pd.qcut(df["RDI_growth"], q=4), y=df["real_rent_growth_next_year"])
     plt.xlabel("RDI Growth Quartiles")
     plt.ylabel("Rent Growth Next Year")
     plt.title("Rent Growth Next Year by RDI Growth Quartile")
-    # plt.show()
 
     forecast = forecast.merge(
         df_test[["msa", "year", "real_rent_growth_next_year"]],
@@ -251,7 +228,6 @@ def predict_future(df):
 
 def supply_demand_annual(df, past_current="past"):
     if past_current == "each":
-        # df = df.dropna()
         msas = df["msa"].unique()
         years = df["year"].unique()
         holder = []
@@ -333,21 +309,28 @@ def simplify_anova(df):
     print(tukey)
 
 
-# source = get_data().to_pandas()
-# df = supply_demand_annual(source, past_current="each")
-# df.to_csv(Path(__file__).resolve().parent.parent / "data" / "supply_demand_annual.csv")
-# simplify_anova(df)
-# predict_future(df)
-# TODO: a rolling OOS prediction to show the value of the model
-df = pl.read_csv(
-    Path(__file__).resolve().parent.parent / "data" / "supply_demand_annual.csv"
-)
-
-
 def event_study(original):
     holder = []
+    original = original.with_columns(
+        pl.when(pl.col("group") == "False-False")
+        .then(pl.lit("UnderpricedUndersupplied"))
+        .when(pl.col("group") == "True-False")
+        .then(pl.lit("OverpricedUndersupplied"))
+        .when(pl.col("group") == "False-True")
+        .then(pl.lit("UnderpricedOversupplied"))
+        .when(pl.col("group") == "True-True")
+        .then(pl.lit("OverpricedOversupplied"))
+        .otherwise(pl.lit("Unknown"))
+        .alias("group")
+    )
 
-    for event in ["True-False", "False-True", "True-True", "False-False", "same"]:
+    for event in [
+        "OverpricedUndersupplied",
+        "UnderpricedOversupplied",
+        # "OverpricedOversupplied",
+        # "UnderpricedUndersupplied",
+        "same",
+    ]:
         df = original.with_columns(
             pl.when(pl.col("group") == pl.col("group").shift(1).over("msa"))
             .then(pl.lit("same"))
@@ -356,15 +339,29 @@ def event_study(original):
             pl.col("group").shift(1).over("msa").alias("prev_group"),
         ).drop_nulls(subset="prev_group")
         if event != "same":
+
             event_years = (
-                # df.filter(pl.col("transition").shift(-1).over("msa") == "same")
+                df
+                # .filter(pl.col("transition").shift(-1).over("msa") == "same")
                 # .filter(pl.col("transition").shift(-2).over("msa") == "same")
-                # df.filter(pl.col("transition").shift(1).over("msa") == "same")
+                # .filter(pl.col("transition").shift(1).over("msa") == "same")
                 # .filter(pl.col("transition").shift(2).over("msa") == "same")
-                df.filter(pl.col("transition") == "switch")
+                .filter(pl.col("transition") == "switch")
                 .filter(pl.col("group") == event)
                 .select(pl.col("msa"), pl.col("year").alias("event_year"))
             )
+            event_years = (
+                event_years.sort("event_year")
+                .with_columns(
+                    (
+                        pl.col("event_year") - pl.col("event_year").shift(1).over("msa")
+                    ).alias("year_diff")
+                )
+                .filter((pl.col("year_diff").is_null()) | (pl.col("year_diff") > 2))
+                .drop("year_diff")
+            )
+            print(event)
+            print(event_years)
         else:
             event_years = (
                 df.filter(pl.col("transition").shift(-1).over("msa") == "same")
@@ -387,7 +384,7 @@ def event_study(original):
                 values="real_relative_rent_growth",
                 index=["msa", "event_time"],
                 on="event_time",
-                aggregate_function="mean",  # no aggregation needed
+                aggregate_function="mean",
             )
             .rename(
                 {
@@ -402,7 +399,11 @@ def event_study(original):
         )
         holder = holder + pivoted.to_dicts()
     holder = pd.DataFrame(holder)
-    holder = holder[holder["event"].isin(["same", "True-False", "False-True"])]
+    holder = holder[
+        holder["event"].isin(
+            ["same", "OverpricedUndersupplied", "UnderpricedOversupplied"]
+        )
+    ]
     averaged_holder = holder.groupby("event").mean(numeric_only=True).reset_index()
     std_errors = holder.groupby("event").sem(numeric_only=True).reset_index()
     plt.figure(figsize=(10, 6))
@@ -438,8 +439,51 @@ def event_study(original):
     plt.ylabel("Real Rent Growth Relative to Median")
     plt.title("Real Rent Growth before and after a segment change")
     plt.legend(title="Segment switched into")
-    # plt.show()
     plt.savefig(Path(__file__).resolve().parent.parent / "Figs" / "event_study.png")
+    plt.show()
+
+    # Calculate differences in means and perform t-tests
+    results = []
+    for event in ["OverpricedUndersupplied", "UnderpricedOversupplied", "same"]:
+        event_data = holder[holder["event"] == event]
+
+        # Calculate means for two years before and after the event
+        before_means = event_data[["rr_rent_growth_m2", "rr_rent_growth_m1"]].mean()
+        after_means = event_data[
+            ["rr_rent_growth_0", "rr_rent_growth_p1", "rr_rent_growth_p2"]
+        ].mean()
+
+        # Perform t-tests for differences in means
+        t_stat, p_value = ttest_ind(
+            event_data[["rr_rent_growth_m2", "rr_rent_growth_m1"]].values.flatten(),
+            event_data[
+                ["rr_rent_growth_0", "rr_rent_growth_p1", "rr_rent_growth_p2"]
+            ].values.flatten(),
+            nan_policy="omit",
+        )
+
+        results.append(
+            {
+                "Event": event,
+                "Mean Before": before_means.mean(),
+                "Mean After": after_means.mean(),
+                "Difference": after_means.mean() - before_means.mean(),
+                "p-value": p_value,
+            }
+        )
+
+    # Create a DataFrame for the results
+    results_df = pd.DataFrame(results)
+
+    # Display the table
+    print("\nDifferences in Means and p-values:")
+    print(results_df.to_string(index=False))
 
 
+# df = get_data().to_pandas()
+# supply_demand_annual(df, past_current="each")
+# simplify_anova(supply_demand_annual(df, past_current="each"))
+df = pl.read_csv(
+    Path(__file__).resolve().parent.parent / "data" / "supply_demand_annual.csv"
+)
 event_study(df)
