@@ -9,10 +9,15 @@ import statsmodels.api as sm
 from statsmodels.formula.api import ols
 from statsmodels.stats.multicomp import pairwise_tukeyhsd
 from scipy.stats import ttest_ind
+import plotly.express as px
 
 
-def get_data():
-    df = pl.read_csv(Path(__file__).resolve().parent.parent / "data" / "msa_data.csv")
+def get_data(filter="top_100"):
+    df = pl.read_csv(
+        Path(__file__).resolve().parent.parent / "data" / "msa_data.csv",
+        dtypes={"FIPS": pl.Utf8},
+    )
+
     df.columns = [
         "year",
         "msa",
@@ -24,17 +29,19 @@ def get_data():
         "rent_growth",
         "demand_units",
         "absorption",
+        "CBSA",
+        "FIPS",
     ]
     df = df.with_columns(pl.col("year").cast(pl.Int16))
 
-    # Filter to top 100 MSAs by 2001 inventory
-    top_100_msas = (
-        df.filter(pl.col("year") == 2001)
-        .sort("inventory", descending=True)
-        .head(100)
-        .select("msa")
-    )
-    df = df.filter(pl.col("msa").is_in(top_100_msas))
+    if filter == "top_100":
+        top_100_msas = (
+            df.filter(pl.col("year") == 2001)
+            .sort("inventory", descending=True)
+            .head(100)
+            .select("msa")
+        )
+        df = df.filter(pl.col("msa").is_in(top_100_msas))
     # Load CPI and calculate cumulative inflation adjustment
     cpi = pl.read_csv(Path(__file__).resolve().parent.parent / "data" / "cpi.csv")
     cpi = (
@@ -119,11 +126,13 @@ def get_data():
             "RDI_growth",
             "supply_growth",
             "real_relative_rg_next_year",
+            "FIPS",
         ]
     )
-    df.write_csv(
-        Path(__file__).resolve().parent.parent / "data" / "preprocessed_data.csv"
-    )
+    if filter == "top_100":
+        df.write_csv(
+            Path(__file__).resolve().parent.parent / "data" / "preprocessed_data.csv"
+        )
     return df
 
 
@@ -141,39 +150,46 @@ def supply_demand_curves(df, show=True):
         fig, ax = plt.subplots()
 
         # Demand curve
-        ax.scatter(df[var_x], df[var_y], label="Implied Demand", color="green")
+        var_x = "RDI_growth"
+        ax.scatter(df[var_x], df[var_y], label="Demand (RDI Growth)", color="green")
 
         # Generate x values for the line plot
         x_vals_demand = np.linspace(df[var_x].min(), df[var_x].max(), 100)
         ax.plot(x_vals_demand, intercept + slope * x_vals_demand, color="green")
 
         # Supply growth curve
-        ax.scatter(df[var_x], df[var_y], label="Supply Growth", color="black")
+        var_x = "supply_growth"
+        ax.scatter(
+            df[var_x], df[var_y], label="Supply (Inventory Growth)", color="black"
+        )
 
         # Generate x values for the line plot
         x_vals_supply = np.linspace(df[var_x].min(), df[var_x].max(), 100)
         ax.plot(x_vals_supply, intercept2 + slope2 * x_vals_supply, color="black")
 
-        ax.plot(intersection_x, intersection_y, "ro", label="Intersection")
+        ax.plot(intersection_x, intersection_y, "ro", label="Derived Equilibrium")
         ax.vlines(
             x=intersection_x,
-            ymin=0,
-            ymax=intersection_y,
+            ymin=0.5,
+            ymax=intersection_y + 0.5,
             linestyle="--",
             color="red",
         )
         ax.hlines(
             y=intersection_y,
             xmin=-0.05,
-            xmax=intersection_x,
+            xmax=intersection_x + 0.05,
             linestyle="--",
             color="red",
         )
-
+        cy = df[df["year"] == df["year"].max()]
+        ax.plot(
+            cy["supply_growth"], cy["real_rentpsf"], "bo", label="Observed Equilibrium"
+        )
         # Adding labels and title
-        ax.set_xlabel("Quantity of Units (as a % of existing)")
+        ax.set_xlabel("Quantity: RDI Growth and Supply Growth")
         ax.set_ylabel("Rent per Square Foot")
-        ax.set_title("Supply and Demand Curves")
+        # ax.set_title("Supply and Demand Curves")
         ax.legend()
 
         # Display the plot
@@ -239,8 +255,12 @@ def supply_demand_annual(df, past_current="past"):
                 & (df["year"] >= x.year - 10)
             ]
             df_current = df[(df["msa"] == x.msa) & (df["year"] == x.year)]
+            if x.msa == "Phoenix - AZ" and x.year == 2022:
+                show = True
+            else:
+                show = False
             try:
-                intersection_x, intersection_y = supply_demand_curves(df_t, show=False)
+                intersection_x, intersection_y = supply_demand_curves(df_t, show=show)
             except:
                 intersection_x = np.nan
                 intersection_y = np.nan
@@ -480,10 +500,185 @@ def event_study(original):
     print(results_df.to_string(index=False))
 
 
-# df = get_data().to_pandas()
-# supply_demand_annual(df, past_current="each")
-# simplify_anova(supply_demand_annual(df, past_current="each"))
-df = pl.read_csv(
-    Path(__file__).resolve().parent.parent / "data" / "supply_demand_annual.csv"
-)
-event_study(df)
+def choropleth_rdi_by_msa():
+    # Load the supply_demand_annual.csv file
+    df = get_data(filter=None).to_pandas()[["msa", "year", "RDI", "FIPS"]].dropna()
+    df["RDI"] = df["RDI"].round(1)
+    df_2019 = df[df["year"] == 2019]
+    from urllib.request import urlopen
+    import json
+
+    with urlopen(
+        "https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json"
+    ) as response:
+        counties = json.load(response)
+    import plotly.express as px
+
+    fig = px.choropleth_map(
+        df,
+        geojson=counties,
+        locations="FIPS",
+        color="RDI",
+        color_continuous_scale="Spectral",
+        range_color=(7, 100),
+        map_style="carto-positron",
+        zoom=3,
+        center={"lat": 37.0902, "lon": -95.7129},
+        opacity=0.5,
+        labels={"unemp": "unemployment rate"},
+    )
+    fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
+    fig.show()
+
+
+def plot_national_averages():
+    # Load preprocessed data
+    df = pd.read_csv(
+        Path(__file__).resolve().parent.parent / "data" / "preprocessed_data.csv"
+    )
+    df = df[df["year"] == 2023]
+    print(df.columns)
+
+    # Plot RDI vs Real Rent PSF for all MSAs
+    plt.figure(figsize=(12, 8))
+    plt.scatter(
+        df["RDI_growth"],
+        df["real_rent_growth_next_year"],
+    )
+    plt.xlabel("Δ RDI (year t minus t‑1)")
+    plt.ylabel("Real Rent Growth (year t)")
+    plt.legend(loc="upper left", bbox_to_anchor=(1, 1), fontsize="small")
+    plt.grid()
+    plt.tight_layout()
+    slope, intercept, r_value, p_value, std_err = linregress(
+        df["RDI_growth"], df["real_rent_growth_next_year"]
+    )
+    # Add text box with slope, R², and p-value
+    textstr = f"β = {slope:.2f}\nR² = {r_value**2:.2f}\np = {p_value:.2e}"
+    plt.gca().text(
+        0.05,
+        0.95,
+        textstr,
+        transform=plt.gca().transAxes,
+        fontsize=10,
+        verticalalignment="top",
+        bbox=dict(boxstyle="round", facecolor="white", alpha=0.5),
+    )
+    # for i, msa in enumerate(df["msa"]):
+    #     plt.annotate(
+    #         msa,
+    #         (df["RDI_growth"].iloc[i], df["real_rent_growth_next_year"].iloc[i]),
+    #         fontsize=8,
+    #         alpha=0.7,
+    #     )
+    x_vals = np.linspace(df["RDI_growth"].min(), df["RDI_growth"].max(), 100)
+    y_vals = slope * x_vals + intercept
+    plt.plot(
+        x_vals, y_vals, color="red", label=f"Line of Best Fit (R²={r_value**2:.2f})"
+    )
+    # Calculate 95% confidence interval
+    y_pred = slope * df["RDI_growth"] + intercept
+    residuals = df["real_rent_growth_next_year"] - y_pred
+    std_error = np.std(residuals)
+    ci = 1.96 * std_error  # 95% confidence interval
+
+    plt.fill_between(
+        x_vals,
+        y_vals - ci,
+        y_vals + ci,
+        color="red",
+        alpha=0.2,
+        label="95% Confidence Interval",
+    )
+    plt.legend()
+    plt.savefig(
+        Path(__file__).resolve().parent.parent / "Figs" / "rdi_rent_growth_2024.png"
+    )
+    plt.show()
+
+
+def plot_phoenix_supply_demand():
+    df = get_data(filter="top_100").to_pandas()
+    dx = df[(df["msa"] == "Phoenix - AZ") & (df["year"] >= 2022)]
+    df = df[(df["msa"] == "Phoenix - AZ") & (df["year"] < 2022) & (df["year"] >= 2012)]
+    var_y = "real_rentpsf"
+    df = df.dropna()
+    var_x = "RDI_growth"
+    slope, intercept, r_value, p_value, std_err = linregress(df[var_x], df[var_y])
+    var_x = "supply_growth"
+    slope2, intercept2, r_value, p_value, std_err = linregress(df[var_x], df[var_y])
+    # Intersection point
+    intersection_x = (intercept2 - intercept) / (slope - slope2)
+    intersection_y = intercept + slope * intersection_x
+    print(intersection_x, intersection_y)
+    fig, ax = plt.subplots()
+
+    # Demand curve
+    var_x = "RDI_growth"
+    ax.scatter(
+        df[var_x], df[var_y], label="Demand (RDI Growth) 2012-2021", color="green"
+    )
+
+    # Generate x values for the line plot
+    x_vals_demand = np.linspace(df[var_x].min(), df[var_x].max(), 100)
+    ax.plot(x_vals_demand, intercept + slope * x_vals_demand, color="green")
+
+    # Supply growth curve
+    var_x = "supply_growth"
+    ax.scatter(
+        df[var_x], df[var_y], label="Supply (Inventory Growth) 2012-2021", color="black"
+    )
+
+    # Generate x values for the line plot
+    x_vals_supply = np.linspace(df[var_x].min(), df[var_x].max(), 100)
+    ax.plot(x_vals_supply, intercept2 + slope2 * x_vals_supply, color="black")
+
+    ax.plot(intersection_x, intersection_y, "ro", label="Derived Equilibrium 2021")
+    ax.vlines(
+        x=intersection_x,
+        ymin=0.5,
+        ymax=intersection_y + 0.5,
+        linestyle="--",
+        color="red",
+    )
+    ax.hlines(
+        y=intersection_y,
+        xmin=-0.05,
+        xmax=intersection_x + 0.05,
+        linestyle="--",
+        color="red",
+    )
+    cy = df[df["year"] == df["year"].max()]
+    ax.plot(
+        cy["supply_growth"], cy["real_rentpsf"], "bo", label="Observed Equilibrium 2021"
+    )
+
+    ax.plot(
+        dx["supply_growth"],
+        dx["real_rentpsf"],
+        "ro",
+        color="purple",
+        label="Equilibrium Recovery",
+    )
+    for i, row in dx.iterrows():
+        ax.text(
+            row["supply_growth"],
+            row["real_rentpsf"],
+            f"{str(row["year"])}",
+            fontsize=9,
+            ha="right",
+        )
+    # Adding labels and title
+    ax.set_xlabel("Quantity: RDI Growth and Supply Growth")
+    ax.set_ylabel("Rent per Square Foot")
+    # ax.set_title("Supply and Demand Curves")
+    ax.legend()
+
+    # Display the plot
+    plt.show()
+
+
+plot_phoenix_supply_demand()
+# supply_demand_annual(get_data().to_pandas(), past_current="each")
+# plot_national_averages()
+# choropleth_rdi_by_msa()

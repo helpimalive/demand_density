@@ -1,0 +1,62 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: wileyNJDv5_AMA.aux
+Reallocating 'name_of_file' (item size: 1) to 13 items.
+The style file: WileyNJD-APA.bst
+Reallocating 'name_of_file' (item size: 1) to 13 items.
+Reallocating 'glb_str_end' (item size: 4) to 20 items.
+Reallocating 'glb_str_ptr' (item size: 4) to 20 items.
+Reallocating 'global_strs' (item size: 1) to 4000000 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'wiz_functions' (item size: 4) to 6000 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'wiz_functions' (item size: 4) to 9000 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Database file #1: wileyNJD-APA.bib
+apacite.bst [2013/07/21 v6.03 APA bibliography style]
+Warning--`others' not consistent with 6th ed. of the APA Manual
+Warning--`others' not consistent with 6th ed. of the APA Manual
+Warning--`others' not consistent with 6th ed. of the APA Manual
+You've used 28 entries,
+            6949 wiz_defined-function locations,
+            1425 strings with 14936 characters,
+and the built_in function-call counts, 47113 in all, are:
+= -- 5856
+> -- 361
+< -- 2164
++ -- 2136
+- -- 62
+* -- 2903
+:= -- 8569
+add.period$ -- 109
+call.type$ -- 28
+change.case$ -- 476
+chr.to.int$ -- 0
+cite$ -- 56
+duplicate$ -- 1202
+empty$ -- 1976
+format.name$ -- 572
+if$ -- 9141
+int.to.chr$ -- 0
+int.to.str$ -- 84
+missing$ -- 0
+newline$ -- 666
+num.names$ -- 224
+pop$ -- 894
+preamble$ -- 1
+purify$ -- 112
+quote$ -- 0
+skip$ -- 3189
+stack$ -- 0
+substring$ -- 2338
+swap$ -- 709
+text.length$ -- 59
+text.prefix$ -- 0
+top$ -- 1
+type$ -- 2240
+warning$ -- 3
+while$ -- 193
+width$ -- 0
+write$ -- 789
+(There were 3 warnings)
