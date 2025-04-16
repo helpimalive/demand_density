@@ -10,12 +10,16 @@ from statsmodels.formula.api import ols
 from statsmodels.stats.multicomp import pairwise_tukeyhsd
 from scipy.stats import ttest_ind
 import plotly.express as px
+import statsmodels.formula.api as smf
+from statsmodels.stats.multicomp import pairwise_tukeyhsd
+import pandas as pd
+from statsmodels.tsa.arima.model import ARIMA
 
 
 def get_data(filter="top_100"):
     df = pl.read_csv(
         Path(__file__).resolve().parent.parent / "data" / "msa_data.csv",
-        dtypes={"FIPS": pl.Utf8},
+        schema_overrides={"FIPS": pl.Utf8},
     )
 
     df.columns = [
@@ -136,7 +140,7 @@ def get_data(filter="top_100"):
     return df
 
 
-def supply_demand_curves(df, show=True):
+def supply_demand_curves(df, show=False):
     var_y = "real_rentpsf"
     df = df.dropna()
     var_x = "RDI_growth"
@@ -197,136 +201,264 @@ def supply_demand_curves(df, show=True):
     return intersection_x, intersection_y
 
 
-def predict_future(df):
-    df["interaction"] = df["RDI_growth"] * df["supply_growth"] * df["real_rent_growth"]
-    vars = [
-        "interaction",
-    ]
-    year = 2022
-    df_train = df[df["year"] <= year].dropna()
-    X = df_train[vars]
-    y = df_train["real_rent_growth_next_year"]
-    X = sm.add_constant(X)  # Add constant term to the predictor variable
-    model = sm.OLS(y, X).fit()
-    df_test = df[df["year"] == 2023]
-    X_test = df_test[vars]
-    X_test = sm.add_constant(X_test)
-    y_hat = model.predict(X_test)
-    forecast = pd.concat(
-        [df_test[["msa", *vars]], pd.DataFrame(y_hat, columns=["y_hat"])], axis=1
-    ).sort_values("y_hat")
-    sns.boxplot(x=pd.qcut(df["RDI_growth"], q=4), y=df["real_rent_growth_next_year"])
-    plt.xlabel("RDI Growth Quartiles")
-    plt.ylabel("Rent Growth Next Year")
-    plt.title("Rent Growth Next Year by RDI Growth Quartile")
-
-    forecast = forecast.merge(
-        df_test[["msa", "year", "real_rent_growth_next_year"]],
-        on="msa",
-        how="left",
-        suffixes=("_forecast", "_actual"),
+def predict_future(how):
+    df = pd.read_csv(
+        Path(__file__).resolve().parent.parent / "data" / "preprocessed_data.csv"
     )
-    rsquare = (
-        np.corrcoef(forecast["y_hat"], forecast["real_rent_growth_next_year"])[0, 1]
-        ** 2
-    )
-    print(f"R-squared between y_hat and real_rent_growth_next_year: {rsquare:.4f}")
-    forecast_top_20 = forecast.nlargest(20, "y_hat")
-    forecast_bottom_20 = forecast.nsmallest(20, "y_hat")
-    difference = (
-        forecast_top_20["real_rent_growth_next_year"].mean()
-        - forecast_bottom_20["real_rent_growth_next_year"].mean()
-    )
-    print(
-        f"Difference in real_rent_growth_next_year {year} between top 20 and bottom 20: {difference:.2%}"
-    )
-
-
-def supply_demand_annual(df, past_current="past"):
-    if past_current == "each":
-        msas = df["msa"].unique()
-        years = df["year"].unique()
+    if how == "naive":
         holder = []
-        y_m = df.loc[df["year"] > 2010, ["year", "msa"]].drop_duplicates()
-        for x in y_m.itertuples():
-            df_t = df[
-                (df["msa"] == x.msa)
-                & (df["year"] < x.year)
-                & (df["year"] >= x.year - 10)
-            ]
-            df_current = df[(df["msa"] == x.msa) & (df["year"] == x.year)]
-            if x.msa == "Phoenix - AZ" and x.year == 2022:
-                show = True
-            else:
-                show = False
-            try:
-                intersection_x, intersection_y = supply_demand_curves(df_t, show=show)
-            except:
-                intersection_x = np.nan
-                intersection_y = np.nan
-            holder.append(
-                [
-                    x.msa,
-                    x.year,
-                    intersection_x,
-                    intersection_y,
-                    df_current.real_rentpsf.values[0],
-                    df_current.RDI_growth.values[0],
-                    df_current.supply_growth.values[0],
-                    df_current.real_rent_growth_next_year.values[0],
-                    df_current.real_relative_rg_next_year.values[0],
-                    df_current.real_rent_growth.values[0],
-                    df_current.real_relative_rent_growth.values[0],
-                    df_current.rent_growth.values[0],
-                ]
+        for year in range(2012, 2023):
+
+            df_train = df[df["year"] == year]
+            df_train["y_hat_group"] = pd.qcut(
+                df_train["real_relative_rent_growth"],
+                q=4,
+                labels=["Bottom", "Middle", "Middle2", "Top"],
             )
-        holder = pd.DataFrame(
-            holder,
-            columns=[
-                "msa",
-                "year",
-                "quantity",
-                "price",
-                "real_rentpsf",
-                "RDI_growth",
-                "supply_growth",
-                "real_rent_growth_next_year",
-                "real_relative_rg_next_year",
-                "real_rent_growth",
-                "real_relative_rent_growth",
-                "rent_growth",
-            ],
+            mean_values = df_train.groupby("y_hat_group", observed=False)[
+                "real_relative_rg_next_year"
+            ].mean()
+            mean_values = mean_values.reset_index()
+            holder.append(
+                {
+                    "year": year + 1,
+                    "mean_bottom": mean_values[mean_values["y_hat_group"] == "Bottom"][
+                        "real_relative_rg_next_year"
+                    ].values[0],
+                    "mean_top": mean_values[mean_values["y_hat_group"] == "Top"][
+                        "real_relative_rg_next_year"
+                    ].values[0],
+                }
+            )
+        holder = pd.DataFrame(holder)
+        holder["spread"] = holder["mean_top"] - holder["mean_bottom"]
+        print(holder)
+        print(holder.mean())
+        holder.to_csv(
+            Path(__file__).resolve().parent.parent / "data" / "naive_summary.csv",
+            index=False,
         )
+        return holder
+    if how == "ARIMA":
+        summary = pd.DataFrame()
+        for year in range(2012, 2023):
+            holder = []
+            for msa in df["msa"].unique():
+                df_train = df[
+                    (df["year"] < year) & (df["year"] >= year - 10) & (df["msa"] == msa)
+                ].sort_values("year")
+                y = df_train["real_relative_rent_growth"].to_numpy()
+                model = ARIMA(y, order=(1, 0, 0)).fit()
+                y_hat = model.forecast(steps=1)
+                holder.append(
+                    {
+                        "year": year + 1,
+                        "msa": msa,
+                        "y_hat": y_hat[0],
+                        "real_relative_rg_next_year": df_train[
+                            df_train["year"] == df_train["year"].max()
+                        ]["real_relative_rg_next_year"].values[0],
+                    }
+                )
+            holder = pd.DataFrame(holder)
+            holder["y_hat_group"] = pd.qcut(
+                holder["y_hat"], q=4, labels=["Bottom", "Middle", "Middle2", "Top"]
+            )
+            holder = (
+                holder.groupby("y_hat_group")
+                .agg(
+                    actual_mean=("real_relative_rg_next_year", "mean"),
+                )
+                .reset_index()
+            )
+            holder["spread"] = (
+                holder["actual_mean"].iloc[2] - holder["actual_mean"].iloc[0]
+            )
+            holder["year"] = year + 1
+            holder = holder.pivot(
+                index="year", columns="y_hat_group", values="actual_mean"
+            ).reset_index()
+            holder["spread"] = holder["Top"] - holder["Bottom"]
+            holder = holder.rename(
+                columns={"Bottom": "bottom", "Middle": "middle", "Top": "top"}
+            )
+            summary = pd.concat([summary, holder], ignore_index=True)
+            summary.to_csv(
+                Path(__file__).resolve().parent.parent / "data" / "arima_summary.csv",
+                index=False,
+            )
+        return summary
+
+
+def compare_predictions():
+    ar = pd.read_csv(
+        Path(__file__).resolve().parent.parent / "data" / "arima_summary.csv"
+    )
+    ar = ar[["year", "spread"]]
+    ar.columns = ["year", "arima_spread"]
+
+    ol = pd.read_csv(
+        Path(__file__).resolve().parent.parent / "data" / "naive_summary.csv"
+    )
+    ol = ol[["year", "spread"]]
+    ol.columns = ["year", "naive_spread"]
+
+    rd = pd.read_csv(
+        Path(__file__).resolve().parent.parent / "data" / "supply_demand_annual.csv"
+    )
+    rd = rd[["year", "group", "real_relative_rg_next_year"]]
+    rd = rd.groupby(["year", "group"]).mean().reset_index().dropna()
+    rd = (
+        rd.pivot(index="year", columns="group", values="real_relative_rg_next_year")
+        .reset_index()
+        .dropna()
+    )
+    rd["spread"] = rd["False-True"] - rd["True-False"]
+    rd = rd[["year", "spread"]]
+    rd.columns = ["year", "rdi_spread"]
+    rd = rd.merge(ar, on="year", how="inner")
+    rd = rd.merge(ol, on="year", how="inner")
+    print(rd)
+    print(rd.mean())
+
+
+def supply_demand_annual(df):
+    msas = df["msa"].unique()
+    years = df["year"].unique()
+    holder = []
+    y_m = df.loc[df["year"] > 2010, ["year", "msa"]].drop_duplicates()
+    for x in y_m.itertuples():
+        df_t = df[
+            (df["msa"] == x.msa) & (df["year"] < x.year) & (df["year"] >= x.year - 10)
+        ]
+        df_current = df[(df["msa"] == x.msa) & (df["year"] == x.year)]
+        try:
+            intersection_x, intersection_y = supply_demand_curves(df_t)
+        except:
+            intersection_x = np.nan
+            intersection_y = np.nan
+        holder.append(
+            [
+                x.msa,
+                x.year,
+                intersection_x,
+                intersection_y,
+                df_current.real_rentpsf.values[0],
+                df_current.RDI_growth.values[0],
+                df_current.supply_growth.values[0],
+                df_current.real_rent_growth_next_year.values[0],
+                df_current.real_relative_rg_next_year.values[0],
+                df_current.real_rent_growth.values[0],
+                df_current.real_relative_rent_growth.values[0],
+                df_current.rent_growth.values[0],
+            ]
+        )
+    holder = pd.DataFrame(
+        holder,
+        columns=[
+            "msa",
+            "year",
+            "quantity",
+            "price",
+            "real_rentpsf",
+            "RDI_growth",
+            "supply_growth",
+            "real_rent_growth_next_year",
+            "real_relative_rg_next_year",
+            "real_rent_growth",
+            "real_relative_rent_growth",
+            "rent_growth",
+        ],
+    )
     holder["overpriced"] = holder["price"] < holder["real_rentpsf"]
     holder["oversupplied"] = holder["quantity"] < holder["supply_growth"]
     holder["group"] = (
         holder["oversupplied"].astype(str) + "-" + holder["overpriced"].astype(str)
     )
+
+    holder.to_csv(
+        Path(__file__).resolve().parent.parent / "data" / "supply_demand_annual.csv",
+        index=False,
+    )
     return holder
 
 
 def simplify_anova(df):
-    print(
-        df.groupby(["overpriced", "oversupplied"])[
-            ["real_relative_rg_next_year", "real_rent_growth_next_year"]
-        ]
-        .agg("mean")
-        .map(lambda x: int(x * 10000))
+    # Replace Boolean codes with narrative labels
+    df["group"] = df.apply(
+        lambda row: (
+            "Landlord-favourable"
+            if row["overpriced"] and not row["oversupplied"]
+            else (
+                "Renter-favourable"
+                if not row["overpriced"] and row["oversupplied"]
+                else (
+                    "Balanced"
+                    if not row["overpriced"] and not row["oversupplied"]
+                    else "Price-Bubble"
+                )
+            )
+        ),
+        axis=1,
+    )
+
+    # Calculate mean next-year real-rent growth
+    summary = (
+        df.groupby("group")
+        .agg(
+            mean_next_year_relative_real_rent_growth=(
+                "real_relative_rg_next_year",
+                "mean",
+            ),
+            n_obs=("real_relative_rg_next_year", "size"),
+        )
         .reset_index()
     )
-    model = ols(
-        "real_relative_rg_next_year ~ C(overpriced) + C(oversupplied)",
-        data=df,
+
+    # Clustered standard errors by MSA
+    model = smf.ols("real_relative_rg_next_year ~ C(group)", data=df).fit(
+        cov_type="cluster", cov_kwds={"groups": df["msa"]}
+    )
+
+    # Prepare a DataFrame with the same structure for prediction
+    group_means_df = df.groupby("group").mean(numeric_only=True).reset_index()
+    group_means_df["group"] = group_means_df["group"].astype("category")
+
+    # Predict group means and extract standard errors
+    group_means = model.predict(group_means_df)
+    group_se = model.get_robustcov_results(cov_type="cluster", groups=df["msa"]).bse
+
+    # Map standard errors to the corresponding groups
+    summary["mean (bps)"] = (
+        summary["mean_next_year_relative_real_rent_growth"] * 10000
+    ).astype(int)
+    summary["se (bps)"] = (group_se[: len(summary)] * 10000).astype(
+        int
+    )  # Match SEs to groups
+
+    # Two-way ANOVA
+    anova_model = smf.ols(
+        "real_relative_rg_next_year ~ C(overpriced) + C(oversupplied)", data=df
     ).fit()
-    anova_table = sm.stats.anova_lm(model, typ=2)
+    anova_table = sm.stats.anova_lm(anova_model, typ=2)
+
+    # Tukey HSD post-hoc test
+    tukey = pairwise_tukeyhsd(
+        endog=df["real_relative_rg_next_year"], groups=df["group"], alpha=0.05
+    )
+
+    # Format results into a table block
+    print("\nMean Next-Year Real-Rent Growth and Standard Errors:")
+    print(summary[["group", "mean (bps)", "se (bps)", "n_obs"]].to_string(index=False))
+
+    print("\nTwo-Way ANOVA:")
     print(anova_table)
 
-    tukey = pairwise_tukeyhsd(
-        endog=df.dropna()["real_relative_rg_next_year"],
-        groups=df.dropna()["group"],
-        alpha=0.05,
-    )
+    print("\nTukey HSD Post-Hoc Test:")
     print(tukey)
+
+    # Add footnotes for SE and significance stars
+    print("\nNote: *** p < 0.01, ** p < 0.05, * p < 0.10.")
 
 
 def event_study(original):
@@ -664,7 +796,7 @@ def plot_phoenix_supply_demand():
         ax.text(
             row["supply_growth"],
             row["real_rentpsf"],
-            f"{str(row["year"])}",
+            f"{str(row['year'])}",
             fontsize=9,
             ha="right",
         )
@@ -678,7 +810,12 @@ def plot_phoenix_supply_demand():
     plt.show()
 
 
-plot_phoenix_supply_demand()
-# supply_demand_annual(get_data().to_pandas(), past_current="each")
+# df = get_data(filter="top_100").to_pandas()
+# dx = supply_demand_annual(get_data().to_pandas())
+# plot_phoenix_supply_demand()
+# simplify_anova(dx.dropna())
 # plot_national_averages()
 # choropleth_rdi_by_msa()
+# predict_future(how="naive")
+# summary = predict_future(how="ARIMA")
+compare_predictions()

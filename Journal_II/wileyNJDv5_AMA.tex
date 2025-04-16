@@ -1,4 +1,7 @@
 \documentclass[APA,Times1COL]{WileyNJDv5} %STIX1COL,STIX2COL,STIXSMALL
+\usepackage{threeparttable}
+\usepackage{dcolumn}
+
 \usepackage{subcaption}
 \usepackage{graphicx}%
 \usepackage{float}%
@@ -305,6 +308,9 @@ This segmentation yields market classifications that form the basis for our pred
 
 This section presents empirical findings from our market classification framework. Using the derived supply and demand curves, we compute equilibrium prices (\( p^* \)) and quantities (\( q^* \)) for each of the 100 largest MSAs from 2010 to 2022. By comparing \( (p^*, q^*) \) to the observed market outcomes \( (p, q) \), we segment markets into four states based on whether they are overpriced and/or oversupplied.
 
+%PLACEHOLDER
+%Fig 4 – 4‑quadrant heat‑map of all 100 MSAs (color = rent growth, size = inventory) for the latest year
+
 \subsection{Event Study: Rent Growth Before and After Regime Entry}
 
 To complement our classification-based forecasting approach, we implement an event study that traces rent dynamics around the time a market enters the \emph{Overpriced \& Oversupplied} regime. This regime—characterized by both above-equilibrium rents and excessive new supply—is hypothesized to precede periods of slower rent growth or correction.
@@ -327,6 +333,82 @@ The results show that real rent growth slows meaningfully following entry into t
 \subsection{Group Differences in Rent Growth}
 
 We assess whether these classifications are associated with meaningful differences in future rent performance. Table~\ref{tab:simplifiedmeans} reports average next-year real rent growth and relative rent growth (defined as deviation from the within-year median) across the four groups formed by the boolean indicators `overpriced` and `oversupplied`.
+
+
+	
+%----------------------%
+% Table of Group Means %
+%----------------------%
+\begin{table*}[t]
+	\centering
+	\begin{threeparttable}
+		\caption{Mean Next-Year Real-Rent Growth and Standard Errors\label{tab:groupmeans}}
+		\begin{tabular}{lccc}
+			\toprule
+			Group                & Mean (bps) & SE (bps) & $n_{\text{obs}}$ \\
+			\midrule
+			Balanced             & 25         & 11       & 173  \\
+			Landlord-favourable  & 94$^{***}$ & 30       & 63   \\
+			Price-Bubble         & 14         & 15       & 684  \\
+			Renter-favourable    & $-23^{*}$  & 12       & 380  \\
+			\bottomrule
+		\end{tabular}
+		\begin{tablenotes}
+			\footnotesize
+			\item Note: Significance indicators: *** $p<0.01$, ** $p<0.05$, * $p<0.10$.
+		\end{tablenotes}
+	\end{threeparttable}
+\end{table*}
+
+%----------------------%
+% Two-Way ANOVA Table  %
+%----------------------%
+\begin{table*}[t]
+	\centering
+	\begin{threeparttable}
+		\caption{Two-Way ANOVA\label{tab:anova}}
+		\begin{tabular}{lcccc}
+			\toprule
+			Source              & Sum Sq   & df    & $F$      & PR($>F$) \\
+			\midrule
+			C(overpriced)       & 0.005178 & 1.0   & 12.311490$^{***}$  & 0.000466 \\
+			C(oversupplied)     & 0.006205 & 1.0   & 14.751522$^{***}$  & 0.000129 \\
+			Residual            & 0.545538 & 1297.0& ---      & --- \\
+			\bottomrule
+		\end{tabular}
+		\begin{tablenotes}
+			\footnotesize
+			\item Note: *** $p<0.01$, ** $p<0.05$, * $p<0.10$. Robust standard errors are used.
+		\end{tablenotes}
+	\end{threeparttable}
+\end{table*}
+
+%-----------------------------%
+% Tukey HSD Post-Hoc Test     %
+%-----------------------------%
+\begin{table*}[t]
+	\centering
+	\begin{threeparttable}
+		\caption{Tukey HSD Post-Hoc Test\label{tab:tukey}}
+		\begin{tabular}{lcccccc}
+			\toprule
+			\multicolumn{1}{c}{Group1} & Group2             & Mean Diff & p-adj  & Lower  & Upper & Reject Null\\
+			\midrule
+			Balanced               & Landlord-favourable  & 0.0069   & 0.1012 & -0.0009 & 0.0147  & False \\
+			Balanced               & Price-Bubble         & -0.0012  & 0.9082 & -0.0057 & 0.0033  & False \\
+			Balanced               & Renter-favourable    & -0.0049  & 0.0468 & -0.0097 & -0.0000 & True  \\
+			Landlord-favourable    & Price-Bubble         & -0.0081  & 0.0150 & -0.0150 & -0.0011 & True  \\
+			Landlord-favourable    & Renter-favourable    & -0.0118  & 0.0001 & -0.0190 & -0.0046 & True  \\
+			Price-Bubble           & Renter-favourable    & -0.0037  & 0.0243 & -0.0071 & -0.0003 & True  \\
+			\bottomrule
+		\end{tabular}
+		\begin{tablenotes}
+			\footnotesize
+			\item Note: The Tukey HSD Post-Hoc Test compares mean differences between groups at a family-wise error rate (FWER) of 0.05. 
+		\end{tablenotes}
+	\end{threeparttable}
+\end{table*}
+
 
 \begin{table}[h!]
 	\centering

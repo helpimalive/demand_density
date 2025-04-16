@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.3) (preloaded format=xelatex 2025.4.15)  15 APR 2025 18:16
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.3) (preloaded format=xelatex 2025.4.15)  16 APR 2025 11:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1061,6 +1061,11 @@ Package: wrapfig 2003/01/31  v 3.6
 \@authorfigboxdim=\skip103
 \biofigadjskip=\skip104
 )
+(C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex/latex/threeparttable\three
+parttable.sty
+Package: threeparttable 2003/06/13  v 3.0
+\@tempboxb=\box134
+)
 (C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex/latex/caption\subcaption.s
 ty
 Package: subcaption 2023/07/28 v1.6b Sub-captions (AR)
@@ -1069,7 +1074,7 @@ Package caption Info: New subtype `subfigure' on input line 238.
 Package caption Info: New subtype `subtable' on input line 238.
 \c@subtable=\count430
 )
-LaTeX Font Info:    Trying to load font information for T1+ptm on input line 21
+LaTeX Font Info:    Trying to load font information for T1+ptm on input line 24
 .
  (C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
@@ -1088,42 +1093,43 @@ LaTeX Warning: Unused global option(s):
 (wileyNJDv5_AMA.aux)
 \openout1 = `wileyNJDv5_AMA.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
+Package caption Info: threeparttable package is loaded.
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring OFF on input line 21.
+Package hyperref Info: Link coloring OFF on input line 24.
 Package microtype Info: Patching varwidth to enable character protrusion.
 \MT@vwid@leftmargin=\dimen330
 \MT@vwid@rightmargin=\dimen331
-LaTeX Info: Redefining \microtypecontext on input line 21.
-Package microtype Info: Applying patch `item' on input line 21.
-Package microtype Info: Applying patch `toc' on input line 21.
-Package microtype Info: Applying patch `eqnum' on input line 21.
-Package microtype Info: Applying patch `footnote' on input line 21.
-Package microtype Info: Applying patch `verbatim' on input line 21.
-LaTeX Info: Redefining \microtypesetup on input line 21.
+LaTeX Info: Redefining \microtypecontext on input line 24.
+Package microtype Info: Applying patch `item' on input line 24.
+Package microtype Info: Applying patch `toc' on input line 24.
+Package microtype Info: Applying patch `eqnum' on input line 24.
+Package microtype Info: Applying patch `footnote' on input line 24.
+Package microtype Info: Applying patch `verbatim' on input line 24.
+LaTeX Info: Redefining \microtypesetup on input line 24.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: No adjustment of tracking.
@@ -1176,7 +1182,7 @@ LaTeX Info: Redefining \BPBI on input line 129.
 LaTeX Info: Redefining \BHBI on input line 130.
 )
 \c@lstlisting=\count435
-LaTeX Font Info:    Trying to load font information for T1+phv on input line 56
+LaTeX Font Info:    Trying to load font information for T1+phv on input line 59
 .
 (C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1phv.fd
 File: t1phv.fd 2020/03/25 scalable font definitions for T1/phv.
@@ -1190,7 +1196,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 56.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 59.
 
  (C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -1198,7 +1204,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 56.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 59.
 
  (C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1206,12 +1212,12 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 (C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-Overfull \hbox (350.99213pt too wide) in paragraph at lines 56--56
+Overfull \hbox (350.99213pt too wide) in paragraph at lines 59--59
 [][] | || []|[][] 
  []
 
 
-Package hyperref Warning: Ignoring empty anchor on input line 59.
+Package hyperref Warning: Ignoring empty anchor on input line 62.
 
 
 
@@ -1219,7 +1225,7 @@ Package hyperref Warning: Ignoring empty anchor on input line 59.
 Overfull \vbox (29.44482pt too high) has occurred while \output is active []
 
 LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 7
-1.
+4.
 
 (C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
@@ -1250,12 +1256,12 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [2]
 
 [3]
-Underfull \hbox (badness 10000) detected at line 130
+Underfull \hbox (badness 10000) detected at line 133
 []
  []
 
 LaTeX Font Info:    Trying to load font information for T1+pcr on input line 13
-5.
+8.
 (C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
@@ -1284,20 +1290,20 @@ File: ../Figs/florida.png Graphic file (type bmp)
 Missing character: There is no ‑ in font ptmr8t!
 Missing character: There is no ‑ in font ptmr8t!
 
-Underfull \hbox (badness 10000) detected at line 174
+Underfull \hbox (badness 10000) detected at line 177
 []
  []
 
 
-Package caption Warning: \label without proper reference on input line 189.
+Package caption Warning: \label without proper reference on input line 192.
 See the caption package documentation for explanation.
 
 
 LaTeX Warning: Reference `tab:summary_stats' on page 5 undefined on input line 
-185.
+188.
 
 
-Underfull \hbox (badness 10000) detected at line 189
+Underfull \hbox (badness 10000) detected at line 192
 []
  []
 
@@ -1305,17 +1311,17 @@ Underfull \hbox (badness 10000) detected at line 189
 
 [5]
 
-Package caption Warning: \label without proper reference on input line 213.
+Package caption Warning: \label without proper reference on input line 216.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `fig:rdi_trend' on page 6 undefined on input line 207.
+LaTeX Warning: Reference `fig:rdi_trend' on page 6 undefined on input line 210.
 
 
 File: ../Figs/bar_total_density_year.png Graphic file (type bmp)
 <../Figs/bar_total_density_year.png>
 
-Underfull \hbox (badness 10000) detected at line 212
+Underfull \hbox (badness 10000) detected at line 215
 []
  []
 
@@ -1344,12 +1350,12 @@ Missing character: There is no   in font ptmr8t!
 
 
 [7]
-Underfull \hbox (badness 10000) detected at line 259
+Underfull \hbox (badness 10000) detected at line 262
 []
  []
 
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 275.
+put line 278.
 Missing character: There is no – in font ptmr8t!
 Missing character: There is no – in font ptmr8t!
 
@@ -1358,17 +1364,17 @@ Missing character: There is no – in font ptmr8t!
 Missing character: There is no — in font ptmr8t!
 Missing character: There is no — in font ptmr8t!
 
-Package caption Warning: \label without proper reference on input line 322.
+Package caption Warning: \label without proper reference on input line 328.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `fig:event_study' on page 9 undefined on input line 31
-6.
+LaTeX Warning: Reference `fig:event_study' on page 9 undefined on input line 32
+2.
 
 File: ../Figs/event_study.png Graphic file (type bmp)
 <../Figs/event_study.png>
 
-Underfull \hbox (badness 10000) detected at line 321
+Underfull \hbox (badness 10000) detected at line 327
 []
  []
 
@@ -1376,52 +1382,66 @@ Underfull \hbox (badness 10000) detected at line 321
 
 [9]
 
-Package caption Warning: \label without proper reference on input line 334.
+Package caption Warning: \label without proper reference on input line 416.
 See the caption package documentation for explanation.
 
 
 LaTeX Warning: Reference `tab:simplifiedmeans' on page 10 undefined on input li
-ne 329.
+ne 335.
 
 
-Underfull \hbox (badness 10000) detected at line 333
+Underfull \hbox (badness 10000) in paragraph at lines 355--355
+[]\T1/ptm/b/n/10 TABLE \T1/ptm/m/n/10 2 Mean Next-Year Real-Rent
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 378
 []
  []
 
 
-Package caption Warning: \label without proper reference on input line 352.
+Underfull \hbox (badness 10000) detected at line 404
+[]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 415
+[]
+ []
+
+
+Package caption Warning: \label without proper reference on input line 434.
 See the caption package documentation for explanation.
 
 
 LaTeX Warning: Reference `tab:matrixlabels' on page 10 undefined on input line 
-347.
+429.
 
 
-Underfull \hbox (badness 10000) detected at line 351
-[]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 373
-[]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 388
+Underfull \hbox (badness 10000) detected at line 433
 []
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-Missing character: There is no — in font ptmr8t!
 
-LaTeX Warning: Reference `fig:boxplot_group_rentgrowth' on page 10 undefined on
- input line 408.
+Underfull \hbox (badness 10000) detected at line 455
+[]
+ []
 
 
 
 [10]
+Underfull \hbox (badness 10000) detected at line 470
+[]
+ []
+
+Missing character: There is no — in font ptmr8t!
+
+LaTeX Warning: Reference `fig:boxplot_group_rentgrowth' on page 11 undefined on
+ input line 490.
+
 Missing character: There is no “ in font ptmr8t!
 Missing character: There is no ” in font ptmr8t!
 Missing character: There is no ’ in font ptmr8t!
@@ -1430,15 +1450,18 @@ Missing character: There is no — in font ptmr8t!
 Missing character: There is no — in font ptmr8t!
 
 
-[11] (wileyNJDv5_AMA.bbl
+[11]
 
-[12]
+[12] (wileyNJDv5_AMA.bbl
 Underfull \hbox (badness 2173) in paragraph at lines 65--78
 \T1/ptm/m/it/10 cil\T1/ptm/m/n/10 .  []$\T1/pcr/m/n/10 https :// www [] .nmhc [
 ] .org / research [] -insight / research [] -reports / us [] -needs [] -4 [] .3
  [] -million []
  []
 
+
+
+[13]
 Missing character: There is no ’ in font ptmr8t!
 Missing character: There is no “ in font ptmr8t!
 Missing character: There is no ” in font ptmr8t!
@@ -1447,38 +1470,35 @@ Missing character: There is no ’ in font ptmr8t!
 Missing character: There is no ‘ in font ptmr8t!
 Missing character: There is no ’ in font ptmr8t!
 
-Underfull \hbox (badness 1097) in paragraph at lines 477--477
+Underfull \hbox (badness 1097) in paragraph at lines 559--559
 \T1/ptm/b/n/10 How to cite this ar-ti-cle: \T1/ptm/m/n/10 Lar-riva M.. On sim-p
 li-fy-ing in-cre-men-tal remap-based trans-port schemes. \T1/ptm/m/it/10 J Com-
 put Phys.
  []
 
 
-Overfull \hbox (9.0pt too wide) in paragraph at lines 477--477
+Overfull \hbox (9.0pt too wide) in paragraph at lines 559--559
 [] [] 
  []
 
-
-
-[13]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 486.
+nput line 568.
 
-Underfull \hbox (badness 10000) detected at line 486
+Underfull \hbox (badness 10000) detected at line 568
 []
  []
 
 
 
 [14]
-Underfull \hbox (badness 10000) detected at line 562
+Underfull \hbox (badness 10000) detected at line 644
 []
  []
 
 
 
 [15]
-Underfull \hbox (badness 10000) detected at line 600
+Underfull \hbox (badness 10000) detected at line 682
 []
  []
 
@@ -1486,7 +1506,9 @@ Underfull \hbox (badness 10000) detected at line 600
 
 [16]
 
-[17] (wileyNJDv5_AMA.aux)
+[17]
+
+[18] (wileyNJDv5_AMA.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-03-26>
@@ -1506,12 +1528,12 @@ LaTeX Warning: There were undefined references.
 (\end occurred when \iftrue on line 4739 was incomplete)
 (\end occurred when \ifx on line 2 was incomplete) 
 Here is how much of TeX's memory you used:
- 21949 strings out of 405075
- 344393 string characters out of 5499361
- 795697 words of memory out of 5000000
- 48236 multiletter control sequences out of 15000+600000
+ 22018 strings out of 405075
+ 345728 string characters out of 5499361
+ 797781 words of memory out of 5000000
+ 48303 multiletter control sequences out of 15000+600000
  685424 words of font info for 104 fonts, out of 8000000 for 9000
  1374 hyphenation exceptions out of 8191
- 87i,11n,93p,1164b,991s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 87i,15n,93p,1164b,991s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on wileyNJDv5_AMA.pdf (17 pages).
+Output written on wileyNJDv5_AMA.pdf (18 pages).
