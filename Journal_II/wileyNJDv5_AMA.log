@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.3) (preloaded format=xelatex 2025.4.15)  16 APR 2025 11:28
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.3) (preloaded format=xelatex 2025.4.15)  18 APR 2025 14:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1182,7 +1182,7 @@ LaTeX Info: Redefining \BPBI on input line 129.
 LaTeX Info: Redefining \BHBI on input line 130.
 )
 \c@lstlisting=\count435
-LaTeX Font Info:    Trying to load font information for T1+phv on input line 59
+LaTeX Font Info:    Trying to load font information for T1+phv on input line 53
 .
 (C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1phv.fd
 File: t1phv.fd 2020/03/25 scalable font definitions for T1/phv.
@@ -1196,7 +1196,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 59.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 53.
 
  (C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -1204,7 +1204,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 59.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 53.
 
  (C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1212,20 +1212,27 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 (C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-Overfull \hbox (350.99213pt too wide) in paragraph at lines 59--59
+Missing character: There is no ‑ in font ptmr8t!
+Missing character: There is no ‑ in font ptmr8t!
+Missing character: There is no ’ in font ptmr8t!
+
+Overfull \hbox (350.99213pt too wide) in paragraph at lines 53--53
 [][] | || []|[][] 
  []
 
 
-Package hyperref Warning: Ignoring empty anchor on input line 62.
+Package hyperref Warning: Ignoring empty anchor on input line 56.
+
+
+Overfull \vbox (1.12047pt too high) has occurred while \output is active []
 
 
 
 
 Overfull \vbox (29.44482pt too high) has occurred while \output is active []
 
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 7
-4.
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 6
+9.
 
 (C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
@@ -1235,9 +1242,12 @@ File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 \openout3 = `wileyNJDv5_AMA.pag'.
 
 ]
-Missing character: There is no ’ in font ptmr8t!
-File: ../Figs/rdi_rent_growth_2024.png Graphic file (type bmp)
-<../Figs/rdi_rent_growth_2024.png>
+Missing character: There is no ‐ in font ptmr8t!
+Missing character: There is no ‐ in font ptmr8t!
+Missing character: There is no ‐ in font ptmr8t!
+Missing character: There is no ‐ in font ptmr8t!
+File: ../Figs/rdi_rent_growth_2024.pdf Graphic file (type pdf)
+<use ../Figs/rdi_rent_growth_2024.pdf>
 Missing character: There is no ‑ in font ptmr8t!
 Missing character: There is no ‑ in font ptmr8t!
 Missing character: There is no   in font ptmr8t!
@@ -1248,20 +1258,31 @@ Missing character: There is no ‑ in font ptmr8t!
 Missing character: There is no   in font ptmr8t!
 Missing character: There is no   in font ptmr8t!
 Missing character: There is no   in font ptmr8t!
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 
 
 [2]
+Missing character: There is no ‑ in font ptmr8t!
+Missing character: There is no ‐ in font ptmr8t!
+Missing character: There is no ’ in font ptmr8t!
+Missing character: There is no ‑ in font ptmr8t!
+Missing character: There is no ‑ in font ptmr8t!
+Missing character: There is no ‑ in font ptmr8t!
+Missing character: There is no ‐ in font ptmr8t!
+Missing character: There is no ‑ in font ptmr8t!
+Missing character: There is no — in font ptmr8t!
+Missing character: There is no ‐ in font ptmr8t!
+Missing character: There is no ‐ in font ptmr8t!
+Missing character: There is no ‐ in font ptmr8t!
+Missing character: There is no ‐ in font ptmr8t!
+
 
 [3]
-Underfull \hbox (badness 10000) detected at line 133
+Underfull \hbox (badness 10000) detected at line 124
 []
  []
 
-LaTeX Font Info:    Trying to load font information for T1+pcr on input line 13
-8.
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 12
+9.
 (C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
@@ -1270,8 +1291,6 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-Missing character: There is no ‐ in font ptmr8t!
-Missing character: There is no ‐ in font ptmr8t!
 Missing character: There is no ’ in font ptmr8t!
 Missing character: There is no ‐ in font ptmr8t!
 Missing character: There is no ‐ in font ptmr8t!
@@ -1290,135 +1309,125 @@ File: ../Figs/florida.png Graphic file (type bmp)
 Missing character: There is no ‑ in font ptmr8t!
 Missing character: There is no ‑ in font ptmr8t!
 
-Underfull \hbox (badness 10000) detected at line 177
+Underfull \hbox (badness 10000) detected at line 168
 []
  []
 
 
-Package caption Warning: \label without proper reference on input line 192.
-See the caption package documentation for explanation.
-
-
-LaTeX Warning: Reference `tab:summary_stats' on page 5 undefined on input line 
-188.
-
-
-Underfull \hbox (badness 10000) detected at line 192
+Underfull \hbox (badness 10000) detected at line 183
 []
  []
 
 
 
 [5]
+Underfull \hbox (badness 10000) detected at line 209
+[]
+ []
 
-Package caption Warning: \label without proper reference on input line 216.
-See the caption package documentation for explanation.
+Missing character: There is no – in font ptmr8t!
+Missing character: There is no – in font ptmr8t!
+Missing character: There is no – in font ptmr8t!
+Missing character: There is no – in font ptmr8t!
+Missing character: There is no – in font ptmr8t!
+Missing character: There is no – in font ptmr8t!
+Missing character: There is no – in font ptmr8t!
+Missing character: There is no – in font ptmr8t!
+Missing character: There is no – in font ptmr8t!
+Missing character: There is no – in font ptmr8t!
+Missing character: There is no Δ in font ptmr8t!
+File: ../Figs/rdi_growth_histogram.pdf Graphic file (type pdf)
+<use ../Figs/rdi_growth_histogram.pdf>
+File: ../Figs/rdi_trends_selected_msas.pdf Graphic file (type pdf)
+<use ../Figs/rdi_trends_selected_msas.pdf>
 
-
-LaTeX Warning: Reference `fig:rdi_trend' on page 6 undefined on input line 210.
-
-
-File: ../Figs/bar_total_density_year.png Graphic file (type bmp)
-<../Figs/bar_total_density_year.png>
-
-Underfull \hbox (badness 10000) detected at line 215
+Underfull \hbox (badness 10000) detected at line 246
 []
  []
 
 
 
 [6]
-File: ../Figs/phoenix_example.png Graphic file (type bmp)
-<../Figs/phoenix_example.png>
+Missing character: There is no Δ in font ptmr8t!
+Missing character: There is no Δ in font ptmr8t!
+Missing character: There is no Δ in font ptmr8t!
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 270.
+Missing character: There is no – in font ptmr8t!
+Missing character: There is no – in font ptmr8t!
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 Missing character: There is no ‑ in font ptmr8t!
+Missing character: There is no   in font ptmr8t!
+Missing character: There is no   in font ptmr8t!
+Missing character: There is no   in font ptmr8t!
+File: ../Figs/phoenix_example.pdf Graphic file (type pdf)
+<use ../Figs/phoenix_example.pdf>
+Missing character: There is no ‑ in font ptmr8t!
 Missing character: There is no ‑ in font ptmr8t!
 Missing character: There is no ‑ in font ptmr8t!
 Missing character: There is no Δ in font ptmr8t!
 Missing character: There is no ‑ in font ptmr8t!
-Missing character: There is no   in font ptmr8t!
-Missing character: There is no   in font ptmr8t!
-Missing character: There is no   in font ptmr8t!
-Missing character: There is no ‑ in font ptmr8t!
 Missing character: There is no ‑ in font ptmr8t!
 Missing character: There is no ‑ in font ptmr8t!
 Missing character: There is no Δ in font ptmr8t!
-Missing character: There is no ‑ in font ptmr8t!
-Missing character: There is no   in font ptmr8t!
-Missing character: There is no   in font ptmr8t!
-Missing character: There is no   in font ptmr8t!
+
+Underfull \hbox (badness 10000) detected at line 313
+[]
+ []
+
 
 
 [7]
-Underfull \hbox (badness 10000) detected at line 262
+Missing character: There is no — in font ptmr8t!
+Missing character: There is no — in font ptmr8t!
+
+Package caption Warning: \label without proper reference on input line 353.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `fig:event_study' on page 8 undefined on input line 34
+7.
+
+File: ../Figs/event_study.pdf Graphic file (type pdf)
+<use ../Figs/event_study.pdf>
+
+Underfull \hbox (badness 10000) detected at line 352
 []
  []
 
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 278.
-Missing character: There is no – in font ptmr8t!
-Missing character: There is no – in font ptmr8t!
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 
 
 [8]
-Missing character: There is no — in font ptmr8t!
-Missing character: There is no — in font ptmr8t!
 
-Package caption Warning: \label without proper reference on input line 328.
+Package caption Warning: \label without proper reference on input line 441.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `fig:event_study' on page 9 undefined on input line 32
-2.
+LaTeX Warning: Reference `tab:simplifiedmeans' on page 9 undefined on input lin
+e 360.
 
-File: ../Figs/event_study.png Graphic file (type bmp)
-<../Figs/event_study.png>
 
-Underfull \hbox (badness 10000) detected at line 327
+Underfull \hbox (badness 10000) in paragraph at lines 380--380
+[]\T1/ptm/b/n/10 TABLE \T1/ptm/m/n/10 5 Mean Next-Year Real-Rent
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 403
 []
  []
 
 
-
-[9]
-
-Package caption Warning: \label without proper reference on input line 416.
-See the caption package documentation for explanation.
-
-
-LaTeX Warning: Reference `tab:simplifiedmeans' on page 10 undefined on input li
-ne 335.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 355--355
-[]\T1/ptm/b/n/10 TABLE \T1/ptm/m/n/10 2 Mean Next-Year Real-Rent
- []
-
-
-Underfull \hbox (badness 10000) detected at line 378
+Underfull \hbox (badness 10000) detected at line 429
 []
  []
 
 
-Underfull \hbox (badness 10000) detected at line 404
-[]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 415
-[]
- []
-
-
-Package caption Warning: \label without proper reference on input line 434.
-See the caption package documentation for explanation.
-
-
-LaTeX Warning: Reference `tab:matrixlabels' on page 10 undefined on input line 
-429.
-
-
-Underfull \hbox (badness 10000) detected at line 433
+Underfull \hbox (badness 10000) detected at line 440
 []
  []
 
@@ -1426,25 +1435,51 @@ Underfull \hbox (badness 10000) detected at line 433
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Underfull \hbox (badness 10000) detected at line 455
+Package caption Warning: \label without proper reference on input line 459.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `tab:matrixlabels' on page 9 undefined on input line 4
+54.
+
+
+Underfull \hbox (badness 10000) detected at line 458
 []
  []
 
 
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[10]
-Underfull \hbox (badness 10000) detected at line 470
+
+Underfull \hbox (badness 10000) detected at line 480
 []
  []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Underfull \hbox (badness 10000) detected at line 495
+[]
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 Missing character: There is no — in font ptmr8t!
 
-LaTeX Warning: Reference `fig:boxplot_group_rentgrowth' on page 11 undefined on
- input line 490.
+
+[9]
+
+LaTeX Warning: Reference `fig:boxplot_group_rentgrowth' on page 10 undefined on
+ input line 515.
 
 Missing character: There is no “ in font ptmr8t!
 Missing character: There is no ” in font ptmr8t!
 Missing character: There is no ’ in font ptmr8t!
+
+
+[10]
 Missing character: There is no ’ in font ptmr8t!
 Missing character: There is no — in font ptmr8t!
 Missing character: There is no — in font ptmr8t!
@@ -1453,12 +1488,14 @@ Missing character: There is no — in font ptmr8t!
 [11]
 
 [12] (wileyNJDv5_AMA.bbl
-Underfull \hbox (badness 2173) in paragraph at lines 65--78
+Underfull \hbox (badness 2173) in paragraph at lines 88--101
 \T1/ptm/m/it/10 cil\T1/ptm/m/n/10 .  []$\T1/pcr/m/n/10 https :// www [] .nmhc [
 ] .org / research [] -insight / research [] -reports / us [] -needs [] -4 [] .3
  [] -million []
  []
 
+Missing character: There is no ‐ in font ptmr8t!
+Missing character: There is no – in font ptmr8t!
 
 
 [13]
@@ -1467,38 +1504,29 @@ Missing character: There is no “ in font ptmr8t!
 Missing character: There is no ” in font ptmr8t!
 )
 Missing character: There is no ’ in font ptmr8t!
-Missing character: There is no ‘ in font ptmr8t!
-Missing character: There is no ’ in font ptmr8t!
 
-Underfull \hbox (badness 1097) in paragraph at lines 559--559
-\T1/ptm/b/n/10 How to cite this ar-ti-cle: \T1/ptm/m/n/10 Lar-riva M.. On sim-p
-li-fy-ing in-cre-men-tal remap-based trans-port schemes. \T1/ptm/m/it/10 J Com-
-put Phys.
- []
-
-
-Overfull \hbox (9.0pt too wide) in paragraph at lines 559--559
+Overfull \hbox (9.0pt too wide) in paragraph at lines 585--585
 [] [] 
  []
 
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 568.
+nput line 594.
 
-Underfull \hbox (badness 10000) detected at line 568
+Underfull \hbox (badness 10000) detected at line 594
 []
  []
 
 
 
 [14]
-Underfull \hbox (badness 10000) detected at line 644
+
+[15]
+Underfull \hbox (badness 10000) detected at line 670
 []
  []
 
 
-
-[15]
-Underfull \hbox (badness 10000) detected at line 682
+Underfull \hbox (badness 10000) detected at line 708
 []
  []
 
@@ -1528,10 +1556,10 @@ LaTeX Warning: There were undefined references.
 (\end occurred when \iftrue on line 4739 was incomplete)
 (\end occurred when \ifx on line 2 was incomplete) 
 Here is how much of TeX's memory you used:
- 22018 strings out of 405075
- 345728 string characters out of 5499361
- 797781 words of memory out of 5000000
- 48303 multiletter control sequences out of 15000+600000
+ 22035 strings out of 405075
+ 346390 string characters out of 5499361
+ 797795 words of memory out of 5000000
+ 48319 multiletter control sequences out of 15000+600000
  685424 words of font info for 104 fonts, out of 8000000 for 9000
  1374 hyphenation exceptions out of 8191
  87i,15n,93p,1164b,991s stack positions out of 10000i,1000n,20000p,200000b,200000s

@@ -14,6 +14,36 @@ import statsmodels.formula.api as smf
 from statsmodels.stats.multicomp import pairwise_tukeyhsd
 import pandas as pd
 from statsmodels.tsa.arima.model import ARIMA
+import matplotlib as mpl
+
+mpl.rcParams.update(
+    {
+        # Use a serif font throughout
+        "font.family": "serif",
+        "font.serif": ["Times New Roman", "Times"],
+        "font.size": 10,  # 9 pt for axis labels/text
+        "axes.titlesize": 11,  # 10 pt for subplot titles
+        "axes.labelsize": 10,
+        "legend.fontsize": 9,
+        "xtick.labelsize": 9,
+        "ytick.labelsize": 9,
+        # Line widths and marker sizes
+        "lines.linewidth": 1.0,
+        "lines.markersize": 4,
+        "axes.linewidth": 0.8,
+        "grid.linewidth": 0.5,
+        # Ticks: inward, only bottom/left
+        "xtick.direction": "in",
+        "ytick.direction": "in",
+        "xtick.top": False,
+        "ytick.right": False,
+        # No fancy whitegrid—just light grey if you need
+        "axes.grid": False,
+        "grid.color": "0.85",
+        # Tight figure margins
+        "figure.autolayout": True,
+    }
+)
 
 
 def get_data(filter="top_100"):
@@ -121,9 +151,11 @@ def get_data(filter="top_100"):
         [
             "year",
             "msa",
+            "pop",
             "rent_growth",
             "real_rentpsf",
             "real_rent_growth",
+            "inventory",
             "RDI",
             "real_rent_growth_next_year",
             "real_relative_rent_growth",
@@ -461,7 +493,10 @@ def simplify_anova(df):
     print("\nNote: *** p < 0.01, ** p < 0.05, * p < 0.10.")
 
 
-def event_study(original):
+def event_study():
+    original = pl.read_csv(
+        Path(__file__).resolve().parent.parent / "data" / "supply_demand_annual.csv"
+    )
     holder = []
     original = original.with_columns(
         pl.when(pl.col("group") == "False-False")
@@ -558,40 +593,51 @@ def event_study(original):
     ]
     averaged_holder = holder.groupby("event").mean(numeric_only=True).reset_index()
     std_errors = holder.groupby("event").sem(numeric_only=True).reset_index()
+
     plt.figure(figsize=(10, 6))
     for event in averaged_holder["event"]:
         event_data = averaged_holder[averaged_holder["event"] == event]
         error_data = std_errors[std_errors["event"] == event]
-        plt.errorbar(
-            ["-2", "-1", "0", "1", "2"],
-            event_data[
-                [
-                    "rr_rent_growth_m2",
-                    "rr_rent_growth_m1",
-                    "rr_rent_growth_0",
-                    "rr_rent_growth_p1",
-                    "rr_rent_growth_p2",
-                ]
-            ].values.flatten(),
-            yerr=error_data[
-                [
-                    "rr_rent_growth_m2",
-                    "rr_rent_growth_m1",
-                    "rr_rent_growth_0",
-                    "rr_rent_growth_p1",
-                    "rr_rent_growth_p2",
-                ]
-            ].values.flatten(),
-            label=event,
-            capsize=5,
+        x_vals = np.array([-2, -1, 0, 1, 2])
+        y_vals = event_data[
+            [
+                "rr_rent_growth_m2",
+                "rr_rent_growth_m1",
+                "rr_rent_growth_0",
+                "rr_rent_growth_p1",
+                "rr_rent_growth_p2",
+            ]
+        ].values.flatten()
+        y_err = error_data[
+            [
+                "rr_rent_growth_m2",
+                "rr_rent_growth_m1",
+                "rr_rent_growth_0",
+                "rr_rent_growth_p1",
+                "rr_rent_growth_p2",
+            ]
+        ].values.flatten()
+
+        plt.plot(x_vals, y_vals, label=event)
+        plt.fill_between(
+            x_vals,
+            y_vals - y_err,
+            y_vals + y_err,
+            alpha=0.2,
+            label=f"{event} (95% CI)",
         )
 
     plt.xlabel("Years before and after segment change")
-    plt.xticks(["-2", "-1", "0", "1", "2"])
+    plt.xticks(x_vals)
     plt.ylabel("Real Rent Growth Relative to Median")
     plt.title("Real Rent Growth before and after a segment change")
     plt.legend(title="Segment switched into")
-    plt.savefig(Path(__file__).resolve().parent.parent / "Figs" / "event_study.png")
+    plt.savefig(
+        Path(__file__).resolve().parent.parent / "Figs" / "event_study.pdf",
+        format="pdf",
+        bbox_inches="tight",
+        pad_inches=0.02,
+    )
     plt.show()
 
     # Calculate differences in means and perform t-tests
@@ -667,15 +713,14 @@ def plot_national_averages():
     # Load preprocessed data
     df = pd.read_csv(
         Path(__file__).resolve().parent.parent / "data" / "preprocessed_data.csv"
-    )
-    df = df[df["year"] == 2023]
-    print(df.columns)
+    ).dropna()
 
     # Plot RDI vs Real Rent PSF for all MSAs
+    ds = df[df["year"] == 2023]
     plt.figure(figsize=(12, 8))
     plt.scatter(
-        df["RDI_growth"],
-        df["real_rent_growth_next_year"],
+        ds["RDI_growth"],
+        ds["real_rent_growth_next_year"],
     )
     plt.xlabel("Δ RDI (year t minus t‑1)")
     plt.ylabel("Real Rent Growth (year t)")
@@ -683,7 +728,7 @@ def plot_national_averages():
     plt.grid()
     plt.tight_layout()
     slope, intercept, r_value, p_value, std_err = linregress(
-        df["RDI_growth"], df["real_rent_growth_next_year"]
+        ds["RDI_growth"], ds["real_rent_growth_next_year"]
     )
     # Add text box with slope, R², and p-value
     textstr = f"β = {slope:.2f}\nR² = {r_value**2:.2f}\np = {p_value:.2e}"
@@ -696,21 +741,14 @@ def plot_national_averages():
         verticalalignment="top",
         bbox=dict(boxstyle="round", facecolor="white", alpha=0.5),
     )
-    # for i, msa in enumerate(df["msa"]):
-    #     plt.annotate(
-    #         msa,
-    #         (df["RDI_growth"].iloc[i], df["real_rent_growth_next_year"].iloc[i]),
-    #         fontsize=8,
-    #         alpha=0.7,
-    #     )
-    x_vals = np.linspace(df["RDI_growth"].min(), df["RDI_growth"].max(), 100)
+    x_vals = np.linspace(ds["RDI_growth"].min(), ds["RDI_growth"].max(), 100)
     y_vals = slope * x_vals + intercept
     plt.plot(
         x_vals, y_vals, color="red", label=f"Line of Best Fit (R²={r_value**2:.2f})"
     )
     # Calculate 95% confidence interval
-    y_pred = slope * df["RDI_growth"] + intercept
-    residuals = df["real_rent_growth_next_year"] - y_pred
+    y_pred = slope * ds["RDI_growth"] + intercept
+    residuals = ds["real_rent_growth_next_year"] - y_pred
     std_error = np.std(residuals)
     ci = 1.96 * std_error  # 95% confidence interval
 
@@ -723,8 +761,76 @@ def plot_national_averages():
         label="95% Confidence Interval",
     )
     plt.legend()
+    plt.title("Change in RDI (2023) vs. Real Rent Growth (2024)")
     plt.savefig(
-        Path(__file__).resolve().parent.parent / "Figs" / "rdi_rent_growth_2024.png"
+        Path(__file__).resolve().parent.parent / "Figs" / "rdi_rent_growth_2024.pdf",
+        format="pdf",
+        bbox_inches="tight",  # crop extra white
+        pad_inches=0.02,
+    )
+    plt.show()
+
+    # Plot a histogram of the change in RDI
+    plt.figure(figsize=(10, 6))
+    plt.hist(
+        df["RDI_growth"].dropna(), bins=30, color="blue", alpha=0.7, edgecolor="black"
+    )
+    plt.xlabel("Change in RDI (Δ RDI)")
+    plt.ylabel("Frequency")
+    plt.title("Histogram of Change in RDI: All MSAs (2012-2023)")
+    plt.grid(axis="y", alpha=0.75)
+    plt.tight_layout()
+    plt.savefig(
+        Path(__file__).resolve().parent.parent / "Figs" / "rdi_growth_histogram.pdf",
+        format="pdf",
+        bbox_inches="tight",  # crop extra white
+        pad_inches=0.02,
+    )
+    plt.show()
+
+    # Filter data for the year 2001
+    df_2001 = df[df["year"] == 2001]
+
+    # Identify MSAs with the least, middle, and greatest RDI values
+    least_rdi_msa = df_2001.loc[df_2001["RDI"].idxmin(), "msa"]
+    greatest_rdi_msa = df_2001.loc[df_2001["RDI"].idxmax(), "msa"]
+    middle_rdi_msa = df_2001.iloc[
+        (df_2001["RDI"].sort_values().reset_index(drop=True).index[len(df_2001) // 2])
+    ]["msa"]
+    # Calculate average RDI by year
+    avg_rdi_by_year = df.groupby("year")["RDI"].mean().reset_index()
+
+    # Plot the average RDI by year
+    # Filter data for these MSAs
+    selected_msas = [least_rdi_msa, middle_rdi_msa, greatest_rdi_msa]
+    df_selected = df[df["msa"].isin(selected_msas)]
+
+    # Plot RDI values over years for the selected MSAs
+    plt.figure(figsize=(10, 6))
+    for msa in selected_msas:
+        msa_data = df_selected[df_selected["msa"] == msa]
+        plt.plot(msa_data["year"], msa_data["RDI"], label=msa)
+
+    plt.plot(
+        avg_rdi_by_year["year"],
+        avg_rdi_by_year["RDI"],
+        label="Average RDI",
+        linestyle="--",
+        color="red",
+    )
+    plt.xlabel("Year")
+    plt.ylabel("RDI")
+    plt.title("RDI Values Over Years for Selected MSAs and Average")
+    plt.legend(title="MSA")
+    plt.grid()
+    plt.tight_layout()
+    plt.savefig(
+        Path(__file__).resolve().parent.parent
+        / "Figs"
+        / "rdi_trends_selected_msas.pdf",
+        format="pdf",
+        bbox_inches="tight",
+        pad_inches=0.02,
     )
     plt.show()
 
@@ -781,9 +887,7 @@ def plot_phoenix_supply_demand():
         color="red",
     )
     cy = df[df["year"] == df["year"].max()]
-    ax.plot(
-        cy["supply_growth"], cy["real_rentpsf"], "bo", label="Observed Equilibrium 2021"
-    )
+    ax.plot(cy["supply_growth"], cy["real_rentpsf"], "bo", label="Supply Shock 2021")
 
     ax.plot(
         dx["supply_growth"],
@@ -802,20 +906,74 @@ def plot_phoenix_supply_demand():
         )
     # Adding labels and title
     ax.set_xlabel("Quantity: RDI Growth and Supply Growth")
-    ax.set_ylabel("Rent per Square Foot")
+    ax.set_ylabel("Rent per Square Foot ($)")
     # ax.set_title("Supply and Demand Curves")
     ax.legend()
 
     # Display the plot
+
+    plt.savefig(
+        Path(__file__).resolve().parent.parent / "Figs" / "phoenix_example.pdf",
+        format="pdf",
+        bbox_inches="tight",  # crop extra white
+        pad_inches=0.02,
+    )
     plt.show()
 
 
+def show_summary_statistics():
+    df = pd.read_csv(
+        Path(__file__).resolve().parent.parent / "data" / "preprocessed_data.csv"
+    )
+    variables = [
+        "pop",
+        "inventory",
+        "supply_growth",
+        "RDI",
+        "RDI_growth",
+        "real_rentpsf",
+        "real_rent_growth",
+    ]
+    summary = df[variables].describe().transpose()
+    summary["median"] = df[variables].median()
+    summary["missing_values"] = df[variables].isnull().sum()
+    print(
+        summary[
+            [
+                "mean",
+                "std",
+                "min",
+                "25%",
+                "50%",
+                "75%",
+                "max",
+                "median",
+                "missing_values",
+            ]
+        ]
+    )
+    # Print records where RDI is greatest and least
+    df = df.dropna()
+    print("Record with greatest RDI:")
+    print(df.loc[df["RDI_growth"].idxmax()])
+    print("\nRecord with least RDI:")
+    print(df.loc[df["RDI_growth"].idxmin()])
+
+    # Print records where real_rent_growth is greatest and least
+    print("\nRecord with greatest real_rent_growth:")
+    print(df.loc[df["real_rent_growth"].idxmax()])
+    print("\nRecord with least real_rent_growth:")
+    print(df.loc[df["real_rent_growth"].idxmin()])
+
+
 # df = get_data(filter="top_100").to_pandas()
+# show_summary_statistics()
 # dx = supply_demand_annual(get_data().to_pandas())
+# event_study()
 # plot_phoenix_supply_demand()
 # simplify_anova(dx.dropna())
-# plot_national_averages()
+plot_national_averages()
 # choropleth_rdi_by_msa()
 # predict_future(how="naive")
 # summary = predict_future(how="ARIMA")
-compare_predictions()
+# compare_predictions()

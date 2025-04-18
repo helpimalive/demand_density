@@ -18,45 +18,45 @@ apacite.bst [2013/07/21 v6.03 APA bibliography style]
 Warning--`others' not consistent with 6th ed. of the APA Manual
 Warning--`others' not consistent with 6th ed. of the APA Manual
 Warning--`others' not consistent with 6th ed. of the APA Manual
-You've used 28 entries,
+You've used 30 entries,
             6949 wiz_defined-function locations,
-            1425 strings with 14936 characters,
-and the built_in function-call counts, 47113 in all, are:
-= -- 5856
-> -- 361
-< -- 2164
-+ -- 2136
-- -- 62
-* -- 2903
-:= -- 8569
-add.period$ -- 109
-call.type$ -- 28
-change.case$ -- 476
+            1437 strings with 15557 characters,
+and the built_in function-call counts, 50787 in all, are:
+= -- 6314
+> -- 385
+< -- 2353
++ -- 2325
+- -- 66
+* -- 3137
+:= -- 9276
+add.period$ -- 118
+call.type$ -- 30
+change.case$ -- 510
 chr.to.int$ -- 0
-cite$ -- 56
-duplicate$ -- 1202
-empty$ -- 1976
-format.name$ -- 572
-if$ -- 9141
+cite$ -- 60
+duplicate$ -- 1290
+empty$ -- 2120
+format.name$ -- 610
+if$ -- 9837
 int.to.chr$ -- 0
-int.to.str$ -- 84
+int.to.str$ -- 90
 missing$ -- 0
-newline$ -- 666
-num.names$ -- 224
-pop$ -- 894
+newline$ -- 717
+num.names$ -- 240
+pop$ -- 1010
 preamble$ -- 1
-purify$ -- 112
+purify$ -- 120
 quote$ -- 0
-skip$ -- 3189
+skip$ -- 3367
 stack$ -- 0
-substring$ -- 2338
-swap$ -- 709
-text.length$ -- 59
+substring$ -- 2543
+swap$ -- 748
+text.length$ -- 63
 text.prefix$ -- 0
 top$ -- 1
-type$ -- 2240
+type$ -- 2400
 warning$ -- 3
-while$ -- 193
+while$ -- 205
 width$ -- 0
-write$ -- 789
+write$ -- 848
 (There were 3 warnings)

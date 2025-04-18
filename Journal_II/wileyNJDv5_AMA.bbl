@@ -52,6 +52,29 @@ Albouy, D.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Bank%
+}{%
+Bank%
+}{%
+{\protect \APACyear {2025}}%
+}]{%
+worldbankPopDensity}
+\APACinsertmetastar {%
+worldbankPopDensity}%
+\begin{APACrefauthors}%
+Bank, T\BPBI W.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2025}{}{}.
+\newblock
+\APACrefbtitle {Population density (people per sq.\,km of land area).}
+  {Population density (people per sq.\,km of land area).}
+\newblock
+\APACrefnote{\url{https://data.worldbank.org/indicator/EN.POP.DNST?most_recent_value_desc=true&locations=XD}}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Betancourt%
 }{%
 Betancourt%
@@ -97,6 +120,42 @@ Bureau, U\BPBI C.%
   renters are cost-burdened.}
 \newblock
 \APACrefnote{\url{https://www.census.gov/library/stories/2022/03/nearly-half-of-renter-households-are-cost-burdened.html}}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Calder‐Wang%
+\ \BBA {} Kim%
+}{%
+Calder‐Wang%
+\ \BBA {} Kim%
+}{%
+{\protect \APACyear {2024}}%
+}]{%
+calder2024coordinated}
+\APACinsertmetastar {%
+calder2024coordinated}%
+\begin{APACrefauthors}%
+Calder‐Wang, S.%
+\BCBT {}\ \BBA {} Kim, G\BPBI H.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2024}{}{}.
+\newblock
+\APACrefbtitle {Coordinated vs Efficient Prices: The Impact of Algorithmic
+  Pricing on Multifamily Rental Markets} {Coordinated vs efficient prices: The
+  impact of algorithmic pricing on multifamily rental markets}\
+  \APACbVolEdTR{}{}.
+\newblock
+\APACaddressInstitution{}{Cowles Foundation for Research in Economics, Yale
+  University}.
+\newblock
+\begin{APACrefURL}
+  \url{https://cowles.yale.edu/sites/default/files/2024-05/Calder-Wang-main.pdf}
+  \end{APACrefURL}
+\newblock
+\APACrefnote{Working paper. Shows that RMS adoption drives occupancy toward a
+  fixed 95–97\% target, rendering occupancy a blunt demand metric}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%

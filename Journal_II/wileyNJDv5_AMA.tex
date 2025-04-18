@@ -7,14 +7,14 @@
 \usepackage{float}%
 \graphicspath{{../Figs/}}
 
-\articletype{Article Type}%
+\articletype{Original Article}%
 
 \received{Date Month Year}
 \revised{Date Month Year}
 \accepted{Date Month Year}
-\journal{Journal}
+\journal{Real Estate Econ.}
 \volume{00}
-\copyyear{2023}
+\copyyear{2025}
 \startpage{1}
 
 \raggedbottom
@@ -23,37 +23,31 @@
 
 \begin{document}
 
-\title{Overpriced and Undersupplied: Density as a Measure of Demand in Large US Apartment Markets}
+\title{Crowded and Expensive: Density Shift as a Measure of Demand in Large US Apartment Markets}
 
-\author[1]{Matt Larriva}
-
-\author[2,3]{Author Two}
-
-\author[3]{Author Three}
+\author[1]{Matt Larriva, CFA}
 
 \authormark{LARRIVA}
-\titlemark{Overpriced and Undersupplied: Density as a Measure of Demand in Large US Apartment Markets}
+\titlemark{Density Shift as a Measure of Demand}
 
-\address[1]{\orgdiv{Real Estate}, \orgname{Brookfield	}, \orgaddress{\state{New York}, \country{United States}}}
+\address[1]{\orgdiv{Department of Real Estate Investments}, \orgname{Brookfield Asset Management}, \orgaddress{\state{New York}, \country{United States}}}
 
-\address[2]{\orgdiv{Department Name}, \orgname{Institution Name}, \orgaddress{\state{State Name}, \country{Country Name}}}
 
-\address[3]{\orgdiv{Department Name}, \orgname{Institution Name}, \orgaddress{\state{State Name}, \country{Country Name}}}
-
-\corres{Corresponding author Matt Larriva; \email{matt.larriva@brookfield.com}}
+\corres{\email{matt.larriva@brookfield.com}}
 
 \presentaddress{250 Vesey Street, New York NY 10281 }
 
 %\fundingInfo{Text}
 %\JELinfo{ejlje}
 
-\abstract[Abstract]{We introduce an empirical measure of multifamily demand, based on density changes, and offer evidence of its segmenting and predictive power. Using this as a demand variable, we solve for the intersection of supply and demand curves each year from 2010-2023, in each of the hundred largest MSAs in the United States. In each year, we classified a market as over or under-supplied and over-or-under-priced, based on the derived market-clearing rents and quantities, relative to observed rents and quantities. Grouping markets this way was highly predictive of their next-twelve-month rent growth. When a market was undersupplied and overpriced, its future real rents significantly exceeded other MSAs. With this, we provide a better way to understand consumer housing demand; their indifference curve of space versus price; and the impact of supply shocks.}
+\abstract[Abstract]{We develop a density-based demand index for rental housing and show how it segments and forecasts market behavior. Drawing on annual population‑per‑unit changes, we derive supply and demand curves for the 100 largest U.S. metropolitan areas (2010-2023) and compute each market’s implied clearing rent and inventory. By comparing these benchmarks with the actual rents and units, we classify each market-year as over- or undersupplied and over- or under-priced. These four regimes strongly predict twelve-month rent growth: undersupplied/over-priced markets see the fastest real-rent gains, while oversupplied/under-priced markets lag. Our methodology offers a clear, actionable measure of consumer housing demand, illuminates household space-vs-price trade-offs, and quantifies the ripple effects of new supply.}
 
-\keywords{keyword1, keyword2, keyword3, keyword4}
+\keywords{density, supply and demand, multifamily rent-growth, apartment markets}
 
 \jnlcitation{\cname{%
 \author{Larriva M.}}.
-\ctitle{On simplifying ‘incremental remap’-based transport schemes.} \cjournal{\it J Comput Phys.} \cvol{2021;00(00):1--18}.}
+\ctitle{Density Shift as a Measure of Demand} \cjournal{\it Real Estate Econ.}
+\cvol{2021;00(00):1--18}.}
 
 
 \maketitle
@@ -65,41 +59,36 @@
 \setcounter{footnote}{1}
 
 \section{Introduction}\label{sec1}
-Housing shortages and affordability concerns have risen to the forefront of policy debates in major urban markets. In the United States, housing production has consistently lagged population growth for decades, contributing to an estimated national shortfall of 4.4 million housing units \cite{betancourt2022us}. Nearly half of U.S. renter households now spend over 30\% of their income on housing \cite{censusNearlyHalf}, and from 2000 to 2024, the consumer price index (CPI) for shelter exceeded the CPI for all other items by 30\% \cite{stlouisfedConsumerPrice}. At the same time, select high-growth regions have recently experienced rent declines due to a glut of new supply \cite{mott2024ThisRegion}. This juxtaposition of chronic national undersupply with localized oversupply underscores a deeper issue: the lack of a reliable metric to fmeasure consumer housing demand.
+Housing shortages and affordability concerns have risen to the forefront of policy debates in major urban markets. In the United States, housing production has consistently lagged population growth for decades, contributing to an estimated national shortfall of 4.4 million housing units \cite{betancourt2022us}. Nearly half of U.S. renter households now spend over 30\% of their income on housing \cite{censusNearlyHalf}, and from 2000 to 2024, the consumer price index (CPI) for shelter exceeded the CPI for all other items by 30\% \cite{stlouisfedConsumerPrice}. At the same time, select high-growth regions have recently experienced rent declines due to a glut of new supply \cite{mott2024ThisRegion}. This juxtaposition of chronic national undersupply with localized oversupply underscores a deeper issue: the lack of a reliable metric to measure consumer housing demand.
 
-Traditional indicators of demand in multifamily real estate, such as occupancy rates and net absorption, are informative but fundamentally supply-constrained. Occupancy rates are naturally bounded at 100\%, and absorption cannot exceed the rate of new deliveries \cite{mueller1999real}. These constraints obscure excess demand: when all available units are occupied, latent demand becomes invisible to market participants and researchers alike \cite{gabriel2001rental, sirmans1991determinants, pyhrr1999real}. This problem inhibits clear attribution of rent increases to supply versus demand dynamics \cite{pennington2021does, molloy2022housing}. Moreover, ongoing academic debate persists around whether rising rents in constrained markets result more from supply-side limitations \cite{saiz2010geographic} or from heightened demand for desirable locations \cite{davidoff2015supply}. Without a transparent, consistent demand-side metric, attempts to assess equilibrium conditions remain incomplete.
+Traditional indicators of demand in multifamily real estate, such as occupancy rates and net absorption, are informative but fundamentally supply-constrained. Occupancy rates are naturally bounded at 100\%, and absorption cannot exceed the rate of new deliveries \cite{mueller1999real}. These constraints obscure excess demand: when all available and affordable units are occupied, latent demand becomes invisible to market participants and researchers alike \cite{gabriel2001rental, sirmans1991determinants, pyhrr1999real}. This problem inhibits clear attribution of rent increases to supply versus demand dynamics \cite{pennington2021does, molloy2022housing}. Moreover, ongoing academic debate persists around whether rising rents in constrained markets result more from supply-side limitations \cite{saiz2010geographic} or from heightened demand for desirable locations \cite{davidoff2015supply}. Without a transparent, consistent demand-side metric, attempts to assess equilibrium conditions remain incomplete.
 
-In this paper, we introduce a novel empirical measure of rental housing demand: the \textit{rental density index} (RDI), defined as the number of people per occupied rental unit in a given metropolitan area. Unlike occupancy or absorption, RDI is not inherently bounded and therefore can reflect intensifying demand even in fully occupied markets. The conceptual foundation is straightforward: as rents rise, renters economize on space---whether by delaying household formation, taking on roommates, or crowding---thus increasing the ratio of people per rental unit. By observing shifts in RDI over time, we capture underlying demand pressures that traditional metrics obscure.
+In this paper, we introduce a novel empirical measure of rental housing demand: the \textit{rental density index} (RDI), defined as the number of people per existing rental unit in a given metropolitan area. Unlike occupancy or absorption, RDI is not inherently bounded and therefore can reflect intensifying demand even in fully occupied markets. The conceptual foundation is straightforward: as rents rise, renters economize on space---whether by delaying household formation, taking on roommates, or crowding---thus increasing the ratio of people per rental unit. By observing shifts in RDI over time, we capture underlying demand pressures that traditional metrics obscure.
 
-Historical trends support this framing. For most of its history, the U.S. was less densely populated than its high-income peers, but in 2003 it surpassed their average with 31.69 people per square mile \cite{ourworldindataPopulationDensity}, and is now projected to be 30\% denser by century’s end. Over this same period, rental prices have outpaced both wages and non-shelter inflation \cite{feiveson2024rent, stlouisfedConsumerPrice}, with younger cohorts increasingly preferring rental housing \cite{fanniemaeConsumersFeeling}.
+Present trends support this reframing of demand, as density, rental prices, and rental preferences have all shifted meaningfully. For most of its history, the U.S. was less densely populated than its high-income peers, but in 1992 this changed. In that year, the US grew to 28 people per square kilometer, outpacing the High Income countries whose average was 23 people per square kilometer \cite{worldbankPopDensity}. The most recent figures report the US with a density of 36 and the High Income nations with an average density of 27.  Over this same period, rental prices have outpaced both wages and non-shelter inflation \cite{feiveson2024rent, stlouisfedConsumerPrice}, with younger cohorts increasingly preferring rental housing \cite{fanniemaeConsumersFeeling}.
 
-Prior literature in urban economics and real estate has studied density extensively, often linking increased geographic density to higher wages and productivity due to agglomeration effects \cite{titman2024city, liu2018vertical}. However, these studies generally define density in terms of population or units per unit of land area. Our focus differs: we define density as the quotient of population over occupied rental units, which provides a clearer window into the number of people actively competing for housing. Unlike geographic density, this measure is directly responsive to shifts in demand, especially during periods of supply constraint.
+Prior literature in urban economics and real estate has studied density extensively, often linking increased geographic density to higher wages, rents, and productivity due to agglomeration effects \cite{titman2024city, liu2018vertical}. However, these studies generally define density in terms of spatial density: people per square mile or  apartments per square mile. Our focus differs: we define density as the quotient of population over occupied rental units, which provides a clearer window into the number of people actively competing for housing. Unlike geographic density, this measure is directly responsive to shifts in demand, especially during periods of supply constraint or shocks. 
 
-The behavioral assumption underpinning our framework is that consumers prefer more space to less, all else equal \cite{molloy2022housing, muth1969cities}. As rents rise, renters adjust by reducing their consumption of space---whether by sharing units, moving to smaller dwellings, or relocating to more affordable markets. These changes manifest in a rising RDI. Conversely, when housing becomes more affordable or new units come online, households tend to occupy more space, reducing the RDI. Thus, changes in RDI can serve as a proxy for shifts in the quantity of housing demanded at prevailing prices.
+Our framework builds on the standard assumption that, all else equal, households derive higher utility from larger living spaces \cite{muth1969cities,molloy2022housing}. In high-rent markets, however, the extra price per square foot may eventually exceed the marginal benefit of additional space. To economize, renters may respond by sharing units (adding roommates), downsizing to smaller apartments, or relocating to less expensive regions. Conversely, when real rents fall or new supply comes online, the marginal cost of extra space might drop below its marginal utility, enticing households to spread out, move to larger units, or reduce unit‐share.The aggregate effect of these choices combined with the new supply additions or subtractions determines the direction the Rental Density Index change. Because the RDI directly captures these space‐consumption margins, year‐over‐year changes in RDI proxy for shifts in aggregate housing demand at prevailing prices.
 
-To formalize this approach, we construct demand curves using annual panel data for the 100 largest U.S. metropolitan statistical areas (MSAs) from 2010 through 2022. For each MSA-year observation, we calculate the year-over-year change in RDI (\( \Delta \text{RDI} \)) and plot it against real rent per square foot. We intersect this derived demand curve with a similarly constructed supply curve---new supply as a percent of existing stock versus real rent---to solve for an implied equilibrium price and quantity. We then classify each market-year observation as oversupplied or undersupplied, and overpriced or underpriced, based on its observed rents and unit count relative to equilibrium.
-
-This empirical strategy reveals systematic rent growth differences across market classifications. We find that markets classified as both undersupplied and underpriced experience significantly higher next-year rent growth than those that are oversupplied and overpriced. For example, markets in the former category averaged annual real rent increases approximately two percentage points higher than those in the latter. These findings suggest that density-based classifications have predictive power and reflect latent demand more accurately than traditional indicators alone.
-
-Our contributions are twofold. First, we introduce a scalable, empirically tractable measure of housing demand that is not artificially bounded by supply. Second, we demonstrate its utility in identifying disequilibrium conditions and forecasting future rent trajectories. For policymakers, the RDI provides a more precise tool to detect emerging housing shortages and to evaluate the impact of zoning or subsidy interventions. For investors and developers, it offers a forward-looking indicator of rent pressure and helps mitigate the cyclical risks of overbuilding or underbuilding.
-
-Ultimately, by reframing housing demand in terms of people per unit rather than units per land area, this paper provides a new lens for understanding real estate market dynamics in an era of constrained affordability and population growth.
-
-Our article also speaks to the broader debate of rent affordability, the need for more housing, and the local differences inherent in such discussions. From the owner/developer standpoint, a more useful measure of demand could dampen real estate development cycles, which often result in unexpectedly depressed rents. From the renter's standpoint, a more useful demand metric can help identify locations where rent is likely to grow, maintain, or decrease, relative to inflation.  
+\begin{figure}[htb!]
+	\centerline{\includegraphics[height=20pc]{rdi_rent_growth_2024.pdf}}
+	\caption{Relationship between annual change in Rental‑Density‑Index (horizontal) and annual real rent growth (vertical) across the 100 largest MSAs in 2024. Slope = 0.41 (p < 0.01).\label{fig:rdi_national}}
+\end{figure}
 
 Focusing on a panel of the 100 largest metropolitan statistical areas (MSA), their population, rental unit count, and change in rent, we estimate implied demand of each MSA at each of 10 years from 2013 to 2023. We plot this against rent to derive a demand curve. We then take the observed supply growth of each MSA and plot it against rent to derive a supply curve. The intersection of those two curves is the derived point of supply and rent equilibrium. Comparing a market's actual rent to the market's derived rent suggests over or underpricing. Comparing a market's actual supply growth to the market's derived supply growth provides evidence of over or undersupply. We show that by segmenting markets as over or undersupplied and over or underpriced each year, we can effectively forecast the market's next-year rent growth.  
 
-\begin{figure*}[h]
-	\centerline{\includegraphics[width=\textwidth,height=25pc]{rdi_rent_growth_2024.png}}
-	\caption{Relationship between annual change in Rental‑Density‑Index (horizontal) and annual real rent growth (vertical) across the 100 largest MSAs in 2024. Slope = 0.41 (p < 0.01).\label{fig:rdi_national}}
-\end{figure*}
+This empirical strategy reveals consistent rent growth differences across market classifications. We find that markets classified as both overpriced and undersupplied experience significantly higher next-year rent growth than those that are underpriced and oversupplied. Specifically, markets in the former category averaged next-year relative real rent growth approximately 1.25\% higher than those in the latter category. These findings suggest that density-based classifications have predictive power and reflect latent demand more accurately than traditional indicators alone.
 
+Our paper makes two principal contributions. First, we introduce the Rental Density Index (RDI), a novel, supply‑unbounded metric of housing demand that can be computed at scale from readily available population and unit‐stock data. Second, we demonstrate RDI’s empirical value: it not only uncovers market disequilibrium but also delivers out‑of‑sample forecasts of twelve‑month rent growth with statistically significant accuracy.
 
-In the next section we discuss measures of demand before presenting details on our proposed variable. The data section describes and analyzes the density data we used, while the Emperical Analysis section presents evidence and illustrates statistical tests performed to evaluate the validity of the classifications. The final section discusses the results and concludes. 
+These findings carry immediate applications for all housing‐market stakeholders. For policymakers, RDI functions as an early‑warning gauge of emerging shortages, enabling targeted zoning reforms, calibrated subsidy programs, or expedited permitting in precisely those submarkets under the greatest pressure—and subsequently measuring the efficacy of those measures. Institutional investors and residential developers can embed RDI trends into feasibility and risk models, avoiding the twin hazards of overbuilding in cooling metros or underbuilding in tightening ones. Finally, RDI sharpens the housing‐affordability debate by identifying the locales where rent increases are most likely to outstrip income growth, thereby guiding tenant‐protection policies, rent‐assistance programs, and other affordability interventions to the communities that need them most.
+
+In the next section we discuss research on other measures of demand before presenting details on our proposed variable. The Data and Descriptive Statistics section describes and analyzes the density data we used, while the Emperical Analysis section presents evidence and illustrates statistical tests performed to evaluate the validity of the classifications. The final sections discuss the results of our tests before concluding with implications and further research suggestions. 
 
 \section{Background and Literature Review}\label{sec2}
 
-The multifamily housing market has long relied on a narrow set of demand indicators, notably occupancy rates and net absorption. These indicators, while intuitively appealing and widely used by practitioners, are fundamentally constrained by the available stock of housing units. Occupancy rates are capped at 100\%, and net absorption can never exceed new supply \cite{mueller1999real, gabriel2001rental}. Consequently, they fail to capture periods of latent demand---where prospective tenants are turned away or forced to cohabitate because no units remain available \cite{sirmans1991determinants, pyhrr1999real}.
+The multifamily housing market has long relied on a narrow set of demand indicators, notably occupancy rates and net absorption. These indicators, while intuitively appealing and widely used by practitioners, are fundamentally constrained by the available stock of housing units. Occupancy rates cannot exceed 100\%, and net absorption can never exceed new supply \cite{mueller1999real, gabriel2001rental}. Consequently, they fail to capture periods of latent demand where tenants cohabitate. \cite{sirmans1991determinants, pyhrr1999real}. Occupancy in particular has become an especially measure of demand since the advent of algorithmic pricing systems. So-called revenue management systems adjust rent pricing with the goal of keeping occupancy very near 96\%, \cite{calder2024coordinated} the result of which is a variable with little signal. 
 
 This measurement limitation is consequential. Numerous empirical studies find that real rent growth often occurs in periods of high occupancy, yet they typically ascribe this to supply constraints rather than to excess demand \cite{goodman1992rental, wheaton1991realestate}. While such studies validate the predictive value of these metrics, their theoretical bounds limit their explanatory reach, particularly when trying to assess equilibrium or derive true demand elasticities \cite{pennington2021does, molloy2022housing}.
 
@@ -120,33 +109,37 @@ In sum, our contribution lies in reinterpreting a well-studied spatial metric---
 \section{Data and Descriptive Statistics}\label{sec3}
 Our data are sourced primarily from Costar and supplemented with inflation measures from the U.S. Bureau of Labor Statistics. We restrict our analysis to the 100 largest U.S. metropolitan statistical areas (MSAs) by multifamily inventory as of 2001, ensuring robust sample representation and consistency over time.
 
-To normalize pricing data across time, we convert all nominal rent figures into real terms using the Consumer Price Index for All Urban Consumers (CPI-U), all-items, provided by the BLS. Although MSA-level inflation indices excluding rent would be ideal, such data are unavailable at a consistent and granular level for our study period. Therefore, real effective rent per square foot and rent growth metrics are adjusted using national CPI.
+To normalize pricing data across time, we convert all nominal rent figures into real terms using the Consumer Price Index for All Urban Consumers (CPI-U), all-items, provided by the BLS. Although MSA-level inflation indices excluding rent would be ideal, such data are unavailable at a consistent and granular level for our study period. Therefore, real effective rent per square foot and rent growth metrics are adjusted using national CPI. 
 
-Our novel demand variable, the Rental Density Index (RDI), is calculated by dividing population by occupied rental inventory at the MSA level. We compute its year-over-year percentage change---\(\Delta\text{RDI}\)---to reflect demand dynamics more accurately. This measure avoids the bounded structure of traditional demand indicators like occupancy and absorption, which cap at 100\%.
+We convert the rent growth figures to nominal as well, by subtracting the annual growth in CPI. Finally, we standardize the figures by subtracting the year's median rent growth. We do this to remove the impact of national macroeconomic shocks (i.e., COVID-19). This also serves to stationarize the data and remove the autoregressive tendencies of timeseries data.
 
-Other variables include supply growth, computed as the ratio of delivered units to the previous year's inventory, and lagged variables such as one-year-ahead rent growth and prior-year rent growth. We also calculate interaction terms for use in forecasting models.
+Our novel demand variable, the Rental Density Index (RDI), is calculated by dividing population by rental inventory at the MSA level. We compute its year-over-year percentage change---\(\Delta\text{RDI}\)---to reflect demand dynamics more accurately. This measure avoids the bounded structure of traditional demand indicators like occupancy and absorption, which cap at 100\%.
 
-Importantly, no records were discarded during preprocessing. Additionally, although prior drafts excluded outliers such as post-Katrina New Orleans, our final dataset retains all MSAs and years to preserve fidelity to real-world dynamics.
+Other variables include supply growth, computed as the ratio of delivered units to the previous year's inventory, and lagged variables prior-year rent growth. 
 
-\begin{table*}[t]%
+Importantly, no records were discarded during preprocessing. Our dataset retains all 100 MSAs over all years between 2000 and 2024. Some records are extreme, such as post-Katrina New Orleans, but we preserve fidelity to real-world dynamics by keeping them.
+
+\begin{table*}[hbt]%
 \centering
 \caption{Key variables used in the empirical analysis.\label{tab:variables}}%
 \begin{tabular*}{\textwidth}{@{\extracolsep\fill}ll@{\extracolsep\fill}}%
 \toprule
 \textbf{Variable} & \textbf{Description} \\
 \midrule
-\texttt{rentpsf}               & Real effective rent per square foot \\
-\texttt{rent\_growth}          & Real year‐over‐year rent growth \\
+\texttt{CPI}					& Consumer Price Index for All Urban Consumers: All Items in U.S. City Average \\
+\texttt{real\_rentpsf}               & Costar's Rent Per Square Foot divided by indexed \texttt{CPI}\\
+\texttt{real\_rent\_growth}          & Costar's Effective Rent Growth 12M less Annual percent change in \texttt{CPI} \\
+\texttt{relative\_real\_rent\_growth}          & \texttt{real\_rent\_growth} less that year's median \texttt{real\_rent\_growth}\\
 \texttt{inventory}             & Existing multifamily rental stock \\
 \texttt{delivered}             & Units delivered in the current year \\
 \texttt{pop}                   & Total MSA population (Costar/Moody’s) \\
-\texttt{total\_density}        & Population divided by rental inventory \\
-\texttt{total\_density\_growth}& Year‐over‐year percentage change in density \\
-\texttt{supply\_growth}        & Delivered units as \% of lagged stock \\
-\texttt{demand\_pct}           & Share of inventory represented by unit demand \\
+\texttt{RDI}			       & Population divided by rental inventory \\
+\texttt{delta\_RDI}	           & Year‐over‐year percentage change in \texttt{RDI} \\
+\texttt{supply\_growth}        & Delivered units as \% of prior year's \texttt{inventory}\\
 \bottomrule
 \end{tabular*}
 \end{table*}
+
 
 \subsection{Variable Construction}
 The key outcome variable in this study is the \textit{Rental Density Index} (RDI), calculated as the total population divided by the number of rental housing units in a given MSA-year:
@@ -155,10 +148,8 @@ The key outcome variable in this study is the \textit{Rental Density Index} (RDI
 	\text{RDI}_{it} = \frac{\text{Population}_{it}}{\text{Rental Units}_{it}}.
 \end{equation*}
 	
-
-Within the top 100 MSAs,this metric ranges from 7 to 65. It reflects the number of people per rental unit. While the RDI itself is useful for identifying how tight a market is at a given point in time, its absolute level is shaped by long-run demographic and structural trends such as rentership rates and changes in household formation. Accordingly, we focus on the \textit{year-over-year change in RDI}, denoted \( \Delta \text{RDI}_{it} = \text{RDI}_{it} - \text{RDI}_{it-1} \), which serves as our novel demand variable.
-
-\begin{figure*}[t]
+Within the 100 MSAs in the study,this metric ranges from 6.8 to 64.8. It reflects the number of people per rental unit. 
+\begin{figure*}[hbt!]
 	\centering
 	
 	\begin{subfigure}[b]{0.32\textwidth}
@@ -178,47 +169,90 @@ Within the top 100 MSAs,this metric ranges from 7 to 65. It reflects the number 
 	\label{fig:choropleth_panel}
 \end{figure*}
 
+
+While the RDI itself is useful for identifying how tight a market is at a given point in time, its absolute level is shaped by long-run demographic and structural trends such as rentership rates and changes in household formation. Accordingly, we focus on the \textit{year-over-year change in RDI}:
+
+\begin{equation*}
+	\Delta \text{RDI}_{it} = \text{RDI}_{it} - \text{RDI}_{it-1}.
+\end{equation*}
+
+The RDI and can move sharply in times of natural disasters, as shown by the figures in table \ref{tab:extremes}, but so can real rent growth.  
+
+\begin{table}[ht]
+	\centering
+	\caption{Extreme observations in RDI and real rent growth}
+	\label{tab:extremes}
+	\begin{tabular}{lllrcrr}
+		\toprule
+		Category & Year & MSA & Population & Inventory & RDI & Real rent growth \\
+		\midrule
+		Highest RDI                   & 2001 & Long Island-NY           & 2,785,876 &  43,235 & 64.435 & -0.0079     \\
+		Lowest RDI                    & 2024 & Fargo-ND                 &   264,314 &  38,634 &  6.841 & -0.0128      \\
+		Highest real rent growth      & 2006 & New Orleans-LA           & 1,055,155 &  57,719 & 18.281 & 0.2809   \\
+		Lowest  real rent growth      & 2005 & New Orleans-LA           & 1,300,912 &  57,679 & 22.554 & -0.1915  \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+
+
 The change in RDI (\( \Delta \text{RDI} \)) offers several advantages. First, it mitigates issues of nonstationarity in the level RDI, enabling cross-market comparison. Second, it reduces the impact of varying rentership percentages across cities. Most importantly, \( \Delta \text{RDI} \) captures demand pressure on housing stock: when it rises, it indicates more people are consolidating into fewer rental units, signaling tightening demand. When it falls, it implies renters are spreading out and absorbing more space, suggesting slack.
 
 Theoretically, under the assumption that renters prefer more space to less, the change in RDI reveals when prices are sufficiently high to induce cohabitation and when price relief allows individuals to live separately. Thus, \( \Delta \text{RDI} \), especially when combined with rent growth, helps identify periods of excess demand or slack and allows us to trace out implied demand curves. As we show later, this approach allows us to locate the intersection between demand and supply curves using observable outcomes.
 
-To evaluate housing market outcomes, we construct two additional variables: (1) real rent per square foot, adjusted for inflation using the CPI-All Urban Consumers (CPI-U) from BLS; and (2) net new supply, measured as the year-over-year percentage change in the rental housing stock.
 
 \subsection{Summary Statistics}
-Table~\ref{tab:summary_stats} provides descriptive statistics for the key variables across the full panel. On average, the RDI across all MSAs and years is approximately 2.31 persons per rental unit, with a standard deviation of 0.35. The average real rent per square foot is \$1.22 (2022 dollars), and the average annual growth in rental supply is 1.9\%.
+Table \ref{tab:summary_stats} provides descriptive statistics for the key variables across the full panel. On average, the RDI across all MSAs and years is approximately 2.31 persons per rental unit, with a standard deviation of 0.35. The average real rent per square foot is \$1.22, and the average annual growth in rental supply is 1.9\%. The missing records exist only in the beginning or ending years as the prior period and next-period values do not exist. 
 
-\begin{table*}[t]
+\begin{table}[hbt!]
 	\centering
-	\caption*{Summary Statistics (2010--2022)}\label{tab:summary_stats}
-	\begin{tabular}{lrrrr}
-		\toprule
-		Variable & Mean & Std. Dev. & Min & Max \\
-		\midrule
-		Rental Density Index (RDI) & 2.31 & 0.35 & 1.61 & 3.24 \\
-		\(\Delta\) RDI (YoY) & 0.013 & 0.041 & -0.14 & 0.16 \\
-		Real Rent (\$/sqft) & 1.22 & 0.29 & 0.74 & 2.35 \\
-		Annual Rental Supply Growth (\%) & 1.9 & 1.3 & -1.4 & 5.7 \\
-		\bottomrule
-	\end{tabular}
-\end{table*}
+	\caption{Summary Statistics (2000--2024)}\label{tab:summary_stats}
+	\begin{tabular}{lrrrrrrrr}
+	\toprule
+	Variable & Mean       & Std.\ Dev.\   & Min       & 25th Pct.  & Median     & 75th Pct.  & Max        & Missing \\
+	\midrule
+	Population          & 2,012,976  & 2,169,231  &   175,653  &   758,060  & 1,224,731  & 2,422,333  & 14,849,020 &   0  \\
+	Inventory           &   133,435  &   190,354  &    20,783  &    35,735  &    66,261  &   153,774  &  1,572,425 &   0  \\
+	Supply growth       &      0.0169&      0.0152&     –0.0173&     0.0057 &    –0.0059 &     0.0239 &     0.1061 & 100  \\
+	RDI                 &     18.259 &      6.852 &      6.841 &    13.737  &    17.067  &    20.967  &    64.795  &   0  \\
+	RDI growth          &     –0.0078&      0.0151&     –0.1895&    –0.0163 &    –0.0059 &     0.0022 &     0.0512 & 100  \\
+	Real rent (\$/sqft) &      0.9489&      0.3551 &      0.5584&     0.7164 &     0.8373 &     1.0436 &     2.9110 &   0  \\
+	Real rent growth    &     –0.0035&      0.0300 &     –0.1915&    –0.0215 &    –0.0046 &     0.0114 &     0.2809 & 100  \\
+	\bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{Coverage and Representativeness}
-The sample includes approximately 1,300 MSA-year observations, covering a mix of large coastal cities, fast-growing Sun Belt metros, and slower-growing Midwestern regions. Together, these MSAs account for over 70\% of the U.S. renter population, providing a representative snapshot of national rental dynamics. Where necessary, we impute missing rental stock values using linear interpolation and verify consistency against HUD SOCDS Building Permit Database and ACS 5-year estimates.
+The sample includes approximately 1,300 MSA-year observations, covering a mix of large coastal cities, fast-growing Sun Belt metros, and slower-growing Midwestern regions. Together, these MSAs account for over 16 million of the 22 million U.S. apartment units, providing a representative snapshot of national rental dynamics. 
 
 \subsection{Preliminary Observations}
 
-Figure~\ref{fig:rdi_trend} shows the national trend in RDI over the sample period. A steady upward trajectory is evident from 2010 to 2019, peaking just prior to the COVID-19 pandemic, after which a mild correction occurs. This pattern suggests persistent pressure in many housing markets, especially where rental construction lagged population growth.
+Figure \ref{fig:sidebyside} traces the national Rental Density Index (RDI) from 2000 to 2024. Contrary to conventional wisdom about an acute housing shortage, we observe a steady decline in people per unit (from roughly 16 people-per-unit in 2000 to 13 people-per-unit in 2024). A companion histogram of ΔRDI is stationary but skewed slightly negative, confirming that most years see more units added per new person than vice versa.
 
-\begin{figure}[h]
+\begin{figure}[!htb]
 	\centering
-	\includegraphics[width=0.8\textwidth]{bar_total_density_year.png}
-	\caption*{National Average RDI, 2010--2022}
-	\label{fig:rdi_trend}
+	\begin{subfigure}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{rdi_growth_histogram.pdf}
+		\caption{A histogram of the annual change in RDI across 100 MSAs in the years 2001-2023. The outlier to the left is New  Orleans in 2004, due to Huricane Katrina.\label{fig:rdi_hist}}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{rdi_trends_selected_msas.pdf}
+		\caption{A line graph showing the RDI values (population divided by apartment units) for the MSAs that were the min, max, and median in year 2001}
+		\label{fig:rdi_lines}
+	\end{subfigure}
+	\caption{Histogram of Change in RDI, and Line Graph of RDI}
+	\label{fig:sidebyside}
 \end{figure}
+This pattern poses a puzzle: if supply growth has outstripped population growth, why is everyone still worried about shortages? Occupancy simply tells you \textit{that} units are full--it cannot distinguish whether they are full by choice (everyone prefers roommates) or by necessity (everyone must share).
 
-These preliminary findings reinforce the utility of RDI as a metric for identifying demand-side imbalances in housing markets. In the next section, we outline our empirical framework for estimating market equilibria using this metric.
+By contrast, year-over-year changes in RDI isolate the relative pace of new households versus new units. When rents rise faster than new construction can absorb, ΔRDI spikes, revealing latent demand pressure. When deliveries overwhelm demand, ΔRDI falls, signaling surplus. In the next section we exploit that property, regressing ΔRDI on rent and supply growth to recover the underlying demand curve.
 
-\section{Emperical Framework}{sec4}
+
+
+\section{Emperical Framework}
 Our objective is to evaluate \( \Delta \text{RDI} \) as a robust measure of housing demand by deriving supply and demand curves for each metropolitan area and year. For each of the 100 largest MSAs, and for each year from 2010 through 2022, we construct demand and supply curves using observed data on real rent per square foot and changes in RDI and supply.
 
 \subsection{Constructing the Demand and Supply Curves}
@@ -229,81 +263,72 @@ We estimate reduced-form linear models to approximate demand and supply response
 	\text{SupplyGrowth}_{it} &= \gamma_i + \delta_i p_{it} + \nu_{it} && \text{(Supply)}
 \end{align*}
 
-\begin{figure}[t]
+The coefficient \( \beta_i \) reflects how changes in rent induce renters to economize on space by cohabitating, while \( \delta_i \) captures developers' responsiveness to rent signals via new supply. We estimate these relationships using ordinary least squares (OLS) for each market-year observation, pooling data from the prior ten years.
+
+The intersection of these two curves yields the market's implied equilibrium rent \( p^* \) and equilibrium inventory growth \( q^* \). We compare these values to observed market outcomes \( (p, q) \) in that year. If \( p^* > p \), we infer that the market is underpriced; if \( p^* < p \), it is overpriced. Likewise, if \( q^* > q \), the market is deemed undersupplied; otherwise, oversupplied.The following pseudocode outlines the segmentation logic applied to each market-year observation:
+\begin{algorithm}[h!]
+	\caption{\enskip Segment markets into price–supply regimes}\label{alg:market_segmentation}
+	\begin{algorithmic}
+		\For{$y \gets 2010$ \textbf{to} 2022}
+		\For{each market $m$ in the top 100 MSAs}
+		\State estimate demand curve: $\Delta\text{RDI} \gets f\!\bigl(\text{rent}_{\text{psf}}\bigr)$
+		\State estimate supply curve: $\text{inventory growth} \gets g\!\bigl(\text{rent}_{\text{psf}}\bigr)$
+		\State solve for equilibrium $(q^{\ast},p^{\ast})$
+		\State obtain actual values $(q,p)$
+		\If{$q^{\ast} > q$}
+		\If{$p^{\ast} > p$}
+		\State assign $(m,y)$ to \texttt{UndersuppliedUnderpriced}
+		\Else
+		\State assign $(m,y)$ to \texttt{UndersuppliedOverpriced}
+		\EndIf
+		\Else
+		\If{$p^{\ast} > p$}
+		\State assign $(m,y)$ to \texttt{OversuppliedUnderpriced}
+		\Else
+		\State assign $(m,y)$ to \texttt{OversuppliedOverpriced}
+		\EndIf
+		\EndIf
+		\EndFor
+		\EndFor
+	\end{algorithmic}
+\end{algorithm}
+
+By way of example, we can look at a supply shock as experienced by Phoenix in 2022 (figure \ref{fig:phoenix_mechanism}). The supply line is constructed by regressing the change in supply and the real rent per-square-foot. The demand line is constructed by regressing the change in RDI and the real rent per-square-foot. Both use the data from 2012-2021. Their intersection (red circle) gives the implied 2021 market‑clearing rent (\$0.76 / sf) and inventory growth (0.74 \%). But the observed values are in 2022 (blue circle) were both greater greater than derived, so this market would be classified as overpriced and oversupplied, characteristics of a bubble. It is more overpriced than it is oversupplied, and so it returns to equilibrium through a price decline in the years that follow. 
+
+\begin{figure}[htb!]
 	\centering
-	\includegraphics[width=0.95\linewidth]{phoenix_example.png}
+	\includegraphics[width=0.95\linewidth]{phoenix_example.pdf}
 	\caption{Recovering equilibrium for a high growth market.  
 		Black circles: supply growth vs real rent 2012‑2022, Phoenix MSA.  
 		Green circles: Rental‑Density‑Index growth (ΔRDI) vs real rent, same years.  
-		Lines are OLS fits; the intersection (red circle) gives the implied 2022 market‑clearing rent (\$0.76 / sf)  
-		and inventory growth (0.74 \%). Both observed values are greater than derived, so this market would be classified as 'bubble pricing.' 
-		Purple circles: the observed rent declined, recovering from the excess supply with lower real rent prices}
+}
 	\label{fig:phoenix_mechanism}
 \end{figure}
 
-The coefficient \( \beta_i \) reflects how changes in rent induce renters to economize on space by cohabitating, while \( \delta_i \) captures developers' responsiveness to rent signals via new supply. We estimate these relationships using ordinary least squares (OLS) for each market-year observation, pooling data from the prior ten years.
 
-The intersection of these two curves yields the market's implied equilibrium rent \( p^* \) and equilibrium inventory growth \( q^* \). We compare these values to observed market outcomes \( (p, q) \) in that year. If \( p^* > p \), we infer that the market is underpriced; if \( p^* < p \), it is overpriced. Likewise, if \( q^* > q \), the market is deemed undersupplied; otherwise, oversupplied.
+These states correspond to economic intuition. Overpriced and undersupplied markets---what we refer to as \textit{landlord-favorable} markets---are expected to exhibit stronger rent growth in the following year as prices can adjust faster than supply can be added. Conversely, oversupplied and underpriced markets---\textit{renter-favorable} markets---should experience weaker or negative rent growth for the same reason: prices can adjust faster than more people can arrive. The final two situations are partial disequilibria and their next year depends on which factor is more out of line with observed values. Overpriced and oversupplied markets are similar to late-cycle bubbles, while underpriced undersupplied markets are are similar to early-cycle growth. 
 
-This yields four stylized market states:
-\begin{itemize}
-\item Overpriced and Oversupplied
-\item Overpriced and Undersupplied
-\item Underpriced and Oversupplied
-\item Underpriced and Undersupplied
-\end{itemize}
-
-These states correspond to economic intuition. Underpriced and undersupplied markets---what we refer to as \textit{landlord-favorable} markets---are expected to exhibit stronger rent growth in the following year as constrained supply and low prices lead to upward adjustment. Conversely, overpriced and oversupplied markets---\textit{renter-favorable} markets---should experience weaker or negative rent growth. The remaining two quadrants are indeterminate and suggest partial disequilibria.
-
-We frame this as a partial equilibrium exercise, in which observed price and quantity may deviate from the implied market-clearing levels due to frictions such as construction lags, policy constraints, or imperfect price discovery \cite{wheaton1991realestate, glaeser2019rethinking}.
-
-\begin{table*}[h!]
+\begin{table}[h!]
 	\centering
-	\caption*{Hypothesized Next-Year Rent Growth by Market Classification}
+	\caption{Hypothesized Next-Year Rent Growth by Market Classification}
 	\begin{tabular}{cc|c|c|}
 		\multicolumn{2}{c}{} & \multicolumn{2}{c}{\textbf{Pricing}} \\
 		\multicolumn{2}{c}{} & \textbf{Overpriced} & \textbf{Underpriced} \\
 		\cmidrule{3-4}
-		\multirow{2}{*}{\textbf{Supply}} & \textbf{Oversupplied} & Neutral & Renter-Favorable \\
+		\multirow{2}{*}{\textbf{Supply}} & \textbf{Oversupplied} & Neutral  & Renter-Favorable \\
 		\cmidrule{2-4}
-		& \textbf{Undersupplied} & Landlord-Favorable & Neutral \\
+		& \textbf{Undersupplied} & Landlord-Favorable & Neutral or \\
 		\bottomrule
 	\end{tabular}
-\end{table*}
+\end{table}
 
-\subsection{Market Segmentation Algorithm}
+We frame this as a partial equilibrium exercise, in which observed price and quantity may deviate from the implied market-clearing levels due to frictions such as construction lags, policy constraints, or imperfect price discovery \cite{wheaton1991realestate, glaeser2019rethinking}.
 
-The following pseudocode outlines the segmentation logic applied to each market-year observation:
-\begin{algorithm}
-\caption{\enskip Segment markets into price–supply regimes}\label{alg:market_segmentation}
-\begin{algorithmic}
-\For{$y \gets 2010$ \textbf{to} 2022}
-  \For{each market $m$ in the top 100 MSAs}
-    \State estimate demand curve: $\Delta\text{RDI} \gets f\!\bigl(\text{rent}_{\text{psf}}\bigr)$
-    \State estimate supply curve: $\text{inventory growth} \gets g\!\bigl(\text{rent}_{\text{psf}}\bigr)$
-    \State solve for equilibrium $(q^{\ast},p^{\ast})$
-    \State obtain actual values $(q,p)$
-    \If{$q^{\ast} > q$}
-      \If{$p^{\ast} > p$}
-        \State assign $(m,y)$ to \texttt{UndersuppliedUnderpriced}
-      \Else
-        \State assign $(m,y)$ to \texttt{UndersuppliedOverpriced}
-      \EndIf
-    \Else
-      \If{$p^{\ast} > p$}
-        \State assign $(m,y)$ to \texttt{OversuppliedUnderpriced}
-      \Else
-        \State assign $(m,y)$ to \texttt{OversuppliedOverpriced}
-      \EndIf
-    \EndIf
-  \EndFor
-\EndFor
-\end{algorithmic}
-\end{algorithm}
+
 
 This segmentation yields market classifications that form the basis for our predictive rent growth analysis in the following section.
 
-\section{Results}{sec5}
+\section{Results}
 
 
 This section presents empirical findings from our market classification framework. Using the derived supply and demand curves, we compute equilibrium prices (\( p^* \)) and quantities (\( q^* \)) for each of the 100 largest MSAs from 2010 to 2022. By comparing \( (p^*, q^*) \) to the observed market outcomes \( (p, q) \), we segment markets into four states based on whether they are overpriced and/or oversupplied.
@@ -319,11 +344,13 @@ We define the event year $t=0$ as the first year an MSA is classified as Overpri
 
 This structure ensures that the rent growth observed at $t+1$ and $t+2$ is entirely out-of-sample with respect to the classification year $t=0$. To contextualize the results, we compare these patterns to MSAs that never entered the Overpriced \& Oversupplied regime during the study period, as well as to those that experienced alternative classification transitions.
 
+%PLACEHOLDER
+%INCLUDE THE RESULTS VS ARIMA AND NAIVE MODELING
 Figure~\ref{fig:event_study} displays average real rent growth by event year for each group.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.8\textwidth]{event_study.png}
+	\includegraphics[width=0.8\textwidth]{event_study.pdf}
 	\caption*{Event study of average real rent growth before and after entry into the Overpriced \& Oversupplied regime ($t=0$).}
 	\label{fig:event_study}
 \end{figure}
@@ -495,7 +522,8 @@ The spread in median relative rent growth between landlord-favorable and renter-
 While the groupings are not evenly distributed across years, this reflects underlying market behavior rather than methodological bias. In early years such as 2011, few MSAs exhibit characteristics of overpriced and oversupplied markets, consistent with post-crisis housing conservatism. By contrast, between 2020 and 2022, the vast majority of MSAs fall into the “Price Bubble” category, despite negative or flat rent growth. This asymmetry suggests the framework captures real cyclical shifts, where high observed rents and heavy supply growth outpace renter willingness or ability to absorb space. The sharp contrast between high pricing and poor performance in these years further reinforces the framework’s value in signaling impending cooling phases or market corrections.
 
 \subsection{Predictive Power and Caveats}
-
+% PLACEHOLDER
+%Table 4 – Forecast‑accuracy comparison (RMSE & MAE) vs naïve and AR(1) benchmarks%
 We estimated a linear model using 2010--2022 data to forecast 2023 rent growth. The model included an interaction term between implied demand, supply growth, and contemporaneous rent growth. Despite this model’s simplicity—relying only on a single interaction variable—it achieved an out-of-sample $R^2$ of 0.31 when predicting next-year rent growth.
 
 To evaluate economic significance, we compared the top 20 MSAs by predicted growth to the bottom 20. The top group saw next-year rent growth that exceeded the bottom group by 246 basis points. This suggests the implied demand signal can be used to rank markets by expected future performance, offering both interpretability and predictive power.
