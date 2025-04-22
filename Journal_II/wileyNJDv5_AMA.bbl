@@ -340,7 +340,7 @@ Green%
 Green%
 \ \protect \BOthers {.}}{%
 {\protect \APACyear {2002}}%
-}]{%
+{\protect \APACexlab {{\protect \BCnt {1}}}}}]{%
 green2002measuring}
 \APACinsertmetastar {%
 green2002measuring}%
@@ -351,12 +351,41 @@ Green, R\BPBI K.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
-\APACrefYearMonthDay{2002}{}{}.
+\APACrefYearMonthDay{2002{\protect \BCnt {1}}}{}{}.
 \newblock
 {\BBOQ}\APACrefatitle {Measuring the elasticity of demand for housing services}
   {Measuring the elasticity of demand for housing services}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Journal of Urban Economics}{52}{2}{210--227}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Green%
+, Malpezzi%
+\BCBL {}\ \BBA {} Mayo%
+}{%
+Green%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2002}}%
+{\protect \APACexlab {{\protect \BCnt {2}}}}}]{%
+green}
+\APACinsertmetastar {%
+green}%
+\begin{APACrefauthors}%
+Green, R\BPBI K.%
+, Malpezzi, S.%
+\BCBL {}\ \BBA {} Mayo, S\BPBI K.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2002{\protect \BCnt {2}}}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Metropolitan Housing Prices and the Demand for Housing}
+  {Metropolitan housing prices and the demand for housing}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Urban Studies}{39}{3}{455--467}.
+\newblock
+\begin{APACrefDOI} 10.1080/00420980220112799 \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -440,7 +469,34 @@ Malpezzi%
 \ \BBA {} Green%
 }{%
 {\protect \APACyear {1996}}%
-}]{%
+{\protect \APACexlab {{\protect \BCnt {1}}}}}]{%
+malpezzi}
+\APACinsertmetastar {%
+malpezzi}%
+\begin{APACrefauthors}%
+Malpezzi, S.%
+\BCBT {}\ \BBA {} Green, R\BPBI K.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1996{\protect \BCnt {1}}}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Measuring the Price Elasticity of Demand for Housing
+  Services} {Measuring the price elasticity of demand for housing
+  services}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of Housing Economics}{5}{4}{369--398}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Malpezzi%
+\ \BBA {} Green%
+}{%
+Malpezzi%
+\ \BBA {} Green%
+}{%
+{\protect \APACyear {1996}}%
+{\protect \APACexlab {{\protect \BCnt {2}}}}}]{%
 malpezzi1996rent}
 \APACinsertmetastar {%
 malpezzi1996rent}%
@@ -450,7 +506,7 @@ Malpezzi, S.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
-\APACrefYearMonthDay{1996}{}{}.
+\APACrefYearMonthDay{1996{\protect \BCnt {2}}}{}{}.
 \newblock
 {\BBOQ}\APACrefatitle {Rent control and rental housing quality: A note on the
   effects of New York City’s 1971 law} {Rent control and rental housing
@@ -642,7 +698,7 @@ Rosenthal%
 Rosenthal%
 }{%
 {\protect \APACyear {1997}}%
-}]{%
+{\protect \APACexlab {{\protect \BCnt {1}}}}}]{%
 rosenthal1997housing}
 \APACinsertmetastar {%
 rosenthal1997housing}%
@@ -651,13 +707,39 @@ Rosenthal, S\BPBI S.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
-\APACrefYearMonthDay{1997}{}{}.
+\APACrefYearMonthDay{1997{\protect \BCnt {1}}}{}{}.
 \newblock
 {\BBOQ}\APACrefatitle {Housing demand and expenditures: evidence from the
   Consumer Expenditure Survey} {Housing demand and expenditures: evidence from
   the consumer expenditure survey}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Review of Economics and Statistics}{79}{2}{330--335}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Rosenthal%
+}{%
+Rosenthal%
+}{%
+{\protect \APACyear {1997}}%
+{\protect \APACexlab {{\protect \BCnt {2}}}}}]{%
+rosenthal}
+\APACinsertmetastar {%
+rosenthal}%
+\begin{APACrefauthors}%
+Rosenthal, S\BPBI S.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1997{\protect \BCnt {2}}}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Housing Services and the Investment Aspect of
+  Homeownership} {Housing services and the investment aspect of
+  homeownership}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of Urban Economics}{41}{3}{324--350}.
+\newblock
+\begin{APACrefDOI} 10.1006/juec.1996.2013 \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%

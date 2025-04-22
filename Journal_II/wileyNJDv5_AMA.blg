@@ -14,49 +14,54 @@ Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'wiz_functions' (item size: 4) to 9000 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Database file #1: wileyNJD-APA.bib
+Illegal end of database file---line 592 of file wileyNJD-APA.bib
+ : 
+ : 
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
 apacite.bst [2013/07/21 v6.03 APA bibliography style]
 Warning--`others' not consistent with 6th ed. of the APA Manual
 Warning--`others' not consistent with 6th ed. of the APA Manual
 Warning--`others' not consistent with 6th ed. of the APA Manual
-You've used 30 entries,
+You've used 33 entries,
             6949 wiz_defined-function locations,
-            1437 strings with 15557 characters,
-and the built_in function-call counts, 50787 in all, are:
-= -- 6314
-> -- 385
-< -- 2353
-+ -- 2325
-- -- 66
-* -- 3137
-:= -- 9276
-add.period$ -- 118
-call.type$ -- 30
-change.case$ -- 510
+            1456 strings with 15979 characters,
+and the built_in function-call counts, 56695 in all, are:
+= -- 7104
+> -- 431
+< -- 2625
++ -- 2591
+- -- 75
+* -- 3555
+:= -- 10259
+add.period$ -- 130
+call.type$ -- 33
+change.case$ -- 609
 chr.to.int$ -- 0
-cite$ -- 60
-duplicate$ -- 1290
-empty$ -- 2120
-format.name$ -- 610
-if$ -- 9837
+cite$ -- 66
+duplicate$ -- 1439
+empty$ -- 2350
+format.name$ -- 680
+if$ -- 11024
 int.to.chr$ -- 0
-int.to.str$ -- 90
+int.to.str$ -- 111
 missing$ -- 0
-newline$ -- 717
-num.names$ -- 240
-pop$ -- 1010
+newline$ -- 794
+num.names$ -- 264
+pop$ -- 1073
 preamble$ -- 1
-purify$ -- 120
+purify$ -- 132
 quote$ -- 0
-skip$ -- 3367
+skip$ -- 3783
 stack$ -- 0
-substring$ -- 2543
-swap$ -- 748
-text.length$ -- 63
+substring$ -- 2835
+swap$ -- 847
+text.length$ -- 69
 text.prefix$ -- 0
 top$ -- 1
-type$ -- 2400
+type$ -- 2640
 warning$ -- 3
-while$ -- 205
+while$ -- 229
 width$ -- 0
-write$ -- 848
-(There were 3 warnings)
+write$ -- 942
+(There was 1 error message)

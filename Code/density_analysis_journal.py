@@ -572,9 +572,9 @@ def event_study():
         pl.when(pl.col("group") == "False-False")
         .then(pl.lit("UnderpricedUndersupplied"))
         .when(pl.col("group") == "True-False")
-        .then(pl.lit("OverpricedUndersupplied"))
+        .then(pl.lit("Landlord-Favorable"))
         .when(pl.col("group") == "False-True")
-        .then(pl.lit("UnderpricedOversupplied"))
+        .then(pl.lit("Renter-Favorable"))
         .when(pl.col("group") == "True-True")
         .then(pl.lit("OverpricedOversupplied"))
         .otherwise(pl.lit("Unknown"))
@@ -582,8 +582,8 @@ def event_study():
     )
 
     for event in [
-        "OverpricedUndersupplied",
-        "UnderpricedOversupplied",
+        "Landlord-Favorable",
+        "Renter-Favorable",
         # "OverpricedOversupplied",
         # "UnderpricedUndersupplied",
         "same",
@@ -598,12 +598,11 @@ def event_study():
         if event != "same":
 
             event_years = (
-                df
-                # .filter(pl.col("transition").shift(-1).over("msa") == "same")
+                # df.filter(pl.col("transition").shift(-1).over("msa") == "same")
                 # .filter(pl.col("transition").shift(-2).over("msa") == "same")
                 # .filter(pl.col("transition").shift(1).over("msa") == "same")
                 # .filter(pl.col("transition").shift(2).over("msa") == "same")
-                .filter(pl.col("transition") == "switch")
+                df.filter(pl.col("transition") == "switch")
                 .filter(pl.col("group") == event)
                 .select(pl.col("msa"), pl.col("year").alias("event_year"))
             )
@@ -657,9 +656,7 @@ def event_study():
         holder = holder + pivoted.to_dicts()
     holder = pd.DataFrame(holder)
     holder = holder[
-        holder["event"].isin(
-            ["same", "OverpricedUndersupplied", "UnderpricedOversupplied"]
-        )
+        holder["event"].isin(["same", "Landlord-Favorable", "Renter-Favorable"])
     ]
     averaged_holder = holder.groupby("event").mean(numeric_only=True).reset_index()
     std_errors = holder.groupby("event").sem(numeric_only=True).reset_index()
@@ -687,20 +684,26 @@ def event_study():
                 "rr_rent_growth_p2",
             ]
         ].values.flatten()
-
-        plt.plot(x_vals, y_vals, label=event)
+        if event == "Landlord-Favorable":
+            color = "orange"
+        elif event == "Renter-Favorable":
+            color = "blue"
+        else:
+            color = "green"
+        plt.plot(x_vals, y_vals, label=event, color=color)
         plt.fill_between(
             x_vals,
             y_vals - y_err,
             y_vals + y_err,
-            alpha=0.2,
+            alpha=0.1,
             label=f"{event} (95% CI)",
+            color=color,
         )
 
     plt.xlabel("Years before and after segment change")
     plt.xticks(x_vals)
     plt.ylabel("Real Rent Growth Relative to Median")
-    plt.title("Real Rent Growth before and after a segment change")
+    plt.title("Real Relative Rent Growth before and after a segment change")
     plt.legend(title="Segment switched into")
     plt.savefig(
         Path(__file__).resolve().parent.parent / "Figs" / "event_study.pdf",
@@ -712,21 +715,17 @@ def event_study():
 
     # Calculate differences in means and perform t-tests
     results = []
-    for event in ["OverpricedUndersupplied", "UnderpricedOversupplied", "same"]:
+    for event in ["Landlord-Favorable", "Renter-Favorable", "same"]:
         event_data = holder[holder["event"] == event]
 
         # Calculate means for two years before and after the event
-        before_means = event_data[["rr_rent_growth_m2", "rr_rent_growth_m1"]].mean()
-        after_means = event_data[
-            ["rr_rent_growth_0", "rr_rent_growth_p1", "rr_rent_growth_p2"]
-        ].mean()
+        before_means = event_data[["rr_rent_growth_m1", "rr_rent_growth_m2"]].mean()
+        after_means = event_data[["rr_rent_growth_p1", "rr_rent_growth_p2"]].mean()
 
         # Perform t-tests for differences in means
         t_stat, p_value = ttest_ind(
-            event_data[["rr_rent_growth_m2", "rr_rent_growth_m1"]].values.flatten(),
-            event_data[
-                ["rr_rent_growth_0", "rr_rent_growth_p1", "rr_rent_growth_p2"]
-            ].values.flatten(),
+            event_data[["rr_rent_growth_m1", "rr_rent_growth_m2"]].values.flatten(),
+            event_data[["rr_rent_growth_p1", "rr_rent_growth_p2"]].values.flatten(),
             nan_policy="omit",
         )
 
@@ -809,31 +808,31 @@ def plot_national_averages():
         min_x_msa["real_rent_growth_next_year"],
         min_x_msa.name,
         fontsize=9,
-        ha="right",
+        ha="left",
     )
     plt.text(
         max_x_msa["RDI_growth"],
         max_x_msa["real_rent_growth_next_year"],
         max_x_msa.name,
         fontsize=9,
-        ha="left",
+        ha="right",
     )
     plt.text(
         min_y_msa["RDI_growth"],
         min_y_msa["real_rent_growth_next_year"],
         min_y_msa.name,
         fontsize=9,
-        va="top",
+        ha="right",
     )
     plt.text(
         max_y_msa["RDI_growth"],
         max_y_msa["real_rent_growth_next_year"],
         max_y_msa.name,
         fontsize=9,
-        va="bottom",
+        ha="right",
     )
-    plt.xlabel("Δ RDI (2012-2023)")
-    plt.ylabel("Real Rent Growth (2013-2024)")
+    plt.xlabel("Δ RDI (2011-2023)")
+    plt.ylabel("Real Rent Growth (2012-2024)")
     plt.legend(loc="upper left", bbox_to_anchor=(1, 1), fontsize="small")
     plt.grid()
     plt.tight_layout()
@@ -854,7 +853,7 @@ def plot_national_averages():
     x_vals = np.linspace(ds["RDI_growth"].min(), ds["RDI_growth"].max(), 100)
     y_vals = slope * x_vals + intercept
     plt.plot(
-        x_vals, y_vals, color="red", label=f"Line of Best Fit (R²={r_value**2:.2f})"
+        x_vals, y_vals, color="black", label=f"Line of Best Fit (R²={r_value**2:.2f})"
     )
     # Calculate 95% confidence interval
     y_pred = slope * ds["RDI_growth"] + intercept
@@ -866,12 +865,12 @@ def plot_national_averages():
         x_vals,
         y_vals - ci,
         y_vals + ci,
-        color="red",
+        color="gray",
         alpha=0.2,
         label="95% Confidence Interval",
     )
     plt.legend()
-    plt.title("Mean Change in RDI vs. Mean Real Rent Growth (2012-2023) by MSA")
+    plt.title("Mean Change in RDI vs. Mean Real Rent Growth by MSA")
     plt.savefig(
         Path(__file__).resolve().parent.parent / "Figs" / "rdi_rent_growth_2024.pdf",
         format="pdf",
@@ -947,6 +946,35 @@ def plot_national_averages():
 
 
 def plot_phoenix_supply_demand():
+    mpl.rcParams.update(
+        {
+            # Use a serif font throughout
+            "font.family": "serif",
+            "font.serif": ["Times New Roman", "Times"],
+            "font.size": 10,  # 9 pt for axis labels/text
+            "axes.titlesize": 11,  # 10 pt for subplot titles
+            "axes.labelsize": 10,
+            "legend.fontsize": 9,
+            "xtick.labelsize": 9,
+            "ytick.labelsize": 9,
+            # Line widths and marker sizes
+            "lines.linewidth": 1.0,
+            "lines.markersize": 4,
+            "axes.linewidth": 0.8,
+            "grid.linewidth": 0.5,
+            # Ticks: inward, only bottom/left
+            "xtick.direction": "in",
+            "ytick.direction": "in",
+            "xtick.top": False,
+            "ytick.right": False,
+            # No fancy whitegrid—just light grey if you need
+            "axes.grid": False,
+            "grid.color": "0.85",
+            # Tight figure margins
+            "figure.autolayout": True,
+        }
+    )
+
     df = get_data(filter="top_100").to_pandas()
     dx = df[(df["msa"] == "Phoenix - AZ") & (df["year"] >= 2022)]
     df = df[(df["msa"] == "Phoenix - AZ") & (df["year"] < 2022) & (df["year"] >= 2012)]
@@ -964,41 +992,53 @@ def plot_phoenix_supply_demand():
 
     # Demand curve
     var_x = "RDI_growth"
-    ax.scatter(
-        df[var_x], df[var_y], label="Demand (RDI Growth) 2012-2021", color="green"
-    )
+    ax.scatter(df[var_x], df[var_y], label="Demand (RDI Growth) 2012-2021", color="red")
 
     # Generate x values for the line plot
     x_vals_demand = np.linspace(df[var_x].min(), df[var_x].max(), 100)
-    ax.plot(x_vals_demand, intercept + slope * x_vals_demand, color="green")
+    ax.plot(x_vals_demand, intercept + slope * x_vals_demand, color="red")
 
     # Supply growth curve
     var_x = "supply_growth"
     ax.scatter(
-        df[var_x], df[var_y], label="Supply (Inventory Growth) 2012-2021", color="black"
+        df[var_x], df[var_y], label="Supply (Inventory Growth) 2012-2021", color="blue"
     )
 
     # Generate x values for the line plot
     x_vals_supply = np.linspace(df[var_x].min(), df[var_x].max(), 100)
-    ax.plot(x_vals_supply, intercept2 + slope2 * x_vals_supply, color="black")
+    ax.plot(x_vals_supply, intercept2 + slope2 * x_vals_supply, color="blue")
 
-    ax.plot(intersection_x, intersection_y, "ro", label="Derived Equilibrium 2021")
-    ax.vlines(
-        x=intersection_x,
-        ymin=0.5,
-        ymax=intersection_y + 0.5,
-        linestyle="--",
-        color="red",
+    ax.plot(
+        intersection_x,
+        intersection_y,
+        marker="*",
+        color="black",
+        label="Derived Equilibrium 2021",
+        markersize=10,
     )
-    ax.hlines(
-        y=intersection_y,
-        xmin=-0.05,
-        xmax=intersection_x + 0.05,
-        linestyle="--",
-        color="red",
-    )
+    # ax.vlines(
+    #     x=intersection_x,
+    #     ymin=0.5,
+    #     ymax=intersection_y + 0.5,
+    #     linestyle="--",
+    #     color="red",
+    # )
+    # ax.hlines(
+    #     y=intersection_y,
+    #     xmin=-0.05,
+    #     xmax=intersection_x + 0.05,
+    #     linestyle="--",
+    #     color="red",
+    # )
     cy = df[df["year"] == df["year"].max()]
-    ax.plot(cy["supply_growth"], cy["real_rentpsf"], "bo", label="Supply Shock 2021")
+    ax.plot(
+        cy["supply_growth"],
+        cy["real_rentpsf"],
+        "v",
+        color="gray",
+        label="Supply Shock 2021",
+        markersize=10,  # Increase the marker size
+    )
 
     ax.plot(
         dx["supply_growth"],
@@ -1018,6 +1058,7 @@ def plot_phoenix_supply_demand():
     # Adding labels and title
     ax.set_xlabel("Quantity: RDI Growth and Supply Growth")
     ax.set_ylabel("Rent per Square Foot ($)")
+    ax.set_title("Supply and Demand Curves for Phoenix - AZ (2012-2021)")
     # ax.set_title("Supply and Demand Curves")
     ax.legend()
 
@@ -1134,9 +1175,9 @@ def plot_group_averages_with_confidence():
 # show_summary_statistics()
 # dx = supply_demand_annual(get_data().to_pandas())
 # event_study()
-# plot_phoenix_supply_demand()
+plot_phoenix_supply_demand()
 # simplify_anova()
-plot_national_averages()
+# plot_national_averages()
 # choropleth_rdi_by_msa()
 # predict_future(how="naive")
 # summary = predict_future(how="ARIMA")

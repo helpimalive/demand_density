@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.3) (preloaded format=xelatex 2025.4.15)  22 APR 2025 09:22
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.3) (preloaded format=xelatex 2025.4.15)  22 APR 2025 17:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1094,11 +1094,7 @@ File: l3backend-xetex.def 2025-03-14 L3 backend support: XeTeX
 LaTeX Warning: Unused global option(s):
     [APA,Times1COL].
 
-(wileyNJDv5_AMA.aux
-
-LaTeX Warning: Label `fig:event_study' multiply defined.
-
-)
+(wileyNJDv5_AMA.aux)
 \openout1 = `wileyNJDv5_AMA.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
@@ -1256,16 +1252,6 @@ Missing character: There is no ‐ in font ptmr8t!
 Missing character: There is no ‐ in font ptmr8t!
 File: ../Figs/rdi_rent_growth_2024.pdf Graphic file (type pdf)
 <use ../Figs/rdi_rent_growth_2024.pdf>
-Missing character: There is no ‑ in font ptmr8t!
-Missing character: There is no ‑ in font ptmr8t!
-Missing character: There is no   in font ptmr8t!
-Missing character: There is no   in font ptmr8t!
-Missing character: There is no   in font ptmr8t!
-Missing character: There is no ‑ in font ptmr8t!
-Missing character: There is no ‑ in font ptmr8t!
-Missing character: There is no   in font ptmr8t!
-Missing character: There is no   in font ptmr8t!
-Missing character: There is no   in font ptmr8t!
 
 
 [2]
@@ -1285,12 +1271,15 @@ Missing character: There is no ‐ in font ptmr8t!
 
 
 [3]
-Underfull \hbox (badness 10000) detected at line 125
+Missing character: There is no — in font ptmr8t!
+Missing character: There is no — in font ptmr8t!
+
+Underfull \hbox (badness 10000) detected at line 127
 []
  []
 
 LaTeX Font Info:    Trying to load font information for T1+pcr on input line 13
-0.
+2.
 (C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
@@ -1317,19 +1306,19 @@ File: ../Figs/florida.png Graphic file (type bmp)
 Missing character: There is no ‑ in font ptmr8t!
 Missing character: There is no ‑ in font ptmr8t!
 
-Underfull \hbox (badness 10000) detected at line 169
+Underfull \hbox (badness 10000) detected at line 171
 []
  []
 
 
-Underfull \hbox (badness 10000) detected at line 184
+Underfull \hbox (badness 10000) detected at line 186
 []
  []
 
 
 
 [5]
-Underfull \hbox (badness 10000) detected at line 210
+Underfull \hbox (badness 10000) detected at line 212
 []
  []
 
@@ -1349,18 +1338,22 @@ File: ../Figs/rdi_growth_histogram.pdf Graphic file (type pdf)
 File: ../Figs/rdi_trends_selected_msas.pdf Graphic file (type pdf)
 <use ../Figs/rdi_trends_selected_msas.pdf>
 
-Underfull \hbox (badness 10000) detected at line 247
+Underfull \hbox (badness 10000) detected at line 249
 []
  []
 
+Missing character: There is no Δ in font ptmr8t!
+Missing character: There is no Δ in font ptmr8t!
+Missing character: There is no Δ in font ptmr8t!
 
 
 [6]
-Missing character: There is no Δ in font ptmr8t!
-Missing character: There is no Δ in font ptmr8t!
-Missing character: There is no Δ in font ptmr8t!
+Underfull \hbox (badness 10000) detected at line 279
+[]
+ []
+
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 268.
+put line 294.
 Missing character: There is no – in font ptmr8t!
 Missing character: There is no ‑ in font ptmr8t!
 Missing character: There is no – in font ptmr8t!
@@ -1368,10 +1361,6 @@ Missing character: There is no ‑ in font ptmr8t!
 
 
 [7]
-Underfull \hbox (badness 10000) detected at line 302
-[]
- []
-
 Missing character: There is no ‑ in font ptmr8t!
 Missing character: There is no   in font ptmr8t!
 Missing character: There is no   in font ptmr8t!
@@ -1381,22 +1370,15 @@ File: ../Figs/phoenix_example.pdf Graphic file (type pdf)
 Missing character: There is no ‑ in font ptmr8t!
 Missing character: There is no ‑ in font ptmr8t!
 Missing character: There is no ‑ in font ptmr8t!
-Missing character: There is no Δ in font ptmr8t!
 Missing character: There is no ‑ in font ptmr8t!
 Missing character: There is no ‑ in font ptmr8t!
 Missing character: There is no ‑ in font ptmr8t!
-Missing character: There is no Δ in font ptmr8t!
 
 
 [8]
-
-LaTeX Warning: Reference `tab:simplifiedmeans' on page 9 undefined on input lin
-e 342.
-
 Missing character: There is no ‐ in font ptmr8t!
-Missing character: There is no – in font ptmr8t!
 
-Underfull \hbox (badness 10000) detected at line 351
+Underfull \hbox (badness 10000) detected at line 359
 []
  []
 
@@ -1406,61 +1388,29 @@ Missing character: There is no ‐ in font ptmr8t!
 
 
 [9]
-Underfull \hbox (badness 10000) detected at line 386
+Underfull \hbox (badness 10000) detected at line 395
 []
  []
 
 
-Underfull \hbox (badness 10000) detected at line 414
-[]
- []
-
-
-Package caption Warning: \label without proper reference on input line 429.
-See the caption package documentation for explanation.
-
-
-LaTeX Warning: Reference `tab:matrixlabels' on page 10 undefined on input line 
-424.
-
-
-Underfull \hbox (badness 10000) detected at line 428
+Underfull \hbox (badness 10000) detected at line 423
 []
  []
 
 
 
 [10]
-Missing character: There is no — in font ptmr8t!
-Missing character: There is no — in font ptmr8t!
-Missing character: There is no — in font ptmr8t!
-
-Package caption Warning: \label without proper reference on input line 527.
-See the caption package documentation for explanation.
-
-
-LaTeX Warning: Reference `fig:event_study' on page 11 undefined on input line 4
-59.
-
 File: ../Figs/event_study.pdf Graphic file (type pdf)
 <use ../Figs/event_study.pdf>
 
-Underfull \hbox (badness 10000) detected at line 464
+Underfull \hbox (badness 10000) detected at line 446
 []
  []
-
-
-Package caption Warning: \label without proper reference on input line 480.
-See the caption package documentation for explanation.
-
-
-LaTeX Warning: Reference `fig:group_averages_over_time' on page 11 undefined on
- input line 474.
 
 File: ../Figs/group_averages_over_time.pdf Graphic file (type pdf)
 <use ../Figs/group_averages_over_time.pdf>
 
-Underfull \hbox (badness 10000) detected at line 479
+Underfull \hbox (badness 10000) detected at line 461
 []
  []
 
@@ -1468,14 +1418,13 @@ Underfull \hbox (badness 10000) detected at line 479
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-
-[11]
-Underfull \hbox (badness 10000) detected at line 492
+Underfull \hbox (badness 10000) detected at line 474
 []
  []
 
-Missing character: There is no “ in font ptmr8t!
-Missing character: There is no ” in font ptmr8t!
+
+
+[11]
 Missing character: There is no ’ in font ptmr8t!
 
 
@@ -1483,17 +1432,20 @@ Missing character: There is no ’ in font ptmr8t!
 File: ../Figs/spread_comparison_over_time.pdf Graphic file (type pdf)
 <use ../Figs/spread_comparison_over_time.pdf>
 
-Underfull \hbox (badness 10000) detected at line 526
+Underfull \hbox (badness 10000) detected at line 508
+[]
+ []
+
+Missing character: There is no ∆ in font ptmr8t!
+Missing character: There is no — in font ptmr8t!
+Missing character: There is no — in font ptmr8t!
+
+Underfull \hbox (badness 10000) detected at line 521
 []
  []
 
 
-Underfull \hbox (badness 10000) detected at line 539
-[]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 565
+Underfull \hbox (badness 10000) detected at line 547
 []
  []
 
@@ -1519,26 +1471,21 @@ Missing character: There is no ” in font ptmr8t!
 )
 Missing character: There is no ’ in font ptmr8t!
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 631.
+nput line 613.
 
-Underfull \hbox (badness 10000) detected at line 631
+Underfull \hbox (badness 10000) detected at line 613
 []
  []
 
 
 
-[16] (wileyNJDv5_AMA.aux)
+[16]
+
+[17] (wileyNJDv5_AMA.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-03-26>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
  )
 (\end occurred when \iftrue on line 4823 was incomplete)
 (\end occurred when \iftrue on line 4811 was incomplete)
@@ -1550,12 +1497,12 @@ LaTeX Warning: There were multiply-defined labels.
 (\end occurred when \iftrue on line 4739 was incomplete)
 (\end occurred when \ifx on line 2 was incomplete) 
 Here is how much of TeX's memory you used:
- 22058 strings out of 405075
- 347633 string characters out of 5499361
- 796945 words of memory out of 5000000
- 48338 multiletter control sequences out of 15000+600000
+ 22069 strings out of 405075
+ 347820 string characters out of 5499361
+ 797945 words of memory out of 5000000
+ 48349 multiletter control sequences out of 15000+600000
  683752 words of font info for 103 fonts, out of 8000000 for 9000
  1374 hyphenation exceptions out of 8191
- 87i,12n,93p,1066b,993s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 87i,12n,93p,1480b,993s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on wileyNJDv5_AMA.pdf (16 pages).
+Output written on wileyNJDv5_AMA.pdf (17 pages).
