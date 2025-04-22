@@ -12,9 +12,12 @@ from scipy.stats import ttest_ind
 import plotly.express as px
 import statsmodels.formula.api as smf
 from statsmodels.stats.multicomp import pairwise_tukeyhsd
+from scipy.stats import ttest_1samp
 import pandas as pd
 from statsmodels.tsa.arima.model import ARIMA
 import matplotlib as mpl
+import numpy as np
+from scipy.stats import sem
 
 mpl.rcParams.update(
     {
@@ -239,13 +242,13 @@ def predict_future(how):
     )
     if how == "naive":
         holder = []
-        for year in range(2012, 2023):
+        for year in range(2011, 2023):
 
             df_train = df[df["year"] == year]
             df_train["y_hat_group"] = pd.qcut(
                 df_train["real_relative_rent_growth"],
-                q=4,
-                labels=["Bottom", "Middle", "Middle2", "Top"],
+                q=3,
+                labels=["Bottom", "Middle", "Top"],
             )
             mean_values = df_train.groupby("y_hat_group", observed=False)[
                 "real_relative_rg_next_year"
@@ -273,7 +276,7 @@ def predict_future(how):
         return holder
     if how == "ARIMA":
         summary = pd.DataFrame()
-        for year in range(2012, 2023):
+        for year in range(2011, 2023):
             holder = []
             for msa in df["msa"].unique():
                 df_train = df[
@@ -294,7 +297,7 @@ def predict_future(how):
                 )
             holder = pd.DataFrame(holder)
             holder["y_hat_group"] = pd.qcut(
-                holder["y_hat"], q=4, labels=["Bottom", "Middle", "Middle2", "Top"]
+                holder["y_hat"], q=3, labels=["Bottom", "Middle", "Top"]
             )
             holder = (
                 holder.groupby("y_hat_group")
@@ -319,6 +322,7 @@ def predict_future(how):
                 Path(__file__).resolve().parent.parent / "data" / "arima_summary.csv",
                 index=False,
             )
+
         return summary
 
 
@@ -339,19 +343,45 @@ def compare_predictions():
         Path(__file__).resolve().parent.parent / "data" / "supply_demand_annual.csv"
     )
     rd = rd[["year", "group", "real_relative_rg_next_year"]]
-    rd = rd.groupby(["year", "group"]).mean().reset_index().dropna()
-    rd = (
-        rd.pivot(index="year", columns="group", values="real_relative_rg_next_year")
-        .reset_index()
-        .dropna()
-    )
+    rd = rd.groupby(["year", "group"]).mean().reset_index()
+    rd = rd.pivot(
+        index="year", columns="group", values="real_relative_rg_next_year"
+    ).reset_index()
     rd["spread"] = rd["False-True"] - rd["True-False"]
     rd = rd[["year", "spread"]]
+    # rd["year"] = rd["year"] + 1
     rd.columns = ["year", "rdi_spread"]
-    rd = rd.merge(ar, on="year", how="inner")
-    rd = rd.merge(ol, on="year", how="inner")
+    rd = rd.merge(ar, on="year", how="left")
+    rd = rd.merge(ol, on="year", how="left")
     print(rd)
     print(rd.mean())
+    # Plot the spreads over time
+    plt.figure(figsize=(10, 6))
+    plt.plot(rd["year"], rd["rdi_spread"], label="RDI Spread", marker="o")
+    plt.plot(rd["year"], rd["arima_spread"], label="ARIMA Spread", marker="s")
+    plt.plot(rd["year"], rd["naive_spread"], label="Naive Spread", marker="^")
+
+    # Add labels, title, and legend
+    plt.xlabel("Year")
+    plt.ylabel("Spread")
+    plt.title("Comparison of Spreads Over Time")
+    plt.axhline(0, color="black", linestyle="--", linewidth=0.8)
+    plt.legend()
+    plt.grid()
+    plt.tight_layout()
+
+    # Save the plot
+    plt.savefig(
+        Path(__file__).resolve().parent.parent
+        / "Figs"
+        / "spread_comparison_over_time.pdf",
+        format="pdf",
+        bbox_inches="tight",
+        pad_inches=0.02,
+    )
+
+    # Remove min and max from each column and calculate the mean
+    plt.show()
 
 
 def supply_demand_annual(df):
@@ -415,19 +445,22 @@ def supply_demand_annual(df):
     return holder
 
 
-def simplify_anova(df):
+def simplify_anova():
+    df = pd.read_csv(
+        Path(__file__).resolve().parent.parent / "data" / "supply_demand_annual.csv"
+    ).dropna(subset="real_relative_rg_next_year")
     # Replace Boolean codes with narrative labels
     df["group"] = df.apply(
         lambda row: (
-            "Landlord-favourable"
+            "Landlord-Favorable"
             if row["overpriced"] and not row["oversupplied"]
             else (
-                "Renter-favourable"
+                "Renter-Favorable"
                 if not row["overpriced"] and row["oversupplied"]
                 else (
-                    "Balanced"
+                    "Neutral-Early"
                     if not row["overpriced"] and not row["oversupplied"]
-                    else "Price-Bubble"
+                    else "Neutral-Late"
                 )
             )
         ),
@@ -446,6 +479,36 @@ def simplify_anova(df):
         )
         .reset_index()
     )
+    # Calculate means and 95% confidence intervals for each group
+    group_means = df.groupby("group")["real_relative_rg_next_year"].mean()
+    group_se = df.groupby("group")["real_relative_rg_next_year"].sem()
+    ci_lower = group_means - 1.96 * group_se
+    ci_upper = group_means + 1.96 * group_se
+    # Calculate p-values for each group mean
+
+    # Perform one-sample t-tests for each group mean
+    p_values = {}
+    for group in df["group"].unique():
+        group_data = df[df["group"] == group]["real_relative_rg_next_year"]
+        t_stat, p_value = ttest_1samp(group_data, 0, nan_policy="omit")
+        p_values[group] = p_value
+        # Add n_obs to the summary DataFrame
+    summary["n_obs"] = df.groupby("group")["real_relative_rg_next_year"].size().values
+    # Add p-values to the summary DataFrame
+    summary["p-value"] = summary["group"].map(p_values)
+    # Combine results into a DataFrame
+    ci_summary = pd.DataFrame(
+        {
+            "mean (bps)": [int(x * 10000) for x in group_means],
+            "95% CI Lower (bps)": [int(x * 10000) for x in ci_lower],
+            "95% CI Upper (bps)": [int(x * 10000) for x in ci_upper],
+            "p-value": summary["p-value"].values,
+            "n_obs": summary["n_obs"].values,
+        }
+    ).reset_index(drop=True)
+
+    print(ci_summary)
+    assert False
 
     # Clustered standard errors by MSA
     model = smf.ols("real_relative_rg_next_year ~ C(group)", data=df).fit(
@@ -459,7 +522,10 @@ def simplify_anova(df):
     # Predict group means and extract standard errors
     group_means = model.predict(group_means_df)
     group_se = model.get_robustcov_results(cov_type="cluster", groups=df["msa"]).bse
-
+    # Calculate 95% confidence intervals for the group means
+    ci_lower = group_means - 1.96 * group_se[: len(summary)]
+    ci_upper = group_means + 1.96 * group_se[: len(summary)]
+    summary["95% CI"] = list(zip(ci_lower.round(4) * 10000, ci_upper.round(4) * 10000))
     # Map standard errors to the corresponding groups
     summary["mean (bps)"] = (
         summary["mean_next_year_relative_real_rent_growth"] * 10000
@@ -481,7 +547,11 @@ def simplify_anova(df):
 
     # Format results into a table block
     print("\nMean Next-Year Real-Rent Growth and Standard Errors:")
-    print(summary[["group", "mean (bps)", "se (bps)", "n_obs"]].to_string(index=False))
+    print(
+        summary[["group", "mean (bps)", "se (bps)", "95% CI", "n_obs"]]
+        .style.format({"p-value": "{:.4f}"})
+        .to_string()
+    )
 
     print("\nTwo-Way ANOVA:")
     print(anova_table)
@@ -714,16 +784,56 @@ def plot_national_averages():
     df = pd.read_csv(
         Path(__file__).resolve().parent.parent / "data" / "preprocessed_data.csv"
     ).dropna()
-
+    print(df["year"].min(), df["year"].max())
     # Plot RDI vs Real Rent PSF for all MSAs
-    ds = df[df["year"] == 2023]
+    # ds = df[df["year"] == 2023]
+    ds = df.groupby(["msa"]).agg(
+        {
+            "RDI_growth": "mean",
+            "real_rent_growth_next_year": "mean",
+        }
+    )
     plt.figure(figsize=(12, 8))
     plt.scatter(
         ds["RDI_growth"],
         ds["real_rent_growth_next_year"],
     )
-    plt.xlabel("Δ RDI (year t minus t‑1)")
-    plt.ylabel("Real Rent Growth (year t)")
+    # Add labels for min and max x and y values
+    min_x_msa = ds.loc[ds["RDI_growth"].idxmin()]
+    max_x_msa = ds.loc[ds["RDI_growth"].idxmax()]
+    min_y_msa = ds.loc[ds["real_rent_growth_next_year"].idxmin()]
+    max_y_msa = ds.loc[ds["real_rent_growth_next_year"].idxmax()]
+
+    plt.text(
+        min_x_msa["RDI_growth"],
+        min_x_msa["real_rent_growth_next_year"],
+        min_x_msa.name,
+        fontsize=9,
+        ha="right",
+    )
+    plt.text(
+        max_x_msa["RDI_growth"],
+        max_x_msa["real_rent_growth_next_year"],
+        max_x_msa.name,
+        fontsize=9,
+        ha="left",
+    )
+    plt.text(
+        min_y_msa["RDI_growth"],
+        min_y_msa["real_rent_growth_next_year"],
+        min_y_msa.name,
+        fontsize=9,
+        va="top",
+    )
+    plt.text(
+        max_y_msa["RDI_growth"],
+        max_y_msa["real_rent_growth_next_year"],
+        max_y_msa.name,
+        fontsize=9,
+        va="bottom",
+    )
+    plt.xlabel("Δ RDI (2012-2023)")
+    plt.ylabel("Real Rent Growth (2013-2024)")
     plt.legend(loc="upper left", bbox_to_anchor=(1, 1), fontsize="small")
     plt.grid()
     plt.tight_layout()
@@ -761,7 +871,7 @@ def plot_national_averages():
         label="95% Confidence Interval",
     )
     plt.legend()
-    plt.title("Change in RDI (2023) vs. Real Rent Growth (2024)")
+    plt.title("Mean Change in RDI vs. Mean Real Rent Growth (2012-2023) by MSA")
     plt.savefig(
         Path(__file__).resolve().parent.parent / "Figs" / "rdi_rent_growth_2024.pdf",
         format="pdf",
@@ -769,6 +879,7 @@ def plot_national_averages():
         pad_inches=0.02,
     )
     plt.show()
+    assert False
 
     # Plot a histogram of the change in RDI
     plt.figure(figsize=(10, 6))
@@ -966,12 +1077,65 @@ def show_summary_statistics():
     print(df.loc[df["real_rent_growth"].idxmin()])
 
 
+def plot_group_averages_with_confidence():
+    var = "real_rent_growth_next_year"
+    df = pd.read_csv(
+        Path(__file__).resolve().parent.parent / "data" / "supply_demand_annual.csv"
+    ).dropna(subset=var)
+    df["year"] = df["year"] + 1
+    # Calculate the average for True-False and False-True groups
+    df["group"] = df["group"].astype(str)
+    df_pivot = df.pivot_table(index="year", columns="group", values=var, aggfunc="mean")
+
+    # Calculate the overall average by year
+    df_avg = df.groupby("year")[var].mean()
+
+    # Plot the averages
+    plt.figure(figsize=(10, 6))
+    plt.plot(
+        df_pivot.index,
+        df_pivot["True-False"],
+        label="Renter-Favorable Average",
+        color="blue",
+    )
+    plt.plot(
+        df_pivot.index,
+        df_pivot["False-True"],
+        label="Landlord-Favorable Average",
+        color="orange",
+    )
+    plt.plot(
+        df_avg.index,
+        df_avg,
+        label="Overall Average",
+        color="green",
+        linestyle="--",
+    )
+    plt.axhline(0, color="black", linestyle="--", linewidth=0.8)
+    plt.xlabel("Year")
+    plt.ylabel("Average Real Rent Growth")
+    plt.title("Average Real Rent Growth by Group and Overall")
+    plt.legend()
+    plt.grid()
+    plt.tight_layout()
+    plt.savefig(
+        Path(__file__).resolve().parent.parent
+        / "Figs"
+        / "group_averages_over_time.pdf",
+        format="pdf",
+        bbox_inches="tight",
+        pad_inches=0.02,
+    )
+    plt.show()
+
+
+# plot_group_averages_with_confidence()
 # df = get_data(filter="top_100").to_pandas()
 # show_summary_statistics()
 # dx = supply_demand_annual(get_data().to_pandas())
 # event_study()
 # plot_phoenix_supply_demand()
-# simplify_anova(dx.dropna())
+# simplify_anova()
 plot_national_averages()
 # choropleth_rdi_by_msa()
 # predict_future(how="naive")

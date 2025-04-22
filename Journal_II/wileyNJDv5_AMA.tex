@@ -1,10 +1,11 @@
 \documentclass[APA,Times1COL]{WileyNJDv5} %STIX1COL,STIX2COL,STIXSMALL
+
 \usepackage{threeparttable}
 \usepackage{dcolumn}
-
+\usepackage{placeins}
 \usepackage{subcaption}
 \usepackage{graphicx}%
-\usepackage{float}%
+
 \graphicspath{{../Figs/}}
 
 \articletype{Original Article}%
@@ -84,7 +85,7 @@ Our paper makes two principal contributions. First, we introduce the Rental Dens
 
 These findings carry immediate applications for all housing‐market stakeholders. For policymakers, RDI functions as an early‑warning gauge of emerging shortages, enabling targeted zoning reforms, calibrated subsidy programs, or expedited permitting in precisely those submarkets under the greatest pressure—and subsequently measuring the efficacy of those measures. Institutional investors and residential developers can embed RDI trends into feasibility and risk models, avoiding the twin hazards of overbuilding in cooling metros or underbuilding in tightening ones. Finally, RDI sharpens the housing‐affordability debate by identifying the locales where rent increases are most likely to outstrip income growth, thereby guiding tenant‐protection policies, rent‐assistance programs, and other affordability interventions to the communities that need them most.
 
-In the next section we discuss research on other measures of demand before presenting details on our proposed variable. The Data and Descriptive Statistics section describes and analyzes the density data we used, while the Emperical Analysis section presents evidence and illustrates statistical tests performed to evaluate the validity of the classifications. The final sections discuss the results of our tests before concluding with implications and further research suggestions. 
+In the next section we discuss research on other measures of demand before presenting details on our proposed variable. The Data and Descriptive Statistics section describes and analyzes the density data we used, while the Empirical Analysis section presents evidence and illustrates statistical tests performed to evaluate the validity of the classifications. The final sections discuss the results of our tests before concluding with implications and further research suggestions. 
 
 \section{Background and Literature Review}\label{sec2}
 
@@ -250,9 +251,7 @@ This pattern poses a puzzle: if supply growth has outstripped population growth,
 
 By contrast, year-over-year changes in RDI isolate the relative pace of new households versus new units. When rents rise faster than new construction can absorb, ΔRDI spikes, revealing latent demand pressure. When deliveries overwhelm demand, ΔRDI falls, signaling surplus. In the next section we exploit that property, regressing ΔRDI on rent and supply growth to recover the underlying demand curve.
 
-
-
-\section{Emperical Framework}
+\section{Empirical Framework}
 Our objective is to evaluate \( \Delta \text{RDI} \) as a robust measure of housing demand by deriving supply and demand curves for each metropolitan area and year. For each of the 100 largest MSAs, and for each year from 2010 through 2022, we construct demand and supply curves using observed data on real rent per square foot and changes in RDI and supply.
 
 \subsection{Constructing the Demand and Supply Curves}
@@ -263,36 +262,57 @@ We estimate reduced-form linear models to approximate demand and supply response
 	\text{SupplyGrowth}_{it} &= \gamma_i + \delta_i p_{it} + \nu_{it} && \text{(Supply)}
 \end{align*}
 
-The coefficient \( \beta_i \) reflects how changes in rent induce renters to economize on space by cohabitating, while \( \delta_i \) captures developers' responsiveness to rent signals via new supply. We estimate these relationships using ordinary least squares (OLS) for each market-year observation, pooling data from the prior ten years.
-
-The intersection of these two curves yields the market's implied equilibrium rent \( p^* \) and equilibrium inventory growth \( q^* \). We compare these values to observed market outcomes \( (p, q) \) in that year. If \( p^* > p \), we infer that the market is underpriced; if \( p^* < p \), it is overpriced. Likewise, if \( q^* > q \), the market is deemed undersupplied; otherwise, oversupplied.The following pseudocode outlines the segmentation logic applied to each market-year observation:
-\begin{algorithm}[h!]
-	\caption{\enskip Segment markets into price–supply regimes}\label{alg:market_segmentation}
-	\begin{algorithmic}
+The coefficient \( \beta_i \) reflects how changes in rent induce renters to economize on space by cohabitating, while \( \delta_i \) captures developers' responsiveness to rent signals via new supply. We estimate these relationships using ordinary least squares (OLS) for each market-year observation, pooling data from the prior ten years. The intersection of these two curves yields the market's implied equilibrium rent \( p^* \) and equilibrium inventory growth \( q^* \). We compare these values to observed market outcomes \( (p, q) \) in that year. If \( p^* > p \), we infer that the market is underpriced; if \( p^* < p \), it is overpriced. Likewise, if \( q^* > q \), the market is deemed undersupplied; otherwise, oversupplied.The following pseudocode outlines the segmentation logic.
+\FloatBarrier
+\begin{algorithm}
+	\caption{\enskip Segment markets into price–supply regimes (10‑year rolling window)}%
+	\label{alg:market_segmentation}
+	\begin{algorithmic}[1]
 		\For{$y \gets 2010$ \textbf{to} 2022}
+		\State $t_{\min}\gets \max(2010,\,y-10)$
 		\For{each market $m$ in the top 100 MSAs}
-		\State estimate demand curve: $\Delta\text{RDI} \gets f\!\bigl(\text{rent}_{\text{psf}}\bigr)$
-		\State estimate supply curve: $\text{inventory growth} \gets g\!\bigl(\text{rent}_{\text{psf}}\bigr)$
-		\State solve for equilibrium $(q^{\ast},p^{\ast})$
-		\State obtain actual values $(q,p)$
-		\If{$q^{\ast} > q$}
-		\If{$p^{\ast} > p$}
-		\State assign $(m,y)$ to \texttt{UndersuppliedUnderpriced}
+		\State select data for $(m,t)$ with $t_{\min}\le t < y$
+		\State fit demand: $\Delta\mathrm{RDI} = f(\mathrm{rent}_{psf})$ on years $t_{\min}\ldots y-1$
+		\State fit supply: $\mathrm{inventory\ growth} = g(\mathrm{rent}_{psf})$ on the same years
+		\State \textbf{solve for equilibrium} $(q^*,p^*)$ \textbf{by finding the price and quantity where}
+		$f(p^*) = q^*$ \textbf{and} $g(p^*) = q^*$
+		\State obtain actual values $(q,p)$ at year $y$
+		\If{$q^* > q$}
+		\If{$p^* > p$}
+		\State assign $(m,y)\to\texttt{UndersuppliedUnderpriced}$
 		\Else
-		\State assign $(m,y)$ to \texttt{UndersuppliedOverpriced}
+		\State assign $(m,y)\to\texttt{UndersuppliedOverpriced}$
 		\EndIf
 		\Else
-		\If{$p^{\ast} > p$}
-		\State assign $(m,y)$ to \texttt{OversuppliedUnderpriced}
+		\If{$p^* > p$}
+		\State assign $(m,y)\to\texttt{OversuppliedUnderpriced}$
 		\Else
-		\State assign $(m,y)$ to \texttt{OversuppliedOverpriced}
+		\State assign $(m,y)\to\texttt{OversuppliedOverpriced}$
 		\EndIf
 		\EndIf
 		\EndFor
 		\EndFor
 	\end{algorithmic}
 \end{algorithm}
+\FloatBarrier
+These states correspond to economic intuition. Overpriced and undersupplied markets---what we refer to as \textit{landlord-favorable} markets---are expected to exhibit stronger rent growth in the following year as prices can adjust faster than supply can be added. Conversely, oversupplied and underpriced markets---\textit{renter-favorable} markets---should experience weaker or negative rent growth for the same reason: prices can adjust faster than more people can arrive. The final two situations are partial disequilibria and their next year depends on which factor is more out of line with observed values. Overpriced and oversupplied markets are similar to late-cycle bubbles, while underpriced undersupplied markets are are similar to early-cycle growth. 
 
+\begin{table}[h!]
+	\centering
+	\caption{Market Classification based on Observed versus Derived Prices and Quantities}
+	\begin{tabular}{cc|c|c|}
+		\multicolumn{2}{c}{} & \multicolumn{2}{c}{\textbf{Pricing}} \\
+		\multicolumn{2}{c}{} & \textbf{Overpriced} & \textbf{Underpriced} \\
+		\cmidrule{3-4}
+		\multirow{2}{*}{\textbf{Supply}} & \textbf{Oversupplied} & Neutral-Late  & Renter-Favorable \\
+		\cmidrule{2-4}
+		& \textbf{Undersupplied} & Landlord-Favorable & Neutral-Early \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+
+\subsection{Response to Shocks}
 By way of example, we can look at a supply shock as experienced by Phoenix in 2022 (figure \ref{fig:phoenix_mechanism}). The supply line is constructed by regressing the change in supply and the real rent per-square-foot. The demand line is constructed by regressing the change in RDI and the real rent per-square-foot. Both use the data from 2012-2021. Their intersection (red circle) gives the implied 2021 market‑clearing rent (\$0.76 / sf) and inventory growth (0.74 \%). But the observed values are in 2022 (blue circle) were both greater greater than derived, so this market would be classified as overpriced and oversupplied, characteristics of a bubble. It is more overpriced than it is oversupplied, and so it returns to equilibrium through a price decline in the years that follow. 
 
 \begin{figure}[htb!]
@@ -306,86 +326,47 @@ By way of example, we can look at a supply shock as experienced by Phoenix in 20
 \end{figure}
 
 
-These states correspond to economic intuition. Overpriced and undersupplied markets---what we refer to as \textit{landlord-favorable} markets---are expected to exhibit stronger rent growth in the following year as prices can adjust faster than supply can be added. Conversely, oversupplied and underpriced markets---\textit{renter-favorable} markets---should experience weaker or negative rent growth for the same reason: prices can adjust faster than more people can arrive. The final two situations are partial disequilibria and their next year depends on which factor is more out of line with observed values. Overpriced and oversupplied markets are similar to late-cycle bubbles, while underpriced undersupplied markets are are similar to early-cycle growth. 
 
-\begin{table}[h!]
-	\centering
-	\caption{Hypothesized Next-Year Rent Growth by Market Classification}
-	\begin{tabular}{cc|c|c|}
-		\multicolumn{2}{c}{} & \multicolumn{2}{c}{\textbf{Pricing}} \\
-		\multicolumn{2}{c}{} & \textbf{Overpriced} & \textbf{Underpriced} \\
-		\cmidrule{3-4}
-		\multirow{2}{*}{\textbf{Supply}} & \textbf{Oversupplied} & Neutral  & Renter-Favorable \\
-		\cmidrule{2-4}
-		& \textbf{Undersupplied} & Landlord-Favorable & Neutral or \\
-		\bottomrule
-	\end{tabular}
-\end{table}
-
-We frame this as a partial equilibrium exercise, in which observed price and quantity may deviate from the implied market-clearing levels due to frictions such as construction lags, policy constraints, or imperfect price discovery \cite{wheaton1991realestate, glaeser2019rethinking}.
-
-
-
-This segmentation yields market classifications that form the basis for our predictive rent growth analysis in the following section.
+We frame this as a partial equilibrium exercise, in which observed price and quantity may deviate from the implied market-clearing levels due to frictions such as construction lags, policy constraints, or imperfect price discovery \cite{wheaton1991realestate, glaeser2019rethinking}. This segmentation yields market classifications that form the basis for our predictive rent growth analysis in the following section.
 
 \section{Results}
-
 
 This section presents empirical findings from our market classification framework. Using the derived supply and demand curves, we compute equilibrium prices (\( p^* \)) and quantities (\( q^* \)) for each of the 100 largest MSAs from 2010 to 2022. By comparing \( (p^*, q^*) \) to the observed market outcomes \( (p, q) \), we segment markets into four states based on whether they are overpriced and/or oversupplied.
 
 %PLACEHOLDER
 %Fig 4 – 4‑quadrant heat‑map of all 100 MSAs (color = rent growth, size = inventory) for the latest year
 
-\subsection{Event Study: Rent Growth Before and After Regime Entry}
 
-To complement our classification-based forecasting approach, we implement an event study that traces rent dynamics around the time a market enters the \emph{Overpriced \& Oversupplied} regime. This regime—characterized by both above-equilibrium rents and excessive new supply—is hypothesized to precede periods of slower rent growth or correction.
 
-We define the event year $t=0$ as the first year an MSA is classified as Overpriced \& Oversupplied. We construct an event time index ranging from $t = -2$ (two years before the regime entry) to $t = +2$ (two years after entry). For each event-time year, we compute the average real rent growth across all MSAs that experienced the regime switch.
-
-This structure ensures that the rent growth observed at $t+1$ and $t+2$ is entirely out-of-sample with respect to the classification year $t=0$. To contextualize the results, we compare these patterns to MSAs that never entered the Overpriced \& Oversupplied regime during the study period, as well as to those that experienced alternative classification transitions.
-
-%PLACEHOLDER
-%INCLUDE THE RESULTS VS ARIMA AND NAIVE MODELING
-Figure~\ref{fig:event_study} displays average real rent growth by event year for each group.
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.8\textwidth]{event_study.pdf}
-	\caption*{Event study of average real rent growth before and after entry into the Overpriced \& Oversupplied regime ($t=0$).}
-	\label{fig:event_study}
-\end{figure}
-
-The results show that real rent growth slows meaningfully following entry into the Overpriced \& Oversupplied regime. While pre-entry years may exhibit moderate rent growth, the post-entry period is characterized by significantly lower average rent changes. This pattern supports the hypothesis that this classification regime is forward-looking and useful in anticipating market cooling or correction.
-
-\subsection{Group Differences in Rent Growth}
-
-We assess whether these classifications are associated with meaningful differences in future rent performance. Table~\ref{tab:simplifiedmeans} reports average next-year real rent growth and relative rent growth (defined as deviation from the within-year median) across the four groups formed by the boolean indicators `overpriced` and `oversupplied`.
+\subsection{Statistical Tests of Group Differences}
+We assess whether these classifications are associated with meaningful differences in future rent performance. Table \ref{tab:simplifiedmeans} reports average next-year relative real rent growth (defined as deviation from the within-year median) across the four groups formed by the boolean indicators `overpriced` and `oversupplied`.
 
 
 	
 %----------------------%
 % Table of Group Means %
 %----------------------%
-\begin{table*}[t]
+\begin{table}[ht]
 	\centering
-	\begin{threeparttable}
-		\caption{Mean Next-Year Real-Rent Growth and Standard Errors\label{tab:groupmeans}}
-		\begin{tabular}{lccc}
-			\toprule
-			Group                & Mean (bps) & SE (bps) & $n_{\text{obs}}$ \\
-			\midrule
-			Balanced             & 25         & 11       & 173  \\
-			Landlord-favourable  & 94$^{***}$ & 30       & 63   \\
-			Price-Bubble         & 14         & 15       & 684  \\
-			Renter-favourable    & $-23^{*}$  & 12       & 380  \\
-			\bottomrule
-		\end{tabular}
-		\begin{tablenotes}
-			\footnotesize
-			\item Note: Significance indicators: *** $p<0.01$, ** $p<0.05$, * $p<0.10$.
-		\end{tablenotes}
-	\end{threeparttable}
-\end{table*}
+	\caption{Group means, 95\% CIs, and one‐sided \(p\)–values}
+	\label{tab:group_stats}
+	\begin{tabular}{lrrrrr}
+		\toprule
+		Group & Mean Rent Growth (bps) & 95\% CI Lower & 95\% CI Upper & \(p\)–value & \(n\) \\
+		\midrule
+		Landlord-Favorable  &  94\(\,^{***}\) &   46 & 142 & 0.000276 &  63 \\
+		Neutral-Early             &  25\(\,^{*}\)   &    6 &  45 & 0.010219 & 173 \\
+		Neutral-Late         &  14             &   -5 &  33 & 0.150306 & 684 \\
+		Renter‐Favorable    & -23\(\,^{***}\) &  -34 & -11 & 0.000110 & 380 \\
+		\bottomrule
+	\end{tabular}
+	
+	\vspace{0.5ex}
+	\footnotesize{\(^{*}p<0.05\), \(^{**}p<0.01\), \(^{***}p<0.001\) (one‐sided test vs.\ 0).}
+\end{table}
+
+Examining the average relative real rent growth of the different groups shows the significance of the demand variable and its classification system. When markets are out of equilibrium (Landlord-Favorable or Renter-Favorable) we see significant and opposite responses in the following year real relative rent growth. The year after a market is classified as Landlord-Favorable it has real relative rent growth of between 42 and 142 basis points. This is in addition to the nominal rent growth and to the median rent growth of the top markets. Thus if median rent growth were 3\% in that year, Landlord-Favorable markets saw rent growth of 3.94\%. Conversely, the year after a market is classified as Renter-Favorable, it has negative relative real rent growth. 
+It is worth noting that the two Neutral groups have confidence intervals that include zero --hence the low significance. But this is precisely what one expects to see from markets in partial equilibrium: their relative real rent growth is not significantly different from zero (or the median in our case, as we standardized th values to the median annual rent growth).
 
 %----------------------%
 % Two-Way ANOVA Table  %
@@ -410,6 +391,8 @@ We assess whether these classifications are associated with meaningful differenc
 	\end{threeparttable}
 \end{table*}
 
+The two-way ANOVA reports that there are significant differences between the overpriced and underpriced groups; and so too with the oversupplied and undersupplied groups.
+
 %-----------------------------%
 % Tukey HSD Post-Hoc Test     %
 %-----------------------------%
@@ -421,12 +404,12 @@ We assess whether these classifications are associated with meaningful differenc
 			\toprule
 			\multicolumn{1}{c}{Group1} & Group2             & Mean Diff & p-adj  & Lower  & Upper & Reject Null\\
 			\midrule
-			Balanced               & Landlord-favourable  & 0.0069   & 0.1012 & -0.0009 & 0.0147  & False \\
-			Balanced               & Price-Bubble         & -0.0012  & 0.9082 & -0.0057 & 0.0033  & False \\
-			Balanced               & Renter-favourable    & -0.0049  & 0.0468 & -0.0097 & -0.0000 & True  \\
-			Landlord-favourable    & Price-Bubble         & -0.0081  & 0.0150 & -0.0150 & -0.0011 & True  \\
-			Landlord-favourable    & Renter-favourable    & -0.0118  & 0.0001 & -0.0190 & -0.0046 & True  \\
-			Price-Bubble           & Renter-favourable    & -0.0037  & 0.0243 & -0.0071 & -0.0003 & True  \\
+			Neutral-Early               & Landlord-Favorable  & 0.0069   & 0.1012 & -0.0009 & 0.0147  & False \\
+			Neutral-Early               & Neutral-Late         & -0.0012  & 0.9082 & -0.0057 & 0.0033  & False \\
+			Neutral-Early              & Renter-Favorable    & -0.0049  & 0.0468 & -0.0097 & -0.0000 & True  \\
+			Landlord-Favorable    & Neutral-Late         & -0.0081  & 0.0150 & -0.0150 & -0.0011 & True  \\
+			Landlord-Favorable    & Renter-Favorable    & -0.0118  & 0.0001 & -0.0190 & -0.0046 & True  \\
+			Neutral-Late           & Renter-Favorable    & -0.0037  & 0.0243 & -0.0071 & -0.0003 & True  \\
 			\bottomrule
 		\end{tabular}
 		\begin{tablenotes}
@@ -436,22 +419,7 @@ We assess whether these classifications are associated with meaningful differenc
 	\end{threeparttable}
 \end{table*}
 
-
-\begin{table}[h!]
-	\centering
-	\caption*{Mean Rent Growth by Market State. All rent figures are real}
-	\label{tab:simplifiedmeans}
-	\begin{tabular}{lcc}
-		\toprule
-		\textbf{Group (overpriced, oversupplied)} & \textbf{Relative Rent Growth (bps)} & \textbf{Next-Year Rent Growth (bps)} \\
-		\midrule
-		(False, False) & 25 & 78 \\
-		(False, True)  & -23 & 64 \\
-		(True, False)  & 94 & 113 \\
-		(True, True)   & 14 & 55 \\
-		\bottomrule
-	\end{tabular}
-\end{table}
+Examining the differences between the means of the classifications shows that Neutral-Early markets are not significantly different from others-- the upper bound of the CI of the comparison to Renter-Favorable barely excludes zero. But all other comparisons were significantly different, with the Lanlord-Favorable markets 118 basis points higher in mean relative real rent than the Renter-Favorable markets. 
 
 To aid interpretation, Table~\ref{tab:matrixlabels} maps the binary groups to intuitive market types.
 
@@ -473,79 +441,156 @@ To aid interpretation, Table~\ref{tab:matrixlabels} maps the binary groups to in
 
 These results support our core hypothesis: landlord-favorable markets exhibit the strongest subsequent rent growth, while renter-favorable markets experience the weakest. Balanced and bubble-like markets show intermediate outcomes.
 
-\subsection{Statistical Tests of Group Differences}
 
-We conduct a two-way ANOVA on \textbf{relative rent growth} using `overpriced` and `oversupplied` as independent variables.
 
-\begin{table}[h!]
-	\centering
-	\caption*{Two-Way ANOVA Results}
-	\label{tab:anova_results}
-	\begin{tabular}{lrrrr}
-		\toprule
-		\textbf{Source} & \textbf{Sum Sq} & \textbf{df} & \textbf{F} & \textbf{p-value} \\
-		\midrule
-		Overpriced     & 0.0052 & 1     & 12.38 & 0.0004 \\
-		Oversupplied   & 0.0063 & 1     & 14.97 & 0.0001 \\
-		Residual       & 0.5454 & 1297  & --    & --     \\
-		\bottomrule
-	\end{tabular}
-\end{table}
 
-\begin{table}[h!]
-	\centering
-	\caption*{Tukey HSD Pairwise Comparisons}
-	\label{tab:tukey_results}
-	\begin{tabular}{llrrrrc}
-		\toprule
-		\textbf{Group 1} & \textbf{Group 2} & \textbf{Mean Diff} & \textbf{p-adj} & \textbf{Lower} & \textbf{Upper} & \textbf{Reject} \\
-		\midrule
-		False-False & False-True  &  0.0067 & 0.1204 & -0.0011 &  0.0144 & No \\
-		False-False & True-False  & -0.0050 & 0.0408 & -0.0099 & -0.0001 & Yes \\
-		False-False & True-True   & -0.0013 & 0.8912 & -0.0058 &  0.0033 & No \\
-		False-True  & True-False  & -0.0117 & 0.0002 & -0.0188 & -0.0046 & Yes \\
-		False-True  & True-True   & -0.0079 & 0.0167 & -0.0148 & -0.0010 & Yes \\
-		True-False  & True-True   &  0.0038 & 0.0213 &  0.0004 &  0.0071 & Yes \\
-		\bottomrule
-	\end{tabular}
-\end{table}
 
 These patterns do not appear in the raw rent growth values, reinforcing that our framework is best applied in relative terms—benchmarking each MSA against its peers in a given year.
+\subsection{Event Study: Rent Growth Before and After Regime Entry}
+
+To complement our classification-based forecasting approach, we implement an event study that traces rent dynamics around the time a market enters the \emph{Overpriced \& Oversupplied} regime. This regime—characterized by both above-equilibrium rents and excessive new supply—is hypothesized to precede periods of slower rent growth or correction. 
+
+We define the event year $t=0$ as the first year an MSA is classified as Overpriced \& Oversupplied. We construct an event time index ranging from $t = -2$ (two years before the regime entry) to $t = +2$ (two years after entry). For each event-time year, we compute the average real rent growth across all MSAs that experienced the regime switch.
+
+This structure ensures that the rent growth observed at $t+1$ and $t+2$ is entirely out-of-sample with respect to the classification year $t=0$. To contextualize the results, we compare these patterns to MSAs that never entered the Overpriced \& Oversupplied regime during the study period, as well as to those that experienced alternative classification transitions.
+
+%PLACEHOLDER
+%INCLUDE THE RESULTS VS ARIMA AND NAIVE MODELING
+Figure~\ref{fig:event_study} displays average real rent growth by event year for each group.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{event_study.pdf}
+	\caption*{Event study of average real rent growth before and after entry into the Overpriced \& Oversupplied regime ($t=0$).}
+	\label{fig:event_study}
+\end{figure}
+
+The results show that real rent growth slows meaningfully following entry into the Overpriced \& Oversupplied regime. While pre-entry years may exhibit moderate rent growth, the post-entry period is characterized by significantly lower average rent changes. This pattern supports the hypothesis that this classification regime is forward-looking and useful in anticipating market cooling or correction.
 
 \subsection{Visual and Quantitative Robustness}
 
-Figure~\ref{fig:boxplot_group_rentgrowth} shows the distribution of next-year rent growth across market types, highlighting the predictive spread between groups.
-The spread in median relative rent growth between landlord-favorable and renter-favorable markets is 117 basis points. This exceeds the cross-sectional standard deviation of rent growth in most years, reinforcing the economic magnitude of these classification effects.
+
+
+Figure~\ref{fig:group_averages_over_time} shows the average real rent in the landlord and renter-favorable markets, as classified the prior year, highlighting the predictive spread between groups.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{group_averages_over_time.pdf}
+	\caption*{Each market was classified in the prior year ($t-1$); the real rent growth shown is for the following year ($t$)}
+	\label{fig:group_averages_over_time}
+\end{figure}
+
+
+The landlord-favorable group exceeds the renter-favorable group by, on average, 163 basis points, which is just over one standard deviation, reinforcing the economic magnitude of these classification effects.
 
 \subsection{Distributional Evolution and Market Cycles}
 
-While the groupings are not evenly distributed across years, this reflects underlying market behavior rather than methodological bias. In early years such as 2011, few MSAs exhibit characteristics of overpriced and oversupplied markets, consistent with post-crisis housing conservatism. By contrast, between 2020 and 2022, the vast majority of MSAs fall into the “Price Bubble” category, despite negative or flat rent growth. This asymmetry suggests the framework captures real cyclical shifts, where high observed rents and heavy supply growth outpace renter willingness or ability to absorb space. The sharp contrast between high pricing and poor performance in these years further reinforces the framework’s value in signaling impending cooling phases or market corrections.
+Here we take a meta-examination of the classification system. The groupings are not evenly distributed across years, as we did not enforce a normalization. Instead, this reflects underlying market behavior rather than methodological bias. 
+
+\begin{table}[ht]
+	\centering
+	\caption{Market Classification and Average Real Rent Growth (2011--2024)}
+	\label{tab:market_rent_growth}
+	\begin{tabular}{lccccc}
+		\toprule
+		Year & Neutral-Early & Renter-Friendly & Landlord-Friendly & Neutral-Late & Avg. Real Rent Growth \\
+		\midrule
+		2011 & 61\% & 0\%  & 36\% & 3\%  & -2\% \\
+		2012 & 36\% & 2\%  & 60\% & 2\%  & 0\%  \\
+		2013 & 26\% & 2\%  & 67\% & 5\%  & 1\%  \\
+		2014 & 22\% & 1\%  & 64\% & 13\% & 1\%  \\
+		2015 & 9\%  & 7\%  & 38\% & 46\% & 4\%  \\
+		2016 & 4\%  & 8\%  & 26\% & 62\% & 1\%  \\
+		2017 & 3\%  & 7\%  & 22\% & 68\% & 0\%  \\
+		2018 & 2\%  & 6\%  & 17\% & 75\% & 1\%  \\
+		2019 & 2\%  & 6\%  & 7\%  & 85\% & 2\%  \\
+		2020 & 1\%  & 5\%  & 6\%  & 88\% & 1\%  \\
+		2021 & 0\%  & 8\%  & 3\%  & 89\% & 6\%  \\
+		2022 & 2\%  & 8\%  & 13\% & 77\% & -4\% \\
+		2023 & 5\%  & 3\%  & 21\% & 71\% & -3\% \\
+		2024 & 2\%  & 8\%  & 30\% & 60\% & -1\% \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+
+In early years such as 2011, few MSAs exhibit characteristics of overpriced and oversupplied markets, consistent with post-crisis housing conservatism. By contrast, between 2020 and 2022, the vast majority of MSAs fall into the “Price Bubble” category, despite negative or flat rent growth. This asymmetry suggests the framework captures real cyclical shifts, where high observed rents and heavy supply growth outpace renter willingness or ability to absorb space. The sharp contrast between high pricing and poor performance in these years further reinforces the framework’s value in signaling impending cooling phases or market corrections.
 
 \subsection{Predictive Power and Caveats}
-% PLACEHOLDER
-%Table 4 – Forecast‑accuracy comparison (RMSE & MAE) vs naïve and AR(1) benchmarks%
-We estimated a linear model using 2010--2022 data to forecast 2023 rent growth. The model included an interaction term between implied demand, supply growth, and contemporaneous rent growth. Despite this model’s simplicity—relying only on a single interaction variable—it achieved an out-of-sample $R^2$ of 0.31 when predicting next-year rent growth.
 
-To evaluate economic significance, we compared the top 20 MSAs by predicted growth to the bottom 20. The top group saw next-year rent growth that exceeded the bottom group by 246 basis points. This suggests the implied demand signal can be used to rank markets by expected future performance, offering both interpretability and predictive power.
+To gauge if the predictive power offered by the model is significant, we compare it to the forecasts of an ARIMA model and a naive model. The ARIMA model looks at trailing-10 year periods and forecasts the next year. The naive model assumes that the markets that were the top performers in the prior year will continue to be top performers in the following year. We then take the average rent growth of the forecasted top third and subtract it from the average rent growth of the forecasted bottom third.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{spread_comparison_over_time.pdf}
+	\caption*{Event study of average real rent growth before and after entry into the Overpriced \& Oversupplied regime ($t=0$).}
+	\label{fig:event_study}
+\end{figure}
+
+
+The relative-density system had a spread of 172 basis points between its Landlord-Favorable and Renter-Favorable markets. The ARIMA model had a spread of 145 basis points, while the naive model had a spread of 153 basis points. This suggests the implied demand signal can be used to rank markets by expected future performance, offering both interpretability and predictive power.
 
 While this forecasting result is encouraging, we acknowledge a potential limitation: market pricing and supply choices may themselves reflect expectations about future rent growth. This opens the door to endogeneity. Although our model uses trailing 10-year trends to construct classifications, future work should explore this causal directionality more rigorously.
 
 Together, these findings validate the informational value of market misalignment relative to derived equilibrium, offering a parsimonious and predictive classification of multifamily rent dynamics.
 
+\begin{table}[ht]
+	\centering
+	\caption{Yearly Spread Comparison}
+	\label{tab:yearly_spread}
+	\begin{tabular}{lccc}
+		\toprule
+		Year & RDI Spread & ARIMA Spread & Naive Spread \\
+		\midrule
+		
+		2012 & 0.0123     & 0.0023      & 0.0141     \\
+		2013 & 0.0246     & 0.0056      & 0.0141     \\
+		2014 & 0.0446     & 0.0113      & 0.0183     \\
+		2015 & 0.0264     & 0.0176      & 0.0239     \\
+		2016 & 0.0195     & 0.0230      & 0.0139     \\
+		2017 & 0.0124     & 0.0123      & 0.0201     \\
+		2018 & 0.0080     & 0.0181      & 0.0110     \\
+		2019 & 0.0136     & 0.0087      & 0.0122     \\
+		2020 & 0.0284     & 0.0119      & 0.0265     \\
+		2021 & -0.0005    & 0.0110      & 0.0113     \\
+		2022 & 0.0118     & 0.0530      & -0.0073    \\
+		2023 & 0.0058     & -0.0006     & 0.0251     \\
+		
+		\bottomrule
+	\end{tabular}
+\end{table}
 
-\section{Discussion}{sec6}
+\begin{table}[ht]
+	\centering
+	\caption{Average Spread Comparison}
+	\label{tab:average_spread}
+	\begin{tabular}{lc}
+		\toprule
+		Variable & Average Value \\
+		\midrule
+		
+		RDI Spread & 0.0172 \\
+		ARIMA Spread & 0.0145 \\
+		Naive Spread & 0.0153 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+
+
+\section{Discussion}
 
 Our findings reinforce the utility of rental density---measured as population per occupied rental unit---as a robust proxy for demand in multifamily housing markets. Traditional demand-side variables such as occupancy and absorption are bounded above by 100\%, rendering them structurally incapable of expressing excess demand. By contrast, our proposed measure, the change in Rental Density Index (\(\Delta\text{RDI}\)), accommodates marginal and nonlinear shifts in tenant behavior, particularly around unit sharing or household formation.
 
 The empirical evidence supports this theoretical proposition. When supply and demand curves were derived from historical \(\Delta\text{RDI}\) and supply growth data, we observed that the relative position of actual market conditions to the implied equilibrium---quantified as overpriced/underpriced and oversupplied/undersupplied---was significantly associated with next-year rent growth. Specifically, markets that were both overpriced and undersupplied experienced statistically higher rent growth than other combinations. Conversely, renter-favorable markets (underpriced and oversupplied) exhibited lower growth or even declines. 
 
-This segmentation has both explanatory and predictive power. Our simplified ANOVA model revealed statistically significant differences in next-year rent growth across these market states. Furthermore, we employed a univariate linear model using the interaction of implied demand, supply growth, and current rent growth to forecast future rent changes. The model yielded an \(R^2\) of 0.31 for 2023, indicating a moderate yet meaningful explanatory fit. The top 20 forecasted markets outperformed the bottom 20 by \textbf{\textit{[PLACEHOLDER]}} percentage points in next-year rent growth.
+This segmentation has both explanatory and predictive power. Our simplified ANOVA model revealed statistically significant differences in next-year rent growth across these market states. We presented an event-study model showing the impact of being classified as 'Renter-Friendly' and 'Landlord-Friendly' in the years following the classification. Finally we compared the predictive power of our classification system to that of ARIMA models and naive models used to forecast market rent-growth. In this comparison as well, our model outperformed. 
 
 While the number of MSAs in each state was not evenly distributed across years, this asymmetry reflects genuine market dynamics rather than bias or misclassification. For example, in periods of expansion, we naturally observe more overpriced or undersupplied markets, consistent with cyclical pressures on housing. Nonetheless, even in years with few markets in a given segment, those groupings consistently displayed expected behavior in rent trajectories.
 
 These findings reinforce the value of \(\Delta\text{RDI}\) as a continuous, forward-looking measure of housing demand, especially when contrasted with backward-looking or constrained alternatives. They also suggest that equilibrium misalignment---in both price and quantity---can be quantified in a way that is both actionable for investors and meaningful for policymakers.
 
-\section{Conclusion}{sec7}
+\section{Conclusion}
 
 This paper contributes to the literature on housing market dynamics by introducing the change in Rental Density Index (\(\Delta\text{RDI}\)) as a scalable, interpretable measure of demand. Unlike occupancy or absorption, \(\Delta\text{RDI}\) captures variation in consumer preference through household formation behavior---a critical but often overlooked channel of adjustment in rental markets.
 
@@ -572,10 +617,7 @@ None reported.
 \bmsection*{Conflict of interest}
 
 The authors declare no potential conflict of interests.
-
 \bibliography{wileyNJD-APA}
-
-
 \bmsection*{Supporting information}
 
 Additional supporting information may be found in the
@@ -584,13 +626,6 @@ online version of the article at the publisher’s website.
 
 
 
-\appendix
-
-\bmsection{Program codes appear in Appendix\label{app1}}
-\vspace*{12pt}
-Using the package {\tt listings} you can add non-formatted text as you would do with \verb|\begin{verbatim}| but its main aim is to include the source code of any programming language within your document.\newline Use \verb|\begin{lstlisting}...\end{lstlisting}| for program codes without mathematics.
-
-The {\tt listings} package supports all the most common languages and it is highly customizable. If you just want to write code within your document, the package provides the {\tt lstlisting} environment; the output will be in Computer Modern typewriter font. Refer to the below example:
 
 
 \begin{lstlisting}[caption={Descriptive caption text},label=DescriptiveLabel, basicstyle=\fontsize{8}{10}\selectfont\ttfamily]
@@ -604,198 +639,6 @@ WritE('Pascal keywords.');
 
 
 
-\bmsubsection{Subsection title of first appendix\label{app1.1a}}
-
-Nam dui ligula, fringilla a, euismod sodales, sollicitudin vel, wisi. Morbi auctor lorem non justo. Nam lacus libero,
-pretium at, lobortis vitae, ultricies et, tellus. Donec aliquet, tortor sed accumsan bibendum, erat ligula aliquet magna,
-vitae ornare odio metus a mi. Morbi ac orci et nisl hendrerit mollis. Suspendisse ut massa. Cras nec ante. Pellentesque
-a nulla. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam tincidunt
-urna. Nulla ullamcorper vestibulum turpis. Pellentesque cursus luctus mauris.
-
-Nulla malesuada porttitor diam. Donec felis erat, congue non, volutpat at, tincidunt tristique, libero. Vivamus
-viverra fermentum felis. Donec nonummy pellentesque ante. Phasellus adipiscing semper elit. Proin fermentum massa
-ac quam. Sed diam turpis, molestie vitae, placerat a, molestie nec, leo. Maecenas lacinia. Nam ipsum ligula, eleifend
-at, accumsan nec, suscipit a, ipsum. Morbi blandit ligula feugiat magna. Nunc eleifend consequat lorem. Sed lacinia
-nulla vitae enim. Pellentesque tincidunt purus vel magna. Integer non enim. Praesent euismod nunc eu purus. Donec
-bibendum quam in tellus. Nullam cursus pulvinar lectus. Donec et mi. Nam vulputate metus eu enim. Vestibulum
-pellentesque felis eu massa.
-Nulla malesuada porttitor diam. Donec felis erat, congue non, volutpat at, tincidunt tristique, libero. Vivamus
-viverra fermentum felis. Donec nonummy pellentesque ante. Phasellus adipiscing semper elit. Proin fermentum massa
-ac quam. Sed diam turpis, molestie vitae, placerat a, molestie nec, leo. Maecenas lacinia. Nam ipsum ligula, eleifend
-at, accumsan nec, suscipit a, ipsum. Morbi blandit ligula feugiat magna. Nunc eleifend consequat lorem. Sed lacinia
-nulla vitae enim. Pellentesque tincidunt purus vel magna. Integer non enim. Praesent euismod nunc eu purus. Donec
-bibendum quam in tellus. Nullam cursus pulvinar lectus. Donec et mi. Nam vulputate metus eu enim. Vestibulum
-pellentesque felis eu massa.
-
-\bmsubsubsection{Subsection title of first appendix\label{app1.1.1a}}
-
-\noindent\textbf{Unnumbered figure}
-
-
-\begin{center}
-\includegraphics[width=7pc,height=8pc,draft]{empty}
-\end{center}
-
-
-Fusce mauris. Vestibulum luctus nibh at lectus. Sed bibendum, nulla a faucibus semper, leo velit ultricies tellus, ac
-venenatis arcu wisi vel nisl. Vestibulum diam. Aliquam pellentesque, augue quis sagittis posuere, turpis lacus congue
-quam, in hendrerit risus eros eget felis. Maecenas eget erat in sapien mattis porttitor. Vestibulum porttitor. Nulla
-facilisi. Sed a turpis eu lacus commodo facilisis. Morbi fringilla, wisi in dignissim interdum, justo lectus sagittis dui, et
-vehicula libero dui cursus dui. Mauris tempor ligula sed lacus. Duis cursus enim ut augue. Cras ac magna. Cras nulla.
-
-Nulla egestas. Curabitur a leo. Quisque egestas wisi eget nunc. Nam feugiat lacus vel est. Curabitur consectetuer.
-Suspendisse vel felis. Ut lorem lorem, interdum eu, tincidunt sit amet, laoreet vitae, arcu. Aenean faucibus pede eu
-ante. Praesent enim elit, rutrum at, molestie non, nonummy vel, nisl. Ut lectus eros, malesuada sit amet, fermentum
-eu, sodales cursus, magna. Donec eu purus. Quisque vehicula, urna sed ultricies auctor, pede lorem egestas dui, et
-convallis elit erat sed nulla. Donec luctus. Curabitur et nunc. Aliquam dolor odio, commodo pretium, ultricies non,
-pharetra in, velit. Integer arcu est, nonummy in, fermentum faucibus, egestas vel, odio.
-
-\bmsection{Section title of second appendix\label{app2}}%
-\vspace*{12pt}
-Fusce mauris. Vestibulum luctus nibh at lectus. Sed bibendum, nulla a faucibus semper, leo velit ultricies tellus, ac
-venenatis arcu wisi vel nisl. Vestibulum diam. Aliquam pellentesque, augue quis sagittis posuere, turpis lacus congue
-quam, in hendrerit risus eros eget felis. Maecenas eget erat in sapien mattis porttitor. Vestibulum porttitor. Nulla
-facilisi. Sed a turpis eu lacus commodo facilisis. Morbi fringilla, wisi in dignissim interdum, justo lectus sagittis dui, et
-vehicula libero dui cursus dui. Mauris tempor ligula sed lacus. Duis cursus enim ut augue. Cras ac magna. Cras nulla (Figure~\ref{fig5}).
-
-Nulla egestas. Curabitur a leo. Quisque egestas wisi eget nunc. Nam feugiat lacus vel est. Curabitur consectetuer.
-Suspendisse vel felis. Ut lorem lorem, interdum eu, tincidunt sit amet, laoreet vitae, arcu. Aenean faucibus pede eu
-ante. Praesent enim elit, rutrum at, molestie non, nonummy vel, nisl. Ut lectus eros, malesuada sit amet, fermentum
-eu, sodales cursus, magna. Donec eu purus. Quisque vehicula, urna sed ultricies auctor, pede lorem egestas dui, et
-convallis elit erat sed nulla. Donec luctus. Curabitur et nunc. Aliquam dolor odio, commodo pretium, ultricies non,
-pharetra in, velit. Integer arcu est, nonummy in, fermentum faucibus, egestas vel, odio.
-
-%== Figure 4 ==
-%% Example for figure inside appendix
-\begin{figure}[b]
-\centerline{\includegraphics[height=10pc,width=78mm,draft]{empty}}
-\caption{This is an example for appendix figure.\label{fig5}}
-\end{figure}
-
-\bmsubsection{Subsection title of second appendix\label{app2.1a}}
-
-Sed commodo posuere pede. Mauris ut est. Ut quis purus. Sed ac odio. Sed vehicula hendrerit sem. Duis non odio.
-Morbi ut dui. Sed accumsan risus eget odio. In hac habitasse platea dictumst. Pellentesque non elit. Fusce sed justo
-eu urna porta tincidunt. Mauris felis odio, sollicitudin sed, volutpat a, ornare ac, erat. Morbi quis dolor. Donec
-pellentesque, erat ac sagittis semper, nunc dui lobortis purus, quis congue purus metus ultricies tellus. Proin et quam.
-Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Praesent sapien turpis,
-fermentum vel, eleifend faucibus, vehicula eu, lacus.
-
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec odio elit,
-dictum in, hendrerit sit amet, egestas sed, leo. Praesent feugiat sapien aliquet odio. Integer vitae justo. Aliquam
-vestibulum fringilla lorem. Sed neque lectus, consectetuer at, consectetuer sed, eleifend ac, lectus. Nulla facilisi.
-Pellentesque eget lectus. Proin eu metus. Sed porttitor. In hac habitasse platea dictumst. Suspendisse eu lectus. Ut
-mi mi, lacinia sit amet, placerat et, mollis vitae, dui. Sed ante tellus, tristique ut, iaculis eu, malesuada ac, dui.
-Mauris nibh leo, facilisis non, adipiscing quis, ultrices a, dui.
-
-\bmsubsubsection{Subsection title of second appendix\label{app2.1.1a}}
-
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae,
-felis. Curabitur dictum gravida mauris. Nam arcu libero, nonummy eget, consectetuer id, vulputate a, magna. Donec
-vehicula augue eu neque. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-Mauris ut leo. Cras viverra metus rhoncus sem. Nulla et lectus vestibulum urna fringilla ultrices. Phasellus eu tellus
-sit amet tortor gravida placerat. Integer sapien est, iaculis in, pretium quis, viverra ac, nunc. Praesent eget sem vel
-leo ultrices bibendum. Aenean faucibus. Morbi dolor nulla, malesuada eu, pulvinar at, mollis ac, nulla. Curabitur
-auctor semper nulla. Donec varius orci eget risus. Duis nibh mi, congue eu, accumsan eleifend, sagittis quis, diam.
-Duis eget orci sit amet orci dignissim rutrum (Table~\ref{tab4}).
-
-Nam dui ligula, fringilla a, euismod sodales, sollicitudin vel, wisi. Morbi auctor lorem non justo. Nam lacus libero,
-pretium at, lobortis vitae, ultricies et, tellus. Donec aliquet, tortor sed accumsan bibendum, erat ligula aliquet magna,
-vitae ornare odio metus a mi. Morbi ac orci et nisl hendrerit mollis. Suspendisse ut massa. Cras nec ante. Pellentesque
-a nulla. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam tincidunt
-urna. Nulla ullamcorper vestibulum turpis. Pellentesque cursus luctus mauris.
-
-\begin{table*}[t]%
-\centering
-\caption{This is an example of Appendix table showing food requirements of army, navy and airforce.\label{tab4}}%
-\begin{tabular*}{\textwidth}{@{\extracolsep\fill}llllll@{\extracolsep\fill}}%
-\toprule
-\textbf{Col1 head} & \textbf{Col2 head} & \textbf{Col3 head} & \textbf{Col4 head} & \textbf{Col5 head} & \textbf{Col6 head} \\
-\midrule
-col1 text & col2 text & col3 text & col4 text & col5 text & col6 text\\
-col1 text & col2 text & col3 text & col4 text & col5 text & col6 text\\
-col1 text & col2 text & col3 text& col4 text & col5 text & col6 text\\
-\bottomrule
-\end{tabular*}
-\end{table*}
-
-
-Example for an equation inside appendix
-\begin{equation}
-{\mathcal{L}} = i \bar{\psi} \gamma^\mu D_\mu \psi - \frac{1}{4} F_{\mu\nu}^a F^{a\mu\nu} - m \bar{\psi} \psi\label{eq25}
-\end{equation}
-
-\bmsection{Example of another appendix section\label{app3}}%
-\vspace*{12pt}
-This is sample for paragraph text this is sample for paragraph text  this is sample for paragraph text this is sample for paragraph text this is sample for paragraph text this is sample for paragraph text this is sample for paragraph text this is sample for paragraph text this is sample for paragraph text this is sample for paragraph text this is sample for paragraph text this is sample for paragraph text this is sample for paragraph text this is sample for paragraph text this is sample for paragraph text this is sample for paragraph text this is sample for paragraph text this is sample for paragraph text this is sample for paragraph text this is sample for paragraph text this is sample for paragraph text this is sample for paragraph text this is sample for paragraph text this is sample for paragraph text this is sample for paragraph text this is sample for paragraph text this is sample for paragraph text this is sample for paragraph text this is sample for paragraph text this is sample for paragraph text this is sample for paragraph text this is sample for paragraph text this is sample for paragraph text
-
-
-
-Nam dui ligula, fringilla a, euismod sodales, sollicitudin vel, wisi. Morbi auctor lorem non justo. Nam lacus libero,
-pretium at, lobortis vitae, ultricies et, tellus. Donec aliquet, tortor sed accumsan bibendum, erat ligula aliquet magna,
-vitae ornare odio metus a mi. Morbi ac orci et nisl hendrerit mollis. Suspendisse ut massa. Cras nec ante. Pellentesque
-a nulla. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam tincidunt
-urna. Nulla ullamcorper vestibulum turpis. Pellentesque cursus luctus mauris.
-
-Nulla malesuada porttitor diam. Donec felis erat, congue non, volutpat at, tincidunt tristique, libero. Vivamus
-viverra fermentum felis. Donec nonummy pellentesque ante. Phasellus adipiscing semper elit. Proin fermentum massa
-ac quam. Sed diam turpis, molestie vitae, placerat a, molestie nec, leo. Maecenas lacinia. Nam ipsum ligula, eleifend
-at, accumsan nec, suscipit a, ipsum. Morbi blandit ligula feugiat magna. Nunc eleifend consequat lorem. Sed lacinia
-nulla vitae enim. Pellentesque tincidunt purus vel magna. Integer non enim. Praesent euismod nunc eu purus. Donec
-bibendum quam in tellus. Nullam cursus pulvinar lectus. Donec et mi. Nam vulputate metus eu enim. Vestibulum
-pellentesque felis eu massa.
-\begin{equation}
-\mathcal{L} = i \bar{\psi} \gamma^\mu D_\mu \psi
-    - \frac{1}{4} F_{\mu\nu}^a F^{a\mu\nu} - m \bar{\psi} \psi
-\label{eq26}
-\end{equation}
-
-Nulla malesuada porttitor diam. Donec felis erat, congue non, volutpat at, tincidunt tristique, libero. Vivamus
-viverra fermentum felis. Donec nonummy pellentesque ante. Phasellus adipiscing semper elit. Proin fermentum massa
-ac quam. Sed diam turpis, molestie vitae, placerat a, molestie nec, leo. Maecenas lacinia. Nam ipsum ligula, eleifend
-at, accumsan nec, suscipit a, ipsum. Morbi blandit ligula feugiat magna. Nunc eleifend consequat lorem. Sed lacinia
-nulla vitae enim. Pellentesque tincidunt purus vel magna. Integer non enim. Praesent euismod nunc eu purus. Donec
-bibendum quam in tellus. Nullam cursus pulvinar lectus. Donec et mi. Nam vulputate metus eu enim. Vestibulum
-pellentesque felis eu massa.
-
-Quisque ullamcorper placerat ipsum. Cras nibh. Morbi vel justo vitae lacus tincidunt ultrices. Lorem ipsum dolor sit
-amet, consectetuer adipiscing elit. In hac habitasse platea dictumst. Integer tempus convallis augue. Etiam facilisis.
-Nunc elementum fermentum wisi. Aenean placerat. Ut imperdiet, enim sed gravida sollicitudin, felis odio placerat
-quam, ac pulvinar elit purus eget enim. Nunc vitae tortor. Proin tempus nibh sit amet nisl. Vivamus quis tortor
-vitae risus porta vehicula.
-
-
-\begin{center}
-\begin{tabular*}{250pt}{@{\extracolsep\fill}lcc@{\extracolsep\fill}}%
-\toprule
-\textbf{Col1 head} & \textbf{Col2 head} & \textbf{Col3 head} \\
-\midrule
-col1 text & col2 text & col3 text \\
-col1 text & col2 text & col3 text \\
-col1 text & col2 text & col3 text \\
-\bottomrule
-\end{tabular*}
-\end{center}
-
-
-Quisque ullamcorper placerat ipsum. Cras nibh. Morbi vel justo vitae lacus tincidunt ultrices. Lorem ipsum dolor sit
-amet, consectetuer adipiscing elit. In hac habitasse platea dictumst. Integer tempus convallis augue. Etiam facilisis.
-Nunc elementum fermentum wisi. Aenean placerat. Ut imperdiet, enim sed gravida sollicitudin, felis odio placerat
-quam, ac pulvinar elit purus eget enim. Nunc vitae tortor. Proin tempus nibh sit amet nisl. Vivamus quis tortor
-vitae risus porta vehicula.
-
-Fusce mauris. Vestibulum luctus nibh at lectus. Sed bibendum, nulla a faucibus semper, leo velit ultricies tellus, ac
-venenatis arcu wisi vel nisl. Vestibulum diam. Aliquam pellentesque, augue quis sagittis posuere, turpis lacus congue
-quam, in hendrerit risus eros eget felis. Maecenas eget erat in sapien mattis porttitor. Vestibulum porttitor. Nulla
-facilisi. Sed a turpis eu lacus commodo facilisis. Morbi fringilla, wisi in dignissim interdum, justo lectus sagittis dui, evehicula libero dui cursus dui. Mauris tempor ligula sed lacus. Duis cursus enim ut augue. Cras ac magna. Cras nulla.
-Nulla egestas. Curabitur a leo. Quisque egestas wisi eget nunc. Nam feugiat lacus vel est. Curabitur consectetuer.
-
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec odio elit,
-dictum in, hendrerit sit amet, egestas sed, leo. Praesent feugiat sapien aliquet odio. Integer vitae justo. Aliquam
-vestibulum fringilla lorem. Sed neque lectus, consectetuer at, consectetuer sed, eleifend ac, lectus. Nulla facilisi.
-Pellentesque eget lectus. Proin eu metus. Sed porttitor. In hac habitasse platea dictumst. Suspendisse eu lectus. Ut
-mi mi, lacinia sit amet, placerat et, mollis vitae, dui. Sed ante tellus, tristique ut, iaculis eu, malesuada ac, dui.
-Mauris nibh leo, facilisis non, adipiscing quis, ultrices a, dui.
 
 \nocite{*}% Show all bib entries - both cited and uncited; comment this line to view only cited bib entries;
 
