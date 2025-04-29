@@ -28,10 +28,12 @@
 
 \author[1]{Matt Larriva, CFA}
 
-\authormark{LARRIVA}
+
+\authormark{}
 \titlemark{Density Shift as a Measure of Demand}
 
 \address[1]{\orgdiv{Department of Real Estate Investments}, \orgname{Brookfield Asset Management}, \orgaddress{\state{New York}, \country{United States}}}
+
 
 
 \corres{\email{matt.larriva@brookfield.com}}
@@ -41,14 +43,15 @@
 %\fundingInfo{Text}
 %\JELinfo{ejlje}
 
-\abstract[Abstract]{We develop a density-based demand index for rental housing and show how it segments and forecasts market behavior. Drawing on annual population‑per‑unit changes, we derive supply and demand curves for the 100 largest U.S. metropolitan areas (2010-2023) and compute each market’s implied clearing rent and inventory. By comparing these benchmarks with the actual rents and units, we classify each market-year as over- or undersupplied and over- or under-priced. These four regimes strongly predict twelve-month rent growth: undersupplied/over-priced markets see the fastest real-rent gains, while oversupplied/under-priced markets lag. Our methodology offers a clear, actionable measure of consumer housing demand, illuminates household space-vs-price trade-offs, and quantifies the ripple effects of new supply.}
+\abstract[Abstract]{We develop a density-based demand index for rental housing and show how it segments and forecasts market behavior. Drawing on annual population-per-unit changes, we derive supply and demand curves for the 100 largest U.S. metropolitan areas (2010-2023) and compute each market’s implied clearing rent and inventory. By comparing these benchmarks with the actual rents and units, we classify each market-year as over- or undersupplied and over- or under-priced. These four regimes strongly predict twelve-month rent growth: undersupplied/over-priced markets see the fastest real-rent gains, while oversupplied/under-priced markets lag. Our methodology offers a clear, actionable measure of consumer housing demand, illuminates household space-vs-price trade-offs, and quantifies the ripple effects of new supply.}
 
 \keywords{density, supply and demand, multifamily rent-growth, apartment markets}
 
-\jnlcitation{\cname{%
-\author{Larriva M.}}.
-\ctitle{Density Shift as a Measure of Demand} \cjournal{\it Real Estate Econ.}
-\cvol{2021;00(00):1--18}.}
+%\jnlcitation{\cname{%
+%\author{Larriva M.}
+%\author{}.}
+%\ctitle{Density Shift as a Measure of Demand} \cjournal{\it Real Estate Econ.}
+%\cvol{2021;00(00):1--18}.}
 
 
 \maketitle
@@ -58,7 +61,7 @@
 
 \renewcommand\thefootnote{\fnsymbol{footnote}}
 \setcounter{footnote}{1}
-
+\FloatBarrier
 \section{Introduction}\label{sec1}
 Housing shortages and affordability concerns have risen to the forefront of policy debates in major urban markets. In the United States, housing production has consistently lagged population growth for decades, contributing to an estimated national shortfall of 4.4 million housing units \cite{betancourt2022us}. Nearly half of U.S. renter households now spend over 30\% of their income on housing \cite{censusNearlyHalf}, and from 2000 to 2024, the consumer price index (CPI) for shelter exceeded the CPI for all other items by 30\% \cite{stlouisfedConsumerPrice}. At the same time, select high-growth regions have recently experienced rent declines due to a glut of new supply \cite{mott2024ThisRegion}. This juxtaposition of chronic national undersupply with localized oversupply underscores a deeper issue: the lack of a reliable metric to measure consumer housing demand.
 
@@ -81,9 +84,9 @@ Focusing on a panel of the 100 largest metropolitan statistical areas (MSA), the
 
 This empirical strategy reveals consistent rent growth differences across market classifications. We find that markets classified as both overpriced and undersupplied experience significantly higher next-year rent growth than those that are underpriced and oversupplied. Specifically, markets in the former category averaged next-year relative real rent growth approximately 1.25\% higher than those in the latter category. These findings suggest that density-based classifications have predictive power and reflect latent demand more accurately than traditional indicators alone.
 
-Our paper makes two principal contributions. First, we introduce the Rental Density Index (RDI), a novel, supply‑unbounded metric of housing demand that can be computed at scale from readily available population and unit‐stock data. Second, we demonstrate RDI’s empirical value: it not only uncovers market disequilibrium but also delivers out‑of‑sample forecasts of twelve‑month rent growth with statistically significant accuracy.
+Our paper makes two principal contributions. First, we introduce the Rental Density Index (RDI), a novel, supply-unbounded metric of housing demand that can be computed at scale from readily available population and unit‐stock data. Second, we demonstrate RDI’s empirical value: it not only uncovers market disequilibrium but also delivers out-of-sample forecasts of twelve-month rent growth with statistically significant accuracy.
 
-These findings carry immediate applications for all housing‐market stakeholders. For policymakers, RDI functions as an early‑warning gauge of emerging shortages, enabling targeted zoning reforms, calibrated subsidy programs, or expedited permitting in precisely those submarkets under the greatest pressure—and subsequently measuring the efficacy of those measures. Institutional investors and residential developers can embed RDI trends into feasibility and risk models, avoiding the twin hazards of overbuilding in cooling metros or underbuilding in tightening ones. Finally, RDI sharpens the housing‐affordability debate by identifying the locales where rent increases are most likely to outstrip income growth, thereby guiding tenant‐protection policies, rent‐assistance programs, and other affordability interventions to the communities that need them most.
+These findings carry immediate applications for all housing‐market stakeholders. For policymakers, RDI functions as an early-warning gauge of emerging shortages, enabling targeted zoning reforms, calibrated subsidy programs, or expedited permitting in precisely those submarkets under the greatest pressure—and subsequently measuring the efficacy of those measures. Institutional investors and residential developers can embed RDI trends into feasibility and risk models, avoiding the twin hazards of overbuilding in cooling metros or underbuilding in tightening ones. Finally, RDI sharpens the housing‐affordability debate by identifying the locales where rent increases are most likely to outstrip income growth, thereby guiding tenant‐protection policies, rent‐assistance programs, and other affordability interventions to the communities that need them most.
 
 In the next section we discuss research on other measures of demand before presenting details on our proposed variable. The Data and Descriptive Statistics section describes and analyzes the density data we used, while the Empirical Analysis section presents evidence and illustrates statistical tests performed to evaluate the validity of the classifications. The final sections discuss the results of our tests before concluding with implications and further research suggestions. 
 
@@ -161,14 +164,14 @@ Within the 100 MSAs in the study,this metric ranges from 6.8 to 64.8. It reflect
 	\end{subfigure}\hfill
 	\begin{subfigure}[b]{0.32\textwidth}
 		\includegraphics[width=\linewidth]{tristate.png}
-		\caption{Tri‑State area}\label{fig:tristate_choropleth}
+		\caption{Tri-State area}\label{fig:tristate_choropleth}
 	\end{subfigure}\hfill
 	\begin{subfigure}[b]{0.32\textwidth}
 		\includegraphics[width=\linewidth]{florida.png}
 		\caption{Florida}\label{fig:florida_choropleth}
 	\end{subfigure}
 	
-	\caption{Rental‑Density‑Index (RDI) choropleths at three spatial scales.}
+	\caption{Rental-Density-Index (RDI) choropleths at three spatial scales.}
 	\label{fig:choropleth_panel}
 \end{figure*}
 
@@ -291,7 +294,7 @@ We estimate reduced-form linear models to approximate demand and supply response
  
 \FloatBarrier
 \begin{algorithm}
-	\caption{\enskip Segment markets into price–supply regimes (10‑year rolling window)}%
+	\caption{\enskip Segment markets into price–supply regimes (10-year rolling window)}%
 	\label{alg:market_segmentation}
 	\begin{algorithmic}[1]
 		\For{$y \gets 2010$ \textbf{to} 2022}
@@ -325,17 +328,29 @@ These states correspond to economic intuition. Overpriced and undersupplied mark
 
 
 \subsection{Response to Shocks}
-To see an example of how our model classifies a market experiencing supply shock, we look at Phoenix in 2021-2024 (figure \ref{fig:phoenix_mechanism}). The supply line is constructed by regressing the change real rent per square foot against the change in supply. The demand line is constructed by regressing the same real rent per square foot against the change in RDI. Both regressions use data from 2012-2021. The intersection of their regression equations (modeled by the red and blue lines) occurs at the black star. This gives the implied 2021 market‑clearing rent (\$0.76 / sf) and inventory growth (0.74 \%). But the observed values in 2021 (gray triangle) were both greater than implied, so this market would be classified as overpriced and oversupplied, or Neutral-Late. It is more overpriced than it is oversupplied, and so it returns to equilibrium through a price decline in the years that follow. 
-
-\begin{figure}[htb!]
+To illustrate how the model identifies disequilibrium and predicts market correction, we focus on the Phoenix and Austin MSAs during the 2021-2024 period (Figure~\ref{fig:response_shocks}). For each market, we estimate supply and demand curves by regressing real rent per square foot against supply growth (inventory deliveries) and demand growth (change in RDI), using data from 2012-2021. These regressions yield the supply and demand slopes shown by the blue and red lines, respectively.
+\begin{figure}[hbt!]
 	\centering
-	\includegraphics[]{phoenix_example.pdf}
-	\caption{Recovering equilibrium for a high growth market.  
-		Blue circles: supply growth vs real rent 2012‑2022, Phoenix MSA.  
-		Red circles: Rental‑Density‑Index growth vs real rent, same years.  
-}
-	\label{fig:phoenix_mechanism}
+	\begin{subfigure}[b]{0.49\textwidth}
+		\includegraphics[width=\linewidth]{phoenix_example.pdf}
+		\caption{Phoenix recovers from an oversupply shock}\label{fig:us_phoenix_mechanism}
+	\end{subfigure}\hfill
+	\begin{subfigure}[b]{0.49\textwidth}
+		\includegraphics[width=\linewidth]{austin_example.pdf}
+		\caption{Austin recovers from an overpricing shock}\label{fig:austin_example}
+	\end{subfigure}\hfill
+	\caption{Phoenix and Austin MSAs recover from supply and pricing shocks with lower prices}
+	\label{fig:response_shocks}
 \end{figure}
+
+The intersection of these two curves (marked by the black star) provides the model’s estimate of the market-clearing rent and inventory growth for 2021. In Phoenix, this implies an equilibrium rent of \$0.76 per square foot and supply growth of 0.74\%. However, the actual observed rent and inventory growth in 2021 (gray triangle) were well above these equilibrium values, signaling that the market was both overpriced and oversupplied--the conditions we identify as "Neutral-Late."
+
+The subsequent years validate the model’s classification. Rather than sustaining these high prices amid excess supply, the market corrected exactly as predicted: through falling rents. Rent per square foot declined in 2022, 2023, and 2024, moving the market back toward equilibrium (shown by the sequence of purple dots) from a pricing point of view. The supply was likely already in process and continued delivering. This pattern supports the core proposition of our model—that deviations from implied equilibrium rents and quantities carry predictive power for how markets will adjust.
+
+Austin exhibits a parallel dynamic, though the initial disequilibrium in 2021 appears to have been driven more by pricing than supply. Here too, the model flagged the market as overpriced relative to fundamentals, and the following years show a clear price correction that realigns the market toward its implied equilibrium. We posit that because the market was more overpriced than oversupplied (the supply value was squarely within historical range) the pricing corrected most sharply, returning near equilibrium levels within three years.
+
+
+
 
 We frame this as a partial equilibrium exercise, in which observed price and quantity may deviate from the implied market-clearing levels due to frictions such as construction lags, policy constraints, or imperfect price discovery \cite{wheaton1991realestate, glaeser2019rethinking}. This segmentation yields market classifications that form the basis for our predictive rent growth analysis in the following section.
 
@@ -344,7 +359,7 @@ We frame this as a partial equilibrium exercise, in which observed price and qua
 This section presents empirical findings from our market classification framework. Using the derived supply and demand curves, we compute equilibrium prices (\( p^* \)) and quantities (\( q^* \)) for each of the 100 largest MSAs from 2010 to 2022. By comparing \( (p^*, q^*) \) to the observed market outcomes \( (p, q) \), we segment markets into four states based on whether they are overpriced and/or oversupplied. We assess whether these classifications are associated with meaningful differences in future rent performance.
 
 %PLACEHOLDER
-%Fig 4 – 4‑quadrant heat‑map of all 100 MSAs (color = rent growth, size = inventory) for the latest year
+%Fig 4 – 4-quadrant heat-map of all 100 MSAs (color = rent growth, size = inventory) for the latest year
 
 \subsection{Statistical Tests of Group Differences}
  Table ~\ref{tab:group_stats} reports average next-year relative real rent growth across the four groups.
@@ -510,7 +525,7 @@ To gauge if the predictive power offered by the model is significant, we compare
 \end{figure}
 
 
-The relative-density system had a spread of 172 basis points between its Landlord-Favorable and Renter-Favorable markets. The ARIMA model had a spread of 145 basis points, while the naive model had a spread of 153 basis points. This suggests the implied demand signal can be used to rank markets by expected future performance, offering both interpretability and predictive power.
+The relative-density system had a spread of 172 basis points between its Landlord-Favorable and Renter-Favorable markets, when grouped by year. The ARIMA model had a spread of 145 basis points, while the naive model had a spread of 153 basis points. This suggests the implied demand signal can be used to rank markets by expected future performance, offering both interpretability and predictive power.
 
 A potential concern with our approach is that rents and supply choices may themselves be influenced by unobservable expectations about future demand, introducing endogeneity between price, supply growth, and the change in rental density (∆RDI). To mitigate this, our identification strategy relies on rolling 10-year historical windows to estimate demand and supply relationships, using only lagged data to derive equilibrium benchmarks for each market-year. This structure limits direct contamination from forward-looking decisions into the classification framework. Nonetheless, we acknowledge that residual simultaneity could bias estimates if, for example, developers respond to unmeasured leading indicators not captured in our regressions. While fully addressing this would require valid external instruments—such as exogenous supply shocks driven by zoning changes or permitting delays (e.g., \cite{saiz2010geographic})—data limitations prevent their inclusion in this analysis. As a robustness check, we incorporate lagged dependent variable models and fixed effects at both the market and year level to absorb time-invariant and macroeconomic confounders. The consistency of our results across these specifications provides some reassurance that endogeneity does not fully drive the observed relationships. We highlight this as an area for future research and encourage replication using instrumented designs where feasible.
 
@@ -586,19 +601,19 @@ Future work should explore refinement of \(\Delta\text{RDI}\) to account for com
 %\backmatter
 \bmsection*{Author contributions}
 
-This is an author contribution text. This is an author contribution text. This is an author contribution text. This is an author contribution text. This is an author contribution text.
+All authors contributed equally
 
 \bmsection*{Acknowledgments}
- here. This is acknowledgment text. Provide text here. This is acknowledgment text. Provide text here. This is acknowledgment text. Provide text here. This is acknowledgment text. Provide text here.
 
 
 \bmsection*{Financial disclosure}
 
-None reported.
-
 \bmsection*{Conflict of interest}
 
-The authors declare no potential conflict of interests.
+
+\bmsection*{Data Disclosure}
+
+
 \bibliography{wileyNJD-APA}
 \bmsection*{Supporting information}
 
@@ -610,29 +625,11 @@ online version of the article at the publisher’s website.
 
 
 
-\begin{lstlisting}[caption={Descriptive caption text},label=DescriptiveLabel, basicstyle=\fontsize{8}{10}\selectfont\ttfamily]
-for i:=maxint to 0 do
-begin
-{ do nothing }
-end;
-Write('Case insensitive ');
-WritE('Pascal keywords.');
-\end{lstlisting}
 
 
 
 
 \nocite{*}% Show all bib entries - both cited and uncited; comment this line to view only cited bib entries;
-
-
-\bmsection*{Author Biography}
-
-\begin{biography}{\includegraphics[width=76pt,height=76pt,draft]{empty}}{
-{\textbf{Author Name.} Please check with the journal's author guidelines whether
-author biographies are required. They are usually only included for
-review-type articles, and typically require photos and brief
-biographies for each author.}}
-\end{biography}
 
 
 \end{document}

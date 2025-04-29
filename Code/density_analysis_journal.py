@@ -945,6 +945,134 @@ def plot_national_averages():
     plt.show()
 
 
+def plot_austin_supply_demand():
+    mpl.rcParams.update(
+        {
+            # Use a serif font throughout
+            "font.family": "serif",
+            "font.serif": ["Times New Roman", "Times"],
+            "font.size": 10,  # 9 pt for axis labels/text
+            "axes.titlesize": 11,  # 10 pt for subplot titles
+            "axes.labelsize": 10,
+            "legend.fontsize": 9,
+            "xtick.labelsize": 9,
+            "ytick.labelsize": 9,
+            # Line widths and marker sizes
+            "lines.linewidth": 1.0,
+            "lines.markersize": 4,
+            "axes.linewidth": 0.8,
+            "grid.linewidth": 0.5,
+            # Ticks: inward, only bottom/left
+            "xtick.direction": "in",
+            "ytick.direction": "in",
+            "xtick.top": False,
+            "ytick.right": False,
+            # No fancy whitegrid—just light grey if you need
+            "axes.grid": False,
+            "grid.color": "0.85",
+            # Tight figure margins
+            "figure.autolayout": True,
+        }
+    )
+
+    df = get_data(filter="top_100").to_pandas()
+    dx = df[(df["msa"] == "Austin - TX") & (df["year"] >= 2022)]
+    df = df[(df["msa"] == "Austin - TX") & (df["year"] < 2022) & (df["year"] >= 2012)]
+    var_y = "real_rentpsf"
+    df = df.dropna()
+    var_x = "RDI_growth"
+    slope, intercept, r_value, p_value, std_err = linregress(df[var_x], df[var_y])
+    var_x = "supply_growth"
+    slope2, intercept2, r_value, p_value, std_err = linregress(df[var_x], df[var_y])
+    # Intersection point
+    intersection_x = (intercept2 - intercept) / (slope - slope2)
+    intersection_y = intercept + slope * intersection_x
+    print(intersection_x, intersection_y)
+    fig, ax = plt.subplots()
+
+    # Demand curve
+    var_x = "RDI_growth"
+    ax.scatter(df[var_x], df[var_y], label="Demand (RDI Growth) 2012-2021", color="red")
+
+    # Generate x values for the line plot
+    x_vals_demand = np.linspace(df[var_x].min(), df[var_x].max() + 0.01, 100)
+    ax.plot(x_vals_demand, intercept + slope * x_vals_demand, color="red")
+
+    # Supply growth curve
+    var_x = "supply_growth"
+    ax.scatter(
+        df[var_x], df[var_y], label="Supply (Inventory Growth) 2012-2021", color="blue"
+    )
+
+    # Generate x values for the line plot
+    x_vals_supply = np.linspace(df[var_x].min() - 0.02, df[var_x].max(), 100)
+    ax.plot(x_vals_supply, intercept2 + slope2 * x_vals_supply, color="blue")
+
+    ax.plot(
+        intersection_x,
+        intersection_y,
+        marker="*",
+        color="black",
+        label="Derived Equilibrium 2021",
+        markersize=10,
+    )
+    # ax.vlines(
+    #     x=intersection_x,
+    #     ymin=0.5,
+    #     ymax=intersection_y + 0.5,
+    #     linestyle="--",
+    #     color="red",
+    # )
+    # ax.hlines(
+    #     y=intersection_y,
+    #     xmin=-0.05,
+    #     xmax=intersection_x + 0.05,
+    #     linestyle="--",
+    #     color="red",
+    # )
+    cy = df[df["year"] == df["year"].max()]
+    ax.plot(
+        cy["supply_growth"],
+        cy["real_rentpsf"],
+        "v",
+        color="gray",
+        label="Price Shock 2021",
+        markersize=10,  # Increase the marker size
+    )
+
+    ax.plot(
+        dx["supply_growth"],
+        dx["real_rentpsf"],
+        "ro",
+        color="purple",
+        label="Equilibrium Recovery",
+    )
+    for i, row in dx.iterrows():
+        ax.text(
+            row["supply_growth"],
+            row["real_rentpsf"],
+            f"{str(row['year'])}",
+            fontsize=9,
+            ha="right",
+        )
+    # Adding labels and title
+    ax.set_xlabel("Quantity: RDI Growth and Supply Growth")
+    ax.set_ylabel("Rent per Square Foot ($)")
+    ax.set_title("Supply and Demand Curves for Austin - TX (2012-2021)")
+    # ax.set_title("Supply and Demand Curves")
+    ax.legend()
+
+    # Display the plot
+
+    plt.savefig(
+        Path(__file__).resolve().parent.parent / "Figs" / "austin_example.pdf",
+        format="pdf",
+        bbox_inches="tight",  # crop extra white
+        pad_inches=0.02,
+    )
+    plt.show()
+
+
 def plot_phoenix_supply_demand():
     mpl.rcParams.update(
         {
@@ -1175,7 +1303,8 @@ def plot_group_averages_with_confidence():
 # show_summary_statistics()
 # dx = supply_demand_annual(get_data().to_pandas())
 # event_study()
-plot_phoenix_supply_demand()
+# plot_phoenix_supply_demand()
+plot_austin_supply_demand()
 # simplify_anova()
 # plot_national_averages()
 # choropleth_rdi_by_msa()

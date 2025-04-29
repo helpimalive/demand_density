@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.3) (preloaded format=xelatex 2025.4.15)  22 APR 2025 17:38
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.3) (preloaded format=xelatex 2025.4.15)  29 APR 2025 16:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1186,7 +1186,7 @@ LaTeX Info: Redefining \BPBI on input line 129.
 LaTeX Info: Redefining \BHBI on input line 130.
 )
 \c@lstlisting=\count435
-LaTeX Font Info:    Trying to load font information for T1+phv on input line 54
+LaTeX Font Info:    Trying to load font information for T1+phv on input line 57
 .
 (C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1phv.fd
 File: t1phv.fd 2020/03/25 scalable font definitions for T1/phv.
@@ -1200,7 +1200,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 54.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 57.
 
  (C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -1208,7 +1208,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 54.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 57.
 
  (C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1216,16 +1216,14 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 (C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-Missing character: There is no ‑ in font ptmr8t!
-Missing character: There is no ‑ in font ptmr8t!
 Missing character: There is no ’ in font ptmr8t!
 
-Overfull \hbox (350.99213pt too wide) in paragraph at lines 54--54
+Overfull \hbox (350.99213pt too wide) in paragraph at lines 57--57
 [][] | || []|[][] 
  []
 
 
-Package hyperref Warning: Ignoring empty anchor on input line 57.
+Package hyperref Warning: Ignoring empty anchor on input line 60.
 
 
 Overfull \vbox (1.12047pt too high) has occurred while \output is active []
@@ -1236,7 +1234,7 @@ Overfull \vbox (1.12047pt too high) has occurred while \output is active []
 Overfull \vbox (29.44482pt too high) has occurred while \output is active []
 
 LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 7
-0.
+3.
 
 (C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
@@ -1255,14 +1253,9 @@ File: ../Figs/rdi_rent_growth_2024.pdf Graphic file (type pdf)
 
 
 [2]
-Missing character: There is no ‑ in font ptmr8t!
 Missing character: There is no ‐ in font ptmr8t!
 Missing character: There is no ’ in font ptmr8t!
-Missing character: There is no ‑ in font ptmr8t!
-Missing character: There is no ‑ in font ptmr8t!
-Missing character: There is no ‑ in font ptmr8t!
 Missing character: There is no ‐ in font ptmr8t!
-Missing character: There is no ‑ in font ptmr8t!
 Missing character: There is no — in font ptmr8t!
 Missing character: There is no ‐ in font ptmr8t!
 Missing character: There is no ‐ in font ptmr8t!
@@ -1274,12 +1267,12 @@ Missing character: There is no ‐ in font ptmr8t!
 Missing character: There is no — in font ptmr8t!
 Missing character: There is no — in font ptmr8t!
 
-Underfull \hbox (badness 10000) detected at line 127
+Underfull \hbox (badness 10000) detected at line 130
 []
  []
 
 LaTeX Font Info:    Trying to load font information for T1+pcr on input line 13
-2.
+5.
 (C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
@@ -1298,27 +1291,22 @@ File: ../Figs/us.png Graphic file (type bmp)
 <../Figs/us.png>
 File: ../Figs/tristate.png Graphic file (type bmp)
 <../Figs/tristate.png>
-
-Missing character: There is no ‑ in font ptmr8t!
-Missing character: There is no ‑ in font ptmr8t!
 File: ../Figs/florida.png Graphic file (type bmp)
 <../Figs/florida.png>
-Missing character: There is no ‑ in font ptmr8t!
-Missing character: There is no ‑ in font ptmr8t!
 
-Underfull \hbox (badness 10000) detected at line 171
+Underfull \hbox (badness 10000) detected at line 174
 []
  []
 
 
-Underfull \hbox (badness 10000) detected at line 186
+Underfull \hbox (badness 10000) detected at line 189
 []
  []
 
 
 
 [5]
-Underfull \hbox (badness 10000) detected at line 212
+Underfull \hbox (badness 10000) detected at line 215
 []
  []
 
@@ -1338,7 +1326,7 @@ File: ../Figs/rdi_growth_histogram.pdf Graphic file (type pdf)
 File: ../Figs/rdi_trends_selected_msas.pdf Graphic file (type pdf)
 <use ../Figs/rdi_trends_selected_msas.pdf>
 
-Underfull \hbox (badness 10000) detected at line 249
+Underfull \hbox (badness 10000) detected at line 252
 []
  []
 
@@ -1348,37 +1336,35 @@ Missing character: There is no Δ in font ptmr8t!
 
 
 [6]
-Underfull \hbox (badness 10000) detected at line 279
+Underfull \hbox (badness 10000) detected at line 282
 []
  []
 
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 294.
+put line 297.
 Missing character: There is no – in font ptmr8t!
-Missing character: There is no ‑ in font ptmr8t!
 Missing character: There is no – in font ptmr8t!
-Missing character: There is no ‑ in font ptmr8t!
 
 
 [7]
-Missing character: There is no ‑ in font ptmr8t!
-Missing character: There is no   in font ptmr8t!
-Missing character: There is no   in font ptmr8t!
-Missing character: There is no   in font ptmr8t!
 File: ../Figs/phoenix_example.pdf Graphic file (type pdf)
 <use ../Figs/phoenix_example.pdf>
-Missing character: There is no ‑ in font ptmr8t!
-Missing character: There is no ‑ in font ptmr8t!
-Missing character: There is no ‑ in font ptmr8t!
-Missing character: There is no ‑ in font ptmr8t!
-Missing character: There is no ‑ in font ptmr8t!
-Missing character: There is no ‑ in font ptmr8t!
+File: ../Figs/austin_example.pdf Graphic file (type pdf)
+<use ../Figs/austin_example.pdf>
+
+Underfull \hbox (badness 10000) detected at line 342
+[]
+ []
+
+Missing character: There is no ’ in font ptmr8t!
+Missing character: There is no ’ in font ptmr8t!
+Missing character: There is no — in font ptmr8t!
 
 
 [8]
 Missing character: There is no ‐ in font ptmr8t!
 
-Underfull \hbox (badness 10000) detected at line 359
+Underfull \hbox (badness 10000) detected at line 374
 []
  []
 
@@ -1388,12 +1374,12 @@ Missing character: There is no ‐ in font ptmr8t!
 
 
 [9]
-Underfull \hbox (badness 10000) detected at line 395
+Underfull \hbox (badness 10000) detected at line 410
 []
  []
 
 
-Underfull \hbox (badness 10000) detected at line 423
+Underfull \hbox (badness 10000) detected at line 438
 []
  []
 
@@ -1403,14 +1389,14 @@ Underfull \hbox (badness 10000) detected at line 423
 File: ../Figs/event_study.pdf Graphic file (type pdf)
 <use ../Figs/event_study.pdf>
 
-Underfull \hbox (badness 10000) detected at line 446
+Underfull \hbox (badness 10000) detected at line 461
 []
  []
 
 File: ../Figs/group_averages_over_time.pdf Graphic file (type pdf)
 <use ../Figs/group_averages_over_time.pdf>
 
-Underfull \hbox (badness 10000) detected at line 461
+Underfull \hbox (badness 10000) detected at line 476
 []
  []
 
@@ -1418,34 +1404,37 @@ Underfull \hbox (badness 10000) detected at line 461
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Underfull \hbox (badness 10000) detected at line 474
+Underfull \hbox (badness 10000) detected at line 489
 []
  []
 
-
-
-[11]
 Missing character: There is no ’ in font ptmr8t!
 
 
-[12]
+[11]
 File: ../Figs/spread_comparison_over_time.pdf Graphic file (type pdf)
 <use ../Figs/spread_comparison_over_time.pdf>
 
-Underfull \hbox (badness 10000) detected at line 508
+Underfull \hbox (badness 10000) detected at line 523
 []
  []
 
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+
+[12]
 Missing character: There is no ∆ in font ptmr8t!
 Missing character: There is no — in font ptmr8t!
 Missing character: There is no — in font ptmr8t!
 
-Underfull \hbox (badness 10000) detected at line 521
+Underfull \hbox (badness 10000) detected at line 536
 []
  []
 
 
-Underfull \hbox (badness 10000) detected at line 547
+Underfull \hbox (badness 10000) detected at line 562
 []
  []
 
@@ -1462,26 +1451,17 @@ Underfull \hbox (badness 2173) in paragraph at lines 88--101
 
 Missing character: There is no ‐ in font ptmr8t!
 Missing character: There is no – in font ptmr8t!
+Missing character: There is no ’ in font ptmr8t!
 
 
 [15]
-Missing character: There is no ’ in font ptmr8t!
 Missing character: There is no “ in font ptmr8t!
 Missing character: There is no ” in font ptmr8t!
 )
 Missing character: There is no ’ in font ptmr8t!
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 613.
-
-Underfull \hbox (badness 10000) detected at line 613
-[]
- []
 
 
-
-[16]
-
-[17] (wileyNJDv5_AMA.aux)
+[16] (wileyNJDv5_AMA.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-03-26>
@@ -1497,12 +1477,12 @@ L3 programming layer <2025-03-26>
 (\end occurred when \iftrue on line 4739 was incomplete)
 (\end occurred when \ifx on line 2 was incomplete) 
 Here is how much of TeX's memory you used:
- 22069 strings out of 405075
- 347820 string characters out of 5499361
- 797945 words of memory out of 5000000
- 48349 multiletter control sequences out of 15000+600000
+ 22059 strings out of 405075
+ 347730 string characters out of 5499361
+ 795945 words of memory out of 5000000
+ 48338 multiletter control sequences out of 15000+600000
  683752 words of font info for 103 fonts, out of 8000000 for 9000
  1374 hyphenation exceptions out of 8191
- 87i,12n,93p,1480b,993s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 87i,12n,93p,1507b,587s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on wileyNJDv5_AMA.pdf (17 pages).
+Output written on wileyNJDv5_AMA.pdf (16 pages).
