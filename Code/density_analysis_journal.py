@@ -18,6 +18,7 @@ from statsmodels.tsa.arima.model import ARIMA
 import matplotlib as mpl
 import numpy as np
 from scipy.stats import sem
+from linearmodels.iv import IV2SLS
 
 mpl.rcParams.update(
     {
@@ -50,25 +51,44 @@ mpl.rcParams.update(
 
 
 def get_data(filter="top_100"):
-    df = pl.read_csv(
-        Path(__file__).resolve().parent.parent / "data" / "msa_data.csv",
-        schema_overrides={"FIPS": pl.Utf8},
+    df = pl.read_excel(
+        Path(__file__).resolve().parent.parent / "data" / "costar_raw.xlsx",
+        # schema_overrides={"FIPS": pl.Utf8},
+    )
+    df = df.with_columns(pl.col("Period").str.slice(0, 4).cast(pl.Int16).alias("year"))
+    df = df.with_columns(pl.col("Geography Name").str.replace(" USA$", "").alias("msa"))
+    df = df.rename({"Market Effective Rent/SF": "rentpsf"})
+    df = df.rename({"Market Effective Rent Growth 12 Mo": "rent_growth"})
+    df = df.rename({"Occupancy Rate": "occ"})
+    df = df.rename({"Inventory Units": "inventory"})
+    df = df.rename({"Net Delivered Units 12 Mo": "delivered"})
+    df = df.rename({"Population": "pop"})
+    df = df.rename({"Demand Units": "demand_units"})
+    df = df.rename({"Absorption %": "absorption"})
+    df = df.rename({"Construction Starts Units 12 Mo": "starts"})
+    df = df.rename({"CBSA Code": "cbsa"})
+    df = df.rename({"Demolished Units": "demolished_units"})
+    df = df.rename({"Sales Volume Transactions": "sales_volume"})
+
+    df = df.select(
+        [
+            "year",
+            "msa",
+            "rentpsf",
+            "occ",
+            "inventory",
+            "delivered",
+            "pop",
+            "rent_growth",
+            "demand_units",
+            "absorption",
+            "starts",
+            "demolished_units",
+            "cbsa",
+            "sales_volume",
+        ]
     )
 
-    df.columns = [
-        "year",
-        "msa",
-        "rentpsf",
-        "occ",
-        "inventory",
-        "delivered",
-        "pop",
-        "rent_growth",
-        "demand_units",
-        "absorption",
-        "CBSA",
-        "FIPS",
-    ]
     df = df.with_columns(pl.col("year").cast(pl.Int16))
 
     if filter == "top_100":
@@ -129,6 +149,18 @@ def get_data(filter="top_100"):
                 "absorption_growth"
             ),
             ((pl.col("demand_units") / pl.col("inventory")).alias("demand_pct")),
+            (pl.col("starts") / pl.col("inventory").shift(1).over("msa")).alias(
+                "starts_pct"
+            ),
+            (100 * (pl.col("pop") / pl.col("pop").shift(1).over("msa") - 1)).alias(
+                "pop_growth"
+            ),
+            (
+                pl.col("demolished_units") / pl.col("inventory").shift(1).over("msa")
+            ).alias("demolished_pct"),
+            (pl.col("sales_volume") / pl.col("inventory").shift(1).over("msa")).alias(
+                "sales_volume_growth"
+            ),
         ]
     )
 
@@ -153,11 +185,14 @@ def get_data(filter="top_100"):
     df = df.select(
         [
             "year",
+            "absorption",
             "msa",
             "pop",
+            "demolished_pct",
             "rent_growth",
             "real_rentpsf",
             "real_rent_growth",
+            "starts_pct",
             "inventory",
             "RDI",
             "real_rent_growth_next_year",
@@ -165,7 +200,8 @@ def get_data(filter="top_100"):
             "RDI_growth",
             "supply_growth",
             "real_relative_rg_next_year",
-            "FIPS",
+            "pop_growth",
+            "sales_volume_growth",
         ]
     )
     if filter == "top_100":
@@ -176,15 +212,32 @@ def get_data(filter="top_100"):
 
 
 def supply_demand_curves(df, show=False):
-    var_y = "real_rentpsf"
-    df = df.dropna()
-    var_x = "RDI_growth"
-    slope, intercept, r_value, p_value, std_err = linregress(df[var_x], df[var_y])
-    var_x = "supply_growth"
-    slope2, intercept2, r_value, p_value, std_err = linregress(df[var_x], df[var_y])
-    # Intersection point
-    intersection_x = (intercept2 - intercept) / (slope - slope2)
-    intersection_y = intercept + slope * intersection_x
+    demand_model = IV2SLS.from_formula(
+        "RDI_growth ~ 1 + absorption  + [real_rentpsf ~ pop_growth]",
+        data=df,
+    ).fit()
+    supply_model = IV2SLS.from_formula(
+        "supply_growth ~ 1 + demolished_pct + [real_rentpsf ~ sales_volume_growth]",
+        data=df,
+    ).fit()
+    a0, a1, a2 = (
+        demand_model.params["Intercept"],
+        demand_model.params["real_rentpsf"],
+        demand_model.params["absorption"],
+    )
+    b0, b1, b2 = (
+        supply_model.params["Intercept"],
+        supply_model.params["real_rentpsf"],
+        supply_model.params["demolished_pct"],
+    )
+
+    # Current values for controls
+    absorption_val = df.loc[df["year"] == df["year"].max(), "absorption"]
+    demolished_val = df.loc[df["year"] == df["year"].max(), "demolished_pct"]
+    # Predict RDI growth using the supply model
+    rdi_growth_predicted = supply_model.predict(data=df.fillna(0))
+    supply_growth_predicted = demand_model.predict(data=df.fillna(0))
+
     if show:
         fig, ax = plt.subplots()
 
@@ -233,7 +286,7 @@ def supply_demand_curves(df, show=False):
 
         # Display the plot
         plt.show()
-    return intersection_x, intersection_y
+    return rdi_growth_predicted, supply_growth_predicted
 
 
 def predict_future(how):
@@ -388,33 +441,40 @@ def supply_demand_annual(df):
     msas = df["msa"].unique()
     years = df["year"].unique()
     holder = []
-    y_m = df.loc[df["year"] > 2010, ["year", "msa"]].drop_duplicates()
+    y_m = df.loc[df["year"] > 2012, ["year"]].drop_duplicates()
+    fs = df[["real_rentpsf", "sales_volume_growth"]].dropna()
+    first_stage = ols("real_rentpsf ~ sales_volume_growth", data=fs).fit()
+    print(first_stage.summary())
+    first_stage = ols("real_rentpsf ~ pop_growth", data=df).fit()
+    print(first_stage.summary())
+    print(df[["real_rentpsf", "absorption", "demolished_pct"]].corr())
+    print(ols("absorption ~ real_rentpsf + pop_growth", data=df).fit().summary())
     for x in y_m.itertuples():
-        df_t = df[
-            (df["msa"] == x.msa) & (df["year"] < x.year) & (df["year"] >= x.year - 10)
-        ]
-        df_current = df[(df["msa"] == x.msa) & (df["year"] == x.year)]
-        try:
-            intersection_x, intersection_y = supply_demand_curves(df_t)
-        except:
-            intersection_x = np.nan
-            intersection_y = np.nan
-        holder.append(
+        df_t = df[df["year"] == (x.year - 1)]
+        df_current = df[(df["year"] == x.year)].copy()
+        intersection_y, intersection_x = supply_demand_curves(df_t)
+        df_current["quantity"] = intersection_x.values
+        df_current["price"] = intersection_y.values
+
+        df_current = df_current[
             [
-                x.msa,
-                x.year,
-                intersection_x,
-                intersection_y,
-                df_current.real_rentpsf.values[0],
-                df_current.RDI_growth.values[0],
-                df_current.supply_growth.values[0],
-                df_current.real_rent_growth_next_year.values[0],
-                df_current.real_relative_rg_next_year.values[0],
-                df_current.real_rent_growth.values[0],
-                df_current.real_relative_rent_growth.values[0],
-                df_current.rent_growth.values[0],
+                "msa",
+                "year",
+                "quantity",
+                "price",
+                "real_rentpsf",
+                "RDI_growth",
+                "supply_growth",
+                "real_rent_growth_next_year",
+                "real_relative_rg_next_year",
+                "real_rent_growth",
+                "real_relative_rent_growth",
+                "rent_growth",
             ]
-        )
+        ]
+        holder.extend(df_current.values.tolist())
+        # except:
+        #     print("no values for ", x.year)
     holder = pd.DataFrame(
         holder,
         columns=[
@@ -432,11 +492,13 @@ def supply_demand_annual(df):
             "rent_growth",
         ],
     )
-    holder["overpriced"] = holder["price"] < holder["real_rentpsf"]
-    holder["oversupplied"] = holder["quantity"] < holder["supply_growth"]
-    holder["group"] = (
-        holder["oversupplied"].astype(str) + "-" + holder["overpriced"].astype(str)
-    )
+    # holder["overpriced"] = holder["price"] < holder["supply_growth"]
+    holder["oversupplied"] = (
+        holder["RDI_growth"] < 0
+    )  # sign flip because RDI growth goes negative when increasing
+    # holder["group"] = (
+    #     holder["oversupplied"].astype(str) + "-" + holder["overpriced"].astype(str)
+    # )
 
     holder.to_csv(
         Path(__file__).resolve().parent.parent / "data" / "supply_demand_annual.csv",
@@ -446,42 +508,91 @@ def supply_demand_annual(df):
 
 
 def simplify_anova():
+    # var = "real_rent_growth_next_year"
+    var = "real_relative_rg_next_year"
     df = pd.read_csv(
         Path(__file__).resolve().parent.parent / "data" / "supply_demand_annual.csv"
-    ).dropna(subset="real_relative_rg_next_year")
-    # Replace Boolean codes with narrative labels
-    df["group"] = df.apply(
-        lambda row: (
-            "Landlord-Favorable"
-            if row["overpriced"] and not row["oversupplied"]
-            else (
-                "Renter-Favorable"
-                if not row["overpriced"] and row["oversupplied"]
-                else (
-                    "Neutral-Early"
-                    if not row["overpriced"] and not row["oversupplied"]
-                    else "Neutral-Late"
-                )
-            )
-        ),
-        axis=1,
+    ).dropna(subset=var)
+
+    # Calculate the correlation between 'quantity' and 'RDI_growth'
+    correlation = df[df["year"] == 2022][["quantity", "RDI_growth"]].corr().iloc[0, 1]
+    print(f"Correlation between 'quantity' and 'RDI_growth': {correlation}")
+    # Scatterplot of RDI_growth vs real_rentpsf
+    plt.figure(figsize=(10, 6))
+    plt.scatter(df["RDI_growth"], df["real_rentpsf"], alpha=0.7, edgecolor="k")
+    plt.xlabel("RDI Growth")
+    plt.ylabel("Real Rent per Square Foot")
+    plt.title("Scatterplot of RDI Growth vs Real Rent per Square Foot")
+    plt.grid(True)
+    plt.tight_layout()
+    plt.show()
+    # Calculate average price and quantity by year
+    # avg_price_quantity = (
+    #     df.groupby("year")
+    #     .agg(
+    #         avg_price=("price", "mean"),
+    #         avg_quantity=("quantity", "mean"),
+    #         avg_rent_growth=("real_rent_growth_next_year", "mean"),
+    #     )
+    #     .reset_index()
+    # )
+
+    # print(avg_price_quantity)
+    print(
+        df.groupby("oversupplied")
+        .agg(
+            mean_next_year_relative_real_rent_growth=(
+                var,
+                "mean",
+            ),
+            n_obs=(var, "size"),
+        )
+        .reset_index()
     )
+    print(
+        df.groupby("overpriced")
+        .agg(
+            mean_next_year_relative_real_rent_growth=(
+                var,
+                "mean",
+            ),
+            n_obs=(var, "size"),
+        )
+        .reset_index()
+    )
+    # Replace Boolean codes with narrative labels
+    # df["group"] = df.apply(
+    #     lambda row: (
+    #         "Landlord-Favorable"
+    #         if row["overpriced"] and not row["oversupplied"]
+    #         else (
+    #             "Renter-Favorable"
+    #             if not row["overpriced"] and row["oversupplied"]
+    #             else (
+    #                 "Neutral-Early"
+    #                 if not row["overpriced"] and not row["oversupplied"]
+    #                 else "Neutral-Late"
+    #             )
+    #         )
+    #     ),
+    #     axis=1,
+    # )
 
     # Calculate mean next-year real-rent growth
     summary = (
         df.groupby("group")
         .agg(
             mean_next_year_relative_real_rent_growth=(
-                "real_relative_rg_next_year",
+                var,
                 "mean",
             ),
-            n_obs=("real_relative_rg_next_year", "size"),
+            n_obs=(var, "size"),
         )
         .reset_index()
     )
     # Calculate means and 95% confidence intervals for each group
-    group_means = df.groupby("group")["real_relative_rg_next_year"].mean()
-    group_se = df.groupby("group")["real_relative_rg_next_year"].sem()
+    group_means = df.groupby("group")[var].mean()
+    group_se = df.groupby("group")[var].sem()
     ci_lower = group_means - 1.96 * group_se
     ci_upper = group_means + 1.96 * group_se
     # Calculate p-values for each group mean
@@ -489,16 +600,17 @@ def simplify_anova():
     # Perform one-sample t-tests for each group mean
     p_values = {}
     for group in df["group"].unique():
-        group_data = df[df["group"] == group]["real_relative_rg_next_year"]
+        group_data = df[df["group"] == group][var]
         t_stat, p_value = ttest_1samp(group_data, 0, nan_policy="omit")
         p_values[group] = p_value
         # Add n_obs to the summary DataFrame
-    summary["n_obs"] = df.groupby("group")["real_relative_rg_next_year"].size().values
+    summary["n_obs"] = df.groupby("group")[var].size().values
     # Add p-values to the summary DataFrame
     summary["p-value"] = summary["group"].map(p_values)
     # Combine results into a DataFrame
     ci_summary = pd.DataFrame(
         {
+            "group": summary["group"],
             "mean (bps)": [int(x * 10000) for x in group_means],
             "95% CI Lower (bps)": [int(x * 10000) for x in ci_lower],
             "95% CI Upper (bps)": [int(x * 10000) for x in ci_upper],
@@ -584,8 +696,8 @@ def event_study():
     for event in [
         "Landlord-Favorable",
         "Renter-Favorable",
-        # "OverpricedOversupplied",
-        # "UnderpricedUndersupplied",
+        "OverpricedOversupplied",
+        "UnderpricedUndersupplied",
         "same",
     ]:
         df = original.with_columns(
@@ -598,11 +710,11 @@ def event_study():
         if event != "same":
 
             event_years = (
-                # df.filter(pl.col("transition").shift(-1).over("msa") == "same")
+                df.filter(pl.col("transition").shift(-1).over("msa") == "same")
                 # .filter(pl.col("transition").shift(-2).over("msa") == "same")
-                # .filter(pl.col("transition").shift(1).over("msa") == "same")
+                .filter(pl.col("transition").shift(1).over("msa") == "same")
                 # .filter(pl.col("transition").shift(2).over("msa") == "same")
-                df.filter(pl.col("transition") == "switch")
+                .filter(pl.col("transition") == "switch")
                 .filter(pl.col("group") == event)
                 .select(pl.col("msa"), pl.col("year").alias("event_year"))
             )
@@ -749,6 +861,22 @@ def event_study():
 
 def choropleth_rdi_by_msa():
     # Load the supply_demand_annual.csv file
+    cbsa2fips = pl.read_csv(
+        Path(__file__).resolve().parent.parent / "data" / "cbsa2fipsxw.csv"
+    )
+    cbsa2fips = (
+        cbsa2fips.with_columns(
+            pl.col("fipscountycode").cast(pl.Utf8).str.zfill(2),
+            pl.col("fipsstatecode").cast(pl.Utf8).str.zfill(3),
+            (pl.col("fipsstatecode") + pl.col("fipscountycode")).alias("FIPS"),
+        )
+        .select(["FIPS", "cbsacode"])
+        .unique()
+    )
+    print(df.shape)
+    df = df.join(cbsa2fips, left_on="cbsa", right_on="cbsacode", how="left")
+    print(df.shape)
+    assert False
     df = get_data(filter=None).to_pandas()[["msa", "year", "RDI", "FIPS"]].dropna()
     df["RDI"] = df["RDI"].round(1)
     df_2019 = df[df["year"] == 2019]
@@ -1254,6 +1382,7 @@ def plot_group_averages_with_confidence():
     df["year"] = df["year"] + 1
     # Calculate the average for True-False and False-True groups
     df["group"] = df["group"].astype(str)
+
     df_pivot = df.pivot_table(index="year", columns="group", values=var, aggfunc="mean")
 
     # Calculate the overall average by year
@@ -1298,14 +1427,14 @@ def plot_group_averages_with_confidence():
     plt.show()
 
 
-# plot_group_averages_with_confidence()
 # df = get_data(filter="top_100").to_pandas()
+dx = supply_demand_annual(get_data().to_pandas())
 # show_summary_statistics()
-# dx = supply_demand_annual(get_data().to_pandas())
+# plot_group_averages_with_confidence()
 # event_study()
 # plot_phoenix_supply_demand()
-plot_austin_supply_demand()
-# simplify_anova()
+# plot_austin_supply_demand()
+simplify_anova()
 # plot_national_averages()
 # choropleth_rdi_by_msa()
 # predict_future(how="naive")

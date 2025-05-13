@@ -1,0 +1,19 @@
+\bmsection*{Author contributions}
+
+All authors contributed equally
+
+\bmsection*{Acknowledgments}
+%Matt Larriva would like to acknowledge the assistance provided by Jack Burton who helped prepare graphics, researched prior literature, and aided in overall construction. James "Jack" Burton is an incoming college freshman and has research interests in mathematics, physics, and linguistics.
+%He would like to thank Caroline Altergott who served as an intern and contributed substantially to the initial framework and honing the density measures. Caroline Altergott is a 2025 graduate of Colgate University majoring in Environmental Studies, minoring in Architectural Studies, employed at RobertDouglas as a Capital Markets analyst.
+%Finally, the author gratefully acknowledges the generosity and mentorship of Alex Marshall, who provided guidance and support to the research effort. 
+
+\bmsection*{Financial disclosure}
+
+None reported.
+
+\bmsection*{Conflict of interest}
+
+%The author works as the head of real estate research for Brookfield Asset Management which invests in real estate as well as other alternative assets. The views expressed herein are his own and the research was conducted independently. 
+
+\bmsection*{Data Disclosure}
+%All code is available upon request. Data is available to subscribers of Costar.
