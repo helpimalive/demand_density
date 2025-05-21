@@ -43,11 +43,11 @@
 %\fundingInfo{Text}
 %\JELinfo{ejlje}
 
-\abstract[Abstract]{We develop a density-based demand index for rental housing and show how it segments and forecasts market behavior. Drawing on annual population-per-unit changes, we derive supply and demand curves for the 100 largest U.S. metropolitan areas (2010-2023) and compute each market’s implied clearing rent and inventory. By comparing these benchmarks with the actual rents and units, we classify each market-year as over- or undersupplied and over- or under-priced. These four regimes strongly predict twelve-month rent growth: undersupplied/over-priced markets see the fastest real-rent gains, while oversupplied/under-priced markets lag. Our methodology offers a clear, actionable measure of consumer housing demand, illuminates household space-vs-price trade-offs, and quantifies the ripple effects of new supply.}
+\abstract[Abstract]{We introduce the Rental Density Index (RDI)---a novel, simple, scalable measure of rental housing demand based on grouping rather than spatial density---and demonstrate its predictive and diagnostic power across U.S. metropolitan markets. Using panel data from the 100 largest MSAs (2000-20024), we show that changes in RDI reliably signal future rent growth and provide a cap over which supply leads to declining rent. Using a two-stage least squares (2SLS) framework to address simultaneity between rents and density shifts, we establish the index as a robust measure of demand. To validate its real-world utility, we conduct a suite of tests: implementing event studies of regime transitions, benchmarking performance against other forecasting models, and examine RDI-supply imbalances during supply shocks. By capturing latent demand pressures even in fully occupied markets, RDI offers a scalable, transparent alternative to traditional metrics such as occupancy or absorption. Our results suggest that RDI can serve as both a predictive tool for rent growth and a benchmark for evaluating whether supply pipelines are aligned with underlying demand.}
 
 \keywords{density, supply and demand, multifamily rent-growth, apartment markets}
 
-%\jnlcitation{\cname{%
+%\jnlcitation{\cname{%	
 %\author{Larriva M.}
 %\author{}.}
 %\ctitle{Density Shift as a Measure of Demand} \cjournal{\it Real Estate Econ.}
@@ -77,14 +77,14 @@ Our framework builds on the standard assumption that, all else equal, households
 
 \begin{figure}[htb!]
 	\centerline{\includegraphics[height=20pc]{rdi_rent_growth_2024.pdf}}
-	\caption{Relationship between average annual change in Rental Density Index (horizontal) and average annual relative real rent growth (vertical) across the 100 largest MSAs between 2011 and 2024. Min/Max X and Y MSAs labeled.\label{fig:rdi_national}}
+	\caption{Relationship between average annual change in Rental Density Index (horizontal) and average annual relative real rent growth (vertical) in the 100 largest MSAs for each year between 2001 and 2024. \label{fig:rdi_national}}
 \end{figure}
 
-Focusing on a panel of the 100 largest metropolitan statistical areas (MSA), their population, rental unit count, and change in rent, we estimate implied demand of each MSA at each of 10 years from 2013 to 2023. We plot this against rent to derive a demand curve. We then take the observed supply growth of each MSA and plot it against rent to derive a supply curve. The intersection of those two curves is the derived point of supply and rent equilibrium. Comparing a market's actual rent to the market's derived rent suggests over or underpricing. Comparing a market's actual supply growth to the market's derived supply growth provides evidence of over or undersupply. We show that by segmenting markets as over or undersupplied and over or underpriced each year, we can effectively forecast the market's next-year rent growth.  
+Focusing on a panel of the 100 largest metropolitan statistical areas (MSA) between 2000 and 2024, we calculate the RDI. We then examine the year-over-year change in each MSA, in each year. A positive change in RDI (densification) means that population has grown faster than inventory; conversely a negative change in RDI (de-densification) corresponds to inventory growing faster than population. While this ignores the number of households and the percentage of owners versus renters, the signal from the RDI change is robust in spite of this.
 
-This empirical strategy reveals consistent rent growth differences across market classifications. We find that markets classified as both overpriced and undersupplied experience significantly higher next-year rent growth than those that are underpriced and oversupplied. Specifically, markets in the former category averaged next-year relative real rent growth approximately 1.25\% higher than those in the latter category. These findings suggest that density-based classifications have predictive power and reflect latent demand more accurately than traditional indicators alone.
+This empirical strategy reveals consistent rent growth differences across multiple time horizons. Over the one-year horizon, top RDI growth  markets significantly outperform the bottom RDI growth quintile markets. The densifying markets outperform the de-densifying markets by over 100 basis points in real relative rent growth. The RDI growth also has very strong foresight with the trailing 10 year changes highly predictive of the next 10 years of supply growth and rent growth. The RDI is especially powerful when analyzed with observed supply growth. It serves as an indicator of when supply will be accretive to rent versus dillutive. In years and markets where the next year's supply exceeds the prior year's RDI growth, real rent growth is significantly below zero. Conversely, when supply is less than the RDI growth, the real rent is significantly greater than zero. These findings suggest that density-based classifications have predictive power and reflect latent demand more accurately than traditional indicators alone.
 
-Our paper makes two principal contributions. First, we introduce the Rental Density Index (RDI), a novel, supply-unbounded metric of housing demand that can be computed at scale from readily available population and unit‐stock data. Second, we demonstrate RDI’s empirical value: it not only uncovers market disequilibrium but also delivers out-of-sample forecasts of twelve-month rent growth with statistically significant accuracy.
+Our paper makes two principal contributions. First, we introduce the Rental Density Index (RDI), a novel, supply-unbounded metric of housing demand that can be computed at scale from readily available population and unit‐stock data. Second, we demonstrate RDI’s empirical value using a suite of use-cases applicable to investors, renters, developers, and policy-makers.
 
 These findings carry immediate applications for all housing‐market stakeholders. For policymakers, RDI functions as an early-warning gauge of emerging shortages, enabling targeted zoning reforms, calibrated subsidy programs, or expedited permitting in precisely those submarkets under the greatest pressure—and subsequently measuring the efficacy of those measures. Institutional investors and residential developers can embed RDI trends into feasibility and risk models, avoiding the twin hazards of overbuilding in cooling metros or underbuilding in tightening ones. Finally, RDI sharpens the housing‐affordability debate by identifying the locales where rent increases are most likely to outstrip income growth, thereby guiding tenant‐protection policies, rent‐assistance programs, and other affordability interventions to the communities that need them most.
 
@@ -117,13 +117,13 @@ Our data are sourced primarily from Costar and supplemented with inflation measu
 
 To normalize pricing data across time, we convert all nominal rent figures into real terms using the Consumer Price Index for All Urban Consumers (CPI-U), all-items, provided by the BLS. Although MSA-level inflation indices excluding rent would be ideal, such data are unavailable at a consistent and granular level for our study period. Therefore, real effective rent per square foot and rent growth metrics are adjusted using national CPI. 
 
-We convert the rent growth figures to nominal as well, by subtracting the annual growth in CPI. Finally, we standardize the figures by subtracting the year's median rent growth. We do this to remove the impact of national macroeconomic shocks (i.e., COVID-19). This also serves to stationarize the data and remove the autoregressive tendencies of timeseries data.
+We convert the rent growth figures to real as well, by subtracting the annual growth in CPI. Finally, we standardize the figures by subtracting the year's median rent growth. We do this to remove the impact of national macroeconomic shocks (i.e., COVID-19). This also serves to stationarize the data and remove the autoregressive tendencies of timeseries data.
 
-Our novel demand variable, the Rental Density Index (RDI), is calculated by dividing population by rental inventory at the MSA level. We compute its year-over-year percentage change---\(\Delta\text{RDI}\)---to reflect demand dynamics more accurately. This measure avoids the bounded structure of traditional demand indicators like occupancy and absorption, which cap at 100\%.
+Our novel demand variable, the Rental Density Index (RDI), is calculated by dividing population by total rental units at the MSA level. We compute its year-over-year percentage change---\(\Delta\text{RDI}\)---to reflect demand dynamics more accurately. This measure avoids the bounded structure of traditional demand indicators like occupancy and absorption, which are upper bounded by 100\%.
 
 Other variables include supply growth, computed as the ratio of delivered units to the previous year's inventory, and lagged variables prior-year rent growth. 
 
-Importantly, no records were discarded during preprocessing. Our dataset retains all 100 MSAs over all years between 2000 and 2024. Some records are extreme, such as post-Katrina New Orleans, but we preserve fidelity to real-world dynamics by keeping them.
+We exclude New Orleans, LA from our analysis because of its dynamics around the unfortunate aftermath of Hurricane Katrina. Within two years, this MSA had the greatest and least values of RDI growth as well as the greatest and least values of real rent change. 
 
 \begin{table*}[hbt]%
 \centering
@@ -182,25 +182,6 @@ While the RDI itself is useful for identifying how tight a market is at a given 
 	\Delta \text{RDI}_{it} = \text{RDI}_{it} - \text{RDI}_{it-1}.
 \end{equation*}
 
-The RDI and can move sharply in times of natural disasters, as shown by the figures in table \ref{tab:extremes}, but so can real rent growth.  
-
-\begin{table}[ht]
-	\centering
-	\caption{Extreme observations in RDI and real rent growth}
-	\label{tab:extremes}
-	\begin{tabular}{lllrcrr}
-		\toprule
-		Category & Year & MSA & Population & Inventory & RDI & Real rent growth \\
-		\midrule
-		Highest RDI                   & 2001 & Long Island-NY           & 2,785,876 &  43,235 & 64.435 & -0.0079     \\
-		Lowest RDI                    & 2024 & Fargo-ND                 &   264,314 &  38,634 &  6.841 & -0.0128      \\
-		Highest real rent growth      & 2006 & New Orleans-LA           & 1,055,155 &  57,719 & 18.281 & 0.2809   \\
-		Lowest  real rent growth      & 2005 & New Orleans-LA           & 1,300,912 &  57,679 & 22.554 & -0.1915  \\
-		\bottomrule
-	\end{tabular}
-\end{table}
-
-
 
 The change in RDI (\( \Delta \text{RDI} \)) offers several advantages. First, it mitigates issues of nonstationarity in the level RDI, enabling cross-market comparison. Second, it reduces the impact of varying rentership percentages across cities. Most importantly, \( \Delta \text{RDI} \) captures demand pressure on housing stock: when it rises, it indicates more people are consolidating into fewer rental units, signaling tightening demand. When it falls, it implies renters are spreading out and absorbing more space, suggesting slack.
 
@@ -256,322 +237,187 @@ This pattern poses a puzzle: if supply growth has outstripped population growth,
 
 By contrast, year-over-year changes in RDI isolate the relative pace of new households versus new units. When rents rise faster than new construction can absorb, ΔRDI spikes, revealing latent demand pressure. When deliveries overwhelm demand, ΔRDI falls, signaling surplus. In the next section we exploit that property, regressing ΔRDI on rent and supply growth to recover the underlying demand curve.
 
-\section{Empirical Framework}
-Our objective is to evaluate \( \Delta \text{RDI} \) as a robust measure of housing demand by deriving supply and demand curves for each metropolitan area and year. For each of the 100 largest MSAs, and for each year from 2010 through 2022, we construct demand and supply curves using observed data on real rent per square foot and changes in RDI and supply.
+\section{Empirical Strategy and Econometric Results}
 
-\subsection{Constructing the Demand and Supply Curves}
+\subsection{Identification Strategy}
+We aim to estimate the causal effect of crowding---as measured by growth in the Rental Density Index (RDI)---on future rent growth. However, RDI may be endogenous to unobserved demand shocks, reverse causality, or simultaneity with rents. For example, rising rents may force household compression, inflating RDI, or latent demand factors may affect both rents and occupancy intensity.
 
-We estimate reduced-form linear models to approximate demand and supply responses to price, using ten years of historical data for each MSA:
+To address this, we use a two-stage least squares (2SLS) estimation strategy, instrumenting RDI growth with an exogenous migration shock. This shock is defined as a binary indicator equal to one when international in-migration exceeds the 90th percentile across all MSA-years from 2000 to 2024. This threshold identifies years of unusually high foreign population inflows plausibly unrelated to local rent conditions. We control for population growth and sales volume growth, and include MSA and year fixed effects.
+
 \begin{align*}
-	\Delta \text{RDI}_{it} &= \alpha_i + \beta_i p_{it} + \epsilon_{it} && \text{(Demand)} \\
-	\text{SupplyGrowth}_{it} &= \gamma_i + \delta_i p_{it} + \nu_{it} && \text{(Supply)}
+	\text{Stage 1:}\quad & \Delta \text{RDI}_{i,t} = \gamma_0 + \gamma_1 \cdot \text{Shock}_{i,t} + \gamma_2 \cdot \textbf{X}_{i,t} + \mu_i + \delta_t + u_{i,t} \\\\
+	\text{Stage 2:}\quad & \text{RentGrowth}_{i,t+1} = \alpha_0 + \beta \cdot \widehat{\Delta \text{RDI}}_{i,t} + \alpha_1 \cdot \textbf{X}_{i,t} + \mu_i + \delta_t + \varepsilon_{i,t}
 \end{align*}
 
+Where:
 \begin{itemize}
-	\item \( \beta_i \) reflects how changes in rent induce renters to economize on space by cohabitating.
-	\item \( \delta_i \) captures developers' responsiveness to rent signals via new supply.
-	\item \( p_{it} \) refers to the real price per square foot of rent in a market \( i \) in year \( t \).
-	\item \(\Delta \text{RDI}_{it} \) is the year-over-year change in the RDI variable, defined as population divided by rental units
-	\item \(\text{SupplyGrowth}_{it}\) is the year's additional inventory as a percent of the prior year's inventory
+	\item $\text{RentGrowth}{i,t+1}$ is next-year relative real rent growth in MSA $i$,
+	\item $\Delta \text{RDI}{i,t}$ is the change in Rental Density Index,
+	\item $\text{Shock}{i,t}$ is the migration shock instrument (defined as above),
+	\item $\mathbf{X}{i,t}$ includes controls: population growth and sales volume growth,
+	\item $\mu_i$ and $\delta_t$ are MSA and year fixed effects.
 \end{itemize}
 
- We estimate these relationships using ordinary least squares (OLS) for each market-year observation, pooling data from the rolling prior ten years. The intersection of these two curves yields the market's implied equilibrium rent \( p^* \) and equilibrium inventory growth \( q^* \). The intersection is simply the value of \(p\) where \(\Delta \text{RDI}\ = \text{SupplyGrowth} \). We call that price \( p^* \) and we call the corresponding supply value \( q^* \). We compare these values to observed market outcomes \( (p, q) \) in that year. If \( p^* > p \), we infer that the market is underpriced; if \( p^* < p \), it is overpriced. Likewise, if \( q^* > q \), the market is deemed undersupplied; otherwise, oversupplied.The following pseudocode outlines the segmentation logic.
- 
- \begin{table}[h!]
- 	\centering
- 	\caption{Market Classification based on Observed versus Derived Prices and Quantities}
- 	\begin{tabular}{cc|c|c|}
- 		\multicolumn{2}{c}{} & \multicolumn{2}{c}{\textbf{Pricing}} \\
- 		\multicolumn{2}{c}{} & \textbf{Overpriced} & \textbf{Underpriced} \\
- 		\cmidrule{3-4}
- 		\multirow{2}{*}{\textbf{Supply}} & \textbf{Oversupplied} & Neutral-Late  & Renter-Favorable \\
- 		\cmidrule{2-4}
- 		& \textbf{Undersupplied} & Landlord-Favorable & Neutral-Early \\
- 		\bottomrule
- 	\end{tabular}
- \end{table}
- 
- 
-\FloatBarrier
-\begin{algorithm}
-	\caption{\enskip Segment markets into price–supply regimes (10-year rolling window)}%
-	\label{alg:market_segmentation}
-	\begin{algorithmic}[1]
-		\For{$y \gets 2010$ \textbf{to} 2022}
-		\State $t_{\min}\gets \max(2010,\,y-10)$
-		\For{each market $m$ in the top 100 MSAs}
-		\State select data for $(m,t)$ with $t_{\min}\le t < y$
-		\State fit demand: $\Delta\mathrm{RDI} = f(\mathrm{rent}_{psf})$ on years $t_{\min}\ldots y-1$
-		\State fit supply: $\mathrm{inventory\ growth} = g(\mathrm{rent}_{psf})$ on the same years
-		\State \textbf{solve for equilibrium} $(q^*,p^*)$ \textbf{by finding the price and quantity where}
-		$f(p^*) = q^*$ \textbf{and} $g(p^*) = q^*$
-		\State obtain actual values $(q,p)$ at year $y$
-		\If{$q^* > q$}
-		\If{$p^* > p$}
-		\State assign $(m,y)\to\texttt{UndersuppliedUnderpriced}$
-		\Else
-		\State assign $(m,y)\to\texttt{UndersuppliedOverpriced}$
-		\EndIf
-		\Else
-		\If{$p^* > p$}
-		\State assign $(m,y)\to\texttt{OversuppliedUnderpriced}$
-		\Else
-		\State assign $(m,y)\to\texttt{OversuppliedOverpriced}$
-		\EndIf
-		\EndIf
-		\EndFor
-		\EndFor
-	\end{algorithmic}
-\end{algorithm}
-\FloatBarrier
-These states correspond to economic intuition. Overpriced and undersupplied markets---what we refer to as \textit{landlord-favorable} markets---are expected to exhibit stronger rent growth in the following year as prices can adjust faster than supply can be added. Conversely, oversupplied and underpriced markets---\textit{renter-favorable} markets---should experience weaker or negative rent growth for the same reason: prices can adjust faster than more people can arrive. The final two situations are partial disequilibria and their next year depends on which factor is more out of line with observed values. Overpriced and oversupplied markets are similar to late-cycle bubbles, while underpriced undersupplied markets are are similar to early-cycle growth. 
+\subsection{Baseline Results}
+Table~\ref{tab:main-results} shows that instrumented RDI growth significantly predicts future rent growth. A one-point increase in RDI growth is associated with a 1.29 percentage point increase in next-year rent growth.
 
-
-\subsection{Response to Shocks}
-To illustrate how the model identifies disequilibrium and predicts market correction, we focus on the Phoenix and Austin MSAs during the 2021-2024 period (Figure~\ref{fig:response_shocks}). For each market, we estimate supply and demand curves by regressing real rent per square foot against supply growth (inventory deliveries) and demand growth (change in RDI), using data from 2012-2021. These regressions yield the supply and demand slopes shown by the blue and red lines, respectively.
-\begin{figure}[hbt!]
+\begin{table}[h]
 	\centering
-	\begin{subfigure}[b]{0.49\textwidth}
-		\includegraphics[width=\linewidth]{phoenix_example.pdf}
-		\caption{Phoenix recovers from an oversupply shock}\label{fig:us_phoenix_mechanism}
-	\end{subfigure}\hfill
-	\begin{subfigure}[b]{0.49\textwidth}
-		\includegraphics[width=\linewidth]{austin_example.pdf}
-		\caption{Austin recovers from an overpricing shock}\label{fig:austin_example}
-	\end{subfigure}\hfill
-	\caption{Phoenix and Austin MSAs recover from supply and pricing shocks with lower prices}
-	\label{fig:response_shocks}
-\end{figure}
-
-The intersection of these two curves (marked by the black star) provides the model’s estimate of the market-clearing rent and inventory growth for 2021. In Phoenix, this implies an equilibrium rent of \$0.76 per square foot and supply growth of 0.74\%. However, the actual observed rent and inventory growth in 2021 (gray triangle) were well above these equilibrium values, signaling that the market was both overpriced and oversupplied--the conditions we identify as "Neutral-Late."
-
-The subsequent years validate the model’s classification. Rather than sustaining these high prices amid excess supply, the market corrected exactly as predicted: through falling rents. Rent per square foot declined in 2022, 2023, and 2024, moving the market back toward equilibrium (shown by the sequence of purple dots) from a pricing point of view. The supply was likely already in process and continued delivering. This pattern supports the core proposition of our model—that deviations from implied equilibrium rents and quantities carry predictive power for how markets will adjust.
-
-Austin exhibits a parallel dynamic, though the initial disequilibrium in 2021 appears to have been driven more by pricing than supply. Here too, the model flagged the market as overpriced relative to fundamentals, and the following years show a clear price correction that realigns the market toward its implied equilibrium. We posit that because the market was more overpriced than oversupplied (the supply value was squarely within historical range) the pricing corrected most sharply, returning near equilibrium levels within three years.
-
-
-
-
-We frame this as a partial equilibrium exercise, in which observed price and quantity may deviate from the implied market-clearing levels due to frictions such as construction lags, policy constraints, or imperfect price discovery \cite{wheaton1991realestate, glaeser2019rethinking}. This segmentation yields market classifications that form the basis for our predictive rent growth analysis in the following section.
-
-\section{Results}
-
-This section presents empirical findings from our market classification framework. Using the derived supply and demand curves, we compute equilibrium prices (\( p^* \)) and quantities (\( q^* \)) for each of the 100 largest MSAs from 2010 to 2022. By comparing \( (p^*, q^*) \) to the observed market outcomes \( (p, q) \), we segment markets into four states based on whether they are overpriced and/or oversupplied. We assess whether these classifications are associated with meaningful differences in future rent performance.
-
-%PLACEHOLDER
-%Fig 4 – 4-quadrant heat-map of all 100 MSAs (color = rent growth, size = inventory) for the latest year
-
-\subsection{Statistical Tests of Group Differences}
- Table ~\ref{tab:group_stats} reports average next-year relative real rent growth across the four groups.
-
-
-	
-%----------------------%
-% Table of Group Means %
-%----------------------%
-\begin{table}[ht]
-	\centering
-	\caption{Group means, 95\% CIs, and one‐sided \(p\)-values}
-	\label{tab:group_stats}
-	\begin{tabular}{lrrrrr}
-		\toprule
-		Group & Mean Rent Growth (bps) & 95\% CI Lower & 95\% CI Upper & \(p\)–value & \(n\) \\
+	\caption{2SLS Estimates: RDI Growth and Next-Year Rent Growth}
+	\label{tab:main-results}
+	\begin{tabular}{lcccc} \toprule
+		& Coefficient & Std. Error & t-stat & p-value \\ \midrule
+		RDI\textbackslash growth & 1.2865 & 0.4171 & 3.085 & 0.0020 \\
+		Population Growth & -0.0038 & 0.0019 & -1.963 & 0.0496 \\
+		Sales Volume Growth & 4.1653 & 0.8401 & 4.958 & 0.0000 \\
 		\midrule
-		Landlord-Favorable  &  94\(\,^{***}\) &   46 & 142 & 0.000276 &  63 \\
-		Neutral-Early             &  25\(\,^{*}\)   &    6 &  45 & 0.010219 & 173 \\
-		Neutral-Late         &  14             &   -5 &  33 & 0.150306 & 684 \\
-		Renter‐Favorable    & -23\(\,^{***}\) &  -34 & -11 & 0.000110 & 380 \\
-		\bottomrule
+		MSA Fixed Effects & Yes & & & \\
+		Year Fixed Effects & Yes & & & \\
+		First-stage F-stat & 45.051 & & &\\
+		Observations & 1,863 & & & \\ \bottomrule
 	\end{tabular}
-	
-	\vspace{0.5ex}
-	\footnotesize{\(^{*}p<0.05\), \(^{**}p<0.01\), \(^{***}p<0.001\) (one‐sided test vs.\ 0).}
 \end{table}
 
-Examining the average relative real rent growth of the different groups shows the significance of the demand variable and its classification system. Once markets are identified as being out of equilibrium (Landlord-Favorable or Renter-Favorable) we see significant and opposite responses in the following year real relative rent growth. The year after a market is classified as Landlord-Favorable it has average real relative rent growth of 94 basis points at a p-value less than 0.001. This is in addition to the nominal rent growth and to the median rent growth of the top markets. Thus if median rent growth were 3\% in that year, Landlord-Favorable markets saw rent growth of 3.94\%. Conversely, the year after a market is classified as Renter-Favorable, it has negative relative real rent growth. 
-It is worth noting that the Neutral-Late group has a confidence interval that includes zero --hence the low significance. But this is precisely what one expects to see from markets in partial equilibrium: their relative real rent growth is not significantly different from zero (or the median in our case, as we standardized the values to the median annual rent growth). 
-Neutral-Early markets have positive rent growth, but less positive than Landlord-Favorable. The order and magnitude of the groups and mean rent growth align with a market cycle. Early in a growth cycle there is high demand and limited supply, resulting in higher rent-growth  (Landlord-Favorable). This attracts competition and supply, and the market rents grow more slowly (Neutral-Early). Later in the cycle there is an equilibrium in pricing and available units (Neutral-Late), and the rent growth is near zero in real relative terms. But supply that had started already is still in progress, and finally, that supply comes online and the market is oversupplied, resulting in a Renter-Favorable situation and declining rents. 
+\subsection{Robustness Tests}
+We conduct two robustness tests to validate our identification strategy.
 
-%----------------------%
-% Two-Way ANOVA Table  %
-%----------------------%
-\begin{table*}[ht]
+\textbf{1. Placebo Test.} Using same-year rent growth as the dependent variable weakens the effect of RDI growth, suggesting RDI leads rent rather than the reverse.
+
+\begin{table}[h]
 	\centering
-	\begin{threeparttable}
-		\caption{Two-Way ANOVA\label{tab:anova}}
-		\begin{tabular}{lcccc}
-			\toprule
-			Source              & Sum Sq   & df    & $F$      & PR($>F$) \\
-			\midrule
-			C(overpriced)       & 0.005178 & 1.0   & 12.311490$^{***}$  & 0.000466 \\
-			C(oversupplied)     & 0.006205 & 1.0   & 14.751522$^{***}$  & 0.000129 \\
-			Residual            & 0.545538 & 1297.0& ---      & --- \\
-			\bottomrule
-		\end{tabular}
-		\begin{tablenotes}
-			\footnotesize
-			\item Note: *** $p<0.01$, ** $p<0.05$, * $p<0.10$. Robust standard errors are used.
-		\end{tablenotes}
-	\end{threeparttable}
-\end{table*}
+	\caption{Placebo Test: RDI Growth on Same-Year Rent Growth}
+	\label{tab:placebo}
+	\begin{tabular}{lcccc} \toprule
+		& Coefficient & Std. Error & t-stat & p-value \\ \midrule
+		RDI\textbackslash growth & 1.0994 & 0.4126 & 2.665 & 0.0077 \\
+		Population Growth & -0.0011 & 0.0019 & -0.573 & 0.567 \\
+		Sales Volume Growth & 5.5281 & 0.8555 & 6.462 & 0.0000 \\
+		\midrule
+		First-stage F-stat & 76.214 & & & \\
+		Observations & 1,863 & & & \\ \bottomrule
+	\end{tabular}
+\end{table}
 
-The two-way ANOVA reports that there are significant differences between the overpriced and underpriced groups; and so too with the oversupplied and undersupplied groups, suggesting that both supply and pricing play important factors in determining a market's classification.
+\textbf{2. Lagged Instrument.} Replacing the contemporaneous migration shock with its lag ($\text{Shock}_{i,t-1}$) yields a similar point estimate with slightly lower precision.
 
-%-----------------------------%
-% Tukey HSD Post-Hoc Test     %
-%-----------------------------%
-\begin{table*}[ht]
+\begin{table}[h]
 	\centering
-	\begin{threeparttable}
-		\caption{Tukey HSD Post-Hoc Test\label{tab:tukey}}
-		\begin{tabular}{lcccccc}
-			\toprule
-			\multicolumn{1}{c}{Group1} & Group2             & Mean Diff & p-adj  & Lower  & Upper & Reject Null\\
-			\midrule
-			Neutral-Early               & Landlord-Favorable  & 0.0069   & 0.1012 & -0.0009 & 0.0147  & False \\
-			Neutral-Early               & Neutral-Late         & -0.0012  & 0.9082 & -0.0057 & 0.0033  & False \\
-			Neutral-Early              & Renter-Favorable    & -0.0049  & 0.0468 & -0.0097 & -0.0000 & True  \\
-			Landlord-Favorable    & Neutral-Late         & -0.0081  & 0.0150 & -0.0150 & -0.0011 & True  \\
-			Landlord-Favorable    & Renter-Favorable    & -0.0118  & 0.0001 & -0.0190 & -0.0046 & True  \\
-			Neutral-Late           & Renter-Favorable    & -0.0037  & 0.0243 & -0.0071 & -0.0003 & True  \\
-			\bottomrule
-		\end{tabular}
-		\begin{tablenotes}
-			\footnotesize
-			\item Note: The Tukey HSD Post-Hoc Test compares mean differences between groups at a family-wise error rate (FWER) of 0.05. 
-		\end{tablenotes}
-	\end{threeparttable}
-\end{table*}
+	\caption{Lagged Instrument: RDI Growth and Next-Year Rent Growth}
+	\label{tab:lagged}
+	\begin{tabular}{lcccc} \toprule
+		& Coefficient & Std. Error & t-stat & p-value \\ \midrule
+		RDI\textbackslash growth & 1.2803 & 0.7152 & 1.790 & 0.0734 \\
+		Population Growth & -0.0037 & 0.0033 & -1.100 & 0.2711 \\
+		Sales Volume Growth & 4.5286 & 0.8548 & 5.298 & 0.0000 \\
+		\midrule
+		First-stage F-stat & 40.087 & & & \\
+		Observations & 1,782 & & & \\ \bottomrule
+	\end{tabular}
+\end{table}
 
-Examining the differences between the means of the classifications shows that Neutral-Early markets are not significantly different from others-- the upper bound of the CI of the comparison to Renter-Favorable barely excludes zero. But all other comparisons were significantly different, with the Lanlord-Favorable markets outgrowing the Renter-Favorable markets by a large negative value.
+\subsection{Interpretation and Limitations}
+Across all specifications, RDI growth remains a positive and statistically significant predictor of next-year rent growth. The placebo test demonstrates that the effect weakens for contemporaneous rents, supporting a forward-looking relationship. The lagged-instrument model confirms the robustness of this effect, though with expected attenuation.
 
-\subsection{Event Study: Rent Growth Before and After Regime Entry}
+These results support the interpretation that crowding---as measured by RDI---reflects latent demand pressure that translates into future rent growth. Our findings are consistent with a causal interpretation and are robust to multiple instrument timing and exclusion validity checks. Results are stable across alternative shock thresholds, including the 85th and 95th percentiles (see Appendix Table A1).
 
-To complement our classification-based forecasting approach, we implement an event study that traces rent dynamics around the time a market enters the Landlord-Friendly or Renter-Friendly regimes. Recall Landlord-Friendly regimes had low supply and high rent, relative to derived values. The above analysis shows their next-year rent increases relative to other markets. Conversely, Renter-Friendly regimes had high supply and low rent, and their next-year rents declined. 
+\section{Forecasting Validation and Real-World Performance}
 
-We define the event year $t=0$ as the first year an MSA is classified as Landlord-Favorable (Renter-Favorable). We construct an event time index ranging from $t = -2$ (two years before the regime entry) to $t = +2$ (two years after entry). For each event-time year, we compute the average real rent growth across all MSAs that experienced the regime switch. Thus we may have one market that was classified as Landlord-Favorable in 2013 and another classified as such in 2015, and we would treat 2013 and 2015 as $t=0$. Because our rent values are normalized to the median rent of the year, treating different years as $t=0$ is will not skew results.
+\subsection{Predictive Segment Testing: ANOVA on RDI Growth}
+We test whether observed changes in RDI can segment markets into meaningful groups in terms of future rent performance. Specifically, we split the samples into two regimes: those with positive $\Delta$RDI and those negative $\Delta$RDI. We then examine whether average next-year relative real rent growth differs significantly across these groups.
 
-This structure ensures that the rent growth observed at $t+1$ and $t+2$ is entirely out-of-sample with respect to the classification year $t=0$. To contextualize the results, we compare these patterns to MSAs that did not change classifications during the study period, as well as to those that experienced alternative classification transitions.
+Table~\ref{tab:anova-results} shows that markets with positive RDI growth experience average next-year rent growth of 41 basis points above the mean rent growth (significant at p$\leq 3.14^{-14}$), while markets with non-positive RDI growth exhibit an average decline of 15 basis points (significant at p$\leq$0.0026). The difference is statistically significant, as confirmed by both a one-way ANOVA and Tukey’s HSD post-hoc test.
 
-Figure~\ref{fig:event_study} displays average real rent growth by event year for each group.
+\begin{table}[h]
+	\centering
+	\caption{ANOVA of Next Year's Relative Real Rent Growth Grouped by RDI}
+	\label{tab:anova-results}
+	\begin{tabular}{lcccccc} \toprule
+		$\Delta$RDI Group & Mean (bps) & SE (bps) & 95\% CI Lower & 95\% CI Upper & $n$ & $p$-value \\ \midrule
+		RDI Decline & -15 & 5 & -25 & -5 & 1538 & 0.0026 \\
+		RDI Growth & 41 & 7 & 31 & 52 & 762 & $3.14^{-14}$ \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+A two-way ANOVA confirms the significance of the group difference ($F = 49.2$, $p \leq 2.98 \times 10^{-12}$), and a Tukey HSD test further validates that the difference in means is statistically distinguishable.
+\begin{table}[h]
+	\centering
+	\caption{Two-Way ANOVA Test Results}
+	\label{tab:two-way-anova}
+	\begin{tabular}{lcccc} \toprule
+		Term & Sum Sq & DF & F & p-value \\ \midrule
+		C(demand) & 0.0165 & 1.0 & 49.23 &  $2.98^{-12}$\\
+		Residual & 0.7699 & 2298.0 & --- & --- \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\begin{table}[h]
+	\centering
+	\caption{Tukey HSD Test Results}
+	\label{tab:tukey}
+	
+	\begin{tabular}{lcccccc} \toprule
+		Group 1 & Group 2 & Mean Diff & p-adj & Lower & Upper & Reject \\ \midrule
+		$\Delta$ RDI $\leq$0 & $\Delta$RDI>0 & 0.0057 & 0.0000 & 0.0041 & 0.0073 & True \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+These results show that even without instrumentation, RDI growth serves as a powerful signal for forward rent performance. Practitioners can use RDI segmentation as a lightweight, interpretable classification rule for identifying tight rental markets.
+
+\subsection{Event Study of RDI Regime Transitions}
+We next evaluate how rent growth responds dynamically to transitions into and out of RDI-growth regimes. Specifically, we examine rent growth before and after a market switches into a state of positive  $\Delta$RDI (increasing crowding) or  negative  $\Delta$RDI (declining crowding). We continue to examine results in terms of real rent growth relative to the mean rent growth of that year, to avoid capturing rent changes due to macro conditions.
+
+Figure~\ref{fig:event-study} illustrates rent growth over a five-year window centered on the regime switch. The blue line represents transitions into crowding markets, the red line transitions into de-densifying markets, and the gray line shows cases where RDI status does not change.
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.8\textwidth]{event_study.pdf}
-	\caption{Event study of average real rent growth before and after entry into the Landlord-Favorable or Renter-Favorable regimes ($t=0$).}
-	\label{fig:event_study}
+	\caption{Real Relative Rent Growth Before and After a Market Switches From/To Positive/Negative $\Delta$RDI}
+	\label{fig:event-study}
 \end{figure}
 
-The results show that real rent growth slows monotonically following entry into the Renter-Favorable regime, while rent growth increases monotonically after classification as Landlord-Favorable. Prior to entering the Renter-Favorable classificaiton, markets have a large positive increase in rent before hitting a maxima and then declining. This is consistent with a market late in its cycle when it enters oversupply territory. Pre-entry years in Landlord-Favorable markets are low, consistent with a market's rent prior to boom. This pattern supports the hypothesis that this classification regime is forward-looking and useful in anticipating market cooling or correction.
+Table~\ref{tab:event-means} reports differences in average rent growth before and after the regime shift. Markets transitioning into crowded segments see a 48 basis point increase in rent growth, while those exiting see a 29 basis point decline. No significant change is observed when RDI status remains unchanged, as expected.
 
-\subsection{Visual and Quantitative Robustness}
-
-
-
-Figure~\ref{fig:group_averages_over_time} shows the average real rent in the landlord and renter-favorable markets, as classified the prior year, highlighting the predictive spread between groups.
-
-\begin{figure}[h]
+\begin{table}[h]
 	\centering
-	\includegraphics[width=0.8\textwidth]{group_averages_over_time.pdf}
-	\caption{Each market was classified in the prior year ($t-1$); the real rent growth shown is for the following year ($t$)}
-	\label{fig:group_averages_over_time}
-\end{figure}
-
-
-The landlord-favorable group exceeds the renter-favorable group by, on average, 163 basis points, which is just over one standard deviation, reinforcing the economic magnitude of these classification effects.
-
-\subsection{Distributional Evolution and Market Cycles}
-
-Here we take a meta-examination of the classification system. The groupings are not evenly distributed across years, as we did not enforce an artificial standardization. Instead, this reflects underlying market behavior rather than methodological bias. 
-
-\begin{table*}[ht]
-	\centering
-	\caption{Market Classification and Average Real Rent Growth (2011--2024)}
-	\label{tab:market_rent_growth}
-	\begin{tabular}{lccccc}
-		\toprule
-		Year & Neutral-Early & Renter-Friendly & Landlord-Friendly & Neutral-Late & Avg. Real Rent Growth \\
-		\midrule
-		2011 & 61\% & 0\%  & 36\% & 3\%  & -2\% \\
-		2012 & 36\% & 2\%  & 60\% & 2\%  & 0\%  \\
-		2013 & 26\% & 2\%  & 67\% & 5\%  & 1\%  \\
-		2014 & 22\% & 1\%  & 64\% & 13\% & 1\%  \\
-		2015 & 9\%  & 7\%  & 38\% & 46\% & 4\%  \\
-		2016 & 4\%  & 8\%  & 26\% & 62\% & 1\%  \\
-		2017 & 3\%  & 7\%  & 22\% & 68\% & 0\%  \\
-		2018 & 2\%  & 6\%  & 17\% & 75\% & 1\%  \\
-		2019 & 2\%  & 6\%  & 7\%  & 85\% & 2\%  \\
-		2020 & 1\%  & 5\%  & 6\%  & 88\% & 1\%  \\
-		2021 & 0\%  & 8\%  & 3\%  & 89\% & 6\%  \\
-		2022 & 2\%  & 8\%  & 13\% & 77\% & -4\% \\
-		2023 & 5\%  & 3\%  & 21\% & 71\% & -3\% \\
-		2024 & 2\%  & 8\%  & 30\% & 60\% & -1\% \\
-		\bottomrule
-	\end{tabular}
-\end{table*}
-
-
-In early years such as 2011, few MSAs exhibit characteristics of overpriced and oversupplied markets, consistent with post-crisis housing conservatism. By contrast, between 2020 and 2022, the vast majority of MSAs fall into the Neutral-Late category, despite negative or flat rent growth. This asymmetry suggests the framework captures real cyclical shifts, where high observed rents and heavy supply growth outpace renter willingness or ability to absorb space. The sharp contrast between high pricing and poor performance in these years further reinforces the framework’s value in signaling impending cooling phases or market corrections.
-
-\subsection{Predictive Power and Caveats}
-
-To gauge if the predictive power offered by the model is significant, we compare it to the forecasts of an ARIMA model and a naive model. The ARIMA model looks at trailing-10 year periods and forecasts the next year. The naive model assumes that the markets that were the top performers in the prior year will continue to be top performers in the following year. We then take the average rent growth of the forecasted top third and subtract it from the average rent growth of the forecasted bottom third.
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.8\textwidth]{spread_comparison_over_time.pdf}
-	\caption*{Event study of average real rent growth before and after entry into the Overpriced \& Oversupplied regime ($t=0$).}
-	\label{fig:spread_compare}
-\end{figure}
-
-
-The relative-density system had a spread of 172 basis points between its Landlord-Favorable and Renter-Favorable markets, when grouped by year. The ARIMA model had a spread of 145 basis points, while the naive model had a spread of 153 basis points. This suggests the implied demand signal can be used to rank markets by expected future performance, offering both interpretability and predictive power.
-
-A potential concern with our approach is that rents and supply choices may themselves be influenced by unobservable expectations about future demand, introducing endogeneity between price, supply growth, and the change in rental density (∆RDI). To mitigate this, our identification strategy relies on rolling 10-year historical windows to estimate demand and supply relationships, using only lagged data to derive equilibrium benchmarks for each market-year. This structure limits direct contamination from forward-looking decisions into the classification framework. Nonetheless, we acknowledge that residual simultaneity could bias estimates if, for example, developers respond to unmeasured leading indicators not captured in our regressions. While fully addressing this would require valid external instruments—such as exogenous supply shocks driven by zoning changes or permitting delays (e.g., \cite{saiz2010geographic})—data limitations prevent their inclusion in this analysis. As a robustness check, we incorporate lagged dependent variable models and fixed effects at both the market and year level to absorb time-invariant and macroeconomic confounders. The consistency of our results across these specifications provides some reassurance that endogeneity does not fully drive the observed relationships. We highlight this as an area for future research and encourage replication using instrumented designs where feasible.
-
-Together, these findings validate the informational value of market misalignment relative to derived equilibrium, offering a parsimonious and predictive classification of multifamily rent dynamics.
-
-\begin{table}[ht]
-	\centering
-	\caption{Yearly Spread Comparison}
-	\label{tab:yearly_spread}
-	\begin{tabular}{lccc}
-		\toprule
-		Year & RDI Spread & ARIMA Spread & Naive Spread \\
-		\midrule
-		
-		2012 & 0.0123     & 0.0023      & 0.0141     \\
-		2013 & 0.0246     & 0.0056      & 0.0141     \\
-		2014 & 0.0446     & 0.0113      & 0.0183     \\
-		2015 & 0.0264     & 0.0176      & 0.0239     \\
-		2016 & 0.0195     & 0.0230      & 0.0139     \\
-		2017 & 0.0124     & 0.0123      & 0.0201     \\
-		2018 & 0.0080     & 0.0181      & 0.0110     \\
-		2019 & 0.0136     & 0.0087      & 0.0122     \\
-		2020 & 0.0284     & 0.0119      & 0.0265     \\
-		2021 & -0.0005    & 0.0110      & 0.0113     \\
-		2022 & 0.0118     & 0.0530      & -0.0073    \\
-		2023 & 0.0058     & -0.0006     & 0.0251     \\
-		
+	\caption{Mean Rent Growth Before and After RDI Regime Transition}
+	\label{tab:event-means}
+	\begin{tabular}{lcccc} \toprule
+		Transition Type & Mean Before & Mean After & Difference & p-value\\ \midrule
+		Switched to $\Delta \text{RDI}>0$ & -31 & 17 & 48 & 0.0027\\
+		Switched to $\Delta \text{RDI}\leq0$ & 52 & 23 & -29 & 0.0089\\
+		No change & -3 & -8 & -5 & 0.6336\\
 		\bottomrule
 	\end{tabular}
 \end{table}
 
-\begin{table}[ht]
+These dynamics confirm that the onset of crowding pressures, as measured by RDI, precedes statistically and economically meaningful changes in rent performance. RDI transitions can therefore serve as timely indicators of shifts in market pricing power.
+
+
+\subsection{Forecast Spread Comparison: RDI vs ARIMA vs Naïve}
+We compare the predictive strength of RDI growth against ARIMA-based and naive trailing average models in forecasting real rent growth across multiple time horizons. For each method, we rank MSAs into quintiles based on their predicted growth and compute the realized top-minus-bottom quintile spread.
+Figure~\ref{fig:spread-comparison-quadrant} displays forecast accuracy over one-year, three-year, five-year, and ten-year windows. The RDI-based approach consistently delivers stronger spread segmentation, particularly at longer horizons where traditional time-series methods tend to degrade.
+
+\begin{figure}[h!]
 	\centering
-	\caption{Average Spread Comparison}
-	\label{tab:average_spread}
-	\begin{tabular}{lc}
-		\toprule
-		Variable & Average Value \\
-		\midrule
-		
-		RDI Spread & 0.0172 \\
-		ARIMA Spread & 0.0145 \\
-		Naive Spread & 0.0153 \\
-		\bottomrule
+	\begin{tabular}{cc}
+		\includegraphics[width=0.45\textwidth]{spread_comparison_over_time_1yr.pdf} &
+		\includegraphics[width=0.45\textwidth]{spread_comparison_over_time_3yr.pdf} \\
+		\textbf{(a)} 1-Year Forecast & \textbf{(b)} 3-Year Forecast \\
+		\includegraphics[width=0.45\textwidth]{spread_comparison_over_time_5yr.pdf} &
+		\includegraphics[width=0.45\textwidth]{spread_comparison_over_time_10yr.pdf} \\
+		\textbf{(c)} 5-Year Forecast & \textbf{(d)} 10-Year Forecast \\
 	\end{tabular}
-\end{table}
+	\caption{Top-minus-Bottom Quintile Rent Growth Spread by Forecast Method and Horizon}
+	\label{fig:spread-comparison-quadrant}
+\end{figure}
+
+These results reinforce the value of RDI as not only a causal explanatory variable but also a forward-looking predictive signal. Forecasting long-term rent growth is notoriously difficult; most models lose power beyond a few years. The fact that the RDI-based approach maintains signal strength across one-, three-, five-, and ten-year periods underscores its robustness. While time series models rely on trailing trends, RDI captures forward-looking, structural occupancy pressure—making it an effective long-horizon indicator of underlying demand.
+
+
+
 
 
 
