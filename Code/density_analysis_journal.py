@@ -203,17 +203,28 @@ def get_data(filter=100):
     migration = pl.read_csv(
         Path(__file__).resolve().parent.parent / "data" / "msa_migration.csv"
     ).with_columns(pl.col("value").cast(pl.Float64))
-    migration = migration.with_columns(
+    migration = migration.filter(pl.col("series_name") == "pct_international_mig_")
+    cbsa_to_costar_map = pl.read_csv(
+        Path(__file__).resolve().parent.parent / "data" / "cbsa_to_costar_map.csv"
+    )
+    cbsa_to_costar_map = cbsa_to_costar_map.with_columns(
         pl.col("costar_msa").str.replace(" USA$", "").alias("costar_msa")
     )
-    migration = migration.filter(pl.col("series_name") == "pct_international_mig_")
-    threshold = migration["value"].quantile(0.9)
-    migration = migration.with_columns(
-        (pl.col("value") >= threshold).cast(pl.Int8).alias("exog_shock")
+    migration = (
+        migration.join(
+            cbsa_to_costar_map, left_on="cbsatitle", right_on="cbsatitle", how="left"
+        )
+        .filter(pl.col("costar_msa").is_not_null())
+        .rename({"costar_msa": "msa", "value": "pct_international_mig_"})
     )
-    df = df.join(
-        migration.rename({"costar_msa": "msa"}), on=["msa", "year"], how="left"
+    df = df.join(migration, on=["msa", "year"], how="left")
+    df = df.with_columns(
+        exog_shock=(pl.col("pct_international_mig_") > 0.8).cast(pl.Int8)
+        # exog_shock=pl.col("pct_international_mig_")
     )
+    # Print the percent of entries that have exog_shock == 1
+    percent_exog_shock = 100 * df.filter(pl.col("exog_shock") == 1).height / df.height
+    print(f"Percent of entries with exog_shock == 1: {percent_exog_shock:.2f}%")
     preds = iv_model(df)
     df = df.join(
         preds.select(["msa", "year", "predicted_demand"]),
@@ -250,6 +261,7 @@ def get_data(filter=100):
             "demand",
             "predicted_demand",
             "exog_shock",
+            "pct_international_mig_",
         ]
     )
     df.write_csv(
@@ -1416,7 +1428,7 @@ def plot_rdi_positive_counts_vs_rent_growth():
     results_df = pd.DataFrame(results)
     grouped = results_df.groupby("rdi_positive_count")["rent_growth_sum"].apply(list)
     labels = [str(k) for k in grouped.index]
-    plt.figure(figsize=(10, 6))
+    # plt.figure(figsize=(10, 6))
     plt.boxplot(grouped, tick_labels=labels, showmeans=True)
     # Add n = count above each box
     for i, label in enumerate(labels):
@@ -1435,8 +1447,17 @@ def plot_rdi_positive_counts_vs_rent_growth():
     plt.title(
         "Positive RDI Growth as an Indicator of Future Rent Growth: 10 Year Window"
     )
-    plt.grid(True, axis="y")
+    plt.axhline(0, color="black", linestyle="--", linewidth=0.8)
     plt.tight_layout()
+    plt.savefig(
+        Path(__file__).resolve().parent.parent
+        / "Figs"
+        / "rdi_positive_counts_vs_rent_growth_10yr.pdf",
+        format="pdf",
+        bbox_inches="tight",
+        pad_inches=0.02,
+    )
+    plt.show()
 
     msas = df["msa"].unique()
     results = []
@@ -1479,15 +1500,35 @@ def plot_rdi_positive_counts_vs_rent_growth():
     filtered = grouped[grouped.apply(lambda x: len(x) > 0)]
     data = [filtered[k] for k in filtered.index]
     labels = [str(k) for k in filtered.index]
-    plt.figure(figsize=(10, 6))
+    plt.axhline(0, color="black", linestyle="--", linewidth=0.8)
+    plt.tight_layout()
     plt.boxplot(data, tick_labels=labels, showmeans=True)
+    for i, label in enumerate(labels):
+        n = len(grouped.iloc[i])
+        plt.text(
+            i + 1,  # boxplot x positions are 1-based
+            max(grouped.iloc[i]) + 0.001 if len(grouped.iloc[i]) > 0 else 0,
+            f"n={n}",
+            ha="center",
+            va="bottom",
+            fontsize=9,
+            color="black",
+        )
     plt.xlabel("Count of Years with RDI_growth > 0; Trailing 5 Years 2005-2017")
     plt.ylabel("Sum of Real Rent Growth Next 5 Years 2012-2021")
     plt.title(
         "Positive RDI Growth as an Indicator of Future Rent Growth: 5 Year Window"
     )
-    plt.grid(True, axis="y")
     plt.tight_layout()
+
+    plt.savefig(
+        Path(__file__).resolve().parent.parent
+        / "Figs"
+        / "rdi_positive_counts_vs_rent_growth_5yr.pdf",
+        format="pdf",
+        bbox_inches="tight",
+        pad_inches=0.02,
+    )
     plt.show()
 
 
@@ -1527,9 +1568,261 @@ def analyze_delta_vs_rent_growth():
     return results_df
 
 
-# TODO also exhibits on how well this works with filter = 200 and
-# TODO compare trailing 10 rdi growth with future 10 supply growth and show that those with rdi_growth-supply_growth>0 have highest rent_growth
-# TODO show trailing rdi growth more correlated with rent growth than population (trailing? current?)
+def plot_max_supply_growth_vs_rent_growth():
+    # Read the processed data
+    df = pd.read_csv(
+        Path(__file__).resolve().parent.parent / "data" / "preprocessed_data.csv"
+    )
+    # For each MSA, keep the row with the maximum supply_growth
+    df = df[df["year"] != 2020]
+    idx = df.groupby("msa")["supply_growth"].idxmax()
+    df_max = df.loc[idx].dropna(subset=["supply_growth", "real_relative_rg_next_year"])
+    # Color by sign of real_relative_rg_next_year
+    colors = df_max["real_relative_rg_next_year"].apply(
+        lambda x: "green" if x >= 0 else "red"
+    )
+    print((df_max[df_max["real_relative_rg_next_year"] > 0].shape[0]) / df_max.shape[0])
+
+    # plt.figure(figsize=(10, 6))
+    plt.scatter(
+        df_max["supply_growth"],
+        df_max["real_relative_rg_next_year"],
+        c=colors,
+        edgecolor="k",
+        alpha=0.7,
+    )
+
+    # Find min/max x and y points
+    min_x_idx = df_max["supply_growth"].idxmin()
+    max_x_idx = df_max["supply_growth"].idxmax()
+    min_y_idx = df_max["real_relative_rg_next_year"].idxmin()
+    max_y_idx = df_max["real_relative_rg_next_year"].idxmax()
+
+    # Add labels for min/max x
+    idx = min_x_idx
+    row = df_max.loc[idx]
+    plt.annotate(
+        f"{row['msa']} {int(row['year'])}",
+        (row["supply_growth"], row["real_relative_rg_next_year"]),
+        textcoords="offset points",
+        xytext=(5, 5),
+        ha="left",
+        va="top",
+        fontsize=8,
+        color="black",
+        arrowprops=dict(arrowstyle="->", color="black", lw=0.5),
+    )
+    idx = max_x_idx
+    row = df_max.loc[idx]
+    plt.annotate(
+        f"{row['msa']} {int(row['year'])}",
+        (row["supply_growth"], row["real_relative_rg_next_year"]),
+        textcoords="offset points",
+        xytext=(5, 5),
+        ha="right",
+        fontsize=8,
+        color="black",
+        arrowprops=dict(arrowstyle="->", color="black", lw=0.5),
+    )
+    # Add line of best fit and R-squared
+    slope, intercept = np.polyfit(
+        df_max["supply_growth"], df_max["real_relative_rg_next_year"], 1
+    )
+    x_vals = np.linspace(
+        df_max["supply_growth"].min(), df_max["supply_growth"].max(), 100
+    )
+    y_vals = slope * x_vals + intercept
+    plt.plot(x_vals, y_vals, color="black", linestyle="--", label="Line of Best Fit")
+
+    # Calculate R-squared
+    y_pred = slope * df_max["supply_growth"] + intercept
+    y_true = df_max["real_relative_rg_next_year"]
+    ss_res = np.sum((y_true - y_pred) ** 2)
+    ss_tot = np.sum((y_true - np.mean(y_true)) ** 2)
+    r_squared = 1 - ss_res / ss_tot
+
+    # Annotate R-squared on the plot
+    plt.text(
+        0.05,
+        0.95,
+        f"$R^2$ = {r_squared:.2f}",
+        transform=plt.gca().transAxes,
+        fontsize=10,
+        verticalalignment="top",
+        bbox=dict(boxstyle="round", facecolor="white", alpha=0.5),
+    )
+    # Add labels for min/max y (avoid duplicate if already labeled)
+    for idx in [min_y_idx, max_y_idx]:
+        if idx not in [min_x_idx, max_x_idx]:
+            row = df_max.loc[idx]
+            plt.annotate(
+                f"{row['msa']} {int(row['year'])}",
+                (row["supply_growth"], row["real_relative_rg_next_year"]),
+                textcoords="offset points",
+                xytext=(5, -10),
+                ha="left",
+                fontsize=8,
+                color="black",
+                arrowprops=dict(arrowstyle="->", color="black", lw=0.5),
+            )
+    plt.xlabel("Supply Growth as a Percentage of Inventory")
+    plt.ylabel("Real Relative Rent Growth Year After Max Supply Growth")
+    plt.title(
+        "Real Rent Growth the year after each MSA experiences its max supply growth (2001-2023)"
+    )
+    plt.axhline(0, color="black", linestyle="--", linewidth=0.8)
+    # plt.grid(True, axis="y")
+    plt.tight_layout()
+    plt.savefig(
+        Path(__file__).resolve().parent.parent
+        / "Figs"
+        / "max_supply_growth_vs_rent_growth.pdf",
+        format="pdf",
+        bbox_inches="tight",
+        pad_inches=0.02,
+    )
+    plt.show()
+
+
+def plot_max_supply_growth_vs_RDI_growth():
+    # Read the processed data
+    df = pd.read_csv(
+        Path(__file__).resolve().parent.parent / "data" / "preprocessed_data.csv"
+    )
+    xvar = "occ"
+    xvar = "RDI_growth"
+    # For each MSA, keep the row with the maximum supply_growth
+    df = df.dropna(subset=[xvar, "supply_growth", "real_relative_rg_next_year"])
+    df = df[df["year"] != 2020]
+    idx = df.groupby("msa")["supply_growth"].idxmax()
+    df_max = df.loc[idx]
+    # df_max = df_max[df_max["real_relative_rg_next_year"] < 0.05]
+    df_max.to_csv(
+        Path(__file__).resolve().parent.parent
+        / "data"
+        / "max_supply_vs_RDI_growth.csv",
+        index=False,
+    )
+
+    # Add appropriate title and axis labels
+    slope, intercept = np.polyfit(df_max[xvar], df_max["real_relative_rg_next_year"], 1)
+    # Calculate R-squared
+    y_pred = slope * df_max[xvar] + intercept
+    y_true = df_max["real_relative_rg_next_year"]
+    ss_res = np.sum((y_true - y_pred) ** 2)
+    ss_tot = np.sum((y_true - np.mean(y_true)) ** 2)
+    r_squared = 1 - ss_res / ss_tot
+    x_vals = np.linspace(df_max[xvar].min(), df_max[xvar].max(), 100)
+    plt.plot(
+        x_vals,
+        slope * x_vals + intercept,
+        color="black",
+        linestyle="--",
+        label="Line of Best Fit",
+    )
+    colors = df_max["real_relative_rg_next_year"].apply(
+        lambda x: "green" if x >= 0 else "red"
+    )
+    plt.scatter(
+        df_max[xvar],
+        df_max["real_relative_rg_next_year"],
+        edgecolor="k",
+        c=colors,
+        alpha=0.7,
+    )
+    plt.axhline(0, color="black", linestyle="--", linewidth=0.8)
+    plt.text(
+        0.05,
+        0.95,
+        f"$R^2$ = {r_squared:.2f}",
+        transform=plt.gca().transAxes,
+        fontsize=10,
+        verticalalignment="top",
+        bbox=dict(boxstyle="round", facecolor="white", alpha=0.5),
+    )
+    plt.xlabel("RDI Growth at Year of Max Supply Growth")
+    plt.ylabel("Real Relative Rent Growth Year After Max Supply Growth")
+    plt.title("Next-Year Rent Growth vs. RDI Growth at Max Supply Growth (per MSA)")
+    plt.savefig(
+        Path(__file__).resolve().parent.parent
+        / "Figs"
+        / "max_supply_vs_RDI_growth.pdf",
+        format="pdf",
+        bbox_inches="tight",
+        pad_inches=0.02,
+    )
+    plt.show()
+
+
+def orthogonal():
+    # Read in processed_data.csv
+    df = pd.read_csv(
+        Path(__file__).resolve().parent.parent / "data" / "preprocessed_data.csv"
+    )
+
+    # Rename columns to match the required names
+    df = df.rename(
+        columns={
+            "pct_international_mig_": "foreign_migration_share",
+            # Add more renames here if needed
+        }
+    )
+    df["msa"] = df["msa"].str.replace("-", " ").str.strip()
+    df["msa"] = df["msa"].str.replace(" ", "_")
+    df = df.sort_values(["msa", "year"])
+    df["rent_growth_lag"] = (
+        df.sort_values(["msa", "year"]).groupby("msa")["real_rent_growth"].shift(1)
+    )
+    df_clean = df.dropna(
+        subset=[
+            "foreign_migration_share",
+            "rent_growth_lag",
+            "pop_growth",
+            "sales_volume_growth",
+        ]
+    )
+    df_fe = pd.get_dummies(df_clean, columns=["msa", "year"], drop_first=True)
+    df_fe.columns = [col.replace(" ", "_") for col in df_fe.columns]
+    controls = " + ".join(
+        [
+            col
+            for col in df_fe.columns
+            if col.startswith("msa_") or col.startswith("year_")
+        ]
+    )
+    formula = f"foreign_migration_share ~ rent_growth_lag + pop_growth + sales_volume_growth + {controls}"
+
+    # Step 5: Fit model
+    model = smf.ols(formula=formula, data=df_fe).fit(cov_type="HC3")  # Robust SEs
+
+    # Step 6: Print results
+    print(model.summary())
+
+
+def spillover():
+    df = pd.read_csv(
+        Path(__file__).resolve().parent.parent / "data" / "preprocessed_data.csv"
+    )
+    pivot = df.pivot(index="year", columns="msa", values="RDI_growth")
+
+    # Select example regional clusters
+    msa_pairs = [
+        ("New York - NY", "Northern New Jersey - NJ"),
+        ("San Francisco - CA", "San Jose - CA"),
+        ("Dallas-Fort Worth - TX", "Austin - TX"),
+        ("Los Angeles - CA", "Inland Empire - CA"),
+        ("Miami - FL", "Palm Beach - FL"),
+    ]
+
+    for msa1, msa2 in msa_pairs:
+        corr = pivot[msa1].corr(pivot[msa2])
+        print(f"{msa1} vs {msa2}: r = {corr:.2f}")
+
+
+# orthogonal()
+spillover()
+# plot_max_supply_growth_vs_RDI_growth()
+# plot_max_supply_growth_vs_rent_growth()
 # df = get_data(filter=100).to_pandas()
 # plot_group_averages_with_confidence()
 # simplify_anova()
@@ -1553,7 +1846,7 @@ than the rent after switching to false
 """
 Comparison of 10-year predictions of rent growth using RDI, ARIMA and naive methods
 """
-plot_rdi_positive_counts_vs_rent_growth()
+# plot_rdi_positive_counts_vs_rent_growth()
 """
 Looking at the count of years with RDI growth > 0 over 5 year and 10 year 
 horizons as predictive of the next 5 and 10 years of rent growth
