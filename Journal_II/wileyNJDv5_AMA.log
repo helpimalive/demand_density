@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.3) (preloaded format=xelatex 2025.4.15)  22 MAY 2025 15:44
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.3) (preloaded format=xelatex 2025.4.15)  27 MAY 2025 13:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1251,23 +1251,20 @@ File: ../Figs/rdi_rent_growth_2024.pdf Graphic file (type pdf)
 Missing character: There is no ‐ in font ptmr8t!
 Missing character: There is no ’ in font ptmr8t!
 Missing character: There is no ‐ in font ptmr8t!
-Missing character: There is no — in font ptmr8t!
-Missing character: There is no ‐ in font ptmr8t!
 Missing character: There is no ‐ in font ptmr8t!
 Missing character: There is no ‐ in font ptmr8t!
 Missing character: There is no ‐ in font ptmr8t!
 
 
 [3]
-Missing character: There is no — in font ptmr8t!
-Missing character: There is no — in font ptmr8t!
+Missing character: There is no ’ in font ptmr8t!
 
-Underfull \hbox (badness 10000) detected at line 132
+Underfull \hbox (badness 10000) detected at line 127
 []
  []
 
 LaTeX Font Info:    Trying to load font information for T1+pcr on input line 13
-7.
+2.
 (C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
@@ -1275,10 +1272,6 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `pcr' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-
-Missing character: There is no ’ in font ptmr8t!
-Missing character: There is no ‐ in font ptmr8t!
-Missing character: There is no ‐ in font ptmr8t!
 
 
 [4]
@@ -1289,74 +1282,39 @@ File: ../Figs/tristate.png Graphic file (type bmp)
 File: ../Figs/florida.png Graphic file (type bmp)
 <../Figs/florida.png>
 
-Underfull \hbox (badness 10000) detected at line 176
+Underfull \hbox (badness 10000) detected at line 172
 []
  []
 
-Missing character: There is no — in font ptmr8t!
-Missing character: There is no — in font ptmr8t!
 
 
 [5]
-Missing character: There is no — in font ptmr8t!
-Missing character: There is no — in font ptmr8t!
-
-Underfull \hbox (badness 10000) detected at line 200
+Underfull \hbox (badness 10000) detected at line 194
 []
  []
 
-Missing character: There is no – in font ptmr8t!
-Missing character: There is no – in font ptmr8t!
-Missing character: There is no – in font ptmr8t!
-Missing character: There is no – in font ptmr8t!
-Missing character: There is no – in font ptmr8t!
-Missing character: There is no – in font ptmr8t!
-Missing character: There is no – in font ptmr8t!
-Missing character: There is no – in font ptmr8t!
-Missing character: There is no – in font ptmr8t!
-Missing character: There is no – in font ptmr8t!
 Missing character: There is no Δ in font ptmr8t!
 File: ../Figs/rdi_growth_histogram.pdf Graphic file (type pdf)
 <use ../Figs/rdi_growth_histogram.pdf>
 File: ../Figs/rdi_trends_selected_msas.pdf Graphic file (type pdf)
 <use ../Figs/rdi_trends_selected_msas.pdf>
 
-Underfull \hbox (badness 10000) detected at line 237
+Underfull \hbox (badness 10000) detected at line 235
 []
  []
 
+Missing character: There is no Δ in font ptmr8t!
 
 
 [6]
-Missing character: There is no Δ in font ptmr8t!
-Missing character: There is no Δ in font ptmr8t!
-Missing character: There is no Δ in font ptmr8t!
 Missing character: There is no — in font ptmr8t!
-Missing character: There is no — in font ptmr8t!
-Missing character: There is no — in font ptmr8t!
-Missing character: There is no — in font ptmr8t!
-Missing character: There is no — in font ptmr8t!
-Missing character: There is no ’ in font ptmr8t!
-
-LaTeX Warning: Reference `appendixa' on page 7 undefined on input line 249.
-
 
 
 [7]
-Missing character: There is no — in font ptmr8t!
-Missing character: There is no – in font ptmr8t!
-
-Underfull \hbox (badness 10000) detected at line 273
+Underfull \hbox (badness 10000) detected at line 272
 []
  []
 
-
-LaTeX Warning: Reference `sec:forecasting-validation' on page 8 undefined on in
-put line 291.
-
-
-
-[8]
 Missing character: There is no ’ in font ptmr8t!
 
 Underfull \hbox (badness 10000) detected at line 306
@@ -1364,15 +1322,27 @@ Underfull \hbox (badness 10000) detected at line 306
  []
 
 
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
 Underfull \hbox (badness 10000) detected at line 319
 []
  []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 Underfull \hbox (badness 10000) detected at line 331
 []
  []
 
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+
+[8]
 File: ../Figs/event_study.pdf Graphic file (type pdf)
 <use ../Figs/event_study.pdf>
 
@@ -1388,9 +1358,6 @@ Underfull \hbox (badness 10000) detected at line 359
 []
  []
 
-
-
-[9]
 File: ../Figs/spread_comparison_over_time_1yr.pdf Graphic file (type pdf)
 <use ../Figs/spread_comparison_over_time_1yr.pdf>
 File: ../Figs/spread_comparison_over_time_3yr.pdf Graphic file (type pdf)
@@ -1405,8 +1372,8 @@ Underfull \hbox (badness 10000) detected at line 387
  []
 
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
 
+[9]
 Missing character: There is no — in font ptmr8t!
 
 
@@ -1422,51 +1389,39 @@ Underfull \hbox (badness 10000) detected at line 405
 []
  []
 
-Missing character: There is no — in font ptmr8t!
-Missing character: There is no — in font ptmr8t!
-
-
-[11]
 Missing character: There is no ’ in font ptmr8t!
 File: ../Figs/max_supply_growth_vs_rent_growth.pdf Graphic file (type pdf)
 <use ../Figs/max_supply_growth_vs_rent_growth.pdf>
 File: ../Figs/max_supply_vs_RDI_growth.pdf Graphic file (type pdf)
 <use ../Figs/max_supply_vs_RDI_growth.pdf>
 
-Underfull \hbox (badness 10000) detected at line 423
+Underfull \hbox (badness 10000) detected at line 429
 []
  []
 
-Missing character: There is no — in font ptmr8t!
-Missing character: There is no — in font ptmr8t!
-Missing character: There is no — in font ptmr8t!
-Missing character: There is no — in font ptmr8t!
-Missing character: There is no — in font ptmr8t!
-Missing character: There is no — in font ptmr8t!
 
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+
+[11]
 
 [12]
 Missing character: There is no — in font ptmr8t!
 Missing character: There is no — in font ptmr8t!
-Missing character: There is no — in font ptmr8t!
-Missing character: There is no — in font ptmr8t!
-Missing character: There is no — in font ptmr8t!
 Missing character: There is no – in font ptmr8t!
+Missing character: There is no — in font ptmr8t!
+Missing character: There is no — in font ptmr8t!
+Missing character: There is no — in font ptmr8t!
 
 
 [13]
-Missing character: There is no — in font ptmr8t!
-Missing character: There is no — in font ptmr8t!
-Missing character: There is no — in font ptmr8t!
-
-Underfull \hbox (badness 10000) detected at line 484
+Underfull \hbox (badness 10000) detected at line 483
 []
  []
 
 Missing character: There is no – in font ptmr8t!
 (wileyNJDv5_AMA.bbl
-
-[14]
 Underfull \hbox (badness 2173) in paragraph at lines 88--101
 \T1/ptm/m/it/10 cil\T1/ptm/m/n/10 .  []$\T1/pcr/m/n/10 https :// www [] .nmhc [
 ] .org / research [] -insight / research [] -reports / us [] -needs [] -4 [] .3
@@ -1475,25 +1430,21 @@ Underfull \hbox (badness 2173) in paragraph at lines 88--101
 
 Missing character: There is no ‐ in font ptmr8t!
 Missing character: There is no – in font ptmr8t!
+
+
+[14]
 Missing character: There is no ’ in font ptmr8t!
-
-
-[15]
 Missing character: There is no “ in font ptmr8t!
 Missing character: There is no ” in font ptmr8t!
 )
 Missing character: There is no ’ in font ptmr8t!
 
 
-[16] (wileyNJDv5_AMA.aux)
+[15] (wileyNJDv5_AMA.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-03-26>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
  )
 (\end occurred when \iftrue on line 4823 was incomplete)
 (\end occurred when \iftrue on line 4811 was incomplete)
@@ -1505,12 +1456,12 @@ LaTeX Warning: There were undefined references.
 (\end occurred when \iftrue on line 4739 was incomplete)
 (\end occurred when \ifx on line 2 was incomplete) 
 Here is how much of TeX's memory you used:
- 22050 strings out of 405075
- 349394 string characters out of 5499361
- 797945 words of memory out of 5000000
- 48326 multiletter control sequences out of 15000+600000
+ 22049 strings out of 405075
+ 349418 string characters out of 5499361
+ 795945 words of memory out of 5000000
+ 48325 multiletter control sequences out of 15000+600000
  686822 words of font info for 104 fonts, out of 8000000 for 9000
  1374 hyphenation exceptions out of 8191
- 87i,12n,93p,1479b,587s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 87i,12n,93p,1644b,587s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on wileyNJDv5_AMA.pdf (16 pages).
+Output written on wileyNJDv5_AMA.pdf (15 pages).

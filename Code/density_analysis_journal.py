@@ -857,7 +857,6 @@ def choropleth_rdi_by_msa():
     print(df.shape)
     df = df.join(cbsa2fips, left_on="cbsa", right_on="cbsacode", how="left")
     print(df.shape)
-    assert False
     df = get_data(filter=None).to_pandas()[["msa", "year", "RDI", "FIPS"]].dropna()
     df["RDI"] = df["RDI"].round(1)
     df_2019 = df[df["year"] == 2019]
@@ -919,8 +918,8 @@ def plot_national_averages():
             va="bottom",
             color="black",
         )
-    plt.xlabel("Δ RDI (2001-2024)")
-    plt.ylabel("Δ Rent Growth (2001-2024)")
+    plt.xlabel("←   Expanding        Δ RDI      Crowding    →")
+    plt.ylabel("Rent Growth")
     plt.legend(loc="upper left", bbox_to_anchor=(1, 1), fontsize="small")
     plt.grid()
     plt.tight_layout()
@@ -956,7 +955,7 @@ def plot_national_averages():
         label="95% Confidence Interval",
     )
     plt.legend()
-    plt.title("Mean Change in RDI vs. Mean Real Rent Growth Change by Year")
+    plt.title("Mean Change in RDI vs. Mean Real Rent Growth Anually")
     plt.savefig(
         Path(__file__).resolve().parent.parent / "Figs" / "rdi_rent_growth_2024.pdf",
         format="pdf",
@@ -964,7 +963,6 @@ def plot_national_averages():
         pad_inches=0.02,
     )
     plt.show()
-    assert False
     # Plot a histogram of the change in RDI
     plt.figure(figsize=(10, 6))
     plt.hist(
@@ -972,7 +970,7 @@ def plot_national_averages():
     )
     plt.xlabel("Change in RDI (Δ RDI)")
     plt.ylabel("Frequency")
-    plt.title("Histogram of Change in RDI: All MSAs (2012-2023)")
+    plt.title("Histogram of Change in RDI: All MSAs (2001-2024)")
     plt.grid(axis="y", alpha=0.75)
     plt.tight_layout()
     plt.savefig(
@@ -1316,6 +1314,10 @@ def show_summary_statistics():
                 "missing_values",
             ]
         ]
+    )
+    # Write summary statistics to CSV
+    summary.to_csv(
+        Path(__file__).resolve().parent.parent / "data" / "summary_statistics.csv"
     )
     # Print records where RDI is greatest and least
     df = df.dropna()
@@ -1820,7 +1822,7 @@ def spillover():
 
 
 # orthogonal()
-spillover()
+# spillover()
 # plot_max_supply_growth_vs_RDI_growth()
 # plot_max_supply_growth_vs_rent_growth()
 # df = get_data(filter=100).to_pandas()
@@ -1835,7 +1837,7 @@ Showing the results of switching to a RDI positive/negative segment and
 showing the rent after switching to True is significantly higher
 than the rent after switching to false
 """
-# show_summary_statistics()
+show_summary_statistics()
 # plot_phoenix_supply_demand()
 # plot_austin_supply_demand()
 # plot_national_averages()
