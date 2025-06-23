@@ -377,7 +377,7 @@ def predict_future(how, years=10):
     if how == "ARIMA":
         summary = pd.DataFrame()
         holder = []
-        for year in range(2001 + years, 2024 - years):
+        for year in range(2001 + years, 2024):
             for msa in df["msa"].unique():
                 df_train = df[
                     (df["year"] < year)
@@ -1498,6 +1498,12 @@ def plot_rdi_positive_counts_vs_rent_growth():
                 }
             )
     results_df = pd.DataFrame(results)
+    results_df.to_csv(
+        Path(__file__).resolve().parent.parent
+        / "data"
+        / "rdi_positive_counts_vs_rent_growth_5yr.csv",
+        index=False,
+    )
     grouped = results_df.groupby("rdi_positive_count")["rent_growth_sum"].apply(list)
     filtered = grouped[grouped.apply(lambda x: len(x) > 0)]
     data = [filtered[k] for k in filtered.index]
@@ -1837,18 +1843,18 @@ Showing the results of switching to a RDI positive/negative segment and
 showing the rent after switching to True is significantly higher
 than the rent after switching to false
 """
-show_summary_statistics()
+# show_summary_statistics()
 # plot_phoenix_supply_demand()
 # plot_austin_supply_demand()
 # plot_national_averages()
 # choropleth_rdi_by_msa()
 # predict_future(how="naive", years=1)
-# summary = predict_future(how="ARIMA", years=1)
+summary = predict_future(how="ARIMA", years=5)
 # compare_predictions(quantiles=4, years=10)
 """
 Comparison of 10-year predictions of rent growth using RDI, ARIMA and naive methods
 """
-# plot_rdi_positive_counts_vs_rent_growth()
+plot_rdi_positive_counts_vs_rent_growth()
 """
 Looking at the count of years with RDI growth > 0 over 5 year and 10 year 
 horizons as predictive of the next 5 and 10 years of rent growth
