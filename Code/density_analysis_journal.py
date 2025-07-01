@@ -50,7 +50,7 @@ mpl.rcParams.update(
 )
 
 
-def get_data(filter=100):
+def get_data(filter_number=100):
     df = pl.read_excel(
         Path(__file__).resolve().parent.parent / "data" / "costar_raw.xlsx",
         # schema_overrides={"FIPS": pl.Utf8},
@@ -94,10 +94,14 @@ def get_data(filter=100):
     )
 
     top_n_msas = (
-        df.filter(pl.col("year") == 2001)
-        .sort("inventory", descending=True)
-        .head(filter)
-        .select("msa")
+        (
+            df.filter(pl.col("year") == 2001)
+            .sort("inventory", descending=True)
+            .head(filter_number)
+            .select("msa")
+        )
+        .to_series()
+        .to_list()
     )
     df = df.filter(pl.col("msa").is_in(top_n_msas))
     # Load CPI and calculate cumulative inflation adjustment
@@ -120,11 +124,19 @@ def get_data(filter=100):
         ]
     )
 
-    df = df.sort("msa", "year")
-
     # Calculate dependent variables in stages
-    df = df.with_columns((pl.col("pop") / (pl.col("inventory"))).alias("RDI"))
+    # df = df.with_columns((pl.col("pop") / (pl.col("inventory"))).alias("RDI"))
+    rdi = pl.read_csv(
+        r"C:\Users\mlarriva\OneDrive - Brookfield\Documents\Github\demand_density\Data\pums_data\wtd_avg_ppl_per_retner_hh.csv"
+    )
+    rdi = rdi.select(pl.col("PPL_PER_RENTAL").alias("RDI"), "costar_name", "YEAR")
+    rdi = rdi.with_columns(pl.col("costar_name").str.strip_suffix(" USA"))
 
+    df = df.join(
+        rdi, how="inner", left_on=["msa", "year"], right_on=["costar_name", "YEAR"]
+    )
+
+    df = df.sort("msa", "year")
     df = df.with_columns(
         [
             (pl.col("delivered") / pl.col("inventory").shift(1).over("msa")).alias(
@@ -158,16 +170,17 @@ def get_data(filter=100):
             (pl.col("sales_volume") / pl.col("inventory").shift(1).over("msa")).alias(
                 "sales_volume_growth"
             ),
+            (pl.col("RDI") / pl.col("occ")).alias("RDI"),
         ]
     )
 
-    df = df.with_columns(
+    df = df.sort(["msa", "year"]).with_columns(
         [
             pl.col("RDI").pct_change().over("msa").alias("RDI_growth"),
         ]
     )
     nyear = 5
-    df = df.with_columns(
+    df = df.sort("msa", "year").with_columns(
         (
             pl.col("real_rent_growth_next_year")
             - pl.col("real_rent_growth_next_year").median().over("year")
@@ -196,7 +209,12 @@ def get_data(filter=100):
         .rolling_sum(window_size=nyear, min_samples=nyear)
         .shift(-nyear)
         .over("msa")
-        .alias("rrg_5yr_fwd")
+        .alias("rrg_5yr_fwd"),
+        pl.col("real_relative_rent_growth")
+        .rolling_sum(window_size=nyear, min_samples=nyear)
+        .shift(-nyear)
+        .over("msa")
+        .alias("rrrg_5yr_fwd"),
     )
 
     df = df.with_columns(demand=pl.col("RDI_growth") > 0)
@@ -255,6 +273,7 @@ def get_data(filter=100):
             "real_relative_rg_next_year",
             "supply_5yr_fwd",
             "rrg_5yr_fwd",
+            "rrrg_5yr_fwd",
             "RDI_growth_5yr",
             "pop_growth",
             "sales_volume_growth",
@@ -267,6 +286,27 @@ def get_data(filter=100):
     df.write_csv(
         Path(__file__).resolve().parent.parent / "data" / "preprocessed_data.csv"
     )
+    df = (
+        df.select(
+            [
+                "msa",
+                "year",
+                "pop",
+                "RDI",
+                "RDI_growth",
+                "real_rent_growth",
+                "real_relative_rent_growth",
+                "real_rent_growth_next_year",
+                "real_relative_rg_next_year",
+            ]
+        )
+        .drop_nulls()
+        .with_columns(spread=pl.col("real_relative_rent_growth") - pl.col("RDI_growth"))
+    )
+    with pl.Config(set_tbl_rows=-1):
+        print(df.group_by(["msa"]).agg(pl.col("spread").mean()))
+        print(df.group_by(["msa"]).agg(pl.col("spread").mean()).mean())
+    df.write_csv(Path(__file__).resolve().parent.parent / "data" / "sample_data.csv")
     return df
 
 
@@ -564,8 +604,8 @@ def compare_predictions(quantiles=5, years=10):
 
 def simplify_anova():
     # Choose from 'real_rent_growth_next_year', 'real_relative_rg_next_year'
-    y_var = "real_relative_rg_next_year"
-    # y_var = "real_rent_growth_next_year"
+    # y_var = "real_relative_rg_next_year"
+    y_var = "real_rent_growth_next_year"
     # Choose from 'occupancy_delta','absorption_delta','demand'
     x_var = "demand"
     # x_var = "occupancy_delta"
@@ -1827,6 +1867,7 @@ def spillover():
         print(f"{msa1} vs {msa2}: r = {corr:.2f}")
 
 
+get_data(200)
 # orthogonal()
 # spillover()
 # plot_max_supply_growth_vs_RDI_growth()
@@ -1849,12 +1890,12 @@ than the rent after switching to false
 # plot_national_averages()
 # choropleth_rdi_by_msa()
 # predict_future(how="naive", years=1)
-summary = predict_future(how="ARIMA", years=5)
+# summary = predict_future(how="ARIMA", years=5)
 # compare_predictions(quantiles=4, years=10)
 """
 Comparison of 10-year predictions of rent growth using RDI, ARIMA and naive methods
 """
-plot_rdi_positive_counts_vs_rent_growth()
+# plot_rdi_positive_counts_vs_rent_growth()
 """
 Looking at the count of years with RDI growth > 0 over 5 year and 10 year 
 horizons as predictive of the next 5 and 10 years of rent growth
