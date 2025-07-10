@@ -125,16 +125,16 @@ def get_data(filter_number=100):
     )
 
     # Calculate dependent variables in stages
-    # df = df.with_columns((pl.col("pop") / (pl.col("inventory"))).alias("RDI"))
-    rdi = pl.read_csv(
-        r"C:\Users\mlarriva\OneDrive - Brookfield\Documents\Github\demand_density\Data\pums_data\wtd_avg_ppl_per_retner_hh.csv"
-    )
-    rdi = rdi.select(pl.col("PPL_PER_RENTAL").alias("RDI"), "costar_name", "YEAR")
-    rdi = rdi.with_columns(pl.col("costar_name").str.strip_suffix(" USA"))
+    df = df.with_columns((pl.col("pop") / (pl.col("inventory"))).alias("RDI"))
+    # rdi = pl.read_csv(
+    #     r"C:\Users\mlarriva\OneDrive - Brookfield\Documents\Github\demand_density\Data\pums_data\wtd_avg_ppl_per_retner_hh.csv"
+    # )
+    # rdi = rdi.select(pl.col("PPL_PER_RENTAL").alias("RDI"), "costar_name", "YEAR")
+    # rdi = rdi.with_columns(pl.col("costar_name").str.strip_suffix(" USA"))
 
-    df = df.join(
-        rdi, how="inner", left_on=["msa", "year"], right_on=["costar_name", "YEAR"]
-    )
+    # df = df.join(
+    #     rdi, how="inner", left_on=["msa", "year"], right_on=["costar_name", "YEAR"]
+    # )
 
     df = df.sort("msa", "year")
     df = df.with_columns(
@@ -1867,7 +1867,7 @@ def spillover():
         print(f"{msa1} vs {msa2}: r = {corr:.2f}")
 
 
-get_data(200)
+# get_data(200)
 # orthogonal()
 # spillover()
 # plot_max_supply_growth_vs_RDI_growth()
@@ -1895,7 +1895,7 @@ than the rent after switching to false
 """
 Comparison of 10-year predictions of rent growth using RDI, ARIMA and naive methods
 """
-# plot_rdi_positive_counts_vs_rent_growth()
+plot_rdi_positive_counts_vs_rent_growth()
 """
 Looking at the count of years with RDI growth > 0 over 5 year and 10 year 
 horizons as predictive of the next 5 and 10 years of rent growth

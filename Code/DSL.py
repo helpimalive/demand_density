@@ -8,6 +8,7 @@ from scipy.stats import ttest_ind
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.linear_model import LinearRegression
 import numpy as np
+import matplotlib.pyplot as plt
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report
 from sklearn.metrics import mean_absolute_error
@@ -46,7 +47,6 @@ Outcomes	Δ rent
             but there is a negligible difference in splitting by RDI_growth in the low RDI group
             rent_vs_rdi_and_growth()
 """
-
 """ Relationship between RDI and rent growth with supply:
     |_____ High density with de-densification with low starts (high RDI;low RDI_growth;low starts) has highest rent growth 
            High density with densification with high starts (high RDI;high RDI_growth;high starts) has high lowest rent growth
@@ -330,12 +330,13 @@ def test_means():
         "starts_group",
         "prior_rrrg_group",
     ]:
-        group0 = pdf[pdf[col] == 0]["rrg_5yr_fwd"]
-        group1 = pdf[pdf[col] == 1]["rrg_5yr_fwd"]
+
+        group0 = pdf[pdf[col] == 0]["rrrg_5yr_fwd"]
+        group1 = pdf[pdf[col] == 1]["rrrg_5yr_fwd"]
         mean_diff = group1.mean() - group0.mean()
         t_stat, p_val = ttest_ind(group0, group1, nan_policy="omit")
         print(
-            f"{col}: t-stat={t_stat:.3f}, p-value={p_val:.3g}, (mean diff={mean_diff:.3f})"
+            f"{col}: t-stat={t_stat:.3f}, p-value={p_val:.3g}, (mean diff={mean_diff:.3f} in rrrg_5yr_fwd)"
         )
 
 
@@ -344,39 +345,31 @@ def test_preds():
         Path(__file__).resolve().parent.parent / "data" / "preprocessed_data.csv"
     )
     df = df.sort(["msa", "year"], descending=[True, True]).with_columns(
-        pl.col("RDI").shift(-5).over("msa").alias("RDI_trailing"),
+        pl.col("RDI").shift(-1).over("msa").alias("RDI_trailing"),
+        pl.col("RDI").shift(-2).over("msa").alias("RDI_trailing_2"),
     )
-    df = df.with_columns(plus_rdi=(pl.col("RDI_growth") > 0)).with_columns(
-        pl.col("plus_rdi")
-        .rolling_sum(window_size=5, min_samples=5)
-        .over("msa")
-        .alias("plus_rdi_5yr")
-    )
-
     df = (
-        df.select(
-            "year",
-            "RDI",
-            "RDI_trailing",
-            "plus_rdi_5yr",
-            pl.col("real_relative_rent_growth").alias("prior_rrrg"),
-            "starts_pct",
-            "rrg_5yr_fwd",
-            "rrrg_5yr_fwd",
+        df.with_columns(plus_rdi=(pl.col("RDI_growth") > 0))
+        .with_columns(
+            pl.col("plus_rdi")
+            .rolling_sum(window_size=5, min_samples=5)
+            .over("msa")
+            .alias("plus_rdi_5yr")
+        )
+        .with_columns(
+            INTERACTION=pl.col("RDI") * pl.col("RDI_trailing"),
+            TRDI=(pl.col("POPULATION_RENTED") + pl.col("POPULATION_OWNED"))
+            / pl.col("HOUSEHOLDS_RENTED"),
         )
         .drop_nulls()
-        .with_columns(
-            (pl.col("prior_rrrg") * pl.col("starts_pct")).alias("interaction_1")
-        )
-        # .filter(pl.col("year").is_in([2006, 2012, 2018]))
     )
-    import matplotlib.pyplot as plt
 
     # Fit model as before
     pdf = df.to_pandas()
-    X = pdf[["RDI", "plus_rdi_5yr", "prior_rrrg", "interaction_1"]]
+    X = pdf[["RDI_trailing", "INTERACTION", "TRDI"]]
     X = sm.add_constant(X)
-    y = pdf["rrg_5yr_fwd"]
+    y = pdf["rrrg_5yr_fwd"]
+    # y = pdf["real_relative_rg_next_year"]
     model = sm.OLS(y, X).fit()
     y_pred = model.predict(X)
 
@@ -456,47 +449,79 @@ def int_group_shift():
             "RDI",
             "RDI_trailing",
             "rrg_5yr_fwd",
+            "real_relative_rg_next_year",
             "rrrg_5yr_fwd",
         )
         .drop_nulls()
         .with_columns((pl.col("RDI") - pl.col("RDI_trailing")).alias("RDI_move"))
     )
     with pl.Config(set_tbl_rows=-1):
-        print("MEAN")
-        print(
-            df.pivot(
-                index="RDI_trailing",
-                on="RDI",
-                values="rrrg_5yr_fwd",
-                aggregate_function="mean",
-                sort_columns=True,
-            )
-            .with_columns((pl.all().exclude("RDI_trailing") * 10000).cast(pl.Int64))
-            .sort("RDI_trailing")
-        )
-        print("COUNT")
-        print(
-            df.pivot(
-                index="RDI_trailing",
-                on="RDI",
-                values="rrrg_5yr_fwd",
-                aggregate_function="len",
-                sort_columns=True,
-            ).sort("RDI_trailing")
-        )
+        # print("MEAN")
+        # print(
+        #     df.pivot(
+        #         index="RDI_trailing",
+        #         on="RDI",
+        #         values="rrrg_5yr_fwd",
+        #         aggregate_function="mean",
+        #         sort_columns=True,
+        #     )
+        #     .with_columns((pl.all().exclude("RDI_trailing") * 10000).cast(pl.Int64))
+        #     .sort("RDI_trailing")
+        # )
+        # print("COUNT")
+        # print(
+        #     df.pivot(
+        #         index="RDI_trailing",
+        #         on="RDI",
+        #         values="rrrg_5yr_fwd",
+        #         aggregate_function="len",
+        #         sort_columns=True,
+        #     ).sort("RDI_trailing")
+        # )
         print("RDI_GROUP_MEAN")
         print(
-            df.select(pl.col("RDI"), "rrrg_5yr_fwd", "rrg_5yr_fwd")
+            df.select(
+                pl.col("RDI"),
+                "real_relative_rg_next_year",
+                "rrrg_5yr_fwd",
+                "rrg_5yr_fwd",
+            )
             .group_by("RDI")
             .agg(
                 (10000 * pl.col("rrrg_5yr_fwd"))
                 .mean()
                 .cast(pl.Int64)
-                .alias("rrrg_bps"),
-                (10000 * pl.col("rrg_5yr_fwd")).mean().cast(pl.Int64).alias("rr_bps"),
+                .alias("rrrg_5yr_fwd_bps"),
+                (10000 * pl.col("rrg_5yr_fwd"))
+                .mean()
+                .cast(pl.Int64)
+                .alias("rrg_5_yr_fwd_bps"),
                 pl.col("rrrg_5yr_fwd").count().alias("count"),
             )
             .sort("RDI")
+        )
+        print("RDI_SHIFT_MEAN")
+        print(
+            df.select(
+                pl.col("RDI_move"),
+                "real_relative_rg_next_year",
+                "rrrg_5yr_fwd",
+                "rrg_5yr_fwd",
+            )
+            .group_by("RDI_move")
+            .agg(
+                (10000 * pl.col("real_relative_rg_next_year"))
+                .mean()
+                .cast(pl.Int64)
+                .alias("rrrg_next_year_bps"),
+                (10000 * pl.col("rrrg_5yr_fwd"))
+                .mean()
+                .cast(pl.Int64)
+                .alias("rrrg5_bps"),
+                (10000 * pl.col("rrg_5yr_fwd")).mean().cast(pl.Int64).alias("rr_bps"),
+                pl.col("rrrg_5yr_fwd").count().alias("count"),
+            )
+            .sort("RDI_move")
         )
 
 
@@ -561,49 +586,34 @@ def pos_shift_count():
         .alias("plus_rdi_5yr")
     )
     print(
-        df.filter(pl.col("plus_rdi_5yr") == 5).select(
-            "year", "msa", "plus_rdi_5yr", "rrrg_5yr_fwd"
-        )
-    )
-    print(
         df.group_by("plus_rdi_5yr")
-        .agg((10000 * pl.col("rrrg_5yr_fwd").mean()).alias("mean_rrrg_5yr_fwd"))
+        .agg(
+            (10000 * pl.col("rrrg_5yr_fwd").mean()).alias("mean_rrrg_5yr_fwd"),
+            pl.col("rrrg_5yr_fwd").count().alias("count"),
+        )
         .sort("plus_rdi_5yr", descending=True)
     )
 
 
 ### Findings ###
 """
-RDI is a significant predictor of rent growth, but RDI_growth as a continuous variable is not.
+Having RDI > annual RDI median is a significant predictor of rent growth
+with higher RDI having higher rent growth in the 5 year
 """
+print("TEST MEANS_____________________")
 test_means()
 """
-RDI_growth as a categorical variable (positive/negative) is a significant predictor of rent growth
-With the records with 5 periods of positive RDI growth over the last 5 years having the lowest rent growth
-┌──────────────┬───────────────────┐
-│ plus_rdi_5yr ┆ mean_rrrg_5yr_fwd │
-│ ---          ┆ ---               │
-│ u32          ┆ f64               │
-╞══════════════╪═══════════════════╡
-│ null         ┆ -1.70203          │
-│ 5            ┆ -252.691469       │
-│ 4            ┆ -5.17122          │
-│ 3            ┆ 49.644165         │
-│ 2            ┆ 65.316567         │
-│ 1            ┆ 208.835262        │
-│ 0            ┆ 368.924413        │
-└──────────────┴───────────────────┘
+RDI_growth as a categorical variable (positive/negative) is not a significant predictor of rent growth
 """
+print("RDI_SHIFT _____________________")
 pos_shift_count()
 """
-For a linear model, RDI, the number of positive RDI years in the last 5, prior_rrrg, starts_pct, and their interaction create a valid model but low Rsquare.
-This is the only one that seems to work well; other atteempts at categorical failed
+For a linear model, RDI_trailing, RDI*RDI_trailing, and the total RDI (total pop / households rented) are significant predictors of rrg_5yr_fwd
 """
+print("TEST PREDICTIONS _______________")
 test_preds()
 """
-This is likely because there's a nonlinear effect in that
-Moving from one group to another (e.g. RDI_group == 0 to RDI_group == 1) results in a significant change in rrg_5yr_fwd
-which is different from moving between other groups (e.g. RDI_group == 1 to RDI_group == 2).
-But even just being in one group is a significant predictor of rrg_5yr_fwd.
+RDI level and RDI shift are significant predictor of rent growth
 """
+print("GROUP SHIFT ____________________")
 int_group_shift()

@@ -1,2 +1,6 @@
 /Archive
 Data/pums_data/usa_00009.csv
+Data/pums_data/archive
+Data/pums_data/usa_0013.csv
+Data/pums_data/*.parquet
+Data/pums_data/*.gz

@@ -124,18 +124,19 @@ def get_data(filter_number=100):
         ]
     )
 
-    # Calculate dependent variables in stages
+    # To calculate RDI using costar data
     # df = df.with_columns((pl.col("pop") / (pl.col("inventory"))).alias("RDI"))
-    rdi = pl.read_csv(
-        r"C:\Users\mlarriva\OneDrive - Brookfield\Documents\Github\demand_density\Data\pums_data\wtd_avg_ppl_per_retner_hh.csv"
-    )
-    rdi = rdi.select(pl.col("PPL_PER_RENTAL").alias("RDI"), "costar_name", "YEAR")
-    rdi = rdi.with_columns(pl.col("costar_name").str.strip_suffix(" USA"))
 
+    rdi = pl.read_csv(
+        r"C:\Users\mlarriva\OneDrive - Brookfield\Documents\Github\demand_density\Data\pums_data\puma_metro_pop_density.csv"
+    )
+    rdi = rdi.with_columns(
+        RDI=(pl.col("POPULATION_RENTED")) / pl.col("HOUSEHOLDS_RENTED")
+    )
+    rdi = rdi.with_columns(pl.col("costar_name").str.strip_suffix(" USA"))
     df = df.join(
         rdi, how="inner", left_on=["msa", "year"], right_on=["costar_name", "YEAR"]
     )
-
     df = df.sort("msa", "year")
     df = df.with_columns(
         [
@@ -253,27 +254,29 @@ def get_data(filter_number=100):
     df = df.select(
         [
             "year",
+            "msa",
+            "HOUSEHOLDS_RENTED",
+            "POPULATION_RENTED",
+            "POPULATION_OWNED",
+            "HOUSEHOLDS_OWNED",
+            "RDI",
+            "RDI_growth",
+            "real_relative_rg_next_year",
+            "real_rent_growth_next_year",
+            "rrg_5yr_fwd",
+            "rrrg_5yr_fwd",
             "absorption",
             "absorption_delta",
-            "msa",
             "occ",
             "occupancy_delta",
             "pop",
             "demolished_pct",
+            "real_relative_rent_growth",
             "rent_growth",
             "real_rentpsf",
             "real_rent_growth",
-            "starts_pct",
-            "inventory",
-            "RDI",
-            "real_rent_growth_next_year",
-            "real_relative_rent_growth",
-            "RDI_growth",
             "supply_growth",
-            "real_relative_rg_next_year",
             "supply_5yr_fwd",
-            "rrg_5yr_fwd",
-            "rrrg_5yr_fwd",
             "RDI_growth_5yr",
             "pop_growth",
             "sales_volume_growth",
@@ -281,6 +284,8 @@ def get_data(filter_number=100):
             "predicted_demand",
             "exog_shock",
             "pct_international_mig_",
+            "starts_pct",
+            "inventory",
         ]
     )
     df.write_csv(
@@ -303,9 +308,6 @@ def get_data(filter_number=100):
         .drop_nulls()
         .with_columns(spread=pl.col("real_relative_rent_growth") - pl.col("RDI_growth"))
     )
-    with pl.Config(set_tbl_rows=-1):
-        print(df.group_by(["msa"]).agg(pl.col("spread").mean()))
-        print(df.group_by(["msa"]).agg(pl.col("spread").mean()).mean())
     df.write_csv(Path(__file__).resolve().parent.parent / "data" / "sample_data.csv")
     return df
 
@@ -1389,14 +1391,12 @@ def plot_group_averages_with_confidence():
                 lambda y: (y > 0).sum(), raw=True
             )
         )
-        .dropnull()
     )
-    df["demand"] = df["demand"] <= 3
-
     df_pivot = df.pivot_table(
         index="year", columns="demand", values=var, aggfunc="mean"
     )
-    print(df_pivot, df_pivot.mean())
+    print(df_pivot, df_pivot.mean(skipna=True))
+    assert False
     # Calculate the overall average by year
     df_avg = df.groupby("year")[var].mean()
     # Plot the averages
@@ -1878,11 +1878,11 @@ def spillover():
         print(f"{msa1} vs {msa2}: r = {corr:.2f}")
 
 
-# get_data(200)
+get_data(200)
 # plot_max_supply_growth_vs_RDI_growth()
 # plot_max_supply_growth_vs_rent_growth()
 # df = get_data(filter=100).to_pandas()
-plot_group_averages_with_confidence()
+# plot_group_averages_with_confidence()
 # simplify_anova()
 """
 ANOVA of the difference in rent growth in the groups in the following year
