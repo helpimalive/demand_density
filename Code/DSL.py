@@ -299,6 +299,8 @@ def test_means():
     )
 
     df = df.select(
+        "POPULATION_RENTED",
+        "msa",
         "year",
         "RDI",
         "RDI_growth",
@@ -308,6 +310,17 @@ def test_means():
         "rrrg_5yr_fwd",
         "RDI_trailing",
     ).drop_nulls()
+    # Filter to MSAs with POPULATION_RENTED in the top 100 as of 2018
+    top_2018 = (
+        df.filter((pl.col("year") == 2018))
+        .sort("POPULATION_RENTED", descending=True)
+        .select("msa")
+        .head(50)
+        .to_series()
+        .to_list()
+    )
+
+    df = df.filter(pl.col("msa").is_in(top_2018))
     df = df.with_columns(
         (pl.col("RDI") > pl.col("RDI").median().over("year")).alias("RDI_group"),
         (pl.col("prior_rrrg") > pl.col("prior_rrrg").median().over("year")).alias(
@@ -319,7 +332,40 @@ def test_means():
         (pl.col("starts_pct") > pl.col("starts_pct").median())
         .over("year")
         .alias("starts_group"),
+        (pl.col("rrg_5yr_fwd") > pl.col("rrg_5yr_fwd").median().over("year")).alias(
+            "rrg_group"
+        ),
     )
+    # Create a pivot table: index=year, columns=RDI_group, values=count of rrg_group==True
+    var = "RDI_group"  # Change this to 'RDI_group', 'prior_rrrg_group', or 'RDI_trailing_group' as needed
+    pivot = (
+        # df.group_by(["year", "RDI_group"])
+        df.group_by(["RDI_group", "starts_group"])
+        .agg(pl.col("rrg_group").sum().alias("rrg_group_true_count"))
+        .pivot(values="rrg_group_true_count", index="starts_group", columns="RDI_group")
+    )
+    with pl.Config(set_tbl_rows=-1):
+        print(pivot)
+    assert False
+
+    # df = df.with_columns(BOTH=(pl.col("RDI_group") & pl.col("prior_rrrg_group")))
+    # pivot = (
+    #     df.group_by(["year", "BOTH"])
+    #     .agg(pl.col("rrg_5yr_fwd").mean().alias("mean_rrg_5yr_fwd"))
+    #     .pivot(values="mean_rrg_5yr_fwd", index="year", columns="BOTH")
+    #     .sort("year")
+    # )
+    # with pl.Config(set_tbl_rows=-1):
+    #     print(
+    #         pivot.with_columns(diff=(pl.col("true") - pl.col("false")))
+    #         .filter(pl.col("year") > 2012)
+    #         .mean()
+    #     )
+
+    # Write the processed DataFrame to CSV for further analysis
+    # df.write_csv(
+    #     Path(__file__).resolve().parent.parent / "data" / "test_means_groups.csv"
+    # )
     import statsmodels.api as sm
 
     pdf = df.to_pandas()
@@ -603,7 +649,7 @@ with higher RDI having higher rent growth in the 5 year
 print("TEST MEANS_____________________")
 test_means()
 """
-RDI_growth as a categorical variable (positive/negative) is not a significant predictor of rent growth
+RDI_growth count as a categorical variable (positive/negative) is not a significant predictor of rent growth
 """
 print("RDI_SHIFT _____________________")
 pos_shift_count()

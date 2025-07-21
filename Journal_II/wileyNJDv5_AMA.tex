@@ -43,7 +43,7 @@
 %\fundingInfo{Text}
 %\JELinfo{ejlje}
 
-\abstract[Abstract]{We introduce the Rental Density Index (RDI)---a metric that captures the number of people per rental unit---as a scalable and behaviorally grounded proxy for latent rental housing demand. Traditional demand indicators like occupancy or absorption are bounded by supply and often fail to reflect underlying crowding pressure. In contrast, changes in RDI (\( \Delta \text{RDI} \)) reveal when renters are consolidating space, signaling excess demand, or spreading out, signaling slack.	Using panel data for the 100 largest U.S. metropolitan areas from 2000 to 2024, we show that \( \Delta \text{RDI} \) robustly predicts future rent growth. A two-stage least squares model, instrumenting for RDI growth with plausibly exogenous foreign in-migration shocks, reveals a positive and statistically significant causal effect on next-year relative rent growth. Out-of-sample tests further show that RDI-based forecasts outperform ARIMA and naïve models across one-, five-, and ten-year horizons. Event studies and regime classifications confirm that crowding transitions are consistently followed by directional rent changes.	The Rental Density Index provides a simple yet powerful tool for identifying housing market tightness, classifying supply-demand regimes, and forecasting rent performance. It is especially useful in contexts where traditional demand indicators are constrained or unavailable.}
+\abstract[Abstract]{We introduce the Rental Density Index (RDI)---a metric that captures the household density of rental units---as a scalable and behaviorally grounded proxy for latent rental housing demand. Traditional demand indicators like occupancy or absorption are bounded by supply and often fail to reflect underlying crowding pressure. In contrast, changes in RDI (\( \Delta \text{RDI} \)) reveal when renters are consolidating space, signaling excess demand, or spreading out, signaling slack.	Using panel data for the 200 largest U.S. metropolitan areas from 2005 to 2023, we show that \( \Delta \text{RDI} \) robustly predicts future rent growth. A two-stage least squares model, instrumenting for RDI growth with plausibly exogenous foreign in-migration shocks, reveals a positive and statistically significant causal effect on next-year relative rent growth. Out-of-sample tests further show that RDI-based forecasts outperform ARIMA and naïve models across one-, five-, and ten-year horizons. Event studies and regime classifications confirm that crowding transitions are consistently followed by directional rent changes.	The Rental Density Index provides a simple yet powerful tool for identifying housing market tightness, classifying supply-demand regimes, and forecasting rent performance. It is especially useful in contexts where traditional demand indicators are constrained or unavailable.}
 	
 
 
@@ -69,7 +69,7 @@ Housing shortages and affordability concerns have risen to the forefront of poli
 
 Traditional indicators of demand in multifamily real estate, such as occupancy rates and net absorption, are informative but fundamentally supply-constrained. Occupancy rates are naturally bounded at 100\%, and absorption cannot exceed the rate of new deliveries \cite{mueller1999real}. These constraints obscure excess demand: when all available and affordable units are occupied, latent demand becomes invisible to market participants and researchers alike \cite{gabriel2001rental, sirmans1991determinants, pyhrr1999real}. This problem inhibits clear attribution of rent increases to supply versus demand dynamics \cite{pennington2021does, molloy2022housing}. Moreover, ongoing academic debate persists around whether rising rents in constrained markets result more from supply-side limitations \cite{saiz2010geographic} or from heightened demand for desirable locations \cite{davidoff2015supply}. Without a transparent, consistent demand-side metric, attempts to assess equilibrium conditions remain incomplete.
 
-In this paper, we introduce a novel empirical measure of rental housing demand: the \textit{rental density index} (RDI), defined as the number of people per existing rental unit in a given metropolitan area. Unlike occupancy or absorption, RDI is not inherently bounded and therefore can reflect intensifying demand even in fully occupied markets. The conceptual foundation is straightforward: as rents rise, renters economize on space---whether by delaying household formation, taking on roommates, or crowding---thus increasing the ratio of people per rental unit. By observing shifts in RDI over time, we capture underlying demand pressures that traditional metrics obscure.
+In this paper, we introduce a novel empirical measure of rental housing demand: the \textit{rental density index} (RDI), defined as the average number of occupants per rental unit in a given metropolitan area. Unlike occupancy or absorption, RDI is not inherently bounded and therefore can reflect intensifying demand even in fully occupied markets. The conceptual foundation is straightforward: as rents rise, renters economize on space---whether by delaying household formation, taking on roommates, or crowding---thus increasing the ratio of people per rental unit and signaling pent-up demand. By observing shifts in RDI over time, we capture underlying demand pressures that traditional metrics obscure.
 
 Present trends support this reframing of demand, as density, rental prices, and rental preferences have all shifted meaningfully. For most of its history, the U.S. was less densely populated than its high-income peers, but in 1992 this changed. In that year, the US grew to 28 people per square kilometer, outpacing the High Income Nations whose average was 23 people per square kilometer \cite{worldbankPopDensity}. The most recent figures report the US with a density of 36 and the High Income Nations with an average density of 27.  Over this same period, rental prices have outpaced both wages and non-shelter inflation \cite{feiveson2024rent, stlouisfedConsumerPrice}, with younger cohorts increasingly preferring rental housing \cite{fanniemaeConsumersFeeling}.
 
@@ -79,12 +79,16 @@ Our framework builds on the standard assumption that, all else equal, households
 
 \begin{figure}[htb!]
 	\centerline{\includegraphics[height=20pc]{rdi_rent_growth_2024.pdf}}
-	\caption{Relationship between average annual change in Rental Density Index (horizontal) and average annual relative real rent growth (vertical) in the 100 largest MSAs for each year between 2001 and 2024. \label{fig:rdi_national}}
+	\caption{Relationship between average annual change in Rental Density Index (horizontal) and average annual relative real rent growth (vertical) in the 200 largest MSAs for each year between 2005 and 2023. \label{fig:rdi_national}}
 \end{figure}
 
-Focusing on a panel of the 100 largest metropolitan statistical areas (MSA) between 2000 and 2024, we calculate the RDI. We then examine the year-over-year change in each MSA, in each year. A positive change in RDI (densification) means that population has grown faster than inventory; conversely a negative change in RDI (de-densification) corresponds to inventory growing faster than population. While this ignores the number of households and the percentage of owners versus renters, the signal from the RDI change is robust in spite of this, likely because ownership rates are fairly stationary relative to RDI.
+Focusing on a panel of the 200 largest metropolitan statistical areas (MSA) between 2005 and 2023, we calculate the RDI. It ranges from 1.79 occupants---per--rental to 3.87. The value itself is telling. MSAs with RDI greater than the median experience significantly higher next---year real rent growth than those with RDI values below the median.
 
-This empirical strategy corresponds with consistent rent growth differences across multiple time horizons. Over the one-year horizon, positive RDI growth  markets significantly outperform negative RDI growth markets. The densifying markets outperform the de-densifying markets by over 100 basis points in real rent growth. The RDI growth also has very strong foresight, with the trailing 10 year changes highly predictive of the next 10 years of supply growth and rent growth. The RDI is especially powerful when analyzed with observed supply growth. It serves as an indicator of when supply will be accretive to rent versus dillutive. In years and markets where the next year's supply exceeds the prior year's RDI growth, real rent growth is significantly below zero. Conversely, when supply is less than the RDI growth, the real rent is significantly greater than zero. These findings suggest that density-based classifications have predictive power and reflect latent demand more accurately than traditional indicators alone.
+And while the RDI is useful as a spot metric, so too is the change in RDI. A positive change in RDI (densification) means that the number of occupants---per---rental is increasing; conversely a negative change in RDI (de-densification) corresponds to a decrease in occupants---per---rental. The reasons for an increasing RDI are, in most cases, population growth in excess of supply growth. However, it could be possible that housing units declined as population remained static. Although the RDI does not explicitly factor in the count of households, because household count grows almost monotonically, the variable is still robust. 
+
+This empirical strategy corresponds with consistent rent growth differences across multiple time horizons. Over the one-year horizon, positive RDI growth  markets significantly underperform negative RDI growth markets. That is, the densifying markets underperform the de-densifying markets: as renters consolidate households, rent declines. The RDI value itself /( not the year-over-year change) has the opposite dynamic: markets with higher RDI values significantly outperform markets with lower RDI values. While this appears contradictory, it is consistent: a city that densifies has is willing to pay for fewer housing units per person that year, but demand is building, as cities cannot densify forever. And a city that has greater-than-average renters---per--unit has greater demand, and tends in the long-run toward a lower density, consuming more housing units as it unwinds. Akron is an illustrative example: from 2005 to 2011 it increased its occupants-per-rental from 2.06 to 2.32; during this time its real rent declined by 12.4\%. In 2012 it began unwinding its pent-up demand, and in the years between 2013 and 2021 its rent increased by 9.9\% as its RDI declined to 2.01.
+
+Combining these two metrics: RDI and its change provides further insights. Taken together, they reveal when supply will be accretive to rent versus dillutive. When markets experience supply spikes, those with high RDI and negative RDI growth see rent grow in the following years. Conversely, markets with low RDI and positive RDI growth experience negative rent growth in times of high supply. These findings suggest that density-based classifications have predictive power and reflect latent demand more accurately than traditional indicators alone.
 
 Our paper makes three principal contributions. First, we introduce the Rental Density Index (RDI), a novel, supply-unbounded metric of housing demand that can be computed at scale from readily available population and unit‐stock data. Second, we show the RDI is a significant indicator of latent demand, using a two-stage least squares model and a very broad panel of foreign in-migration data to measure demand shocks. Finally, we demonstrate RDI’s empirical value using a suite of use-cases applicable to investors, renters, developers, and policy-makers.
 
@@ -110,15 +114,14 @@ RDI’s strength lies in its scalability and interpretability. Constructed from 
 In sum, our contribution is to reinterpret a familiar spatial concept as a dynamic, renter-centered metric that reflects real-time demand conditions. By linking changes in RDI to rent performance, we introduce a new tool for housing market analysis that complements traditional models and offers practical value for forecasting, segmentation, and policy design.
 
 \section{Data and Descriptive Statistics}\label{sec3}
-Our market data is sourced from Costar. This includes nominal rent per square foot and rental units by market. Our inflation measures come from the U.S. Bureau of Labor Statistics. And our foreign immigration data at the market level comes from the US Census. We restrict our analysis to the 100 largest U.S. metropolitan statistical areas (MSAs) by multifamily inventory as of 2001, ensuring robust sample representation and consistency over time.
+The data used to calculate RDI is from the Public Use Microdata Statistics (PUMS). The PUMS data is an extremely valuable offering of the U.S. Census in conjunction with the American Community Survey. The data allow for visibility into myriad aspects of a respondent's life (including the number of people in their household and whether they rent or own their home), annonymized for privacy and standardized to create a comprehensive view of the entire country. 
+Our market rent data and inventory growth data is sourced from Costar. This includes nominal rent per square foot and inventory units. Our inflation measures come from the U.S. Bureau of Labor Statistics. And our foreign immigration data at the market level comes from the US Census. We restrict our analysis to the 200 largest U.S. metropolitan statistical areas (MSAs) by multifamily inventory as of 2005, ensuring robust sample representation and consistency over time.
 
 To normalize pricing data across time, we convert all nominal rent figures into real terms using the Consumer Price Index for All Urban Consumers (CPI-U), all-items, provided by the BLS. We convert nominal rent-growth figures into real rent-growth figures by subtracting the annual CPI-U change from the annual rent per square foot change. Although MSA-level inflation indices excluding rent would be ideal, such data are unavailable at a consistent and granular level for our study period. Therefore, real effective rent per square foot and rent growth metrics are adjusted using national CPI. 
 
 Importantly, we standardize rent-growth subtracting each year's median rent growth. We do this to remove the impact of national macroeconomic shocks (i.e., COVID-19). This also serves to stationarize the data and remove the autoregressive tendencies of timeseries data.
 
-Our novel demand variable, the Rental Density Index (RDI), is calculated by dividing population by total rental units at the MSA level. We compute its year-over-year percentage change---\(\Delta\text{RDI}\)---to reflect demand dynamics more accurately. This measure avoids the bounded structure of traditional demand indicators like occupancy and absorption, which are upper bounded by 100\%.
-
-Other variables include supply growth, computed as the quotient of delivered units to the previous year's inventory, and lagged variables prior-year rent growth. 
+Our novel demand variable, the Rental Density Index (RDI), is calculated by summing the number of people living in rental units within an MSA, and dividing that by the sum of rental units within an MSA. It does not include vacant dwellings or seasonal dwellings. We compute its year-over-year percentage change---\(\Delta\text{RDI}\)---to reflect demand dynamics more accurately. This measure avoids the bounded structure of traditional demand indicators like occupancy and absorption, which are upper bounded by 100\%.
 
 We exclude New Orleans, LA from our analysis because of its dynamics around the unfortunate aftermath of Hurricane Katrina. Within two years, this MSA had the greatest and least values of RDI growth as well as the greatest and least values of real rent change. 
 
@@ -133,26 +136,78 @@ We exclude New Orleans, LA from our analysis because of its dynamics around the 
 \texttt{real\_rentpsf}               & Costar's Rent Per Square Foot divided by indexed \texttt{CPI}\\
 \texttt{real\_rent\_growth}          & Costar's Effective Rent Growth 12M less Annual percent change in \texttt{CPI} \\
 \texttt{relative\_real\_rent\_growth}          & \texttt{real\_rent\_growth} less that year's median \texttt{real\_rent\_growth}\\
-\texttt{inventory}             & Existing multifamily rental stock \\
-\texttt{delivered}             & Units delivered in the current year \\
+\texttt{inventory}					& Costar's total number of rental units in an MSA \\
+\texttt{rental\_households}             & Dwellings that are being rented within an MSA\\
+\texttt{rental\_population}		& The number of people living in rental dwellings within an MSA\\
 \texttt{pop}                   & Total MSA population  \\
-\texttt{RDI}			       & Population divided by rental inventory \\
+\texttt{RDI}			       & \texttt{rental\_population} divided by \texttt{rental\_households} \\
 \texttt{delta\_RDI}	           & Yearoveryear percentage change in \texttt{RDI} \\
-\texttt{supply\_growth}        & Delivered units divided by the prior year \texttt{inventory} \\
+\texttt{supply\_growth}        & Yearoveryear percentage change in \texttt{inventory} \\
 \texttt{foreign\_migration}     & Foreign net migration divided by the area's population \\
 \bottomrule
 \end{tabular*}
 \end{table*}
 
+\subsection*{Rental Density Index Construction}
+The PUMS data is large, and complex, though very well documented. The output of the raw data requires parsing to aggregate to the MSA level. This section describes that aggregation process.
 
-\subsection{Variable Construction}
-The key outcome variable in this study is the \textit{Rental Density Index} (RDI), calculated as the total population divided by the number of rental housing units in a given MSA-year:
+\subsubsection*{1. Grouping Records}
 
-\begin{equation*}
-	\text{RDI}_{it} = \frac{\text{Population}_{it}}{\text{Rental Units}_{it}}.
-\end{equation*}
-	
-Within the 100 MSAs in the study,this metric ranges from 6.8 to 64.8. It reflects the number of people per rental unit. 
+Records are grouped by survey year (\texttt{YEAR}), household identifier (\texttt{SERIAL}), metropolitan area name (\texttt{MET\_NAME}), group quarters status (\texttt{GQ}), and ownership status (\texttt{OWNERSHP}). For each group \( i \), we compute:
+
+\begin{align}
+	\text{POPULATION}_{i} &= \sum_{j \in i} \text{PERWT}_{j} \\
+	\text{HOUSEHOLDS}_{i} &= \text{HHWT}_{j^*}
+\end{align}
+
+where \( \text{PERWT}_j \) is the person weight for individual \( j \), and \( \text{HHWT}_{j^*} \) is the household weight taken from the first individual in the group.
+
+\subsubsection*{2. Ownership Label Mapping}
+
+Ownership status is translated from numeric codes to descriptive labels as follows:
+
+\begin{equation}
+	\text{OWNERSHP} =
+	\begin{cases}
+		\texttt{"OWNED"} & \text{if code = 1} \\
+		\texttt{"RENTED"} & \text{if code = 2} \\
+		\texttt{"OTHER"} & \text{otherwise}
+	\end{cases}
+\end{equation}
+
+\subsubsection*{3. Aggregation by Metro and Year}
+
+We then re-aggregate the grouped data by year \( y \), metro area \( m \), and ownership category \( o \):
+
+\begin{align}
+	\text{POPULATION}_{y,m,o} &= \sum_{i \in (y,m,o)} \text{POPULATION}_i \\
+	\text{HOUSEHOLDS}_{y,m,o} &= \sum_{i \in (y,m,o)} \text{HOUSEHOLDS}_i
+\end{align}
+
+\subsubsection*{4. Pivoting and Computing Totals}
+
+We pivot the data to obtain separate columns for each ownership category and compute totals:
+
+\begin{align}
+	\text{TOTAL\_POPULATION}_{y,m} &= \text{POP\_OWNED}_{y,m} + \text{POP\_RENTED}_{y,m} + \text{POP\_OTHER}_{y,m} \\
+	\text{TOTAL\_HOUSEHOLDS}_{y,m} &= \text{HH\_OWNED}_{y,m} + \text{HH\_RENTED}_{y,m} + \text{HH\_OTHER}_{y,m}
+\end{align}
+
+\subsubsection*{5. Density Calculation}
+
+Finally, population-to-household densities are calculated per ownership type:
+
+\begin{align}
+	\text{DENSITY\_OWNED}_{y,m} &= \frac{\text{POP\_OWNED}_{y,m}}{\text{HH\_OWNED}_{y,m}} \\
+	\text{DENSITY\_RENTED}_{y,m} &= \frac{\text{POP\_RENTED}_{y,m}}{\text{HH\_RENTED}_{y,m}} \\
+	\text{DENSITY\_OTHER}_{y,m} &= \frac{\text{POP\_OTHER}_{y,m}}{\text{HH\_OTHER}_{y,m}}
+\end{align}
+The variable \text{DENSITY\_RENTED} becomes our so-called Rental Density Index.
+
+Although we do not use the \text{OWNED} or \text{OTHER} variables, we compute them for thoroughness and for future use and make them available with our code.
+
+Within the 200 MSAs in the study,the RDI ranges from 1.68 (Bloomington, IN; 2023) to 3.74 (Provo, UT; 2009).
+
 \begin{figure*}[hbt!]
 	\centering
 	
@@ -174,49 +229,45 @@ Within the 100 MSAs in the study,this metric ranges from 6.8 to 64.8. It reflect
 \end{figure*}
 
 
-While the RDI itself is useful for identifying how tight a market is at a given point in time, its absolute level is shaped by long-run demographic and structural trends such as rentership rates and changes in household formation. Accordingly, we focus on the \textit{year-over-year change in RDI}:
+The RDI itself is useful for identifying how tight a market is at a given point in time, and its absolute level is shaped by long-run demographic and structural trends in rentership and household formation. It is rare for a market to shift more than one half of one person-per-rental-dwelling, even over 20 years. To aid in short-term insight and allow comparability across markets, we use the \textit{year-over-year change in RDI}:
 
 \begin{equation*}
 	\Delta \text{RDI}_{it} = \text{RDI}_{it} - \text{RDI}_{it-1}.
 \end{equation*}
 
+The change in RDI (\( \Delta \text{RDI} \)) offers several advantages. First, it mitigates issues of nonstationarity in the level RDI, enabling cross-market comparison. Second, it reduces the impact of varying rentership percentages across cities. Most importantly, \( \Delta \text{RDI} \) captures demand pressure on housing stock: when it rises, it indicates more people are consolidating into fewer rental units, signaling a preference for cohabitation over paying prevailing rents. When it falls, it implies renters are spreading out and absorbing more space, suggesting household formation and rents below-or-at utility value. 
 
-The change in RDI (\( \Delta \text{RDI} \)) offers several advantages. First, it mitigates issues of nonstationarity in the level RDI, enabling cross-market comparison. Second, it reduces the impact of varying rentership percentages across cities. Most importantly, \( \Delta \text{RDI} \) captures demand pressure on housing stock: when it rises, it indicates more people are consolidating into fewer rental units, signaling tightening demand. When it falls, it implies renters are spreading out and absorbing more space, suggesting slack. It is useful to distinguish between two sources of crowding pressure captured by $\Delta \text{RDI}$: price-induced and supply-induced. Price-induced crowding occurs when rising rents outpace incomes, forcing renters to share space or delay household formation---behavioral responses that directly elevate RDI. Supply-induced crowding, by contrast, may arise even without rent escalation if housing stock fails to expand alongside population, resulting in more residents per unit out of sheer constraint. While these mechanisms are observationally similar, our framework implicitly captures both, interpreting $\Delta \text{RDI}$ as the revealed outcome of frictions between housing availability and household spatial preferences. In this way, RDI growth reflects excess demand pressures regardless of whether they arise from affordability shocks or constrained supply.
-
-
-It is important to note that \(\Delta \text{RDI}\) is conditioned on the rental population and does not explicitly capture shifts between renting and homeownership. Data on home-ownership at the MSA level is sparse, beginning in 2005 and only for the 75 largest MSAs. Furthermore the margins of error are prohibitively large; they are regularly in excess of the annual change percentages and as high as 12.7\% for a single quarter's measurement. Those limitations notwithstanding, the average annual change in homeownership in the largest 75 MSAs from 2015-2024 was 0.20\%, suggesting stationarity. Still, in markets where tenure transitions are volatile---such as during periods of mortgage credit expansion or policy-driven ownership incentives---changes in RDI may partly reflect movement between tenures rather than intra-renter space consumption. For example, a declining RDI could reflect renters exiting into homeownership rather than an easing of rental crowding. While the vast majority of variation in \(\Delta \text{RDI}\) likely reflects household formation and consolidation behavior within the rental market, readers should interpret RDI-based signals with awareness of broader tenure context, especially in markets with known ownership volatility. That said, the average annual change in home ownership is orders of magnitude smaller than either of the RDI components. Between 2002 and 2024 the average annual change in home ownership rate was -0.001, while the average annual change in rental units is 1.35\% and the average annual change in population is 0.75\% over the same time.
+It is useful to distinguish between two sources of crowding pressure captured by $\Delta \text{RDI}$: price-induced and supply-induced. Price-induced crowding occurs when rising rents outpace incomes, forcing renters to share space or delay household formation---behavioral responses that directly elevate RDI. Supply-induced crowding, by contrast, may arise even without rent escalation if housing stock fails to expand alongside population, resulting in more residents per unit out of sheer constraint. While these mechanisms are observationally similar, our framework implicitly captures both, interpreting $\Delta \text{RDI}$ as the revealed outcome of frictions between housing availability and household spatial preferences. In this way, a high (but not growing) RDI reflects pent-up demand pressures regardless of whether they arise from affordability shocks or constrained supply.
 
 \subsection{Summary Statistics}
-Table \ref{tab:summary_stats} provides descriptive statistics for the key variables across the full panel. On average, the RDI across all MSAs and years is approximately 18 persons per rental unit, with a standard deviation of 7. The average real rent per square foot is \$0.97, and the average annual growth in rental supply is 1.69\%. The missing records exist only in the beginning or ending years as the prior period and next-period values do not exist. 
+Table \ref{tab:summary_stats} provides descriptive statistics for the key variables across the full panel. On average, the RDI across all MSAs and years is ~2.4 persons per rental unit, with a standard deviation of 0.3. The average real rent per square foot is \$0.85, and the average annual growth in rental supply is 1.78\%. The missing records exist only in the beginning or ending years as the prior period and next-period values do not exist. 
 
 \begin{table}[hbt!]
-	\centering
-	\caption{Summary Statistics}
-	\label{tab:summary_stats}
-	\begin{tabular}{lrlllllll}
-		\toprule
-		Unnamed: 0 &  count &      mean &       std &     min &     25\% &       50\% &       75\% &        max \\
-		\midrule
-		pop &   2500 & 2,010,409 & 2,176,842 & 175,485 & 752,856 & 1,213,619 & 2,422,780 & 14,897,850 \\
-		inventory &   2500 &   133,025 &   190,307 &  20,399 &  35,323 &    65,463 &   153,901 &  1,580,435 \\
-		supply\_growth &   2400 &      0.02 &      0.02 &   -0.02 &    0.01 &      0.01 &      0.02 &       0.12 \\
-		RDI &   2500 &     18.37 &      7.04 &    7.04 &   13.78 &     17.09 &     20.89 &      65.82 \\
-		RDI\_growth &   2400 &     -0.01 &      0.01 &    -0.1 &   -0.02 &     -0.01 &       0.0 &       0.04 \\
-		real\_rentpsf &   2500 &      0.97 &      0.36 &    0.57 &    0.73 &      0.85 &      1.06 &       2.93 \\
-		real\_rent\_growth &   2400 &      -0.0 &      0.03 &   -0.14 &   -0.02 &      -0.0 &      0.01 &        0.2 \\
-		\bottomrule
-	\end{tabular}
+\centering
+\caption{Summary Statistics}
+\label{tab:summary_stats}
+\begin{tabular}{lrrrrrrrrr}
+	\toprule
+	\textbf{Variable} & \textbf{Count} & \textbf{Mean} & \textbf{Std} & \textbf{Min} & \textbf{25\%} & \textbf{50\%} & \textbf{75\%} & \textbf{Max} & \textbf{Missing} \\
+	\midrule
+	\texttt{pop} & 3800 & 1,113,385.26 & 1,778,446.92 & 106,878.20 & 254,907.63 & 487,778.16 & 1,067,312 & 14,897,850 & 0 \\
+	\texttt{inventory} & 3800 & 68,983.91 & 149,873.18 & 3,038 & 8,363 & 20,479.50 & 54,043.75 & 1,550,003 & 0 \\
+	\texttt{supply\_growth} & 3600 & 0.0178 & 0.0252 & -0.0978 & 0.00044 & 0.0104 & 0.0251 & 0.3211 & 200 \\
+	\texttt{RDI} & 3800 & 2.4432 & 0.3337 & 1.6857 & 2.2175 & 2.3810 & 2.5832 & 3.7417 & 0 \\
+	\texttt{RDI\_growth} & 3600 & -0.0012 & 0.0539 & -0.2611 & -0.0288 & -0.0012 & 0.0251 & 0.2789 & 200 \\
+	\texttt{real\_rentpsf} & 3800 & 0.8532 & 0.3102 & 0.4061 & 0.6589 & 0.7625 & 0.9485 & 2.7119 & 0 \\
+	\texttt{real\_rent\_growth} & 3800 & 0.0000 & 0.0295 & -0.2744 & -0.0180 & -0.0012 & 0.0156 & 0.2738 & 0 \\
+	\bottomrule
+\end{tabular}
 \end{table}
 
 
-
-
 \subsection{Coverage and Representativeness}
-The sample includes 2,500 MSA-year observations, covering a mix of large coastal cities, fast-growing Sun Belt metros, and slower-growing Midwestern regions. Together, these MSAs account for over 16 million of the 22 million U.S. apartment units, providing a representative snapshot of national rental dynamics. 
+The sample includes 3,600 MSA-year observations, covering a mix of large coastal cities, fast-growing Sun Belt metros, and slower-growing Midwestern regions. Together, these MSAs account for over 35 million rental dwellings, housing over 81 million residents, providing a true representative snapshot of national rental dynamics. 
 
 \subsection{Preliminary Observations}
 
-Figure \ref{fig:sidebyside} traces the national Rental Density Index (RDI) from 2000 to 2024. Contrary to conventional wisdom about an acute housing shortage, we observe a steady decline in people per unit (from roughly 16 people-per-unit in 2000 to 13 people-per-unit in 2024). A companion histogram of ΔRDI is stationary but skewed slightly negative, confirming that most years see more units added per new person than vice versa.
+Figure \ref{fig:sidebyside} traces the national Rental Density Index (RDI) from 2006 to 2023. The average RDI over these 200 samples begins at 2.4 people per rental, rises to 2.5 in 2012, then declines toward 2.25 in 2023. A companion histogram of ΔRDI is stationary but skewed slightly right, confirming the slow decline in RDI.
 
 \begin{figure}[!htb]
 	\centering
@@ -237,113 +288,169 @@ Figure \ref{fig:sidebyside} traces the national Rental Density Index (RDI) from 
 \end{figure}
 This pattern illustrates the need for a different demand metric, otherwise the concern for housing shortage seems to be contradicted by a monotonically decreasing housing density. Said differently, occupancy simply reports that units are full--it cannot distinguish whether they are full by choice (everyone prefers roommates) or by necessity (everyone must share). By contrast, year-over-year changes in RDI isolate the relative pace of new people versus new units. In the next section we investigate that property to reveal ΔRDI as a proxy for latent demand. 
 
-\section{Empirical Strategy and Econometric Results}
-\label{sec:instrumental-variable}
+\section{Empirical Strategy and Results}
 
-We estimate the causal effect of crowding, measured as the change in the Rental Density Index (\(\Delta \text{RDI}\)), on future rent growth using a two-stage least squares (2SLS) instrumental variables (IV) approach. This is necessary because \(\Delta \text{RDI}\) may be endogenous to unobserved demand shocks or simultaneous determination with rents. For example, rising rents may compress household formation (raising RDI), or latent shocks could affect both rents and occupancy intensity.
+We estimate the causal effect of crowding, measured by the Rental Density Index (\text{RDI}), on future rent growth using a two-stage least squares (2SLS) instrumental variables (IV) approach. This strategy addresses the potential endogeneity of \text{RDI}, which may arise from reverse causality or omitted variable bias. For instance, higher rents may lead households to double up, mechanically increasing \text{RDI}, or unobserved local demand shocks could simultaneously drive both rent growth and household density.
 
-To isolate exogenous variation, we instrument \(\Delta \text{RDI}\) with foreign in-migration as a share of local population, capturing rare and plausibly unanticipated inflows. We implement two instrument definitions: continuous and binary. In the continuous specification, \(\text{exog\_shock}_{it}\) is defined as the year's foreign in-migration as a percent of population. In the binary specification, \(\text{exog\_shock}_{it} = 1\) when foreign in-migration exceeds 0.8\% of population and 0 otherwise. This encompasses approximately 7.2\% of MSA-years and corresponds to a natural break in the distribution of foreign migration. 
+To isolate exogenous variation in \text{RDI}, we instrument for it using the share of the population that was born in the MSA 20 years ago. This is distinct from the share of the population that is 20 in a given year, in a given MSA. The logic of the instrument rests on the demographic mechanism that individuals typically form independent rental households around age 20, putting upward pressure on occupancy density within the rental stock. Crucially, the size of the 20-year-old cohort—driven by historical birth trends—is predetermined and thus plausibly exogenous to current rental market conditions. This makes it a valid instrument for household formation pressure, rather than an artifact of current demand dynamics.
 
-To support the validity of these instruments, we confirm that lagged rent growth does not predict foreign in-migration shares. A fixed-effects panel regression of foreign migration share on lagged rent growth yields no significant relationship ($\beta = -0.415$, $p = 0.215$, detailed in Appendix A Section \ref{sec:appendixa}). This result supports the assumption that foreign migration shocks are exogenous with respect to prior local rental market conditions.
+The model is estimated on a panel of MSA-year observations, and includes MSA and year fixed effects to absorb time-invariant heterogeneity and national trends, respectively. The estimation equations are:
 
-The empirical models are specified as follows:
 \begin{align*}
-	\text{Stage 1:} \quad & \Delta \text{RDI}_{i,t} = \gamma_0 + \gamma_1 \cdot \text{Shock}_{i,t} + \gamma_2 \cdot \mathbf{X}_{i,t} + \mu_i + \delta_t + u_{i,t} \\\\
-	\text{Stage 2:} \quad & \text{RentGrowth}_{i,t+1} = \alpha_0 + \beta \cdot \widehat{\Delta \text{RDI}}_{i,t} + \alpha_1 \cdot \mathbf{X}_{i,t} + \mu_i + \delta_t + \varepsilon_{i,t}
+	\text{Stage 1:} \quad & \text{RDI}_{i,t} = \gamma_0 + \gamma_1 \cdot \text{Pct20yo}_{i,t} + \gamma_2 \cdot \mathbf{X}_{i,t} + \mu_i + \delta_t + u_{i,t} \\\\
+	\text{Stage 2:} \quad & \text{RentGrowth}_{i,t+1} = \alpha_0 + \beta \cdot \widehat{\text{RDI}}_{i,t} + \alpha_1 \cdot \mathbf{X}_{i,t} + \mu_i + \delta_t + \varepsilon_{i,t}
 \end{align*}
+
 Where:
 \begin{itemize}
-	\item $\text{RentGrowth}_{i,t+1}$ is next-year relative real rent growth in MSA $i$,
-	\item $\Delta \text{RDI}_{i,t}$ is the change in Rental Density Index (crowding pressure),
-	\item $\text{Shock}_{i,t}$ is the instrument—either foreign migration share (continuous) or high-migration indicator (binary),
-	\item $\mathbf{X}_{i,t}$ includes controls: population growth and sales volume growth,
+	\item $\text{RentGrowth}_{i,t+1}$ is next-year real relative rent growth in MSA $i$,
+	\item $\text{RDI}_{i,t}$ is average household size among renters,
+	\item $\text{Pct20yo}_{i,t}$ is the instrument: percent of population age 20,
+	\item $\mathbf{X}_{i,t}$ includes population growth and housing starts as controls,
 	\item $\mu_i$ and $\delta_t$ are MSA and year fixed effects.
 \end{itemize}
 
+\vspace{0.5em}
+\subsection{Main Results}
 
-Both specifications (continuous and binary) yield statistically significant and robust estimates. Using the continuous instrument, the estimated effect of \(\Delta \text{RDI}\) is 2.31 (\(p = 0.0010\)), with a strong first-stage F-statistic of 30.3. A placebo test, which replaces the outcome with contemporaneous rent growth, returns a smaller and weaker coefficient (1.66, \(p = 0.0019\)), consistent with a forward-looking interpretation.
+Table~\ref{tab:main-iv} presents the main 2SLS estimates using \text{Pct20yo} as the instrument. The coefficient on \text{RDI} is negative and statistically significant at the 1\% level, consistent with the interpretation that increased crowding—via larger households per rental unit—exerts upward pressure on rents through constrained housing demand.
 
-Using the binary instrument, the estimated coefficient is 1.68 (\(p = 0.0173\)), with an F-statistic of 39.9. The placebo result remains significant but slightly attenuated (1.61, \(p = 0.0183\)). While the binary version benefits from a cleaner exclusion argument, the continuous specification provides stronger statistical power and supports robustness across specifications.
-
-In contrast, results from lagged instruments are weaker; neither continuous nor binary lagged instruments produce statistically significant estimates, suggesting a contemporaneous relationship between migration shocks and crowding pressure.
-
-\begin{table}[h]
+\begin{table}[hbt!]
 	\centering
-	\caption{Summary of 2SLS Estimates of $\Delta \text{RDI}$ on Next-Year Relative Rent Growth for both a Continuous and Binary Shock Variable}
-	\label{tab:iv-summary}
+	\caption{Main IV Estimates: RDI and Next-Year Rent Growth}
+	\label{tab:main-iv}
 	\begin{tabular}{lcccc}
 		\toprule
-		Instrument Type & Coef. on $\Delta$RDI & Std. Err. & $p$-value & F-stat (1st Stage) \\
+		& Coef. & Std. Err. & p-value & 95\% CI \\
 		\midrule
-		Continuous (contemp.) & 2.31 & 0.70 & 0.0010 & 30.3 \\
-		Continuous (placebo)  & 1.66 & 0.53 & 0.0019 & 62.4 \\
-		Binary (contemp.)     & 1.68 & 0.71 & 0.0173 & 39.9 \\
-		Binary (placebo)      & 1.61 & 0.68 & 0.0183 & 62.9 \\
-		Lagged (continuous)   & 1.54 & 0.86 & 0.0740 & 42.8 \\
-		Lagged (binary)       & -0.35 & 1.02 & 0.7282 & 62.8 \\
+		\textbf{RDI} & -0.0246 & 0.0091 & 0.0066 & [-0.0424, -0.0069] \\
+		Population Growth & 0.0096 & 0.0017 & 0.0000 & [0.0063, 0.0130] \\
+		Housing Starts (\%) & -0.2558 & 0.0608 & 0.0000 & [-0.3750, -0.1366] \\
+		Constant & 0.0608 & 0.0212 & 0.0040 & [0.0194, 0.1023] \\
+		\midrule
+		Observations & 792 &  &  &  \\
+		F-statistic (first stage) & 36.21 & & & \\
 		\bottomrule
 	\end{tabular}
 \end{table}
 
-Together, these models confirm that exogenous migration shocks produce measurable increases in crowding pressure, and that these crowding effects reliably forecast future rent growth. All specifications include MSA and year fixed effects, ensuring that the estimated relationships are not confounded by time-invariant local characteristics or national-level shocks. The consistency of findings across instrument definitions and robustness checks strengthens confidence in \(\Delta \text{RDI}\) as a causal and timely proxy for rental housing demand.
+\subsection{Placebo and Lagged Instrument Robustness}
 
-While the IV model provides a causal estimate of the effect of crowding pressure on rent growth, the subsequent tests in Section ~\ref{forecasting-validation} evaluate whether \(\Delta \text{RDI}\) can serve as a useful predictive signal. These forecasting models do not claim to identify structural relationships, but rather assess the practical value of RDI for anticipating future market conditions.
+To test the exclusion restriction, we perform a placebo test using contemporaneous rent growth as the outcome. As shown in Table~\ref{tab:placebo}, the estimated effect of instrumented RDI on \emph{same-year} rent growth is negative but statistically insignificant ($p = 0.155$). This supports the causal interpretation that household formation pressure primarily impacts rent growth with a lag, consistent with slow-moving supply constraints and lease adjustments.
 
+\begin{table}[hbt!]
+	\centering
+	\caption{Placebo Test: RDI and Same-Year Rent Growth}
+	\label{tab:placebo}
+	\begin{tabular}{lcccc}
+		\toprule
+		& Coef. & Std. Err. & p-value & 95\% CI \\
+		\midrule
+		\textbf{RDI} & -0.0122 & 0.0086 & 0.1554 & [-0.0291, 0.0046] \\
+		Population Growth & 0.0118 & 0.0020 & 0.0000 & [0.0080, 0.0157] \\
+		Housing Starts (\%) & -0.1777 & 0.0407 & 0.0000 & [-0.2575, -0.0979] \\
+		Constant & 0.0287 & 0.0201 & 0.1526 & [-0.0106, 0.0680] \\
+		\midrule
+		Observations & 792 &  &  &  \\
+		F-statistic (first stage) & 48.18 & & & \\
+		\bottomrule
+	\end{tabular}
+\end{table}
 
+We also implement a robustness check using a \emph{lagged} version of the instrument: percent of 20-year-olds in year $t-1$. Results, presented in Table~\ref{tab:lagged}, are nearly identical in sign and magnitude to the main specification, with the RDI coefficient remaining negative and significant at the 1\% level. This helps rule out concerns of simultaneity and supports the argument that the instrument captures anticipated household formation shocks.
 
+\begin{table}[hbt!]
+	\centering
+	\caption{Robustness: Lagged IV for RDI}
+	\label{tab:lagged}
+	\begin{tabular}{lcccc}
+		\toprule
+		& Coef. & Std. Err. & p-value & 95\% CI \\
+		\midrule
+		\textbf{RDI} & -0.0288 & 0.0103 & 0.0050 & [-0.0489, -0.0087] \\
+		Population Growth & 0.0098 & 0.0019 & 0.0000 & [0.0061, 0.0135] \\
+		Housing Starts (\%) & -0.2529 & 0.0669 & 0.0002 & [-0.3840, -0.1219] \\
+		Constant & 0.0705 & 0.0239 & 0.0031 & [0.0238, 0.1173] \\
+		\midrule
+		Observations & 693 &  &  &  \\
+		F-statistic (first stage) & 30.27 & & & \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\subsection{Interpretation}
+
+Together, these results provide strong evidence that exogenous variation in household crowding pressure—proxied by the size of the 20-year-old cohort—causally increases future rent growth. The absence of an effect on contemporaneous rents, and the consistency of estimates across lagged specifications, reinforce the temporal logic of the identification strategy and support the claim of a one-directional, crowding-to-rent causal channel.
+
+While the IV model provides a causal estimate of the effect of crowding pressure on rent growth, the subsequent tests in Section ~\ref{forecasting-validation} evaluate whether RDI and its change \(\Delta \text{RDI}\) can serve as a useful predictive signals. These forecasting models do not claim to identify structural relationships, but rather assess the practical value of RDI for anticipating future market conditions.
 
 \section{Forecasting Validation and Real-World Performance}
 \label{forecasting-validation}
-This section evaluates whether RDI functions as a useful predictive signal for rent growth, independent of causal identification. We organize the analysis into five complementary tests: (1) a simple group-wise ANOVA showing forward rent segmentation by RDI direction; (2) an event study evaluating rent dynamics before and after regime shifts in RDI; (3) a top-vs-bottom quintile spread comparison across forecasting models; (4) a long-horizon signal using count-based RDI persistence; and (5) a diagnostic of supply growth in context, showing how RDI mediates the impact of new supply. Together, these tests examine the predictive performance, durability, and explanatory clarity of RDI across diverse empirical contexts.
+This section evaluates whether RDI functions as a useful predictive signal for rent growth, independent of causal identification. We organize the analysis into five complementary tests: (1) a simple group-wise ANOVA showing forward rent segmentation by RDI level and movement; (2) an event study evaluating rent dynamics before and after regime shifts in RDI; (3) a top-vs-bottom quintile spread comparison across forecasting models; (4) a long-horizon signal using count-based RDI persistence; and (5) a diagnostic of supply growth in context, showing how RDI mediates the impact of new supply. Together, these tests examine the predictive performance, durability, and explanatory clarity of RDI across diverse empirical contexts.
 
-\subsection{Predictive Segment Testing: ANOVA on RDI Growth}
-We test whether observed changes in RDI can segment markets into meaningful groups in terms of future rent performance. Specifically, we split the samples into two regimes: those with positive $\Delta$RDI and those negative $\Delta$RDI. We then examine whether average next-year relative real rent growth differs significantly across these groups.
+\subsection{Predictive Segment Testing: ANOVA of RDI}
+We test whether RDI and its delta can segment markets into meaningful groups in terms of future rent performance. Specifically, we split the samples into four regimes based on the two variables (greater/less-than-median \text{RDI}\ and positive/negative \(\Delta \text{RDI}\)).  We then examine whether average next-year relative real rent growth differs significantly across these groups.
 
-Table~\ref{tab:anova-results} shows that markets with positive RDI growth experience average next-year rent growth of 41 basis points above the mean rent growth (significant at p$\leq 3.14^{-14}$), while markets with non-positive RDI growth exhibit an average decline of 15 basis points (significant at p$\leq$0.0026). The difference is statistically significant, as confirmed by both a one-way ANOVA and Tukey’s HSD post-hoc test.
+Table~\ref{tab:anova-results-rdi} shows that dense markets have higher rent growth. Specifically, markets with RDI above the national median (2.4) experience average next-year real rent growth of 30 basis points, while markets with RDI below the median exhibit an average decline of 23 basis points. The difference is statistically significant  (p$\leq 3.07^{-7}$), as confirmed by a one-way ANOVA. 
 
-\begin{table}[h]
-	\centering
-	\caption{ANOVA of Next Year's Relative Real Rent Growth Grouped by RDI}
-	\label{tab:anova-results}
-	\begin{tabular}{lcccccc} \toprule
-		$\Delta$RDI Group & Mean Relative Rent Growth (bps) & SE (bps) & 95\% CI Lower & 95\% CI Upper & $n$ & $p$-value \\ \midrule
-		RDI Decline & -15 & 5 & -25 & -5 & 1538 & 0.0026 \\
-		RDI Growth & 41 & 7 & 31 & 52 & 762 & $3.14^{-14}$ \\
-		\bottomrule
-	\end{tabular}
-\end{table}
+Table~\ref{tab:anova-results-deltardi} shows that as markets densify, their rent growth declines. Specifically, markets and years that have an increase in RDI (representing a growth in number of people per renter household) also have declines in rent of, on average, 31 basis points. This is significantly different (p$\leq 7.75^{-11}$) from markets that are de-densifying, which have rent growth, on average, of positive 37 basis points. 
 
-A two-way ANOVA confirms the significance of the group difference ($F = 49.2$, $p \leq 2.98 \times 10^{-12}$), and a Tukey HSD test further validates that the difference in means is statistically distinguishable.
-\begin{table}[h]
-	\centering
-	\caption{Two-Way ANOVA Test Results}
-	\label{tab:two-way-anova}
-	\begin{tabular}{lcccc} \toprule
-		Term & Sum Sq & DF & F & p-value \\ \midrule
-		C(demand) & 0.0165 & 1.0 & 49.23 &  $2.98^{-12}$\\
-		Residual & 0.7699 & 2298.0 & --- & --- \\
-		\bottomrule
-	\end{tabular}
-\end{table}
+Grouped together, table~\ref{tab:combined-anova} the difference between dense-but-dedensifying markets and sparse-but-densifying markets is 144 basis points.
 
 \begin{table}[h]
 	\centering
-	\caption{Tukey HSD Test Results}
-	\label{tab:tukey}
-	
-	\begin{tabular}{lcccccc} \toprule
-		Group 1 & Group 2 & Mean Diff & p-adj & Lower & Upper & Reject \\ \midrule
-		$\Delta$ RDI $\leq$0 & $\Delta$RDI>0 & 0.0057 & 0.0000 & 0.0041 & 0.0073 & True \\
-		\bottomrule
-	\end{tabular}
+	\caption{ANOVA: Real Rent Growth Next Year by RDI Level}
+	\label{tab:anova-results-rdi}
+\begin{tabular}{lrrrrr}
+	\toprule
+	Source         & Sum of Squares & df    & F        & p-value     & Mean Rent Growth \\
+	\midrule
+	RDI Level      & 2,410,140      & 1.0   & 26.31    & 3.07e-07    & RDI\(\geq\)median: 30 bps \\
+	&                &       &          &             & RDI<median: -23 bps \\
+	Residual       & 311,308,300    & 3398  &          &             &  \\
+	\bottomrule
+\end{tabular}
 \end{table}
 
-These results show that even without instrumentation, RDI growth serves as a powerful signal for forward rent performance. Practitioners can use RDI segmentation as a lightweight, interpretable classification rule for identifying tight rental markets.
+
+\begin{table}[h]
+	\centering
+	\caption{ANOVA: Real Rent Growth Next Year by \(\Delta\text{RDI}\)}
+	\label{tab:anova-results-deltardi}
+\begin{tabular}{lrrrrr}
+	\toprule
+	Source         & Sum of Squares & df    & F        & p-value     & Mean Rent Growth \\
+	\midrule
+	RDI Growth Direction & 3,883,449  & 1.0   & 42.59    & 7.75e-11    & \(\Delta \text{RDI} < 0\): 37 bps \\
+	&            &       &          &                &\(\Delta \text{RDI} \geq 0\): -31 bps \\
+	Residual             & 309,835,000 & 3398 &          &             & \\
+	\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+	\centering
+	\caption{ANVA and Group Means: Real Rent Growth Next Year by Combined RDI Level and Growth}
+	\label{tab:combined-anova}
+\begin{tabular}{lrrrrr}
+	\toprule
+	Source              & Sum of Squares & df    & F        & p-value     & Mean Rent Growth \\
+	\midrule
+	Combined Group      & 7,536,939      & 3.0   & 27.87    & 8.52e-18    & \(\text{RDI}\geq \text{median} \cap\Delta\text{RDI}< 0\) : 73bps \\
+	&                &       &          &             & \(\text{RDI}\geq \text{median} \cap\Delta\text{RDI}\geq 0\) : -2bps \\
+	&                &       &          &             &  \(\text{RDI} < \text{median} \cap\Delta\text{RDI}< 0\) : 10bps \\
+	&                &       &          &             & \(\text{RDI}< \text{median} \cap\Delta\text{RDI}\geq 0\) : -71bps \\
+	Residual            & 306,181,500    & 3396  &          &             & \\
+	\bottomrule
+\end{tabular}
+\end{table}
+
+These results show that even without instrumentation, RDI and RDI growth serve as a powerful signals for forward rent performance. Practitioners can use RDI segmentation as a lightweight, interpretable classification rule for identifying tight rental markets.
 
 \subsection{Event Study of RDI Regime Transitions}
-We next evaluate how rent growth responds dynamically to transitions into and out of RDI-growth regimes. Specifically, we examine rent growth before and after a market switches into a state of positive  $\Delta$RDI (increasing crowding) or  negative  $\Delta$RDI (declining crowding). We continue to examine results in terms of real rent growth relative to the mean rent growth of that year, to avoid capturing rent changes due to macro conditions.
+We next evaluate how rent growth responds dynamically to transitions into and out of RDI-growth regimes. Specifically, we examine rent growth before and after a market switches into a state of positive  $\Delta$RDI (increasing crowding) or  negative  $\Delta$RDI (declining crowding). Here we examine results in terms of real rent growth relative to the mean rent growth of that year, to avoid capturing rent changes due to macro conditions.
 
-Figure~\ref{fig:event-study} illustrates rent growth over a five-year window centered on the regime switch. The blue line represents transitions into crowding markets, the red line transitions into de-densifying markets, and the gray line shows cases where RDI status does not change.
+Figure~\ref{fig:event-study} illustrates rent growth over the two years ante and post regime-change. The green bars represent markets and periods where RDI switched from at least 3 years of consolidation to expansion (densification shifting to de-densification). The blue bars represent occasions when RDI switched from at least 3 years of densification to de-densification (from crowding to spreading). 
 
 \begin{figure}[h]
 	\centering
@@ -352,27 +459,13 @@ Figure~\ref{fig:event-study} illustrates rent growth over a five-year window cen
 	\label{fig:event-study}
 \end{figure}
 
-Table~\ref{tab:event-means} reports differences in average rent growth before and after the regime shift. Markets transitioning into crowded segments see a 48 basis point increase in rent growth, while those exiting see a 29 basis point decline. No significant change is observed when RDI status remains unchanged, as expected.
-
-\begin{table}[h]
-	\centering
-	\caption{Mean Rent Growth Before and After RDI Regime Transition}
-	\label{tab:event-means}
-	\begin{tabular}{lcccc} \toprule
-		Transition Type & Mean Before & Mean After & Difference & p-value\\ \midrule
-		Switched to $\Delta \text{RDI}>0$ & -31 & 17 & 48 & 0.0027\\
-		Switched to $\Delta \text{RDI}\leq0$ & 52 & 23 & -29 & 0.0089\\
-		No change & -3 & -8 & -5 & 0.6336\\
-		\bottomrule
-	\end{tabular}
-\end{table}
-
-These dynamics confirm that the onset of crowding pressures, as measured by RDI, precedes statistically and economically meaningful changes in rent performance. RDI transitions can therefore serve as timely indicators of shifts in market pricing power.
+When markets reverse their positive RDI trend (crowding) and begin to form households, real relative rent growth shifts from negative to positive. The markets, on average, shift from a three year stretch of underperformance to a three year stretch of outperformance. The difference of 31 basis points per year is statistically signficant (\(\text{p}<0.013\)). Conversely, when markets reverse their negative RDI trend (household formation) and begin to consolidate, real relative rent growth shifts from positive to negative. This shift however is not statistically significant (\(\text{p}<0.066\)).
+These dynamics confirm that the onset of renter de-densification, as measured by RDI change, precedes statistically and economically meaningful changes in rent performance. RDI transitions can therefore serve as timely indicators of shifts in market pricing power.
 
 
 \subsection{Forecast Spread Comparison: RDI vs ARIMA vs Naïve}
-We compare the predictive strength of RDI growth against ARIMA-based and naive trailing average models in forecasting real rent growth across multiple time horizons. For each method, we rank MSAs into quintiles based on their predicted growth and compute the realized top-minus-bottom quintile spread.
-Figure~\ref{fig:spread-comparison-quadrant} displays forecast accuracy over one-year, three-year, five-year, and ten-year windows. The RDI-based approach consistently delivers stronger spread segmentation, particularly at longer horizons where traditional time-series methods tend to degrade.
+We compare the predictive strength of the RDI against ARIMA-based and naive trailing average models in forecasting real rent growth across multiple time horizons. For each method, for each year, we group MSAs into quartiles based on their predicted growth (predicted by the RDI value, ARIMA, or naive method). We then compute the realized top-minus-bottom quartile spread. Here we limit the data set to the top 100 markets, as the ARIMA estimators did not converge on a large number of smaller markets. 
+Figure~\ref{fig:spread-comparison-quadrant} displays forecast accuracy over one-year, three-year, five-year, and ten-year windows. The RDI-based approach delivers stronger spread segmentation, particularly at longer horizons where traditional time-series methods tend to degrade. Forecasting one year forward based on the RDI of the prior year, the RDI method underperforms the Naive method slightly (~30 basis points). In three-year forecasts, the RDI spread outperforms the next closest predictor by ~60 basis points. At 5 years, the RDI outperforms by over 500 basis points. At ten years it outperforms by nearly 800 basis points. 
 
 \begin{figure}[h!]
 	\centering
@@ -388,30 +481,30 @@ Figure~\ref{fig:spread-comparison-quadrant} displays forecast accuracy over one-
 	\label{fig:spread-comparison-quadrant}
 \end{figure}
 
-These results reinforce the value of RDI as a forward-looking predictive signal. Forecasting long-term rent growth is notoriously difficult; most models lose power beyond a few years. That the RDI-based approach maintains signal strength across one-, three-, five-, and ten-year periods underscores its robustness. While time series models rely on trailing trends, RDI captures forward-looking, structural occupancy pressure—making it an effective long-horizon indicator of underlying demand.
+These results reinforce the value of RDI as a forward-looking, long lived predictive signal. Forecasting long-term rent growth is notoriously difficult; most models lose power beyond a few years. That the RDI-based approach maintains signal strength across one-, three-, five-, and ten-year periods underscores its robustness. While time series models rely on trailing trends, RDI captures forward-looking, structural occupancy pressure—making it an effective long-horizon indicator of underlying demand.
 
-\subsection{RDI Positivity Persistence and Long-Term Rent Growth}
-We test whether a simple count of trailing years with positive RDI growth serves as a meaningful predictor of future rent appreciation. Specifically, we show the cumulative rent-growth in the following x-years after observing counts of positive RDI growth in the trailing x-years. We look at this over 5 and 10-year rolling periods. 
+\subsection{RDI Positivity and National Rent Growth}
+To this point, we have examined the effects of RDI and RDI growth on an MSA level. Here, we consider the impact of RDI change on national rent growth. For each year we calculate the percent of markets (out of 200) that have positive RDI growth. The values range from a low of 21\% in 2006, to 67.5\% in 2022. For each of those years we calculate the mean real rent growth of the following year. 
 
-Figure~\ref{fig:rdi-counts} shows that when n is significantly large, there is a clear, monotonic relationship: markets with more positive RDI observations tend to experience stronger future rent growth. This pattern holds across both time horizons and supports the argument that RDI functions as a persistent, structural signal of housing demand.
+Figure~\ref{fig:national-rdi} shows a consistent, robust, inverse relationship between number of RDI-increase markets and rent growth. Even with the effects of COVID (2020, 2021) the RDI-positive percent explains 32\% of the variance in annual, national, real rent growth. Noteworthy is  the 50th percentile on the x-axis, above which rent tends to be negative (5 of 8 years), and above which rent tends to be positive (7 of 9 years). Said differently, when most markets have renters who are crowding (experiencing positive RDI change) the national rent growth is likely to fall in the following year. Conversely, when most markets have renters who are forming households (experiencing negative RDI change), then the demand for rentals is likely to put upward pressure on national real rents.
 
 \begin{figure}[h]
 	\centering
 	\begin{tabular}{cc}
-		\includegraphics[width=0.45\textwidth]{rdi_positive_counts_vs_rent_growth_5yr.pdf} &
-		\includegraphics[width=0.45\textwidth]{rdi_positive_counts_vs_rent_growth_10yr.pdf} \\
-		\textbf{(a)} 5-Year Horizon & \textbf{(b)} 10-Year Horizon \
-	\end{tabular}
-	\caption{Cumulative Rent Growth by Number of Positive RDI Years in Prior Window}
-	\label{fig:rdi-counts}
+	\includegraphics[width=0.45\textwidth]{national_rdi.pdf} & 
+	\includegraphics[width=0.45\textwidth]{national_rdi_pct.pdf} \\
+\end{tabular}
+	\caption{Impact of Positive RDI Percentage, and Change in Positive RDI Percentage, on the following year's real rent growth}
+	\label{fig:national-rdi}
 \end{figure}
 
-These results reinforce the practical utility of RDI: even without complex forecasting models, the simple count of positive RDI signals---interpreted as consistent crowding pressure---can help classify markets by likely long-term pricing strength.
+Although the residuals are not autocorrelated and the regressors are stationary, to reduce the risk of spurious correlation, we take the first difference of the x variable and regress it against the real rent growth in the next year. The result is an an equally signed relationship with statistical significance.
+These results extend naturally from the evidence shown at the MSA level, and they reinforce the practical utility of RDI: even without complex forecasting models, the simple count of positive RDI signals---interpreted as consistent crowding pressure---can help periods of national demand pressure.
 
 \subsection{Supply Growth in Context: RDI as a Mediating Lens}
-It is often assumed that elevated supply growth should depress rents in subsequent years. To test this assumption, we identify each MSA's year of maximum supply growth and examine the subsequent year’s real relative rent growth. Figure~\ref{fig:supply-growth-rent} shows that the relationship is weak: nearly 45\% of markets still experienced positive rent growth even after their peak supply year, and the overall correlation is low.
+It is often assumed that elevated supply growth should depress rents in subsequent years. To test this assumption, we identify each MSA's year of maximum supply growth and examine the subsequent year’s real rent growth. Here we opt for real rent growth because the years of maximum supply are not the same across MSAs. Figure~\ref{fig:supply-growth-rent} shows that the relationship between supply growth and rent growth in the next yearis weak: 52\% of markets experienced positive rent growth after their peak-supply year.
 
-In contrast, when we examine how $\Delta$ RDI in those same years (Figure~\ref{fig:supply-growth-rdi}), the relationship between supply growth rent growth is clearer. In markets where supply outstripped population growth the most (farthest left on the X-axis) the rent growth was lowest. Conversely, when supply growth---though at an all-time high--- was closer to population growth, the rents responded more positively. This suggests that crowding pressures, not raw supply levels, capture more of the variance in subsequent rent performance. Even in high-supply environments, strong demand (captured by RDI) can offset what might otherwise appear to be oversupply conditions.
+In contrast, when we introduce RDI in those same years, we gain valuable insight. We take the supply growth, divide by the RDI to convert to a population-applicable figure. Finally we add RDI-growth. When this value is greater than zero, rent in the following year is on average negative. When this value is less than zero, the next year's rent, on average, is positive. The difference between the two segments is 142 basis points, and the means are significantly different. RDI in those same years (Figure~\ref{fig:supply-growth-rdi}), the relationship between supply growth rent growth is clearer. In markets where supply outstripped population growth the most (farthest left on the X-axis) the rent growth was lowest. Conversely, when supply growth---though at an all-time high--- was closer to population growth, the rents responded more positively. This suggests that crowding pressures, not raw supply levels, capture more of the variance in subsequent rent performance. Even in high-supply environments, strong demand (captured by RDI) can offset what might otherwise appear to be oversupply conditions.
 
 \begin{figure}[h]
 	\centering
@@ -422,7 +515,7 @@ In contrast, when we examine how $\Delta$ RDI in those same years (Figure~\ref{f
 \end{subfigure}
 \hfill
 \begin{subfigure}[b]{0.45\textwidth}
-	\includegraphics[width=\textwidth]{max_supply_vs_RDI_growth.pdf}
+	\includegraphics[width=\textwidth]{bar_group_avg_rent_growth.pdf}
 	\caption{Supply Growth vs. RDI Growth}
 	\label{fig:supply-growth-rdi}
 \end{subfigure}
