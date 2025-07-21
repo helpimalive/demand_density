@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.3) (preloaded format=xelatex 2025.4.15)  18 JUL 2025 17:37
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.3) (preloaded format=xelatex 2025.4.15)  21 JUL 2025 11:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1305,67 +1305,68 @@ Underfull \hbox (badness 10000) detected at line 286
 []
  []
 
-Missing character: There is no Δ in font ptmr8t!
 
 
 [7]
+Missing character: There is no Δ in font ptmr8t!
 Missing character: There is no — in font ptmr8t!
 Missing character: There is no — in font ptmr8t!
+Missing character: There is no ’ in font ptmr8t!
 
 
 [8]
 Missing character: There is no — in font ptmr8t!
 Missing character: There is no — in font ptmr8t!
-
-Underfull \hbox (badness 10000) detected at line 320
-[]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 343
-[]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 364
-[]
- []
-
 Missing character: There is no — in font ptmr8t!
-Missing character: There is no — in font ptmr8t!
+
+Underfull \hbox (badness 10000) detected at line 330
+[]
+ []
+
 
 
 [9]
-Underfull \hbox (badness 10000) detected at line 402
+Underfull \hbox (badness 10000) detected at line 353
 []
  []
 
 
-Underfull \hbox (badness 10000) detected at line 418
+Underfull \hbox (badness 10000) detected at line 374
 []
  []
 
-
-Underfull \hbox (badness 10000) detected at line 433
-[]
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
+Missing character: There is no — in font ptmr8t!
+Missing character: There is no — in font ptmr8t!
 
 
 [10]
-File: ../Figs/event_study.pdf Graphic file (type pdf)
-<use ../Figs/event_study.pdf>
+Underfull \hbox (badness 10000) detected at line 412
+[]
+ []
 
-Underfull \hbox (badness 10000) detected at line 458
+
+Underfull \hbox (badness 10000) detected at line 428
+[]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 443
 []
  []
 
 
 
 [11]
+File: ../Figs/event_study.pdf Graphic file (type pdf)
+<use ../Figs/event_study.pdf>
+
+Underfull \hbox (badness 10000) detected at line 468
+[]
+ []
+
+
+
+[12]
 File: ../Figs/spread_comparison_over_time_1yr.pdf Graphic file (type pdf)
 <use ../Figs/spread_comparison_over_time_1yr.pdf>
 File: ../Figs/spread_comparison_over_time_3yr.pdf Graphic file (type pdf)
@@ -1375,30 +1376,17 @@ File: ../Figs/spread_comparison_over_time_5yr.pdf Graphic file (type pdf)
 File: ../Figs/spread_comparison_over_time_10yr.pdf Graphic file (type pdf)
 <use ../Figs/spread_comparison_over_time_10yr.pdf>
 
-Underfull \hbox (badness 10000) detected at line 480
+Underfull \hbox (badness 10000) detected at line 490
 []
  []
 
 Missing character: There is no — in font ptmr8t!
-
-
-[12]
 File: ../Figs/national_rdi.pdf Graphic file (type pdf)
 <use ../Figs/national_rdi.pdf>
 File: ../Figs/national_rdi_pct.pdf Graphic file (type pdf)
 <use ../Figs/national_rdi_pct.pdf>
 
-Underfull \hbox (badness 10000) detected at line 497
-[]
- []
-
-Missing character: There is no ’ in font ptmr8t!
-File: ../Figs/max_supply_growth_vs_rent_growth.pdf Graphic file (type pdf)
-<use ../Figs/max_supply_growth_vs_rent_growth.pdf>
-File: ../Figs/bar_group_avg_rent_growth.pdf Graphic file (type pdf)
-<use ../Figs/bar_group_avg_rent_growth.pdf>
-
-Underfull \hbox (badness 10000) detected at line 522
+Underfull \hbox (badness 10000) detected at line 507
 []
  []
 
@@ -1408,28 +1396,43 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 [13]
+Missing character: There is no ’ in font ptmr8t!
+File: ../Figs/max_supply_growth_vs_rent_growth.pdf Graphic file (type pdf)
+<use ../Figs/max_supply_growth_vs_rent_growth.pdf>
+File: ../Figs/bar_group_avg_rent_growth.pdf Graphic file (type pdf)
+<use ../Figs/bar_group_avg_rent_growth.pdf>
 
-LaTeX Warning: Reference `sec:instrumental-variable' on page 14 undefined on in
-put line 530.
+Underfull \hbox (badness 10000) detected at line 539
+[]
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
 [14]
-Missing character: There is no — in font ptmr8t!
+
+LaTeX Warning: Reference `sec:instrumental-variable' on page 15 undefined on in
+put line 555.
+
+
+
+[15]
 Missing character: There is no — in font ptmr8t!
 Missing character: There is no – in font ptmr8t!
 Missing character: There is no — in font ptmr8t!
 Missing character: There is no — in font ptmr8t!
 Missing character: There is no — in font ptmr8t!
 
-
-[15]
-Underfull \hbox (badness 10000) detected at line 576
+Underfull \hbox (badness 10000) detected at line 590
 []
  []
 
 Missing character: There is no – in font ptmr8t!
-(wileyNJDv5_AMA.bbl
+
+
+[16] (wileyNJDv5_AMA.bbl
 Underfull \hbox (badness 2173) in paragraph at lines 88--101
 \T1/ptm/m/it/10 cil\T1/ptm/m/n/10 .  []$\T1/pcr/m/n/10 https :// www [] .nmhc [
 ] .org / research [] -insight / research [] -reports / us [] -needs [] -4 [] .3
@@ -1438,17 +1441,17 @@ Underfull \hbox (badness 2173) in paragraph at lines 88--101
 
 Missing character: There is no ‐ in font ptmr8t!
 Missing character: There is no – in font ptmr8t!
-
-
-[16]
 Missing character: There is no ’ in font ptmr8t!
+
+
+[17]
 Missing character: There is no “ in font ptmr8t!
 Missing character: There is no ” in font ptmr8t!
 )
 Missing character: There is no ’ in font ptmr8t!
 
 
-[17] (wileyNJDv5_AMA.aux)
+[18] (wileyNJDv5_AMA.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-03-26>
@@ -1468,12 +1471,12 @@ LaTeX Warning: There were undefined references.
 (\end occurred when \iftrue on line 4739 was incomplete)
 (\end occurred when \ifx on line 2 was incomplete) 
 Here is how much of TeX's memory you used:
- 22059 strings out of 405075
- 349108 string characters out of 5499361
- 795928 words of memory out of 5000000
- 48335 multiletter control sequences out of 15000+600000
+ 22060 strings out of 405075
+ 349111 string characters out of 5499361
+ 796928 words of memory out of 5000000
+ 48336 multiletter control sequences out of 15000+600000
  686822 words of font info for 104 fonts, out of 8000000 for 9000
  1374 hyphenation exceptions out of 8191
  87i,12n,93p,1438b,589s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on wileyNJDv5_AMA.pdf (17 pages).
+Output written on wileyNJDv5_AMA.pdf (18 pages).
