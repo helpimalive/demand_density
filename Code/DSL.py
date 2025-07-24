@@ -346,7 +346,6 @@ def test_means():
     )
     with pl.Config(set_tbl_rows=-1):
         print(pivot)
-    assert False
 
     # df = df.with_columns(BOTH=(pl.col("RDI_group") & pl.col("prior_rrrg_group")))
     # pivot = (
@@ -501,6 +500,31 @@ def int_group_shift():
         .drop_nulls()
         .with_columns((pl.col("RDI") - pl.col("RDI_trailing")).alias("RDI_move"))
     )
+    # Define RDI bins and labels
+    bins = [-float("inf"), 2, 3, float("inf")]
+    labels = ["RDI ≤ 2", "2 < RDI < 3", "RDI ≥ 3"]
+
+    # Convert to pandas for easier binning and plotting
+    pdf = df.to_pandas()
+    pdf["RDI_group"] = pd.cut(pdf["RDI"], bins=bins, labels=labels, right=False)
+
+    # Group by RDI_group and calculate mean rrg_5yr_fwd in bps
+    grouped = (
+        pdf.groupby("RDI_group")["rrg_5yr_fwd"]
+        .mean()
+        .mul(10000)
+        .astype(int)
+        .reset_index(name="rrg_5_yr_fwd_bps")
+    )
+
+    # Plot bar chart
+    plt.figure(figsize=(6, 4))
+    plt.bar(grouped["RDI_group"], grouped["rrg_5_yr_fwd_bps"], color="skyblue")
+    plt.xlabel("# of Residents per Rental Dwelling (RDI)")
+    plt.ylabel("Mean 5yr Rent Growth (bps)")
+    plt.title("Crowded Markets lead to Higher Rent Growth")
+    plt.tight_layout()
+    plt.show()
     with pl.Config(set_tbl_rows=-1):
         # print("MEAN")
         # print(
