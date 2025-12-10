@@ -1810,7 +1810,7 @@ def spillover():
 
 
 # choropleth_rdi_by_msa()
-# get_data(200)
+get_data(200)
 # plot_national_averages()
 plot_max_supply_growth_vs_RDI_growth()
 # plot_max_supply_growth_vs_rent_growth()
