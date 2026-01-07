@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.3) (preloaded format=xelatex 2025.7.23)  24 JUL 2025 10:16
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.3) (preloaded format=xelatex 2025.7.23)  7 JAN 2026 14:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -664,26 +664,26 @@ File: l3backend-xetex.def 2025-03-14 L3 backend support: XeTeX
 ) (sn-article.aux)
 \openout1 = `sn-article.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 96.
-LaTeX Font Info:    ... okay on input line 96.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 96.
-LaTeX Font Info:    ... okay on input line 96.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 96.
-LaTeX Font Info:    ... okay on input line 96.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 96.
-LaTeX Font Info:    ... okay on input line 96.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 96.
-LaTeX Font Info:    ... okay on input line 96.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 96.
-LaTeX Font Info:    ... okay on input line 96.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 96.
-LaTeX Font Info:    ... okay on input line 96.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 96.
-LaTeX Font Info:    ... okay on input line 96.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 96.
-LaTeX Font Info:    ... okay on input line 96.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 96.
-LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -720,170 +720,66 @@ LaTeX Font Info:    ... okay on input line 96.
 * \@reversemargintrue
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Info: Redefining \S on input line 96.
-LaTeX Font Info:    Redeclaring symbol font `AMSa' on input line 96.
+LaTeX Info: Redefining \S on input line 100.
+LaTeX Font Info:    Redeclaring symbol font `AMSa' on input line 100.
 LaTeX Font Info:    Overwriting symbol font `AMSa' in version `normal'
-(Font)                  U/msa/m/n --> U/msa/m/n on input line 96.
+(Font)                  U/msa/m/n --> U/msa/m/n on input line 100.
 LaTeX Font Info:    Overwriting symbol font `AMSa' in version `bold'
-(Font)                  U/msa/m/n --> U/msa/m/n on input line 96.
-Package hyperref Info: Link coloring ON on input line 96.
+(Font)                  U/msa/m/n --> U/msa/m/n on input line 100.
+Package hyperref Info: Link coloring ON on input line 100.
 (sn-article.out) (sn-article.out)
 \@outlinefile=\write3
 \openout3 = `sn-article.out'.
+
+
+
+Package hyperref Warning: Rerun to get /PageLabels entry.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count346
-Invalid UTF-8 byte or sequence at line 118 replaced by U+FFFD.
-LaTeX Font Info:    Calculating math sizes for size <12.045> on input line 139.
+Invalid UTF-8 byte or sequence at line 122 replaced by U+FFFD.
+LaTeX Font Info:    Calculating math sizes for size <12.045> on input line 143.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 139
+LaTeX Font Info:    Trying to load font information for U+msa on input line 143
 .
-
 (C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 139
+LaTeX Font Info:    Trying to load font information for U+msb on input line 143
 .
 
 (C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 13
-9.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 14
+3.
 
 (C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <8.43146> not available
-(Font)              size <8> substituted on input line 139.
+(Font)              size <8> substituted on input line 143.
 
-LaTeX Font Info:    Calculating math sizes for size <11.04124> on input line 13
-9.
+LaTeX Font Info:    Calculating math sizes for size <11.04124> on input line 14
+3.
 
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <5.52061> not available
-(Font)              size <6> substituted on input line 139.
+(Font)              size <6> substituted on input line 143.
 
 Missing character: There is no � in font [lmroman9-regular]:mapping=tex-text;!
-LaTeX Font Info:    Calculating math sizes for size <10.03749> on input line 13
-9.
-
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [1
-
-]
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [2]
-File: ../Figs/rdi_rent_growth_2024.pdf Graphic file (type pdf)
-<use ../Figs/rdi_rent_growth_2024.pdf>
-
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [3]
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [4]
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [5]
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [6]
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [7]
-Overfull \hbox (43.39282pt too wide) detected at line 271
-[]
+LaTeX Font Info:    Calculating math sizes for size <10.03749> on input line 14
+3.
+(../Exhibits/regression_original_summary.tex
+Overfull \hbox (4.98888pt too wide) in paragraph at lines 2--33
+ [] 
  []
 
 
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [8]
-File: ../Figs/us.png Graphic file (type bmp)
-<../Figs/us.png>
-File: ../Figs/tristate.png Graphic file (type bmp)
-<../Figs/tristate.png>
-File: ../Figs/florida.png Graphic file (type bmp)
-<../Figs/florida.png>
-
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [9]
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 323.
-
-LaTeX Font Info:    Calculating math sizes for size <8.03> on input line 326.
-
-LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <4.015> not available
-(Font)              size <5> substituted on input line 326.
-
-
-Underfull \hbox (badness 1642) in paragraph at lines 344--345
-\TU/lmr/m/n/10.03749 cities, fast-growing Sun Belt metros, and slower-growing M
-idwestern regions.
- []
-
-File: ../Figs/rdi_growth_histogram.pdf Graphic file (type pdf)
-<use ../Figs/rdi_growth_histogram.pdf>
-File: ../Figs/rdi_trends_selected_msas.pdf Graphic file (type pdf)
-<use ../Figs/rdi_trends_selected_msas.pdf>
-
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [10]
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [11]
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [12]
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [13]
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [14]
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [15]
-Overfull \hbox (23.54181pt too wide) in paragraph at lines 519--534
+Overfull \hbox (94.46869pt too wide) in paragraph at lines 2--33
  [] 
  []
 
@@ -892,127 +788,400 @@ Overfull \hbox (23.54181pt too wide) in paragraph at lines 519--534
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [16]
-File: ../Figs/event_study.pdf Graphic file (type pdf)
-<use ../Figs/event_study.pdf>
-Invalid UTF-8 byte or sequence at line 554 replaced by U+FFFD.
+ [1
 
-Missing character: There is no � in font [lmroman12-bold]:mapping=tex-text;!
-
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [17]
-File: ../Figs/spread_comparison_over_time_1yr.pdf Graphic file (type pdf)
-<use ../Figs/spread_comparison_over_time_1yr.pdf>
-File: ../Figs/spread_comparison_over_time_3yr.pdf Graphic file (type pdf)
-<use ../Figs/spread_comparison_over_time_3yr.pdf>
-File: ../Figs/spread_comparison_over_time_5yr.pdf Graphic file (type pdf)
-<use ../Figs/spread_comparison_over_time_5yr.pdf>
-File: ../Figs/spread_comparison_over_time_10yr.pdf Graphic file (type pdf)
-<use ../Figs/spread_comparison_over_time_10yr.pdf>
-
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [18]
-File: ../Figs/national_rdi.pdf Graphic file (type pdf)
-<use ../Figs/national_rdi.pdf>
-File: ../Figs/national_rdi_pct.pdf Graphic file (type pdf)
-<use ../Figs/national_rdi_pct.pdf>
-
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [19]
-File: ../Figs/max_supply_growth_vs_rent_growth.pdf Graphic file (type pdf)
-<use ../Figs/max_supply_growth_vs_rent_growth.pdf>
-File: ../Figs/bar_group_avg_rent_growth.pdf Graphic file (type pdf)
-<use ../Figs/bar_group_avg_rent_growth.pdf>
-
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [20]
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [21]
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [22]
-Underfull \hbox (badness 10000) in paragraph at lines 673--680
+])
+Underfull \hbox (badness 10000) in paragraph at lines 35--144
 
  []
 
 
+Package natbib Warning: Citation `betancourt2022us' on page 2 undefined on inpu
+t line 146.
+
+
+Package natbib Warning: Citation `censusNearlyHalf' on page 2 undefined on inpu
+t line 146.
+
+
+Package natbib Warning: Citation `stlouisfedConsumerPrice' on page 2 undefined 
+on input line 146.
+
+
+Package natbib Warning: Citation `mott2024ThisRegion' on page 2 undefined on in
+put line 146.
+
+
+Package natbib Warning: Citation `mueller1999real' on page 2 undefined on input
+ line 148.
+
+
+Package natbib Warning: Citation `gabriel2001rental' on page 2 undefined on inp
+ut line 148.
+
+
+Package natbib Warning: Citation `sirmans1991determinants' on page 2 undefined 
+on input line 148.
+
+
+Package natbib Warning: Citation `pyhrr1999real' on page 2 undefined on input l
+ine 148.
+
+
+Package natbib Warning: Citation `pennington2021does' on page 2 undefined on in
+put line 148.
+
+
+Package natbib Warning: Citation `molloy2022housing' on page 2 undefined on inp
+ut line 148.
+
+
+Package natbib Warning: Citation `saiz2010geographic' on page 2 undefined on in
+put line 148.
+
+
+Package natbib Warning: Citation `davidoff2015supply' on page 2 undefined on in
+put line 148.
+
+
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [23]
+ [2]
+
+Package natbib Warning: Citation `worldbankPopDensity' on page 3 undefined on i
+nput line 152.
+
+
+Package natbib Warning: Citation `feiveson2024rent' on page 3 undefined on inpu
+t line 152.
+
+
+Package natbib Warning: Citation `stlouisfedConsumerPrice' on page 3 undefined 
+on input line 152.
+
+
+Package natbib Warning: Citation `fanniemaeConsumersFeeling' on page 3 undefine
+d on input line 152.
+
+
+Package natbib Warning: Citation `titman2024city' on page 3 undefined on input 
+line 154.
+
+
+Package natbib Warning: Citation `liu2018vertical' on page 3 undefined on input
+ line 154.
+
+
+Package natbib Warning: Citation `muth1969cities' on page 3 undefined on input 
+line 156.
+
+
+Package natbib Warning: Citation `molloy2022housing' on page 3 undefined on inp
+ut line 156.
+
+
+LaTeX Warning: Reference `fig:rdi_national' on page 3 undefined on input line 1
+56.
+
+
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [24]
-(sn-article.bbl
-Underfull \hbox (badness 5908) in paragraph at lines 18--20
-[]\TU/lmr/m/n/10.03749 Bank TW (2025) Population density (people per sq.km of l
-and area).
+ [3]
+
+! LaTeX Error: File `rdi_rent_growth_2024' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.159 ...phics[height=20pc]{rdi_rent_growth_2024}}
+                                                  
+I could not locate the file with any of these extensions:
+.pdf,.PDF,.ai,.AI,.png,.PNG,.jpg,.JPG,.jpeg,.JPEG,.jp2,.JP2,.jpf,.JPF,.bmp,.BMP
+,.ps,.PS,.eps,.EPS,.mps,.MPS
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [4]
+
+Package natbib Warning: Citation `green2002measuring' on page 5 undefined on in
+put line 179.
+
+
+Package natbib Warning: Citation `malpezzi1996rent' on page 5 undefined on inpu
+t line 179.
+
+
+Package natbib Warning: Citation `mueller1999real' on page 5 undefined on input
+ line 181.
+
+
+Package natbib Warning: Citation `gabriel2001rental' on page 5 undefined on inp
+ut line 181.
+
+
+Package natbib Warning: Citation `sirmans1991determinants' on page 5 undefined 
+on input line 181.
+
+
+Package natbib Warning: Citation `pyhrr1999real' on page 5 undefined on input l
+ine 181.
+
+
+Package natbib Warning: Citation `calder2024coordinated' on page 5 undefined on
+ input line 181.
+
+
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [5]
+
+Package natbib Warning: Citation `goodman1992rental' on page 6 undefined on inp
+ut line 183.
+
+
+Package natbib Warning: Citation `wheaton1991realestate' on page 6 undefined on
+ input line 183.
+
+
+Package natbib Warning: Citation `rosenthal1997housing' on page 6 undefined on 
+input line 183.
+
+
+Package natbib Warning: Citation `glaeser2001cities' on page 6 undefined on inp
+ut line 185.
+
+
+Package natbib Warning: Citation `duranton2004micro' on page 6 undefined on inp
+ut line 185.
+
+
+Package natbib Warning: Citation `ahlfeldt2019economic' on page 6 undefined on 
+input line 185.
+
+
+Package natbib Warning: Citation `albouy2015driving' on page 6 undefined on inp
+ut line 185.
+
+
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6]
+
+LaTeX Warning: Reference `tab:variables' on page 7 undefined on input line 205.
+
+
+
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [7]
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [8]
+Overfull \hbox (43.39282pt too wide) detected at line 276
+[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 18--20
-[][]$[][][][][] [] [] [] [][][][] [] [][][][][][][][][] [] [][][] [] [][][][][]
-[][][][] [] [][] [] [][][] [] [][][][] [] [][][][] [] [][][][][][] [] [][][][][
-] []
+LaTeX Warning: Reference `fig:choropleth_panel' on page 9 undefined on input li
+ne 291.
+
+
+LaTeX Warning: File `us.png' not found on input line 297.
+
+! Unable to load picture or PDF file 'us.png'.
+<to be read again> 
+                   }
+l.297 ...includegraphics[width=\linewidth]{us.png}
+                                                  
+The requested image couldn't be read because
+it was not a recognized image format.
+
+
+! Package graphics Error: Division by 0.
+
+See the graphics package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.297 ...includegraphics[width=\linewidth]{us.png}
+                                                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+File: us.png Graphic file (type bmp)
+<us.png>
+
+LaTeX Warning: File `tristate.png' not found on input line 301.
+
+! Unable to load picture or PDF file 'tristate.png'.
+<to be read again> 
+                   }
+l.301 ...egraphics[width=\linewidth]{tristate.png}
+                                                  
+The requested image couldn't be read because
+it was not a recognized image format.
+
+
+! Package graphics Error: Division by 0.
+
+See the graphics package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.301 ...egraphics[width=\linewidth]{tristate.png}
+                                                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+File: tristate.png Graphic file (type bmp)
+<tristate.png>
+
+LaTeX Warning: File `florida.png' not found on input line 305.
+
+! Unable to load picture or PDF file 'florida.png'.
+<to be read again> 
+                   }
+l.305 ...degraphics[width=\linewidth]{florida.png}
+                                                  
+The requested image couldn't be read because
+it was not a recognized image format.
+
+
+! Package graphics Error: Division by 0.
+
+See the graphics package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.305 ...degraphics[width=\linewidth]{florida.png}
+                                                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+File: florida.png Graphic file (type bmp)
+<florida.png>
+
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [9]
+
+LaTeX Warning: Reference `tab:summary_stats' on page 10 undefined on input line
+ 325.
+
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 328.
+
+LaTeX Font Info:    Calculating math sizes for size <8.03> on input line 331.
+
+LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <4.015> not available
+(Font)              size <5> substituted on input line 331.
+
+
+Underfull \hbox (badness 1642) in paragraph at lines 349--350
+\TU/lmr/m/n/10.03749 cities, fast-growing Sun Belt metros, and slower-growing M
+idwestern regions.
  []
 
 
-Underfull \hbox (badness 2478) in paragraph at lines 22--25
-[]\TU/lmr/m/n/10.03749 Betancourt L (2022) The us needs 4.3 million more apartm
-ents by 2035.
- []
+LaTeX Warning: Reference `fig:sidebyside' on page 10 undefined on input line 35
+3.
+
+
+LaTeX Warning: File `rdi_growth_histogram.pdf' not found on input line 359.
+
+! Unable to load picture or PDF file 'rdi_growth_histogram.pdf'.
+<to be read again> 
+                   }
+l.359 ...dth=\textwidth]{rdi_growth_histogram.pdf}
+                                                  
+The requested image couldn't be read because
+it was not a recognized image format.
+
+
+! Package graphics Error: Division by 0.
+
+See the graphics package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.359 ...dth=\textwidth]{rdi_growth_histogram.pdf}
+                                                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+File: rdi_growth_histogram.pdf Graphic file (type pdf)
+<use rdi_growth_histogram.pdf>
+! Unable to load picture or PDF file 'rdi_growth_histogram.pdf'.
+<to be read again> 
+                   \GPT@clipend 
+l.359 ...dth=\textwidth]{rdi_growth_histogram.pdf}
+                                                  
+The requested image couldn't be read because
+it was not a recognized image format.
+
+
+LaTeX Warning: File `rdi_trends_selected_msas.pdf' not found on input line 365.
+
+
+! Unable to load picture or PDF file 'rdi_trends_selected_msas.pdf'.
+<to be read again> 
+                   }
+l.365 ...\textwidth]{rdi_trends_selected_msas.pdf}
+                                                  
+The requested image couldn't be read because
+it was not a recognized image format.
+
+
+! Package graphics Error: Division by 0.
+
+See the graphics package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.365 ...\textwidth]{rdi_trends_selected_msas.pdf}
+                                                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+File: rdi_trends_selected_msas.pdf Graphic file (type pdf)
+<use rdi_trends_selected_msas.pdf>
+! Unable to load picture or PDF file 'rdi_trends_selected_msas.pdf'.
+<to be read again> 
+                   \GPT@clipend 
+l.365 ...\textwidth]{rdi_trends_selected_msas.pdf}
+                                                  
+The requested image couldn't be read because
+it was not a recognized image format.
 
 
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [25])
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [26]
-(sn-article.aux)
- ***********
-LaTeX2e <2024-11-01> patch level 2
-L3 programming layer <2025-03-26>
- ***********
-
-
-LaTeX Font Warning: Size substitutions with differences
-(Font)              up to 0.985pt have occurred.
-
-Package rerunfilecheck Info: File `sn-article.out' has not changed.
-(rerunfilecheck)             Checksum: 6F870367F338EEC8F907CCAB38580C1F;5178.
- ) 
-Here is how much of TeX's memory you used:
- 15740 strings out of 405075
- 249020 string characters out of 5499361
- 655876 words of memory out of 5000000
- 42098 multiletter control sequences out of 15000+600000
- 649005 words of font info for 152 fonts, out of 8000000 for 9000
- 1358 hyphenation exceptions out of 8191
- 87i,14n,93p,1224b,648s stack positions out of 10000i,1000n,20000p,200000b,200000s
-
-Output written on sn-article.pdf (26 pages).
+ [10
