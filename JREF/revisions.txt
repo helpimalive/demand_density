@@ -72,14 +72,14 @@ Writing Quality:
 	5. "absorption cannot exceed the rate of new deliveries" This is utterly false and Mueller and Laposa do not say this.
 
 Now, content:
-On the RDI itself, we have this:
+	On the RDI itself, we have this:
 
-"The RDI itself is useful for identifying how tight a market is at a given point in
-time, and its absolute level is shaped by long-run demographic and structural trends
-in rentership and household formation. It is rare for a market to shift more than one
-half of one person-per-rental-dwelling, even over 20 years."
+	"The RDI itself is useful for identifying how tight a market is at a given point in
+	time, and its absolute level is shaped by long-run demographic and structural trends
+	in rentership and household formation. It is rare for a market to shift more than one
+	half of one person-per-rental-dwelling, even over 20 years."
 
-This suggests that the cross-section variation of RDI is going to be more interesting and important than within-city changes in the RDI. And it *is* interesting, although not for reasons that the authors consider:
+	This suggests that the cross-section variation of RDI is going to be more interesting and important than within-city changes in the RDI. And it *is* interesting, although not for reasons that the authors consider:
 
 Omitted considerations:
 	"Within the 200 MSAs in the study,the RDI ranges from 1.68 (Bloomington, IN;
