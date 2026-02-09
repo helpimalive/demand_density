@@ -1,0 +1,8 @@
+model,OOS_R2
+All predictors,0.2387142760842722
+Lagged rent growth only,0.2304525756372261
+Occupancy only,0.072734627609783
+Supply growth only,0.015331749181130894
+Naive mean,0.0
+Absorption only,-0.017727643051364872
+Excess crowding only,-0.02211731204115197
