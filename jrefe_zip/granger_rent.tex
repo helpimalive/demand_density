@@ -1,0 +1,31 @@
+\begin{table}[!htbp]
+\centering
+\caption{Dynamic Ordering Test: Excess Crowding and Subsequent Rent Growth}
+\label{tab:granger_rent}
+\begin{tabular}{l c}
+\hline\hline
+ & (1) \\
+ & Real relative rent growth, $t+1$ \\
+\hline
+Excess crowding ($EC_t$) & 0.0408*** \\
+                         & (0.0134) \\
+Lagged rent growth ($\Delta R_t$) & 0.3045*** \\
+                                 & (0.0229) \\
+\hline
+Metropolitan fixed effects & Yes \\
+Year fixed effects         & Yes \\
+Observations               & 1,900 \\
+$R^{2}$ (within)           & 0.101 \\
+\hline\hline
+\end{tabular}
+
+\begin{flushleft}
+\footnotesize
+\textit{Notes}: The dependent variable is real, relative rent growth in year $t+1$.
+Excess crowding is measured in year $t$ as the residual from the baseline rental density
+regression. Lagged rent growth is real, relative rent growth in year $t$. All
+specifications include metropolitan and year fixed effects. Standard errors clustered
+at the metropolitan level are reported in parentheses.
+$^{***}p<0.01$, $^{**}p<0.05$, $^{*}p<0.10$.
+\end{flushleft}
+\end{table}

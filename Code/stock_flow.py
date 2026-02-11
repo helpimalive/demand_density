@@ -73,6 +73,7 @@ def ols_fe():
     # df = df[(df[split_var] > df[split_var].median())]
     rent_model = PanelOLS(
         df["real_relative_rent_growth_next_year"],
+        # sm.add_constant(df[["excess_crowding", "excess_supply_growth"]]),
         sm.add_constant(df[["excess_crowding", "supply_growth"]]),
         entity_effects=True,
         time_effects=True,

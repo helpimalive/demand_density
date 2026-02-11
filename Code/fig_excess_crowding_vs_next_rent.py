@@ -45,8 +45,8 @@ def graph_spread_between_excess_crowding_and_rent_growth():
     plt.axhline(avg, color="black", linestyle="--", linewidth=1.5)
     for x, y in zip(pdf["year"], pdf["rent_growth_diff"]):
         va = "bottom" if y >= 0 else "top"
-        plt.text(x, y, f"{y:.1f}", ha="center", va=va, fontsize=8)
-    plt.text(2019.5, avg - 2, f"  Avg {avg:.1f}", va="top", color="black")
+        plt.text(x, y, f"{y:.0f}", ha="center", va=va, fontsize=8)
+    plt.text(2019.5, avg - 2, f"  Avg {avg:.0f}", va="top", color="black")
     plt.xlabel("Year")
     plt.ylabel("Excess Real Rent Growth \n in the Year Following Excess Crowding")
     plt.title("Excess Real Rent Growth in MSAs with Excess Crowding (basis points) ")

@@ -1,0 +1,32 @@
+\begin{table}[!htbp]
+\centering
+\caption{Robustness: Metropolitan-Specific Linear Trends (Excluding 2020)}
+\label{tab:placebo_linear_trend_no_covid}
+\begin{tabular}{l c}
+\hline\hline
+ & (1) \\
+ & Real relative rent growth, $t+1$ \\
+\hline
+Excess crowding          & 0.0319** \\
+                         & (0.0160) \\
+\hline
+Metropolitan fixed effects          & Yes \\
+Year fixed effects                  & Yes \\
+Metropolitan-specific linear trends & Yes \\
+Pandemic year (2020) excluded       & Yes \\
+Observations                        & 939 \\
+$R^{2}$ (within)                    & 0.006 \\
+\hline\hline
+\end{tabular}
+
+\begin{flushleft}
+\footnotesize
+\textit{Notes}: The dependent variable is real, relative rent growth in year $t+1$.
+Excess crowding is defined as the residual from the baseline rental density regression
+and is included after partialling out metropolitan-specific linear time trends using
+the Frisch--Waugh--Lovell theorem. The pandemic year (2020) is excluded from the sample.
+All specifications include metropolitan and year fixed effects. Standard errors
+clustered at the metropolitan level are reported in parentheses.
+$^{***}p<0.01$, $^{**}p<0.05$, $^{*}p<0.10$.
+\end{flushleft}
+\end{table}
