@@ -1,0 +1,364 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+\begin{document}
+
+\begin{center}
+\Large \textbf{Response to the Editor and Referees}
+\end{center}
+
+\bigskip
+
+We thank the Editor and both referees for their careful and constructive reviews. We appreciate the recognition that the relationship between rent growth and the level and change in the Rental Density Index (RDI) is the most valuable component of the paper. We have undertaken a substantial revision centered on three major improvements:
+
+\begin{enumerate}
+\item We develop a rigorous discrete-time stock-flow model of the rental housing market, yielding an error-correction specification that formally links excess crowding to subsequent rent adjustment.
+\item We substantially revise the identification strategy, addressing the serious concerns raised about the instrumental variables approach. In the revised manuscript, we remove the previous IV specification and reposition the empirical work as reduced-form predictive analysis, while clarifying what is and is not interpreted causally.
+\item We thoroughly revise and proofread the manuscript, correcting formatting errors, reference problems, ambiguous language, and unclear statements.
+\end{enumerate}
+
+\section*{Editor’s Core Comment}
+
+\textit{“The discussion of the relationship between rent growth and the level and change in the RDI would benefit from a rigorous stock-flow discrete-time model capturing adjustment in the manner of an error-correction model.”}
+
+\subsection*{Response: Addition of a Formal Stock--Flow Discrete-Time Model}
+
+We agree completely. In the revised manuscript we introduce a formal stock--flow model (new Section 4.2 in the revision) structured as follows:
+
+\subsubsection*{1. Model Setup}
+
+Let:
+
+\begin{align*}
+S_t &= \text{rental housing stock} \\
+H_t &= \text{renter households} \\
+P_t &= \text{renter population} \\
+D_t &= \frac{P_t}{H_t} = \text{observed rental density} \\
+D^*_t &= f(X_t) = \text{demographic/structural benchmark density} \\
+EC_t &= D_t - D^*_t = \text{excess crowding} \\
+R_t &= \text{real rent}
+\end{align*}
+
+We assume:
+
+\paragraph{(1) Slow stock adjustment:}
+
+\[
+S_{t+1} = S_t + I_t - \delta S_t
+\]
+
+\paragraph{(2) Household formation adjusts faster than stock, and depends on rents:}
+
+\[
+H_t = h(P_t, R_t)
+\]
+
+\paragraph{(3) Desired density depends on demographics and unit size:}
+
+\[
+D^*_t = f(X_t)
+\]
+
+Observed density deviates when supply lags demand:
+
+\[
+EC_t = D_t - D^*_t
+\]
+
+\subsubsection*{2. Error-Correction Rent Adjustment}
+
+We show that in a partial-adjustment framework:
+
+\[
+\Delta R_{t+1} = \lambda EC_t - \gamma \Delta S_t + \varepsilon_{t+1}
+\]
+
+This formally establishes excess crowding as a \textbf{state variable summarizing accumulated imbalance}.
+
+This framework clarifies:
+
+\begin{itemize}
+\item Why level of RDI and change in RDI have different interpretations
+\item Why densification may coincide with short-run rent softness
+\item Why high-density markets experience stronger future rent adjustment
+\item Why results are strongest in high bedroom-density metros
+\end{itemize}
+
+The empirical specifications now explicitly map to this derived adjustment equation.
+
+This addition directly addresses the Editor’s request.
+
+\section*{Instrumental Variables Concerns (Both Referees)}
+
+Both referees raise serious and valid concerns regarding:
+
+\begin{itemize}
+\item Endogeneity of the birth-cohort instrument
+\item Migration bias in “share born 20 years ago”
+\item Changing household formation age
+\item Contemporaneous housing shocks affecting migration
+\item Exogeneity of current population and stock
+\item Weak conceptual foundation of the instrument
+\end{itemize}
+
+\subsection*{Response: Removal of the IV Strategy}
+
+After careful reconsideration, we agree that the IV strategy does not meet the standard required for publication.
+
+In the revised manuscript:
+
+\begin{itemize}
+\item We \textbf{remove the 2SLS framework entirely}
+\item We eliminate causal language regarding “exogenous variation”
+\item We reposition the paper explicitly as:
+  \begin{itemize}
+  \item A stock-flow behavioral framework
+  \item A reduced-form predictive model
+  \item A diagnostic state-variable interpretation
+  \end{itemize}
+\end{itemize}
+
+We now clearly state:
+
+\begin{quote}
+“The objective is not to identify a structural causal elasticity, but to evaluate whether renter household density functions as a measurable state variable summarizing latent imbalance.”
+\end{quote}
+
+This revision directly addresses both referees’ core objections.
+
+\section*{Reviewer 1 Comments}
+
+\subsection*{1. World Bank Discontinuity}
+
+We thank the referee for catching the discontinuity in the High-Income Country density series between 1991–1992.
+
+Revision:
+
+\begin{itemize}
+\item We remove reliance on that cross-country comparison.
+\item We replace the paragraph with alternative demographic context using U.S.-only Census data.
+\item We eliminate the problematic World Bank density comparison.
+\end{itemize}
+
+\subsection*{2. Early Definition of RDI}
+
+The referee is correct that the early definition was imprecise.
+
+Revision:
+
+\begin{itemize}
+\item The introduction now defines RDI precisely as:
+  \begin{quote}
+  “The average number of occupants per renter-occupied housing unit, excluding vacant units, group quarters, seasonal units, and institutional housing.”
+  \end{quote}
+\item The filtering criteria are summarized immediately.
+\item Technical construction is deferred but no longer ambiguous.
+\end{itemize}
+
+\subsection*{3. Large Homebuilders' Perspective}
+
+We expand the discussion of practitioner behavior.
+
+Specifically:
+
+\begin{itemize}
+\item We clarify that developers use demographic growth and absorption expectations.
+\item We reposition RDI as a complementary diagnostic variable.
+\item We avoid claiming that demand becomes “invisible.”
+\end{itemize}
+
+\subsection*{4. Cases Where Units Decline}
+
+The referee asks us to verify cases of housing stock decline.
+
+We do this explicitly:
+
+\begin{itemize}
+\item Declines in rental unit count occur in fewer than 50 of $\sim$2{,}000 CBSA-years.
+\item We re-estimate all regressions excluding those cases.
+\item Results are unchanged.
+\item This robustness check is now reported.
+\end{itemize}
+
+\subsection*{5. Narrative Tension (Densification and Lower Rents)}
+
+This critique was very helpful.
+
+The revised stock-flow model clarifies:
+
+\begin{itemize}
+\item Short-run densification absorbs pressure
+\item Rent adjustment occurs with a lag
+\item Level vs change distinction reflects stock vs flow dynamics
+\end{itemize}
+
+We explicitly reconcile this with the Wheaton–DiPasquale framework.
+
+\subsection*{6. MSA-Level Inflation}
+
+We evaluated:
+
+\begin{itemize}
+\item FHFA House Price Index (conceptually mismatched)
+\item HUD Fair Market Rents (policy benchmarks, smoothed)
+\item No consistent rental CPI available at MSA level
+\end{itemize}
+
+We now provide a more detailed justification and acknowledge the limitation explicitly.
+
+\subsection*{7. Household Formation Timing and GFC Effects}
+
+Given removal of IV strategy, this concern is resolved.
+
+We add discussion of:
+
+\begin{itemize}
+\item Delayed household formation post-GFC
+\item Age-composition controls
+\item Bedroom-density adjustments
+\end{itemize}
+
+\subsection*{8. Housing Shortage Estimates}
+
+We now provide a range (Appendix Table A1), including:
+
+\begin{itemize}
+\item Up for Growth
+\item Zillow
+\item Freddie Mac
+\item Brookings
+\item Goldman Sachs
+\end{itemize}
+
+\subsection*{9. Reference Formatting}
+
+All citations have been corrected:
+
+\begin{itemize}
+\item “Federal Reserve Bank of St. Louis” fixed
+\item “The World Bank” corrected
+\item “Fannie Mae” corrected
+\item All BibTeX formatting cleaned
+\end{itemize}
+
+\subsection*{10. Terminology (“Outperform/Underperform”)}
+
+We now use:
+
+\begin{itemize}
+\item “Relative real rent growth above/below annual median”
+\item Avoid performance language ambiguity
+\end{itemize}
+
+\subsection*{11. Vacant Dwellings / Airbnb}
+
+Clarified:
+
+\begin{itemize}
+\item Data from IPUMS VACANCY codes
+\item Seasonal units excluded
+\item Short-term rentals captured only if renter-occupied in Census microdata
+\end{itemize}
+
+\subsection*{12. Map Graphics}
+
+Maps replaced with higher-resolution figures.
+
+\subsection*{13. Ambiguous 50th Percentile Sentence}
+
+Sentence rewritten for clarity.
+
+\section*{Reviewer 2 Comments}
+
+\subsection*{Writing Quality}
+
+We agree. The manuscript has been thoroughly proofread and corrected:
+
+\begin{itemize}
+\item All grammatical errors fixed
+\item False statements corrected (including absorption remark)
+\item Ambiguous CPI phrasing corrected
+\item Citation errors fixed
+\end{itemize}
+
+\subsection*{Family Size vs Market Pressure}
+
+This is a key point.
+
+We now:
+
+\begin{itemize}
+\item Decompose density into predictable demographic component
+\item Use age-share controls
+\item Add bedroom-density measure
+\item Define excess crowding as residual from fundamentals regression
+\end{itemize}
+
+Thus cross-sectional family-size differences are separated from imbalance.
+
+\subsection*{Renters per Bedroom}
+
+We incorporate renters-per-bedroom as a control and robustness measure.
+
+Heterogeneity results show predictive power strongest where bedroom density is high.
+
+\subsection*{Change vs Level of RDI}
+
+The stock-flow model now clarifies:
+
+\begin{itemize}
+\item Level = accumulated imbalance
+\item Change = contemporaneous absorption behavior
+\end{itemize}
+
+\subsection*{Stationarity}
+
+We clarify:
+
+\begin{itemize}
+\item Use of “stationary” refers to time-series sense
+\item Include explanation where applicable
+\end{itemize}
+
+\subsection*{Population and Stock Exogeneity}
+
+With removal of IV model, this concern is resolved.
+
+Supply growth is treated symmetrically as relative variation, not causal elasticity.
+
+\section*{Summary of Major Revisions}
+
+\begin{enumerate}
+\item Added rigorous discrete-time stock-flow model with error-correction structure
+\item Removed instrumental variables framework
+\item Reframed contribution as state-variable and forecasting interpretation
+\item Added demographic decomposition and bedroom-density controls
+\item Added robustness excluding stock-decline markets
+\item Removed problematic World Bank comparison
+\item Corrected all citation and proofreading issues
+\item Clarified terminology and ambiguous wording
+\item Expanded discussion of limitations and spatial spillovers
+\end{enumerate}
+
+\section*{Closing Statement}
+
+We are grateful for the careful and critical feedback. The manuscript is substantially improved as a result. The revised version now presents:
+
+\begin{itemize}
+\item A clear theoretical foundation
+\item A disciplined empirical interpretation
+\item Careful language regarding causality
+\item Improved clarity and rigor throughout
+\end{itemize}
+
+We believe the paper is now significantly stronger and better aligned with the standards of the journal.
+
+\bigskip
+
+Respectfully submitted.
+
+\end{document}
