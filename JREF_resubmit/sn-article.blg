@@ -1,0 +1,53 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: sn-article.aux
+Reallocating 'name_of_file' (item size: 1) to 9 items.
+The style file: sn-basic.bst
+Reallocating 'name_of_file' (item size: 1) to 16 items.
+Database file #1: sn-bibliography.bib
+Warning--entry type for "ruggles2025ipums" isn't style-file defined
+--line 493 of file sn-bibliography.bib
+sn-basic.bst [2024/07/19 v1.1 bibliography style]
+Reallocating 'wiz_functions' (item size: 4) to 6000 items.
+You've used 27 entries,
+            3567 wiz_defined-function locations,
+            872 strings with 9684 characters,
+and the built_in function-call counts, 19390 in all, are:
+= -- 1843
+> -- 535
+< -- 21
++ -- 212
+- -- 159
+* -- 1550
+:= -- 2857
+add.period$ -- 27
+call.type$ -- 27
+change.case$ -- 194
+chr.to.int$ -- 27
+cite$ -- 27
+duplicate$ -- 1612
+empty$ -- 1723
+format.name$ -- 231
+if$ -- 4046
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 190
+newline$ -- 90
+num.names$ -- 108
+pop$ -- 489
+preamble$ -- 1
+purify$ -- 160
+quote$ -- 0
+skip$ -- 425
+stack$ -- 0
+substring$ -- 1764
+swap$ -- 405
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 1
+type$ -- 237
+warning$ -- 0
+while$ -- 127
+width$ -- 0
+write$ -- 300
+(There was 1 warning)

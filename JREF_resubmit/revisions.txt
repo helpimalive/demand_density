@@ -1,0 +1,101 @@
+Editor:
+
+"the most interesting and perhaps valuable part of the paper is the discussion of the relationship between rent growth and the level and change in the RDI. That discussion would benefit from a rigorous stock-flow discrete time model of the housing (rental) market which would capture adjustments to equilibrium in the manner of a error-correction model." I fully agree with this assessment and thus a successful revision hinges on providing a rigorous stock-flow housing model.
+
+both referees raise serious questions about the validity of the IV. As a result, significant thought needs to be put into addressing this concern as well. 
+
+Finally, both referees point out the need to be more careful in proofreading the paper with particular attention to making sure that the citations are correctly formatted.
+
+
+Reviewer 1
+
+The study introduces the Rental Density Index (RDI) to measure hidden rental demand across 200 metropolitan statistical areas (MSAs) in the United States (U.S.). This is an extremely timely topic in most of the U.S., and it is of interest across wide swaths of the globe. The study is well written, and it certainly represents a novel contribution to the literature. I offer the following comments in an effort to aid any further development of the project.
+
+World Bank Pop & Peers:
+	On page 2, still in the Introduction, the authors state, “For most of its history, the U.S. was less densely populated than its high-income peers, but in 1992 this changed. In that year, the U.S. grew to 28 people per square kilometer, outpacing the High Income Nations whose average was 23 people per square kilometer.” As you can 	see in the graph below, there was an extreme discontinuity in the High Income Nation data between 1991-1992.
+	In fact, in 1991, the density per square kilometer in High Income Nations was 34. I don’t know what happened to the data, but I don’t recall a global event of such significance that it would have decimated populations and/or destroyed enough land area in High Income Nations to result in the graph we see here. This gives me pause 	about using the World Bank data as your only source. I would encourage you to look for other data wherever you were previously relying solely on World Bank data. For what it is worth, the U.S. data from the World Bank does not exhibit this same pattern.
+
+Early Definition:
+	Also on page 2, you define your Rental Density Index as “the quotient of population over rental units.” I almost did not read any further. If that were actually the definition, that would be fraught with too many issues to warrant further study. Fortunately, I pushed on, but it wasn’t really until page 7 that I got a better, 	cleaner definition. You need to make sure the reader gets to that information sooner, and do not muddy the proverbial waters with a loosely-worded definition that offers an incomplete/erroneous picture of what you are doing.
+
+Large Home Builders' Perspective:
+	Part of the setup is an argument that “…when all available and affordable units are occupied, latent demand becomes invisible to market participants and researchers alike.” I disagree with that supposition. Multifamily developers routinely see through that cloak of invisibility. It would add a layer of richness to this study to 	talk to one or more large multifamily developers about how they analyze these same questions you are trying to address. They may have some insight that would really ratchet up the contribution of this piece. Alternatively, they may be impressed by the thoughtful and applied research you are doing that could directly impact their 	decision-making and bottom line. Either way, that is a win for the authors, in my view.
+
+Causes of RDI Movement:
+	Still in the Introduction on page 4, the authors state, “The reasons for an increasing RDI are, in most cases, population growth in excess of supply growth. However, it could be possible that housing units declined as populations remained static.” You need to identify any cases where that happened in your date, pull them out, and 	re-run your tests. Whether you fully report the results or just reference them in a footnote, you need to make sure it is as rare as you think and that it does not impact your results.
+
+Narrative:
+	Related to this discussion, the general idea you offer here is that RDI increases point to a greater latent rental demand but this behavior results in lower rents. Into a land of lower rents walks a multifamily developer to build an apartment complex. That makes little sense, and I would argue that it flies in the face of the 	Wheaton-DiPasquale Four-Quadrant model. I think some additional attention needs to be paid to the story/explanation here.
+
+MSA-level inflation:
+	Is there a way to come up with MSA-level inflation? I know you mention this in Section 3, but it would really help the analysis. Is there any way to back this out of any data the FHFA makes available?
+
+2SLS Reconsideration:
+Section 4.1, Page 12: “Individuals typically begin to form independent rental households in their early 20s. Therefore, the size of the birth cohort from 20 years ago directly influences the intensity of household formation pressure today.” Historically, this is absolutely true. Over the time period of your analysis, this is less-and-less the case every year. For this reason, I am not sold on the use of birth cohort size as a valid instrument. I also think that the current share of individuals born in the MSA 20 years prior is absolutely tied to concurrent housing affordability issues. If rents recently spiked, that is most assuredly going to lead to an outmigration of 20-somethings. Are you controlling for rate of higher education attendance across MSAs? That will also impact your measured variable here.
+
+What happens if the propensity to form independent households changes over time? It’s been documented at length in the ownership literature that young people who lived through the Great Financial Crisis delayed housing purchases. What if there is a similar behavioral mechanism at work with rental household formation? Has anyone looked at that idea? I don’t think it is a far-fetched concern that lingering effects from the GFC could be depressing the rate of new rental household formation. Perhaps look at a subset of cities hardest hit by the subprime mortgage fallout.
+
+Two of your robustness checks are somewhat questionable, in my opinion. The placebo test that you report is essentially a tautology. In other words, it is of course the case that rents are going to respond to lagged RDI rather than contemporaneous RDI. Residential rents are set once per year, typically. Therefore, it will take a non-trivial amount of time for rents to catch up to market conditions. In a similar vein, I am not sure what the purpose of running a version of the instrument lagged by one year.
+
+Minor Points:
+Estimates of Housing Shortage:
+	Your sentence in the first paragraph of the Introduction about the size of the housing unit shortfall in the US (4.4 million housing units). There is a good bit of debate about that number, so you might want to provide a range of estimates from a couple of reputable sources.
+
+References:
+	Also, that same paragraph highlights an issue with your references. I am sure it was just something that the program did when putting the references together, but it made some of the references hard to follow. For example, you frequently refer to “of Saint Louis” as an author and you cite “Bank, TW,” which I think is meant to 	refer to The World Bank. Make an editing pass and fix those issues with the references.
+
+Diction:
+	Be very careful in your use of “outperform” and “underperform” when discussing rent increases. It is not entirely clear to me what those terms mean in this context.
+
+Vacant Dwellings:
+	Page 7 in the Data and Descriptive Statistics section: where are you getting data on vacant units and what is a seasonal dwelling in this context? Also, where does an AirBNB fall?
+
+Map Graphics:
+	I love a good map, but the maps provided on page 9 are not really visible (and therefore not useful in making your case).
+
+Wording:
+	Page 19, Section 5.4, second paragraph – “Noteworthy is the 50th percentile on the x-axis, above which rent tends to be negative (5 of 8 years), and above which rent tends to be positive (7 of 9 years).” Maybe I am just misreading that sentence, but I am not following it at all.
+
+Reviewer 2
+
+The idea of using renters/renter households as a metric for a rental market is interesting and perhaps even useful, but the paper itself is not remotely publishable in its current form.
+
+Writing Quality:
+	I regret to say that the paper is very poorly written and edited, with mis-spellings, stray words, stray punctuation, missing words, false statements and meaningless verbiage scattered throughout.
+	Here are five instances in the first page or so:
+
+	1. Page 1: "Nearly half of U.S. renter households now spend over 30% of their income on housing". This is meaningless without context. Is that a lot?
+	2. " from 2000 to 2024, the consumer price index (CPI) for shelter exceeded the CPI for all
+	other items by 30%". Perhaps the rate of increase is what is meant, but as written this does not make sense.
+	3. The citation "of St. Louis" as a last name shows a lack of care, as do later citations of "Mae" for Fannie Mae and other instances.
+	4. Page 2: "This juxtaposition of chronic national undersupply with localized oversupply underscores a deeper issue: the lack of a reliable metric to measure consumer housing demand". Does it? I am afraid the connection escapes me.
+	5. "absorption cannot exceed the rate of new deliveries" This is utterly false and Mueller and Laposa do not say this.
+
+Now, content:
+	On the RDI itself, we have this:
+
+	"The RDI itself is useful for identifying how tight a market is at a given point in
+	time, and its absolute level is shaped by long-run demographic and structural trends
+	in rentership and household formation. It is rare for a market to shift more than one
+	half of one person-per-rental-dwelling, even over 20 years."
+
+	This suggests that the cross-section variation of RDI is going to be more interesting and important than within-city changes in the RDI. And it *is* interesting, although not for reasons that the authors consider:
+
+Omitted considerations:
+	"Within the 200 MSAs in the study,the RDI ranges from 1.68 (Bloomington, IN;
+	2023) to 3.74 (Provo, UT; 2009)"
+	which suggests not so much housing market pressure, but family size choices. More needs to be said about that contrast. The author ignores the age distribution of the renter population, but this is clearly important for the RDI.
+	As a side note, but an important one, I think, a better metric would be renters per bedroom, or renters per square feet. This would capture true crowding (although the age distribution would still need accounting) and would also help control for the shift to single family rentals, which is ongoing in this period and which is not 	discussed at all by the authors.
+
+Wording Specificity:
+	Anyway, the authors emphasize the *change* in RDI and I found that puzzling for two reasons. The first is that the above quote would seem to suggest that changes don't have a lot of variation, and the second is the statement that the number of households rises monotonically. They might mean the total number of households in this 	context but that whole paragraph is a bit obscure.
+
+Rent Growth and RDI in a stock-flow model:
+	The most interesting and perhaps valuable part of the paper is the discussion of the relationship between rent growth and the level and change in the RDI. That discussion would benefit from a rigorous stock-flow discrete time model of the housing (rental) market which would capture adjustments to equilibrium in the manner of a 	error-correction model.
+
+Specificity
+	(Speaking of error correction models the authors occasionally refer to the stationarity of the data, but it is not clear if they mean that term in its time-series sense or have something less formal in mind. It would be good to be clear about this.
+
+2sls Revisions:
+	The IV model discussion is very frustrating. If I understand correctly the IV is the percentage of the MSA's *current* population that was born in the same MSA 20 years ago. (THis is how they write it up, anyway). It would be nice if the authors told us how this was constructed. And do they mean *exactly* 20 years ago? That's 	oddly specific, and also before the usual age of household formation. But even then it's not a great instrument. The claim is that births 20 years ago have no relation to current shocks to the housing market, and that is true, I suppose. But that's not what the IV measures-- since it's the *percentage of the current population* it 	is clearly impacted by the number of people born 20 years ago who have left the MSA, as well as the number of people who entered the city, it is clearly not immune to current shocks.
+	And the 2SLS model isn't right either if only because it treats current population and current housing stocks as exogenous, which definitely does not seem right.
