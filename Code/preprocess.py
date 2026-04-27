@@ -1,10 +1,26 @@
 import polars as pl
 
 
-def load_data(n_markets=100):
-    df = pl.read_parquet(
-        r"C:\Users\mlarriva\Documents\om\analyses\projects\rental_density_index\data\intermediate\features\rental_density_indices_enriched.parquet"
-    ).with_columns(pl.col("YEAR").cast(pl.Int32))
+def load_data(n_markets=100, cached=True):
+    if cached:
+        return pl.read_csv(r"Exhibits\rental_density_index_features.csv")
+    df = (
+        pl.read_parquet(
+            r"C:\Users\mlarriva\Documents\om\analyses\projects\rental_density_index\data\intermediate\features\rental_density_indices_enriched.parquet"
+        )
+        .with_columns(pl.col("YEAR").cast(pl.Int32))
+        .join(
+            pl.read_parquet(
+                r"C:\Users\mlarriva\Documents\om\analyses\projects\rental_density_index\data\intermediate\features\renter_household_demographics_metro.parquet"
+            ).with_columns(pl.col("YEAR").cast(pl.Int32)),
+            how="left",
+            left_on=["MET_CODE", "YEAR"],
+            right_on=["MET2013", "YEAR"],
+        )
+        .filter(~pl.col("MET_NAME").str.contains("Orleans"))
+    )
+    # print(df.columns)
+
     largest_met_names = (
         df.group_by("MET_NAME")
         .agg(
@@ -47,8 +63,25 @@ def load_data(n_markets=100):
         pl.col("real_relative_rent_growth_next_year")
         .shift(1)
         .over("MET_NAME", order_by="YEAR")
-        .alias("real_relative_rent_growth_this_year")
+        .alias("real_relative_rent_growth_this_year"),
+        (
+            (pl.col("TOTAL_POPULATION") / ("TOTAL_BEDROOMS")).alias(
+                "total_bedroom_density"
+            )
+        ),
+        (
+            (
+                pl.col("median_owner_hh_income") / pl.col("median_renter_hh_income")
+            ).alias("owner_to_renter_income_ratio")
+        ),
+        ((pl.col("TOTAL_POPULATION") / ("TOTAL_HOUSEHOLDS")).alias("total_density_hh")),
+        (
+            (pl.col("POPULATION_OWNED") / ("POPULATION_RENTED")).alias(
+                "owned_to_rented_pop_ratio"
+            )
+        ),
     )
+    # df = df.with_columns(pl.col())
     df = df.rename({c: c.lower() for c in df.columns})
     df = df.with_columns(
         pl.col("inventory_units")
@@ -66,30 +99,19 @@ def load_data(n_markets=100):
         .alias("population_growth"),
     )
     sfh = pl.read_parquet(
-        r"C:\Users\mlarriva\Documents\om\analyses\projects\rental_density_index\data\intermediate\features\annual_hh_overview.parquet"
+        r"C:\Users\mlarriva\Documents\om\analyses\projects\rental_density_index\data\intermediate\features\annual_sfr_overview_metro.parquet"
+    ).with_columns(pl.col("YEAR").cast(pl.Int32))
+
+    df = df.join(
+        sfh, how="left", left_on=["met_name", "year"], right_on=["CBSA Title", "YEAR"]
+    ).with_columns(
+        (
+            pl.col("SFR_HOUSEHOLDS")
+            / (pl.col("households_owned") + pl.col("households_rented"))
+        ).alias("sfr_share")
     )
-    mapping = (
-        pl.read_parquet(
-            r"C:\Users\mlarriva\Documents\om\analyses\projects\rental_density_index\data\intermediate\features\rental_density_indices_enriched.parquet"
-        )
-        .select("MET2013", "MET_NAME")
-        .unique()
-    )
-    sfh = (
-        sfh.join(mapping, left_on="MET2013", right_on="MET2013", how="left")
-        .with_columns(
-            pl.col("total_hh_count")
-            / pl.col("total_hh_count")
-            .sum()
-            .over(["YEAR", "MET_NAME"])
-            .alias("housing_share")
-        )
-        .filter(pl.col("dwelling_super_group") == "SINGLE_FAMILY_DETACHED")
-    ).select(
-        pl.col("YEAR").cast(pl.Int32).alias("year"),
-        pl.col("MET_NAME").alias("met_name"),
-        pl.col("total_hh_count").alias("sfh_share"),
-    )
-    df = df.join(sfh, how="left", on=["met_name", "year"])
     df.write_csv(r"Exhibits\rental_density_index_features.csv")
     return df
+
+
+# load_data(cached=False)
