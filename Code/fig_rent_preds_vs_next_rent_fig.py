@@ -10,7 +10,6 @@ def graph_spread_between_excess_crowding_and_rent_growth():
         "excess_crowding",
         "met_name",
         "real_relative_rent_growth_next_year",
-        "density_rented_change",
         "forecast_rent",
     )
     yvar = "real_relative_rent_growth_next_year"

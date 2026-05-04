@@ -7,6 +7,7 @@ import os
 
 
 def graph():
+    
     df = (
         (
             load_data().select(
