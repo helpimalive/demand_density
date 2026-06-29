@@ -1,0 +1,128 @@
+\begin{thebibliography}{27}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{{#1}}
+\providecommand{\urlprefix}{URL }
+\providecommand{\doi}[1]{\url{https://doi.org/#1}}
+\providecommand{\eprint}[2][]{\url{#2}}
+ \bibcommenthead
+
+\bibitem[{Ahlfeldt and Pietrostefani(2019)}]{ahlfeldt2019economic}
+Ahlfeldt GM, Pietrostefani E (2019) The economic effects of density: A
+  synthesis. Journal of Regional Science 59(1):3--26
+
+\bibitem[{Albouy et~al.(2015)}]{albouy2015driving}
+Albouy D, et~al (2015) Driving to opportunity: Understanding the long-run
+  decline in american mobility. AEA Papers and Proceedings 105(5):132--136
+
+\bibitem[{Calder‐Wang and Kim(2024)}]{calder2024coordinated}
+Calder‐Wang S, Kim GH (2024) Coordinated vs efficient prices: The impact of
+  algorithmic pricing on multifamily rental markets. Tech. rep., Cowles
+  Foundation for Research in Economics, Yale University,
+  \urlprefix\url{https://cowles.yale.edu/sites/default/files/2024-05/Calder-Wang-main.pdf},
+  working paper. Shows that RMS adoption drives occupancy toward a fixed
+  95–97\% target, rendering occupancy a blunt demand metric
+
+\bibitem[{Davidoff(2015)}]{davidoff2015supply}
+Davidoff T (2015) Supply constraints are not valid in high-cost areas. Critical
+  Housing Analysis 2(1)
+
+\bibitem[{Duranton and Puga(2004)}]{duranton2004micro}
+Duranton G, Puga D (2004) Micro-foundations of urban agglomeration economies.
+  Handbook of Regional and Urban Economics 4:2063--2117
+
+\bibitem[{{Fannie Mae}(2023)}]{fanniemaeConsumersFeeling}
+{Fannie Mae} (2023) Consumers feel renting is more affordable than
+  homeownership.
+  \url{https://www.fanniemae.com/research-and-insights/surveys/national-housing-survey}
+
+\bibitem[{{Federal Reserve Bank of St. Louis}(2024)}]{stlouisfedConsumerPrice}
+{Federal Reserve Bank of St. Louis} (2024) Consumer price index for all urban
+  consumers: Shelter vs all items less shelter.
+  \url{https://fred.stlouisfed.org/series/CUSR0000SA0L2}
+
+\bibitem[{Feiveson et~al.(2024)}]{feiveson2024rent}
+Feiveson L, et~al (2024) Rent inflation and the role of demand. Board of
+  Governors of the Federal Reserve System
+
+\bibitem[{Gabriel and Nothaft(2001)}]{gabriel2001rental}
+Gabriel SA, Nothaft FE (2001) Rental housing markets, the incidence and
+  duration of vacancy, and the natural vacancy rate. Journal of Urban Economics
+  49(1):121--149
+
+\bibitem[{Glaeser et~al.(2001)}]{glaeser2001cities}
+Glaeser EL, et~al (2001) Cities and skills. Journal of Labor Economics
+  19(2):316--342
+
+\bibitem[{Goodman(1992)}]{goodman1992rental}
+Goodman AC (1992) Rental market adjustment and the natural vacancy rate.
+  Journal of Urban Economics 31(1):1--16
+
+\bibitem[{Green et~al.(2002)Green, Malpezzi, and Mayo}]{green2002measuring}
+Green RK, Malpezzi S, Mayo SK (2002) Measuring the elasticity of demand for
+  housing services. Journal of Urban Economics 52(2):210--227
+
+\bibitem[{Liu et~al.(2018)Liu, Pan, and Li}]{liu2018vertical}
+Liu S, Pan Q, Li Y (2018) Vertical cities: The price of tall buildings.
+  Regional Science and Urban Economics 72:58--73
+
+\bibitem[{Malpezzi and Green(1996)}]{malpezzi1996rent}
+Malpezzi S, Green RK (1996) Rent control and rental housing quality: A note on
+  the effects of new york city’s 1971 law. Journal of Housing Economics
+  5(2):190--206
+
+\bibitem[{Molloy(2022)}]{molloy2022housing}
+Molloy R (2022) Housing demand and supply: The need for more data and better
+  policy. Brookings Papers on Economic Activity
+
+\bibitem[{Mott(2024)}]{mott2024ThisRegion}
+Mott Z (2024) This region is finally seeing rent drop after a supply boom.
+  Apartment List Research \url{https://www.apartmentlist.com/research}
+
+\bibitem[{Mueller and Laposa(1999)}]{mueller1999real}
+Mueller GR, Laposa SP (1999) Real estate rental markets: What rental data can
+  and cannot tell us. Journal of Real Estate Portfolio Management 5(2):135--144
+
+\bibitem[{Muth(1969)}]{muth1969cities}
+Muth RF (1969) Cities and Housing. University of Chicago Press
+
+\bibitem[{Pennington(2021)}]{pennington2021does}
+Pennington K (2021) Does building new housing cause displacement? the supply
+  and demand effects of construction in san francisco. Working Paper
+  \url{https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3902950}
+
+\bibitem[{Pyhrr et~al.(1999)Pyhrr, Cooper, and Wofford}]{pyhrr1999real}
+Pyhrr SA, Cooper JL, Wofford ML (1999) Real estate investment: Strategies,
+  structures, decisions. Wiley
+
+\bibitem[{Ruggles et~al.(2025)Ruggles, Flood, Sobek, Backman, Cooper,
+  Rivera~Drew, Richards, Rodgers, Schroeder, and Williams}]{ruggles2025ipums}
+Ruggles S, Flood S, Sobek M, et~al (2025) {IPUMS USA}: Version 16.0.
+  \doi{10.18128/D010.V16.0},
+  \urlprefix\url{https://doi.org/10.18128/D010.V16.0}, dataset
+
+\bibitem[{Saiz(2010)}]{saiz2010geographic}
+Saiz A (2010) The geographic determinants of housing supply. Quarterly Journal
+  of Economics 125(3):1253--1296
+
+\bibitem[{Sirmans et~al.(1991)Sirmans, Sirmans, and
+  Benjamin}]{sirmans1991determinants}
+Sirmans C, Sirmans G, Benjamin J (1991) Determinants of apartment rent. Journal
+  of Real Estate Research 6(3):357--379
+
+\bibitem[{{The World Bank}(2025)}]{worldbankPopDensity}
+{The World Bank} (2025) Population density (people per sq.\,km of land area).
+  \url{https://data.worldbank.org/indicator/EN.POP.DNST?most_recent_value_desc=true&locations=XD}
+
+\bibitem[{Titman et~al.(2024)Titman, Wang, and Yildirmaz}]{titman2024city}
+Titman S, Wang K, Yildirmaz M (2024) City size and vertical development.
+  Journal of Urban Economics 142:103519
+
+\bibitem[{{U.S. Census Bureau}(2022)}]{censusNearlyHalf}
+{U.S. Census Bureau} (2022) Nearly half of renters are cost-burdened.
+  \url{https://www.census.gov/library/stories/2022/03/nearly-half-of-renter-households-are-cost-burdened.html}
+
+\bibitem[{Wheaton(1991)}]{wheaton1991realestate}
+Wheaton WC (1991) Real estate “cycles”: Some fundamentals. Real Estate
+  Economics 19(2):209--230
+
+\end{thebibliography}

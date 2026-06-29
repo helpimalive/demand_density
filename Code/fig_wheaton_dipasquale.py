@@ -12,36 +12,34 @@ def graph_spread_between_excess_crowding_and_rent_growth():
         "met_name",
         "density_rented_change",
         "density_rented",
-        "bedroom_density_rented",
-        "real_rent_growth_next_year",
         "real_relative_rent_growth_next_year",
-        "real_relative_rent_growth_this_year",
     )
     yvar = "real_relative_rent_growth_next_year"
     df = (
         df.with_columns(
             (
                 pl.col("density_rented").median()
-                # .over('year')
-            ).alias("density_rented_median")
+                .over('year')
+            ).alias("density_rented_mean")
         )
         .with_columns(
-            pl.when(pl.col("density_rented") >= pl.col("density_rented_median"))
+            pl.when(pl.col("density_rented") >= pl.col("density_rented_mean"))
             .then(pl.lit("High Density"))
             .otherwise(pl.lit("Low Density"))
             .alias("density_rented_group")
         )
         .with_columns(
             pl.col("density_rented_change").median()
-            # .over("year")
-            .alias("density_rented_change_median")
+            .over("year")
+            .alias("density_rented_change_mean")
         )
         .with_columns(
             pl.when(
-                pl.col("density_rented_change") < pl.col("density_rented_change_median")
+                pl.col("density_rented_change") < 0
+                # pl.col("density_rented_change") < pl.col("density_rented_change_mean")
             )
-            .then(pl.lit("Densifying"))
-            .otherwise(pl.lit("De-densifying"))
+            .then(pl.lit("Expanding"))
+            .otherwise(pl.lit("Crowding"))
             .alias("density_rented_change_group"),
         )
     )
@@ -52,7 +50,7 @@ def graph_spread_between_excess_crowding_and_rent_growth():
             pl.col(yvar).count(),
             pl.col(yvar).std().alias("std_dev") * 10000,
         )
-        .sort("density_rented_group")
+        .sort("density_rented_group","density_rented_change_group")
     )
 
 

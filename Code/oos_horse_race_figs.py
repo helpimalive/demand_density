@@ -8,7 +8,7 @@ from preprocess import load_data
 START_FORECAST_YEAR = 2010
 
 
-def oos_density_forecasts():
+def oos_density_forecasts(quantiles=5):
 
     # ---------------- LOAD DATA ----------------
     df = (
@@ -27,6 +27,8 @@ def oos_density_forecasts():
             "age_under_18_share",
             "age_25_to_34_share",
             "age_34_to_49_share",
+            "real_rent_growth",
+            "real_rent_growth_next_year"
         )
         .with_columns(
             pl.col("density_rented")
@@ -37,13 +39,16 @@ def oos_density_forecasts():
         .with_columns(
             (
                 (pl.col("density_rented"))
-                * (pl.col("real_relative_rent_growth_this_year"))
+                # * (pl.col("real_relative_rent_growth_this_year"))
+                * (pl.col("real_rent_growth"))
+                #  (pl.col('drpc'))
+
             ).alias("RDI_var")
         )
         .to_pandas()
         .sort_values(["met_name", "year"])
     )
-    splits = 5
+    splits = quantiles
     # ---------------- ROLLING OOS RENT FORECASTS ----------------
     records = []
 
@@ -168,4 +173,5 @@ def oos_density_forecasts():
 
 
 if __name__ == "__main__":
-    oos_density_forecasts()
+    oos_density_forecasts(5)
+    oos_density_forecasts(10)
