@@ -107,6 +107,8 @@ INPUT C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex\latex\amscls\amsthm.st
 INPUT C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex\latex\base\fix-cm.sty
 INPUT C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex\latex\base\fix-cm.sty
 INPUT C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex\latex\base\ts1enc.def
+INPUT C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex\latex\apacite\apacite.sty
+INPUT C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex\latex\apacite\apacite.sty
 INPUT C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex\latex\natbib\natbib.sty
 INPUT C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex\latex\natbib\natbib.sty
 INPUT C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex\latex\multirow\multirow.sty
@@ -197,6 +199,9 @@ OUTPUT sn-article.pdf
 INPUT .\sn-article.out
 INPUT .\sn-article.out
 OUTPUT sn-article.out
+INPUT C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex\latex\apacite\english.apc
+INPUT C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex\latex\apacite\english.apc
+INPUT C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex\latex\apacite\english.apc
 INPUT C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex\latex\caption\ltcaption.sty
 INPUT C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\tex\latex\caption\ltcaption.sty
 INPUT C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr8.tfm
@@ -351,6 +356,7 @@ INPUT ..\Figs\fig_oos_density_delta_halfs.pdf
 INPUT .\sn-article.bbl
 INPUT .\sn-article.bbl
 INPUT sn-article.bbl
+INPUT C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmti10.tfm
 INPUT sn-article.aux
 INPUT .\sn-article.out
 INPUT .\sn-article.out
@@ -396,6 +402,8 @@ INPUT C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfont
 INPUT C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy7.pfb
 INPUT C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy8.pfb
 INPUT C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy8.pfb
+INPUT C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmti10.pfb
+INPUT C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmti10.pfb
 INPUT C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmti7.pfb
 INPUT C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmti7.pfb
 INPUT C:\Users\mlarriva\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmti8.pfb

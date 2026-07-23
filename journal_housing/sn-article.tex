@@ -29,13 +29,13 @@
 %%The option is available for: sn-basic.bst, sn-chicago.bst%  
  
 %%\documentclass[pdflatex,sn-nature]{sn-jnl}% Style for submissions to Nature Portfolio journals
-\documentclass[pdflatex,sn-basic]{sn-jnl}% Basic Springer Nature Reference Style/Chemistry Reference Style
+%%\documentclass[pdflatex,sn-basic]{sn-jnl}% Basic Springer Nature Reference Style/Chemistry Reference Style
 %%\documentclass[pdflatex,sn-mathphys-num]{sn-jnl}% Math and Physical Sciences Numbered Reference Style
 %%\documentclass[pdflatex,sn-mathphys-ay]{sn-jnl}% Math and Physical Sciences Author Year Reference Style
 %%\documentclass[pdflatex,sn-aps]{sn-jnl}% American Physical Society (APS) Reference Style
 %%\documentclass[pdflatex,sn-vancouver-num]{sn-jnl}% Vancouver Numbered Reference Style
 %%\documentclass[pdflatex,sn-vancouver-ay]{sn-jnl}% Vancouver Author Year Reference Style
-%%\documentclass[pdflatex,sn-apa]{sn-jnl}% APA Reference Style
+\documentclass[pdflatex,sn-apa]{sn-jnl}% APA Reference Style
 %%\documentclass[pdflatex,sn-chicago]{sn-jnl}% Chicago-based Humanities Reference Style
 
 %%%% Standard Packages
@@ -105,9 +105,9 @@
 
 %%=============================================================%%
 % GivenName	-> \fnm{Matt}
-%Particle	-> \spfx{van der} -> surname prefix
+% % Particle	-> \spfx{van der} -> surname prefix
 % FamilyName	-> \sur{Larriva	}
-% Suffix	-> \sfx{IV}
+% % Suffix	-> \sfx{IV}
 % \author*[1]{\fnm{Matt} \sur{Larriva}}\email{matt.larriva@brookfield.com}
 %%=============================================================%%
 
@@ -316,6 +316,8 @@ for investors, planners, and policymakers.
 
 
 \section{Data and Descriptive Statistics}\label{section3}
+The data for our analysis come from three primary sources: the U.S. Census Bureau, Costar, and the U.S. Bureau of Labor Statistics. A summary of the key variables used in our analysis is provided in Table~\ref{tab:variables}.
+
 The data used to calculate RDI are from the Public Use Microdata Statistics (PUMS). The PUMS data is an offering of the U.S. Census in conjunction with the American Community Survey. The data allow for visibility into myriad aspects of a respondent's life (including the number of people in their household and whether they rent or own their home), anonymized for privacy and standardized to create a comprehensive view of the entire country. This data is tabulated by the IPUMS USA \cite{ruggles2025ipums}. The Rental Density Index (RDI), is calculated by summing the number of people living in rental units within a CBSA, and dividing that by the sum of occupied rental units within a CBSA. Excluded from both the numerator and denominator are: group quarters (institutions); vacant units (for sale; for rent; rented or sold but not-yet-occupied); units for seasonal, recreational or other occasional use; and units for migratory workers. We compute its year-over-year difference---\(\Delta\text{RDI}\)---to reflect short-term demand dynamics. This measure avoids the bounded structure of traditional demand indicators like occupancy and absorption, which are upper bounded by 100\%. 
 
 Our market rent data and inventory growth data is sourced from Costar. This includes nominal effective rent per square foot and inventory units. Our inflation measures come from the U.S. Bureau of Labor Statistics (Series CPIAUCSL). We restrict our analysis to the 100 largest U.S. metropolitan statistical areas (CBSAs) by multifamily inventory as of 2005, ensuring robust sample representation and consistency over time.
